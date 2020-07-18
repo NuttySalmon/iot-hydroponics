@@ -1,0 +1,19 @@
+body{
+    background-image: url(agriculture-bunch-cooking-eat-606540@2x.png);
+    background-attachment: fixed; 
+    background-size: 100% 100%;
+}
+.jumbotron{
+    margin-top: 100px;
+    margin-left: 800px;
+    margin-right: 100px;
+}
+
+/* .background {
+    display: grid;
+} 
+.cilantro{
+    width: 100%;
+    height: 100%;
+    margin: auto;
+} */
