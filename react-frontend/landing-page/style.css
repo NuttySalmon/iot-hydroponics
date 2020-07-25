@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  color: #222;
+}
+.hydro {
+    position: relative;
+    width: 100%;
+}
+
+.hydro img {
+    width: 100%;
+    height: auto;
+}
+
+.whatHydro {
+    position: relative;
+    width: 100%;
+}
+
+.whatHydro img {
+    width: 100%;
+    height: auto;
+}
+
+.container-fluid h1 {
+    text-align: left;
+}
+
+h2 {
+    position: absolute;
+    top: 200px;
+    width: 100%;
+    color: #FBB62E
+}
+
+h3 {
+    position: absolute;
+    top: 400px;
+    width: 100%;
+    color: #FFE0B2
+}
+
+.whatHydro h4 {
+    position: absolute;
+    top: 400px;
+    width: 100%;
+    color: #ffffff
+}
+
+.whyHydro h4 {
+    position: absolute;
+    top: 400px;
+    width: 100%;
+    color: #ffffff
+}
+
+h5 {
+    position: absolute;
+    top: 800px;
+    width: 100%;
+    color: #ffffff
+}
+
+.btn {
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #9c9c9c;
+    color: #FFE0B2;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: 1px solid #000000;
+    cursor: pointer;
+    border-radius: 45px;
+}
+
+#contain {
+    position: relative;
+    text-align: center;
+}
+
+#leftJust {
+    position: relative;
+    text-align: left;
+}
+
+.btn-primary:hover {
+    background-color: #006400;
+    border: 1px solid #ADFF2F;
+}
+
+
+
+
+/*---Media Queries --*/
+@media (max-width: 992px) {
+
+  }
+@media (max-width: 768px) {
+  
+}
+@media (max-width: 576px) {
+  
+}
+
+/*--- Fixed Background Image --*/
+figure {
+  position: relative;
+  width: 100%;
+  height: 60%;
+  margin: 0!important;
+}
+.fixed-wrap {
+  clip: rect(0, auto, auto, 0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+#fixed {
+  background-image: url('img/sb3.jpg');
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
+  will-change: transform;
+}
+/*--- Bootstrap Padding Fix --*/
+[class*="col-"] {
+    padding: 1rem;
+}
+
+
+
+
+
+/*
+Extra small (xs) devices (portrait phones, less than 576px)
+No media query since this is the default in Bootstrap
+
+Small (sm) devices (landscape phones, 576px and up)
+@media (min-width: 576px) { ... }
+
+Medium (md) devices (tablets, 768px and up)
+@media (min-width: 768px) { ... }
+
+Large (lg) devices (desktops, 992px and up)
+@media (min-width: 992px) { ... }
+
+Extra (xl) large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... }
+*/
+
+
+
+
+
+
+
+
