@@ -1,21 +1,20 @@
 import React, { Component } from "react";
-import { 
-  Container, 
-  Row,
-  Col,
-  Button
-} from "react-bootstrap";
-
-import './style.css';
 import HydroPX from "./HydroPX";
-
+import MeetTheTeam from "./MeetTheTeam";
+import Hydroponics from "./Hydroponics";
+import EbbAndFlow from "./EbbAndFlow";
+import WhyHydro from "./WhyHydro";
+import './style.css';
 class App extends Component {
   render() {
     return (
-
-      <HydroPX />
-      
-
+      <div>
+        <HydroPX />
+        <MeetTheTeam />
+        <Hydroponics />
+        <EbbAndFlow />
+        <WhyHydro />
+      </div>
       
     );
   }
