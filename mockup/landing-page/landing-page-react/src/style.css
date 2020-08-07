@@ -1,0 +1,158 @@
+:root{
+    --main-light-color: #FFE0B2;
+    --highlight: #fbb62e;
+    --dark: #5D4C09;
+    --light-gray: #717171;
+    --title-font: 'EB Garamond', serif;
+    --item-font: 'Lato', sans-serif;
+}
+.btn-trans{
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border-radius: 45px;
+    width: 200px;
+    background-color: transparent;
+    border: 0.1px solid rgb(0%);
+    color: var(--main-light-color);
+    font-size: 25px;
+    font-family: var(--title-font)
+}
+.btn-trans:hover{
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border-radius: 45px;
+    width: 200px;
+    background-color: transparent;
+    border: 0.1px solid var(--main-light-color);
+    color: var(--main-light-color);
+}
+
+.title-box{
+    background-image: url(./img/lettuce-bg.png); 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    min-height: 100vh;
+    font-family: var(--title-font); 
+}
+
+.title-box2{
+    background-image: 
+        linear-gradient(
+            rgba(0 0 0 / 70%),
+            rgba(0 0 0 / 70%)
+        ),
+        url(./img/whatHydro.png); 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    min-height: 100vh;
+    font-family: var(--title-font);
+}
+
+.title-box3{
+    min-height: 70vh;
+    font-family: var(--title-font);
+    align-content: space-around;
+}
+
+.title-box4{
+    background-image: 
+        linear-gradient(
+            rgba(0 0 0 / 70%),
+            rgba(0 0 0 / 70%)
+        ),
+        url(./img/whyHydro.png); 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    min-height: 100vh;
+    font-family: var(--title-font);
+}
+
+.title-box-container{
+    border: 6px solid #ffa50073;
+    background-color: rgb(0 0 0 / 45%);
+    padding-top: 10%;
+    padding-bottom: 10%;
+    height:fit-content;
+    align-self: center;
+    font-size: 25px;
+    color: var(--main-light-color); 
+    text-align: center;
+}
+
+.title-box-container2{
+    padding-top: 10%;
+    padding-bottom: 10%;
+    padding-left: 10%;
+    padding-right: 10%;
+    height:fit-content;
+    align-self: center;
+    font-size: 25px;
+    color: var(--main-light-color); 
+    text-align: left;
+}
+
+.title{
+    font-family: var(--title-font);
+    font-size: 50px;
+    color: var(--dark);
+    margin-bottom: 30px;
+}
+
+.head{
+    clip-path: circle(95px at center);
+    object-position: 10%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.head-name{
+    margin-top: 20px;
+    font-size: 30px;
+    text-align: center;
+    color: var(--light-gray);
+    font-family: var(--item-font);
+}
+
+.logo-title{
+    color: var(--highlight);
+    font-family: 'Sen', sans-serif;
+    font-size: 100px;
+}
+
+/* Help with sizing the left image in Ebb and Flow */
+.half-left img,
+.half-right img {
+    height: auto;
+    width: 100%;
+}
+
+@media screen and (min-width: 1001px) {
+    .logo-title{
+        font-size: 120px;
+    }
+    .half-left,
+    .half-right{
+        overflow: hidden;
+        padding: 0;
+        position: relative;
+    }
+    .half-left > .container,
+    .half-right > .container {
+        position: absolute;
+    }
+    .half-left  > .container { right: 0;}
+    .half-right > .container { left: 0; }
+}
+
+@media screen and (max-width: 1000px) {
+    .logo-title {
+        font-size: 10vw;
+    }
+}
+
+        /* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+@media screen and (max-width: 600px) {
+    .logo-title {
+        font-size: 60px;
+    }
+}
