@@ -1,0 +1,22 @@
+@import '../base/typography.scss';
+@import '../base/variables.scss';
+.logo-lg {
+  font-family: $logo-font;
+  color: $highlight;
+  @media screen and (min-width: 1001px) {
+    font-size: 120px;
+  }
+
+  @media screen and (max-width: 1000px) {
+    font-size: 10vw;
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: 60px;
+  }
+}
+
+.logo-trans{
+    font-family: $logo-font;
+    color: rgba(white, 0.6);
+}

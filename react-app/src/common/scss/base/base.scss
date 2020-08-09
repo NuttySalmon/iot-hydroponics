@@ -1,0 +1,21 @@
+@import './variables.scss';
+@import './typography.scss';
+
+$theme-colors: (
+  'primary': $dark,
+  'danger': #ff4136,
+);
+
+p {
+  size: 25px;
+  font-family: $sans;
+  color: $dark;
+}
+
+h1 {
+  size: 55px;
+  font-family: $serif;
+  color: $light-dark;
+}
+
+@import '../components/buttons.scss';

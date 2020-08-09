@@ -1,0 +1,40 @@
+@import '../base/variables.scss';
+@import '../base/typography.scss';
+@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap/scss/variables';
+
+.form-group {
+  .form-label {
+    position: relative;
+    z-index: 0;
+    font-family: $serif;
+
+    &.label-center {
+      margin-left: map-get($map: $spacers, $key: 3);
+      font-size: 1rem;
+      top: 2.3rem;
+      transition: all 0.1s ease-in-out;
+      color: $muted;
+    }
+    &.label-small {
+      color: $dark;
+      margin-left: map-get($map: $spacers, $key: 2);
+      font-size: 0.8rem;
+      top: 0.8rem;
+      transition: all 0.1s ease-in-out;
+    }
+  }
+  input.form-control {
+      border: solid $muted;
+      border-width: 0 0 1px 0;
+      border-radius: 0;
+      transition: width ease 1s;
+      font-family: $serif;
+      &:focus{
+        border: solid $dark;
+        box-shadow: none;
+        border-width: 0 0 2px 0;
+        transition: border ease 0.1s;
+      }
+  }
+}
