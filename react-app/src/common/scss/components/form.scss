@@ -30,6 +30,7 @@
       border-radius: 0;
       transition: width ease 1s;
       font-family: $serif;
+      background: transparent;
       &:focus{
         border: solid $dark;
         box-shadow: none;

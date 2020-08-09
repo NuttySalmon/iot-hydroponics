@@ -8,7 +8,9 @@ import './App.scss';
 
 function App() {
   return (
+
     <Router>
+      {/* 
       <ul>
         <li>
           <Link to="/">Landing</Link>
@@ -23,6 +25,7 @@ function App() {
           <Link to="/sample/">SASS Sample</Link>
         </li>
       </ul>
+    */}
       <Switch>
         <Route path="/sample">
           <UISample />
