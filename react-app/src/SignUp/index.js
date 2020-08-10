@@ -1,11 +1,28 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import App from './App'
+import background from './img/sign-up-bg.png'
+import FullPage from '../common/components/FullPage';
+import FormContainer from "../common/components/FormContainer"
+import style from './scss/signup.module.scss'
+import SignUpForm from './SignUpForm';
 
-function SignUp() {
-  return (
-    <App />
-  )
+function Login() {
+   const formLinks = [
+     {to: '/login', text: 'Already have an account?'}
+   ];
+
+   return (
+     <FullPage bg={background}>
+       <FormContainer 
+         title="Create an account"
+         formLinks={formLinks}
+         style={style.box}
+       >
+         <SignUpForm />
+       </FormContainer>
+     </FullPage>
+ )
 }
 
-export default SignUp
+export default Login
+
+

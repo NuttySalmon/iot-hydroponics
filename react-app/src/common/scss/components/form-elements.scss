@@ -8,6 +8,7 @@
 /* text field with label animation */
 .form-group {
   font-family: $serif;
+  height: 3em;
   .form-label {
     position: relative;
     margin-left: map-get($map: $spacers, $key: 1);
@@ -15,7 +16,7 @@
 
     &.label-center {
       font-size: 1.3em;
-      top: 3rem;
+      top: 2.6rem;
       transition: all 0.1s ease-in-out;
       color: $muted;
     }
@@ -23,6 +24,7 @@
       color: black;
       font-size: 1em;
       margin-top: 0.8em;
+      margin-left: 0;
       top: 0.8rem;
       transition: all 0.1s ease-in-out;
     }
@@ -37,6 +39,8 @@
     border-radius: 0;
     transition: width ease 1s;
     background: transparent;
+    padding: 0;
+    margin: 0;
     &:focus {
       border: solid $dark;
       box-shadow: none;
@@ -58,12 +62,6 @@
   @include media-breakpoint-down(sm) {
     padding: 2em;
   }
-}
-
-/* form button */
-.form-btn {
-  text-align: center;
-  margin-top: 60px;
 }
 
 /* Links beneath the form */

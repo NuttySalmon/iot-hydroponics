@@ -2,14 +2,12 @@
 @import '../../common/scss/base/mixins';
 @import '../../common/scss/components/form-elements';
 
-.box{
-    @include on-one-side(right);    
-    @extend %form-box;
-}
+.box {
+  @include on-one-side(left);
+  @extend %form-box;
+} /* form button */
 
-/* form button */
 .formbtn {
-  text-align: center;
-  margin-top: 59px;
+  padding-left: 0;
+  margin-top: 100px;
 }
-
