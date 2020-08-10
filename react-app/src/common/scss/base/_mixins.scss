@@ -10,5 +10,6 @@
 @mixin full-bg {
   background-repeat: no-repeat;
   background-size: cover;
-  min-height: 100vh;
+  height: 100vh;
+  width: 100vw; 
 }

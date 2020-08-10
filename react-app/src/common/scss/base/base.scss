@@ -1,5 +1,8 @@
 @import 'variables';
 @import 'typography';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins/breakpoints';
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond&family=Lato&family=Sen&display=swap');
 
 $theme-colors: (
@@ -16,6 +19,9 @@ h1 {
   font-size: 55px;
   font-family: $serif;
   color: $light-dark;
+  @include media-breakpoint-down(sm) {
+    font-size: xx-large;
+  }
 }
 
 a {
@@ -27,6 +33,6 @@ a {
   }
 
   &:visited {
-    color: #7e7671
+    color: #7e7671;
   }
 }

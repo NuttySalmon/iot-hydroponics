@@ -6,7 +6,7 @@ import style from './scss/login.module.scss';
 
 const LoginBox = () => {
     return(
-      <Row style={{margin: 0, height: '100vh'}}>
+      <Row style={{margin: 0, height: '100vh', width: '100vw'}}>
         <Container className={style.box}>
           <div className="align-self-center col"> 
             <Row><h1>Welcome Back</h1></Row>

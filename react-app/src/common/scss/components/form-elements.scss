@@ -51,7 +51,9 @@
   align-self: center;
   padding: 50px 70px;
   display: flex;
-  
+  @include media-breakpoint-down(sm) {
+    padding: 2em;
+  }
 }
 
 .form-btn {
