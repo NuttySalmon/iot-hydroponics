@@ -5,10 +5,10 @@ import LogoTrans from './LogoTrans'
 import '../scss/components/form-elements.scss'
 
 /**
- * Render page with full background for form
+ * Render page with full background and logo 
  * @param props
- * @param children - Element to render in page 
- * @param bg - background image
+ * @param props.children - Element to render in page 
+ * @param props.bg - background image
  */
 const FullPage = ({children, bg}) => {
   return (
@@ -28,4 +28,6 @@ FullPage.propTypes = {
 FullPage.defaultProps ={
   bg: null 
 }
+
+
 export default FullPage
