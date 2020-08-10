@@ -5,7 +5,7 @@ import FormContainer from "../common/components/FormContainer"
 import style from './scss/signup.module.scss'
 import SignUpForm from './SignUpForm';
 
-function Login() {
+function SignUp() {
    const formLinks = [
      {to: '/login', text: 'Already have an account?'}
    ];
@@ -23,6 +23,6 @@ function Login() {
  )
 }
 
-export default Login
+export default SignUp
 
 
