@@ -23,6 +23,8 @@
   }
 }
 
+/*button styles, can be used with Bootstrap variant prop*/
+
 .btn-short {
   @extend %button-base;
   width: 149px;

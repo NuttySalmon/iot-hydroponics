@@ -6,7 +6,3 @@
     @include on-one-side(right);    
     @extend %form-box;
 }
-
-.background{
-    @include full-bg;
-}

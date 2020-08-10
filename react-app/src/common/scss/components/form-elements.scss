@@ -1,9 +1,11 @@
 @import '../base/variables';
 @import '../base/typography';
+@import '../base/mixins';
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins/breakpoints';
 
+/* text field with label animation */
 .form-group {
   .form-label {
     position: relative;
@@ -25,6 +27,8 @@
       transition: all 0.1s ease-in-out;
     }
   }
+
+
   input.form-control {
     font-size: 1.3em;
     padding-left: map-get($map: $spacers, $key: 1);
@@ -43,6 +47,7 @@
   }
 }
 
+/* box in middle of page containing form */
 %form-box {
   background-color: rgba($light-bg, 0.95);
   width: 636px;
@@ -56,16 +61,19 @@
   }
 }
 
+/* form button */
 .form-btn {
   text-align: center;
   margin-top: 60px;
 }
 
+/* Links beneath the form */
 .form-links {
   text-align: center;
   margin-top: 10px;
 }
 
+/* form element */
 .user-form {
   width: 100%;
   margin-top: 20px;
