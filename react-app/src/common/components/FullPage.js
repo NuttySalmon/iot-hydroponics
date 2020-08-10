@@ -12,7 +12,7 @@ import '../scss/components/form-elements.scss'
  */
 const FullPage = ({children, bg}) => {
   return (
-    <div className='./full-bg' style={{backgroundImage: `url(${bg})`}}> 
+    <div className='full-bg' style={{backgroundImage: `url(${bg})`}}> 
       <LogoTrans />
       <Row style={{margin: 0, height: '100vh', width: '100vw'}}>
         {children}
