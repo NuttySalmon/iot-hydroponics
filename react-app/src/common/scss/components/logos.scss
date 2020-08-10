@@ -8,16 +8,13 @@ $logo-text: 'HydroGarden';
 .logo-lg {
   font-family: $logo-font;
   color: $highlight;
-  @media screen and (min-width: 1001px) {
-    font-size: 120px;
-  }
+  font-size: 120px;
 
-  @media screen and (max-width: 1000px) {
+  @include media-breakpoint-down(md) {
     font-size: 10vw;
   }
-
-  @media screen and (max-width: 600px) {
-    font-size: 60px;
+  @include media-breakpoint-down(sm) {
+    font-size: 3.5em;
   }
 }
 $small-title-box-width: 8em;
