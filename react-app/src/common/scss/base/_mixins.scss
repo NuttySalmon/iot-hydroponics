@@ -1,0 +1,14 @@
+@import 'variables';
+
+@mixin on-one-side($property) {
+  margin-#{$property}: $side-margin;
+  @include media-breakpoint-down(lg) {
+    margin: auto;
+  }
+}
+
+@mixin full-bg {
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}

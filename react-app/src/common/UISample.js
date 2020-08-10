@@ -1,6 +1,4 @@
 import React from 'react';
-import './scss/components/logos.scss';
-import './scss/components/form.scss'
 import { Form, Button, Container } from 'react-bootstrap';
 import TextField from './components/TextField';
 

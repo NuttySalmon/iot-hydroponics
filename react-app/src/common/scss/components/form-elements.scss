@@ -1,0 +1,70 @@
+@import '../base/variables';
+@import '../base/typography';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins/breakpoints';
+
+.form-group {
+  .form-label {
+    position: relative;
+    z-index: 0;
+    font-family: $serif;
+    margin-left: map-get($map: $spacers, $key: 1);
+    pointer-events: none;
+
+    &.label-center {
+      font-size: 1.3em;
+      top: 3rem;
+      transition: all 0.1s ease-in-out;
+      color: $muted;
+    }
+    &.label-small {
+      color: black;
+      font-size: 1em;
+      top: 0.8rem;
+      transition: all 0.1s ease-in-out;
+    }
+  }
+  input.form-control {
+    font-size: 1.3em;
+    padding-left: map-get($map: $spacers, $key: 1);
+    border: solid $muted;
+    border-width: 0 0 1px 0;
+    border-radius: 0;
+    transition: width ease 1s;
+    font-family: $serif;
+    background: transparent;
+    &:focus {
+      border: solid $dark;
+      box-shadow: none;
+      border-width: 0 0 2px 0;
+      transition: border ease 0.1s;
+    }
+  }
+}
+
+%form-box {
+  background-color: rgba($light-bg, 0.95);
+  width: 636px;
+  height: 733px;
+  max-height: 100%;
+  align-self: center;
+  padding: 50px 70px;
+  display: flex;
+  
+}
+
+.form-btn {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.form-links {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.user-form {
+  width: 100%;
+  margin-top: 20px;
+}

@@ -1,10 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Link, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Login from './Login';
 import Landing from './Landing';
 import SignUp from './SignUp';
 import UISample from './common/UISample';
-import './App.scss';
+import './common/scss/base/base.scss';
 
 function App() {
   return (
@@ -33,7 +33,7 @@ function App() {
         <Route path="/login">
           <Login />
         </Route>
-        <Route path="/sign-up">
+        <Route path="/signup">
           <SignUp />
         </Route>
         <Route path="/">

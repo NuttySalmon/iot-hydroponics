@@ -1,5 +1,9 @@
-@import '../base/typography.scss';
-@import '../base/variables.scss';
+@import '../base/typography';
+@import '../base/variables';
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import '~bootstrap/scss/mixins/breakpoints';
+
 .logo-lg {
   font-family: $logo-font;
   color: $highlight;
@@ -17,6 +21,19 @@
 }
 
 .logo-trans{
+    position: absolute;
+    font-size: 30px;
     font-family: $logo-font;
-    color: rgba(white, 0.6);
+    color: rgba(white, 0.9);
+    margin: 20px 40px;
+    text-shadow: 0 0 0.5em black;
+    @include media-breakpoint-down('lg'){
+        text-shadow: none;
+        color: white;
+        left: 50%;
+        margin-left: -4em;
+        font-size: 3em;
+        backdrop-filter: blur(50px);
+        padding: 0 1em;
+    }
 }

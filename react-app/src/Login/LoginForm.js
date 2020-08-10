@@ -1,22 +1,15 @@
 import React from 'react'
-import {Form, Button} from 'react-bootstrap'
+import {Form, Button, Row, Col} from 'react-bootstrap'
 import TextField from '../common/components/TextField'
+import '../common/scss/components/buttons.scss';
+import '../common/scss/components/form-elements.scss';
 
 const LoginForm = () => {
   return (
-    <Form>
-      <h1 className='header'>Welcome Back</h1>
-      <TextField> Email </TextField>
-
-      <Form.Group controlId="formBasicPassword">
-        <Form.Control type="password" />
-        <div className='inputName'>
-          <Form.Label>Password</Form.Label>
-        </div>
-      </Form.Group>
-      <Button variant="short">
-        Submit
-      </Button>
+    <Form className='user-form'>
+      <TextField type="email"> Email </TextField>
+      <TextField type="password">Password</TextField>
+      <Row><Col className="form-btn"><Button variant="short"> Login </Button></Col></Row>
     </Form>
   )
 }
