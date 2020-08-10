@@ -1,5 +1,6 @@
 @import 'variables';
 @import 'typography';
+@import 'layouts';
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins/breakpoints';
@@ -35,12 +36,4 @@ a {
   &:visited {
     color: #7e7671;
   }
-}
-
-/* for pages with full page background */
-.full-bg {
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100vh;
-  width: 100vw; 
 }
