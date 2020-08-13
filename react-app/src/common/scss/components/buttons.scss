@@ -1,0 +1,56 @@
+// @import '~bootstrap/scss/bootstrap';
+// @import '~bootstrap/scss/bootstrap-grid';
+// @import '~bootstrap/scss/variables';
+// @import '~bootstrap/scss/mixins/breakpoints';
+@import '../base/variables';
+@import '../base/typography';
+
+%button-base {
+  background-color: $dark;
+  border-radius: 45px;
+  height: 46px;
+  color: white;
+  font-size: 20px;
+  font-family: $serif;
+
+  &:not([disabled]):hover {
+    background-color: white;
+    border-color: $dark;
+  }
+
+  &:focus{
+    box-shadow: 0 0 0 0.2rem lighten($light-dark, 10);
+  }
+}
+
+/*button styles, can be used with Bootstrap variant prop*/
+
+.btn-short {
+  @extend %button-base;
+  width: 149px;
+}
+
+.btn-long {
+  @extend %button-base;
+  width: 213px;
+}
+
+@mixin button-trans-base {
+  font: 25px/32px $serif;
+  backdrop-filter: blur(30px);
+  border-radius: 50px;
+  width: 241px;
+  height: 69px;
+  background-color: transparent;
+  color: $light;
+}
+
+.btn-trans {
+  @include button-trans-base;
+  border: 0.1px solid transparent;
+
+  &:not([disabled]):hover {
+    @include button-trans-base;
+    border-color: $light;
+  }
+}

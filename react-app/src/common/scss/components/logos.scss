@@ -1,0 +1,45 @@
+@import '../base/typography';
+@import '../base/variables';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins/breakpoints';
+$logo-text: 'HydroGarden';
+
+.logo-lg {
+  font-family: $logo-font;
+  color: $highlight;
+  font-size: 120px;
+
+  @include media-breakpoint-down(md) {
+    font-size: 10vw;
+  }
+  @include media-breakpoint-down(sm) {
+    font-size: 3.5em;
+  }
+}
+$small-title-box-width: 8em;
+
+.logo-trans {
+  position: absolute;
+  font-size: 30px;
+  font-family: $logo-font;
+  color: rgba(white, 0.9);
+  margin: 20px 40px;
+  text-shadow: 0 0 0.5em black;
+  @include media-breakpoint-down(lg) {
+    text-shadow: none;
+    color: white;
+    left: 50%;
+    font-size: 3em;
+    margin-left: -$small-title-box-width / 2; 
+    width: $small-title-box-width;
+    backdrop-filter: blur(50px);
+    text-align: center;
+  }
+  @include media-breakpoint-down(md) {
+    max-width: 100vw;
+    border: 3px solid $dark;
+    background-color:rgba(white, 0.8);
+    color: $highlight;
+  }
+}

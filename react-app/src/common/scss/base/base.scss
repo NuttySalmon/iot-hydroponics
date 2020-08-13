@@ -1,0 +1,39 @@
+@import 'variables';
+@import 'typography';
+@import 'layouts';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins/breakpoints';
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&family=Lato&family=Sen&display=swap');
+
+$theme-colors: (
+  'primary': $dark,
+  'danger': #ff4136,
+);
+
+body {
+  font-family: $sans;
+  color: $dark;
+}
+
+h1 {
+  font-size: 55px;
+  font-family: $serif;
+  color: $light-dark;
+  @include media-breakpoint-down(sm) {
+    font-size: xx-large;
+  }
+}
+
+a {
+  font-family: $sans;
+  color: $dark;
+
+  &:hover {
+    color: $light-dark;
+  }
+
+  &:visited {
+    color: #7e7671;
+  }
+}

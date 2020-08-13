@@ -1,0 +1,77 @@
+@import '../base/variables';
+@import '../base/typography';
+@import '../base/mixins';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins/breakpoints';
+
+/* text field with label animation */
+.form-group {
+  font-family: $serif;
+  height: 3em;
+  .form-label {
+    position: relative;
+    margin-left: map-get($map: $spacers, $key: 1);
+    pointer-events: none;
+
+    &.label-center {
+      font-size: 1.3em;
+      top: 2.6rem;
+      transition: all 0.1s ease-in-out;
+      color: $muted;
+    }
+    &.label-small {
+      color: black;
+      font-size: 1em;
+      margin-top: 0.8em;
+      margin-left: 0;
+      top: 0.8rem;
+      transition: all 0.1s ease-in-out;
+    }
+  }
+
+
+  input.form-control {
+    font-size: 1.3em;
+    padding-left: map-get($map: $spacers, $key: 1);
+    border: solid $muted;
+    border-width: 0 0 1px 0;
+    border-radius: 0;
+    transition: width ease 1s;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    &:focus {
+      border: solid $dark;
+      box-shadow: none;
+      border-width: 0 0 2px 0;
+      transition: border ease 0.1s;
+    }
+  }
+}
+
+/* box in middle of page containing form */
+%form-box {
+  background-color: rgba($light-bg, 0.95);
+  width: 636px;
+  height: 733px;
+  max-height: 100%;
+  align-self: center;
+  padding: 50px 70px;
+  display: flex;
+  @include media-breakpoint-down(sm) {
+    padding: 2em;
+  }
+}
+
+/* Links beneath the form */
+.form-links {
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* form element */
+.user-form {
+  width: 100%;
+  margin-top: 20px;
+}
