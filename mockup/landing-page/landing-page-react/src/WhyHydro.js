@@ -14,12 +14,12 @@ class WhyHydro extends Component {
                         <Col>
                             <Row>
                                 <Col>
-                                    <span className="logo-title">Why Hydroponics?</span>
+                                    <span className="logo-title" style={{fontSize: 50}}>Why Hydroponics?</span>
                                 </Col>
                             </Row>
                             <Row className="justify-content-md-left">
                                 <div class="col mb-4"> 
-                                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata</p>
+                                    <p>Hydroponics is a method of growing plants in a water based, nutrient rich solution. This is better for plants to absorb water and nutrients needed to thrive in unorthadox situations. The roots of a plant no longer need to find and rely on soil. There is less water consumption, making this product more environmentally friendly.</p>
                                 </div>
                             </Row>
                         </Col>

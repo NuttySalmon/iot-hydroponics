@@ -15,12 +15,12 @@ class Hydroponics extends Component {
                             <Col>
                                 <Row>
                                     <Col>
-                                        <span className="logo-title" >What is Hydroponics?</span>
+                                        <span className="logo-title" style={{fontSize: 50}}>What is HydroGarden?</span>
                                     </Col>
                                 </Row>
-                                <Row justify-content-md-left>
-                                    <Col >
-                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata</p>
+                                <Row justify-content-md-left >
+                                    <Col>
+                                        <p style={{maxWidth: 900}}>HydroGarden is an IoT hydroponic systems that allow users to create a self-managing environment for plants to thrive in. This product is geared towards individuals who would like to grow their own plants, but are afraid to fail at doing so. This product also allows users that do not believe that they have enough time to continually monitor plant conditions. It ultimately minimizes the amount of time and effort needed for indoor or urban gardening. The irrigation system will allow these people to micro-manage their plants and exceed their expectations.</p>
                                     </Col>
                                 </Row>
                             </Col>

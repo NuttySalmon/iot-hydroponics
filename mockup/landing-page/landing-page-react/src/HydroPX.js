@@ -16,14 +16,15 @@ class HydroPX extends Component {
                         <Col>
                             <Row>
                                 <Col>
-                                    <span className="logo-title">HydroPX</span>
+                                    <span className="logo-title">HydroGarden</span>
                                 </Col>
                             </Row>
                             <Row className="justify-content-md-center">
-                                <Col>
+                                <Col className="mb-4" style={{maxWidth: 900}}>
                                     <p>
-                                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+                                    HydroGarden will actively monitor the plant’s desired light, temperature, and moisture levels for the user. This will allow users to grow any desired plant, disregarding weather conditions given by the time of year. A dedicated user interface will be designed to allow individuals to manage the environment without physically being there. This is beneficial towards people that may travel more often than others, but would still want to maintain plant life.    
                                     </p>
+                                    <Button variant="btn btn-learn">Learn More</Button> {' '}
                                 </Col>
                             </Row>
                             <Row>
