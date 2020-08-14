@@ -17,15 +17,21 @@
     font-size: 25px;
     font-family: var(--title-font)
 }
+
 .btn-learn{
     text-decoration: underline;
     width: 200px;
-    background-color: transparent;
-    border: 0.1px solid rgb(0%);
     color: var(--main-light-color);
     font-size: 25px;
     font-family: var(--title-font)
 }
+
+.btn-foot{
+    width: 200px;
+    background-color: transparent;
+    border: 0.1px solid rgb(0%);
+}
+
 .btn-trans:hover{
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
@@ -34,6 +40,16 @@
     background-color: transparent;
     border: 0.1px solid var(--main-light-color);
     color: var(--main-light-color);
+}
+
+.btn-learn:hover{
+    text-decoration: underline;
+    -webkit-text-fill-color: #00fd00;
+}
+
+.btn-foot:hover{
+    text-decoration: underline;
+    -webkit-text-fill-color: #00fd00;
 }
 
 .title-box{
