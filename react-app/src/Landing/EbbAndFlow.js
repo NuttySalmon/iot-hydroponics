@@ -5,6 +5,7 @@ import {
   Col,
   Image
 } from "react-bootstrap";
+import ebbflowDiagram from './img/ebbflow.png'
 
 class EbbAndFlow extends Component {
     render () {
@@ -12,7 +13,7 @@ class EbbAndFlow extends Component {
             <Container fluid>
                 <Row className="title-box3">
                     <div className="col-sm-6 half-left">
-                        <Image src={require('./img/ebbflow.png')} alt=""/>
+                        <Image src={ebbflowDiagram} alt=""/>
                     </div>
                     <div className="col-sm-6 half-right  mt-5">
                         <Container fluid>
