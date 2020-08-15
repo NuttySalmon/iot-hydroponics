@@ -1,12 +1,18 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import App from './App'
+import { Container, Row} from 'react-bootstrap'
+import Title from './Title'
 
 function Landing() {
   return (
-    <div>
-      <App />
-    </div>
+   <Container fluid>
+   <Row><Title/></Row>
+   <Row></Row>
+   <Row></Row>
+   <Row></Row>
+   <Row></Row>
+   <Row></Row>
+   </Container> 
   )
 }
 

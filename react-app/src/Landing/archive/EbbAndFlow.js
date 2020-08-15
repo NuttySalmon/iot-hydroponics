@@ -5,7 +5,7 @@ import {
   Col,
   Image
 } from "react-bootstrap";
-import ebbflowDiagram from './img/ebbflow.png'
+import ebbflowDiagram from '../img/ebbflow.png'
 
 class EbbAndFlow extends Component {
     render () {

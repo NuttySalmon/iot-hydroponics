@@ -4,6 +4,9 @@
 // @import '~bootstrap/scss/mixins/breakpoints';
 @import '../base/variables';
 @import '../base/typography';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins/breakpoints';
 
 %button-base {
   background-color: $dark;
@@ -18,7 +21,7 @@
     border-color: $dark;
   }
 
-  &:focus{
+  &:focus {
     box-shadow: 0 0 0 0.2rem lighten($light-dark, 10);
   }
 }
@@ -36,12 +39,12 @@
 }
 
 @mixin button-trans-base {
-  font: 25px/32px $serif;
+  font: 1em/0px $serif;
   backdrop-filter: blur(30px);
   border-radius: 50px;
-  width: 241px;
-  height: 69px;
-  background-color: transparent;
+  width: 10em;
+  height: 2.5em;
+  background-color: rgba(255, 255, 255, 0.18);
   color: $light;
 }
 
@@ -52,5 +55,8 @@
   &:not([disabled]):hover {
     @include button-trans-base;
     border-color: $light;
+  }
+  @include media-breakpoint-down(sm) {
+    margin-top: 0.5em;
   }
 }
