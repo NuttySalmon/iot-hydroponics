@@ -7,7 +7,12 @@
   @extend %form-box;
 } /* form button */
 
-.formbtn {
+.formBtn {
   padding-left: 0;
-  margin-top: 100px;
+  margin-top: 5em;
+}
+
+.formLink{
+  font-size: 14px;
+  margin-top: 1em;
 }

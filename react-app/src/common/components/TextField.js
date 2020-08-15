@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Form, Row} from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import '../scss/components/form-elements.scss'
 
 const TextField = ({children, id, type='text', as=undefined}) => {

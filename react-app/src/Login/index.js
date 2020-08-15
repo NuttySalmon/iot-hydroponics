@@ -6,15 +6,11 @@ import FormContainer from "../common/components/FormContainer"
 import style from './scss/login.module.scss'
 
 function Login() {
-   const formLinks = [
-     {to: '/signup', text: 'Don\'t have an account?'}
-   ];
 
    return (
      <FullPage bg={background}>
        <FormContainer 
          title="Welcome Back"
-         formLinks={formLinks}
          style={style.box}
        >
          <LoginForm />

@@ -6,42 +6,17 @@ import SignUp from './SignUp';
 import UISample from './common/UISample';
 import './common/scss/base/base.scss';
 
-function App() {
-  return (
-
-    <Router>
-      {/* 
-      <ul>
-        <li>
-          <Link to="/">Landing</Link>
-        </li>
-        <li>
-          <Link to="/login">Login</Link>
-        </li>
-        <li>
-          <Link to="/sign-up">Sign Up</Link>
-        </li>
-        <li>
-          <Link to="/sample/">SASS Sample</Link>
-        </li>
-      </ul>
-    */}
-      <Switch>
-        <Route path="/sample">
-          <UISample />
-        </Route>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/signup">
-          <SignUp />
-        </Route>
-        <Route path="/">
-          <Landing />
-        </Route>
-      </Switch>
-    </Router>
-  );
-}
+const App = () => ( 
+  // TODO: create forget passoword page
+  <Router>
+    <Switch>
+      <Route path="/sample"><UISample /></Route>
+      <Route path="/login"><Login /></Route>
+      <Route path="/signup"><SignUp /></Route>
+      <Route path="/forget-password"><h1>Contact us to reset your password.</h1></Route>
+      <Route path="/"><Landing /></Route>
+    </Switch>
+  </Router>
+ )
 
 export default App;

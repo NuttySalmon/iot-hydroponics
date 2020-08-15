@@ -20,6 +20,10 @@ h1 {
   font-size: 55px;
   font-family: $serif;
   color: $light-dark;
+  @include media-breakpoint-down(md){
+    font-size: xxx-large;
+  }
+
   @include media-breakpoint-down(sm) {
     font-size: xx-large;
   }

@@ -8,7 +8,7 @@
 /* text field with label animation */
 .form-group {
   font-family: $serif;
-  height: 3em;
+  height: 3.8em;
   .form-label {
     position: relative;
     margin-left: map-get($map: $spacers, $key: 1);
@@ -21,15 +21,14 @@
       color: $muted;
     }
     &.label-small {
-      color: black;
-      font-size: 1em;
+      color: darken($color: $muted, $amount: 20);
+      font-size: 0.9em;
       margin-top: 0.8em;
       margin-left: 0;
-      top: 0.8rem;
+      top: 1rem;
       transition: all 0.1s ease-in-out;
     }
   }
-
 
   input.form-control {
     font-size: 1.3em;
@@ -50,6 +49,8 @@
   }
 }
 
+$height-md: 700px;
+
 /* box in middle of page containing form */
 %form-box {
   background-color: rgba($light-bg, 0.95);
@@ -59,15 +60,14 @@
   align-self: center;
   padding: 50px 70px;
   display: flex;
+
   @include media-breakpoint-down(sm) {
     padding: 2em;
   }
-}
 
-/* Links beneath the form */
-.form-links {
-  text-align: center;
-  margin-top: 10px;
+  @media screen and (max-height: $height-md) {
+    display: table;
+  }
 }
 
 /* form element */
