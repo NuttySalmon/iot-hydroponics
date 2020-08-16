@@ -12,7 +12,7 @@ class EbbAndFlow extends Component {
             <Container fluid>
                 <Row className="title-box3">
                     <div className="col-sm-6 half-left">
-                        <Image src={require('./img/ebbflow.png')} alt=""/>
+                        <Image className="justify-content-md-center" src={require('./img/ebbflow.png')} alt=""/>
                     </div>
                     <div className="col-sm-6 half-right  mt-5">
                         <Container fluid>
