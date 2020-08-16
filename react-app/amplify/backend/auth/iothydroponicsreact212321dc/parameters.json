@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "iothydroponicsreactb91ecc1c_identitypool_b91ecc1c",
+    "identityPoolName": "iothydroponicsreact212321dc_identitypool_212321dc",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "iothydb91ecc1c",
-    "userPoolName": "iothydroponicsreactb91ecc1c_userpool_b91ecc1c",
+    "resourceNameTruncated": "iothyd212321dc",
+    "userPoolName": "iothydroponicsreact212321dc_userpool_212321dc",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -18,7 +18,9 @@
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [],
     "requiredAttributes": [
-        "email"
+        "email",
+        "family_name",
+        "given_name"
     ],
     "userpoolClientGenerateSecret": true,
     "userpoolClientRefreshTokenValidity": 30,
@@ -28,10 +30,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "iothydb91ecc1c_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "iothyd212321dc_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "b91ecc1c",
-    "resourceName": "iothydroponicsreactb91ecc1c",
+    "sharedId": "212321dc",
+    "resourceName": "iothydroponicsreact212321dc",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -49,6 +51,11 @@
     "usernameAttributes": [
         "email"
     ],
+    "triggers": "{}",
     "userPoolGroupList": [],
+    "parentStack": {
+        "Ref": "AWS::StackId"
+    },
+    "permissions": [],
     "dependsOn": []
 }

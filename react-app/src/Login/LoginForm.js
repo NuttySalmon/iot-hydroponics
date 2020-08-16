@@ -12,7 +12,8 @@ const LoginForm = () => {
   const emailField = createRef();
   const passwordField = createRef(); 
 
-  const awsSignIn = async () => {
+  const awsSignIn = async event => {
+      event.preventDefault();
       const username = emailField.current.value
       const password = passwordField.current.value
       try {
@@ -23,10 +24,10 @@ const LoginForm = () => {
       }
   }
   return (
-    <Form className='user-form'>
+    <Form className='user-form' onSubmit={awsSignIn}>
       <TextField ref={emailField} type="email"> Email </TextField>
       <div style={{ marginTop: "2.5em" }}><TextField ref={passwordField} type="password">Password</TextField></div>
-      <Row><Col className={style.formBtn}><Button variant="short" onClick={awsSignIn}> Login </Button></Col></Row>
+      <Row><Col className={style.formBtn}><Button variant="short" type="submit"> Login </Button></Col></Row>
       <div className={style.formLink}> 
         <Row><Col><Link to='/signup'>Don&apos;t have an account? </Link></Col></Row>
         <Row className="mt-1"><Col><Link to='/forget-password'>Forget password</Link></Col></Row>
