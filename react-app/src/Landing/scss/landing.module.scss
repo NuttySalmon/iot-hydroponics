@@ -1,0 +1,30 @@
+@import '../../common/scss/base/variables';
+@import '../../common//scss/base/typography';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins/breakpoints';
+
+.titleBox {
+  border: 6px solid darken($light-dark, 5);
+  background-color: rgba(0, 0, 0, 0.55);
+  padding-top: 6%;
+  padding-bottom: 6%;
+  height: fit-content;
+  align-self: center;
+  font-size: 1.3em;
+  font-family: $serif;
+  color: $light;
+  text-align: center;
+  @include media-breakpoint-down(md) {
+    max-width: 100vw;
+  }
+  a {
+    color: $light;
+    font-family: inherit;
+    text-decoration: underline;
+    &:hover{
+      color: $highlight;
+    }
+  }
+
+}
