@@ -1,7 +1,7 @@
 import React, {createRef} from 'react'
 import {Form, Button, Row, Col} from 'react-bootstrap'
 import { Link } from 'react-router-dom';
-// import { Auth } from 'aws-amplify';
+import { Auth } from 'aws-amplify';
 import TextField from '../common/components/TextField'
 import '../common/scss/components/buttons.scss';
 import '../common/scss/components/form-elements.scss';
@@ -16,8 +16,8 @@ const LoginForm = () => {
       const username = emailField.current.value
       const password = passwordField.current.value
       try {
-          // const user = await Auth.signIn(username, password);
-          // console.log(user);
+          const user = await Auth.signIn(username, password);
+          console.log(user);
       } catch (error) {
           console.log('error signing in', error);
       }
