@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "iothydroponicsreactd80dfd8d_identitypool_d80dfd8d",
+    "identityPoolName": "iothydroponicsreactb91ecc1c_identitypool_b91ecc1c",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "iothydd80dfd8d",
-    "userPoolName": "iothydroponicsreactd80dfd8d_userpool_d80dfd8d",
+    "resourceNameTruncated": "iothydb91ecc1c",
+    "userPoolName": "iothydroponicsreactb91ecc1c_userpool_b91ecc1c",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -28,10 +28,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "iothydd80dfd8d_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "iothydb91ecc1c_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "d80dfd8d",
-    "resourceName": "iothydroponicsreactd80dfd8d",
+    "sharedId": "b91ecc1c",
+    "resourceName": "iothydroponicsreactb91ecc1c",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
