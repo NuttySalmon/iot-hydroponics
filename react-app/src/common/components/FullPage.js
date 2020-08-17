@@ -14,7 +14,7 @@ const FullPage = ({children, bg}) => {
   return (
     <div className='full-bg' style={{backgroundImage: `url(${bg})`}}> 
       <LogoTrans />
-      <Row style={{margin: 0, height: '100vh', width: '100vw'}}>
+      <Row style={{margin: 0, height: '100%', width: '100vw'}}>
         {children}
       </Row>
     </div>

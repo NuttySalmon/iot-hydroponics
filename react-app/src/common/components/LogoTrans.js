@@ -4,9 +4,11 @@ import '../scss/components/logos.scss'
 
 const LogoTrans = () => {
   return (
-    <Link to="/">
-      <span className="logo-trans">HydroGarden</span>
-    </Link>
+    <div className="logo-trans">
+      <Link to="/">
+        <span className='logo'>HydroGarden</span>
+      </Link>
+    </div>
   )
 }
 
