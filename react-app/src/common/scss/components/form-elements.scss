@@ -47,17 +47,17 @@
       transition: border ease 0.1s;
     }
   }
-  
-  .form-text{
-    &.no-hint{
+
+  .form-text {
+    &.no-hint {
       display: none;
     }
-    &.hint{
-      display: $muted;
-    }
-    &.warning{
+    &.hint {
       display: inline;
-      color: $warning;
+      &.warning {
+        display: inline;
+        color: $warning;
+      }
     }
   }
 }

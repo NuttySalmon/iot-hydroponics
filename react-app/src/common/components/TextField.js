@@ -1,57 +1,71 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types'
 import { Form } from 'react-bootstrap';
 import '../scss/components/form-elements.scss';
 
-const TextField = React.forwardRef((props, ref) => {
+const TextField = (props) => {
   const {
+    value,
     children,
-    id,
+    hint,
     type,
     showHint,
     error,
     as,
-    hint,
     onFocus,
     onBlur,
     onChange,
   } = props;
 
   const [empty, changeEmptyState] = useState(true);
-  const handleInput = (e) => {
+  const handleChange = (e) => {
     changeEmptyState(e.target.value.length === 0);
-    if(onChange)
-      onChange();
+    if(onChange){
+      onChange(e.target.value);
+    }
+    e.preventDefault();
   };
 
-  let hintStyle = 'no-hint';
-  if (showHint) {
-    hintStyle = error ? 'warning' : 'hint';
-  }
+  const hintStyle = showHint ? 'hint' : 'no-hint'
+  const errorStyle = error ? 'warning' : null
 
   return (
-    <Form.Group as={as} controlId={id}>
+    <Form.Group as={as}>
       <Form.Label className={empty ? 'label-center' : 'label-small'}>
         {children}
       </Form.Label>
       <Form.Control
-        ref={ref}
         type={type}
-        onChange={handleInput}
+        value={value}
+        onInput={handleChange}
         onFocus={onFocus}
         onBlur={onBlur}
       />
-      <Form.Text className={hintStyle}>{hint}</Form.Text>
+      <Form.Text className={`${hintStyle} ${errorStyle}`}>{hint}</Form.Text>
     </Form.Group>
   );
-});
+};
+
+TextField.propTypes = {
+  value: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  hint: PropTypes.string,
+  type: PropTypes.string,
+  showHint: PropTypes.bool,
+  error: PropTypes.bool,
+  as: PropTypes.string,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+  onChange: PropTypes.func
+}
 
 TextField.defaultProps = {
   type: 'text',
   showHint: false,
-  error: false,
+  error: true,
   as: undefined,
   hint: '',
-  onFoucs: undefined,
+  onFocus: undefined,
   onBlur: undefined,
   onChange: undefined,
 };
