@@ -8,7 +8,11 @@ import SignUpForm from './SignUpForm'
 function SignUp() {
   return (
     <FullPage bg={background} rightLogo>
-      <FormContainer title="Create an account" style={style.box}>
+      <FormContainer
+        title="Create an account"
+        style={style.box}
+        logoStyle={style.logoRight}
+      >
         <SignUpForm />
       </FormContainer>
     </FullPage>

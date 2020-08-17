@@ -18,7 +18,6 @@ const SignUpForm = () => {
       <TextField id="email" type="email">Email</TextField>
       <TextField id="password" type="password">New password</TextField>
       <TextField id="rePassword" type="password">Re-type password</TextField>
-      <TextField id="deviceId">Device ID</TextField>
       <Form.Row className={style.formBtn}><Button variant="short"> Register </Button></Form.Row>
       <div className={style.formLink}>
         <Form.Row><Col><Link to="/login">Already have an account? </Link></Col></Form.Row>
