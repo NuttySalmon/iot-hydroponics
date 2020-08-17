@@ -1,18 +1,33 @@
 @import '../../common/scss/base/base';
 @import '../../common/scss/base/mixins';
 @import '../../common/scss/components/form-elements';
+@import '~bootstrap/scss/variables';
 
 .box {
   @include on-one-side(left);
   @extend %form-box;
-} /* form button */
+}
 
+$xl: map-get(
+  $map: $grid-breakpoints,
+  $key: xl,
+);
+
+.logoRight {
+  @media screen and (min-width: $xl) and (max-height: $height-break) {
+    right: 0;
+    left: auto;
+    width: fit-content;
+  }
+}
+
+/* form button */
 .formBtn {
   padding-left: 0;
   margin-top: 5em;
 }
 
-.formLink{
+.formLink {
   font-size: 14px;
   margin-top: 1em;
 }
