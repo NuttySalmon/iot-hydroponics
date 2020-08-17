@@ -8,7 +8,7 @@
 /* text field with label animation */
 .form-group {
   font-family: $serif;
-  height: 3.8em;
+  height: 5em;
   .form-label {
     position: relative;
     margin-left: map-get($map: $spacers, $key: 1);
@@ -45,6 +45,19 @@
       box-shadow: none;
       border-width: 0 0 2px 0;
       transition: border ease 0.1s;
+    }
+  }
+  
+  .form-text{
+    &.no-hint{
+      display: none;
+    }
+    &.hint{
+      display: $muted;
+    }
+    &.warning{
+      display: inline;
+      color: $warning;
     }
   }
 }

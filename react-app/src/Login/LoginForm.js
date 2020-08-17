@@ -26,7 +26,7 @@ const LoginForm = () => {
   return (
     <Form className='user-form' onSubmit={awsSignIn}>
       <TextField ref={emailField} type="email"> Email </TextField>
-      <div style={{ marginTop: "2.5em" }}><TextField ref={passwordField} type="password">Password</TextField></div>
+      <div style={{ marginTop: "1.5em" }}><TextField ref={passwordField} type="password">Password</TextField></div>
       <Row><Col className={style.formBtn}><Button variant="short" type="submit"> Login </Button></Col></Row>
       <div className={style.formLink}> 
         <Row><Col><Link to='/signup'>Don&apos;t have an account? </Link></Col></Row>
