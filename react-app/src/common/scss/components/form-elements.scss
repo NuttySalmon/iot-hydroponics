@@ -62,23 +62,27 @@
 }
 
 $height-md: 700px;
+$form-box-height: 733px;
 
 /* box in middle of page containing form */
 %form-box {
   background-color: rgba($light-bg, 0.95);
   width: 636px;
-  height: 733px;
+  height: $form-box-height;
   max-height: 100%;
   align-self: center;
   padding: 50px 70px;
   display: flex;
+  box-sizing: border-box;
 
   @include media-breakpoint-down(sm) {
     padding: 2em;
   }
+}
 
-  @media screen and (max-height: $height-md) {
-    display: table;
+.form-title.row {
+  @include media-breakpoint-down(lg) {
+    display: none;
   }
 }
 

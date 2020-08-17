@@ -2,9 +2,9 @@
 @import '../../common/scss/base/mixins';
 @import '../../common/scss/components/form-elements';
 
-.box{
-    @include on-one-side(right);    
-    @extend %form-box;
+.box {
+  @include on-one-side(right);
+  @extend %form-box;
 }
 
 /* form button */
@@ -13,8 +13,7 @@
   margin-top: 70px;
 }
 
-
-.formLink{
+.formLink {
   text-align: center;
   margin-top: 2em;
 }
