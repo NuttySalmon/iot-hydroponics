@@ -26,7 +26,20 @@
       color: $highlight;
     }
   }
+}
 
+.titleBox2 {
+  padding-top: 6%;
+  padding-bottom: 6%;
+  height: fit-content;
+  align-self: center;
+  font-size: 1.3em;
+  font-family: $serif;
+  text-align: left;
+  color: $light;
+  @include media-breakpoint-down(md) {
+    max-width: 100vw;
+  }
 
 }
 

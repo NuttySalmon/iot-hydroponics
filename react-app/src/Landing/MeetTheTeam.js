@@ -2,7 +2,6 @@ import React from "react";
 import { Row, Col, Container, Image } from "react-bootstrap";
 import style from "./scss/landing.module.scss";
 import "../common/scss/components/logos.scss";
-import head1 from "./img/head2.jpg";
 
 const DisplayMembers = (props) => {
   return (
