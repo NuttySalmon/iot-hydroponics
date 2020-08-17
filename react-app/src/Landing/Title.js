@@ -1,10 +1,10 @@
 import React from "react";
-import { Row, Col, Button, Container, Image } from "react-bootstrap";
-import bg from "./img/lettuce-bg.png";
+import { Row, Col, Button, Container,} from "react-bootstrap";
 import style from "./scss/landing.module.scss";
 import "../common/scss/components/logos.scss";
 
-const Title = () => {
+const Title = (props) => {
+  const {bg, des} = props;
   return (
     <div className="full-bg" style={{ backgroundImage: `url(${bg})` }}>
       <Container className={style.titleBox}>
@@ -17,14 +17,7 @@ const Title = () => {
           <Row className="justify-content-md-center">
             <Col className="mb-4" style={{ maxWidth: 900 }}>
               <p>
-                HydroGarden will actively monitor the plant’s desired light,
-                temperature, and moisture levels for the user. This will allow
-                users to grow any desired plant, disregarding weather conditions
-                given by the time of year. A dedicated user interface will be
-                designed to allow individuals to manage the environment without
-                physically being there. This is beneficial towards people that
-                may travel more often than others, but would still want to
-                maintain plant life.
+                {des}
                 <br />
                 <a href="#more">Learn More</a>
               </p>
