@@ -1,39 +1,46 @@
-import React from 'react'
+import React from 'react';
 import PropTypes from 'prop-types';
-import {Container, Row } from 'react-bootstrap'
-import '../scss/components/form-elements.scss'
+import { Container, Row } from 'react-bootstrap';
+import '../scss/components/form-elements.scss';
 import LogoTrans from './LogoTrans';
 
 /**
- * Render form with box and style of the box 
- * @param props
- * @param props.title - Title of the form 
- * @param props.children - The form component
- * @param props.style - CSS class for the form box 
- * @param props.logoStyle - optional style for logo
+ * Render form with box and style of the box
+ * @param {object} props
+ * @param {string} props.title
+ * @param {string} props.style
+ * @param {string} props.logoStyle
  */
 
-const FormContainer = ({title, children, style, logoStyle}) => (
+const FormContainer = ({ title, children, style, logoStyle }) => (
   <Container className={style}>
     <div className="align-self-center col">
-      <Row className="m-0"><LogoTrans style={`col ${logoStyle}`}/></Row>
-      <Row className="form-title"><h1>{title}</h1></Row> 
+      <Row className="m-0">
+        <LogoTrans style={`col ${logoStyle}`} />
+      </Row>
+      <Row className="form-title">
+        <h1>{title}</h1>
+      </Row>
       {/* Form title */}
-      <Row>{children}</Row>    
+      <Row>{children}</Row>
       {/* actual form */}
     </div>
   </Container>
-)
+);
 
 FormContainer.propTypes = {
+  /** Form title */
   title: PropTypes.string,
+  /** Children */
   children: PropTypes.element.isRequired,
+  /** Custom styling of the form box */
   style: PropTypes.string.isRequired,
-  logoStyle: PropTypes.string
+  /** Optional */
+  logoStyle: PropTypes.string,
 };
 
 FormContainer.defaultProps = {
   title: null,
-  logoStyle: '' 
-}
+  logoStyle: '',
+};
 export default FormContainer;

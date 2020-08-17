@@ -1,16 +1,13 @@
 import React from 'react'
 import { Row } from 'react-bootstrap'
 import PropTypes from 'prop-types'
-import LogoTrans from './LogoTrans'
 import '../scss/components/form-elements.scss'
 
 /**
  * Render page with full background and logo
- * @param props
- * @param props.children - Element to render in page
- * @param props.bg - background image
+ * @param {object} props
+ * @param {string} props.bg - background image
  */
-
 const FullPage = ({ children, bg }) => {
   return (
     <div
@@ -25,6 +22,9 @@ const FullPage = ({ children, bg }) => {
 };
 
 FullPage.propTypes = {
+  /** Element to render in page */
+  children: PropTypes.node.isRequired,
+  /** Background image path */
   bg: PropTypes.string,
 };
 

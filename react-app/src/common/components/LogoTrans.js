@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import '../scss/components/logos.scss'
+import PropTypes from 'prop-types'
 
 const LogoTrans = ({style}) => {
   return (
@@ -12,7 +13,11 @@ const LogoTrans = ({style}) => {
   )
 }
 
+LogoTrans.propTypes = {
+  style: PropTypes.string
+}
 LogoTrans.defaultProps = {
+  /** Optional additional style for logo */
   style: ''
 }
 export default LogoTrans
