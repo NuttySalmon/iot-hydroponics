@@ -39,7 +39,6 @@ const SignUpForm = () => {
   const [emailValid, changeEmailValid] = useState(true);
   const [passwordValid, changePasswordValid] = useState(true);
   const [passwordConValid, changePasswordConValid] = useState(true);
-
   const [isPasswordFocus, changePasswordFocus] = useState(false);
   const nameErrorMsg = 'Invalid name';
   const emailErrorMsg = 'Invalid email';
@@ -92,38 +91,36 @@ const SignUpForm = () => {
       <Form.Row>
         <Col lg={6}>
           <TextField
+            label="First name"
             value={firstName}
             onChange={changeFirstName}
             hint={nameErrorMsg}
             showHint={!fNameValid}
-          >
-            First Name
-          </TextField>
+          />
         </Col>
         <Col>
           <TextField
+            label="Last name"
             value={lastName}
             onChange={changeLastName}
             hint={nameErrorMsg}
             showHint={!lNameValid}
-          >
-            Last Name
-          </TextField>
+          />
         </Col>
       </Form.Row>
 
       {/* Eamil */}
       <TextField
+        label="Email"
         value={email}
         onChange={changeEmail}
         hint={emailErrorMsg}
         showHint={!emailValid}
-      >
-        Email
-      </TextField>
+      />
 
       {/* Password */}
       <TextField
+        label="New password"
         value={password}
         type="password"
         onFocus={() => changePasswordFocus(true)}
@@ -132,20 +129,17 @@ const SignUpForm = () => {
         showHint={isPasswordFocus || !passwordValid}
         error={!passwordValid}
         onChange={changePassword}
-      >
-        New password
-      </TextField>
+      />
 
       {/* Retype password */}
       <TextField
+        label="Re-type password"
         value={passwordCon}
         onChange={changePasswordCon}
         type="password"
         hint={passwordConErrorMsg}
         showHint={!passwordConValid}
-      >
-        Re-type password
-      </TextField>
+      />
 
       {/* Submit button */}
       <Form.Row className={style.formBtn}>

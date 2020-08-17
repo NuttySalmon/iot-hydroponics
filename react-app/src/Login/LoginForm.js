@@ -23,9 +23,9 @@ const LoginForm = () => {
 
   return (
     <Form className="user-form" onSubmit={awsSignIn}>
-      <TextField value={email} onChange={changeEmail} type="text"> Email </TextField>
+      <TextField label="Email" value={email} onChange={changeEmail} type="text" />  
       <div style={{ marginTop: '1.5em' }}>
-        <TextField value={password} onChange={changePassword} type="password"> Password </TextField>
+        <TextField label="Password" value={password} onChange={changePassword} type="password" />  
       </div>
       <Row>
         <Col className={style.formBtn}>
