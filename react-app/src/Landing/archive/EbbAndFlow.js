@@ -13,7 +13,11 @@ class EbbAndFlow extends Component {
             <Container fluid>
                 <Row className="title-box3">
                     <div className="col-sm-6 half-left">
+<<<<<<< HEAD:mockup/landing-page/landing-page-react/src/EbbAndFlow.js
+                        <Image className="justify-content-md-center" src={require('./img/ebbflow.png')} alt=""/>
+=======
                         <Image src={ebbflowDiagram} alt=""/>
+>>>>>>> af3349b38cc5abc5febe7ffbf6c1f21cf0566cda:react-app/src/Landing/archive/EbbAndFlow.js
                     </div>
                     <div className="col-sm-6 half-right  mt-5">
                         <Container fluid>

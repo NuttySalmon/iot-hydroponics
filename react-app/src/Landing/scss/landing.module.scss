@@ -27,4 +27,27 @@
     }
   }
 
+
+}
+
+.title {
+  font-family: $serif;
+  font-size: 50px;
+  color: $dark;
+  margin-bottom: 30px;
+}
+
+.head {
+  clip-path: circle(65px at center);
+  object-position: 10%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.headName {
+  margin-top: 20px;
+  font-size: 30px;
+  text-align: center;
+  color: $muted;
+  font-family: $sans;
 }
