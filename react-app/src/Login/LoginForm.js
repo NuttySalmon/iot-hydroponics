@@ -20,6 +20,7 @@ const LoginForm = () => {
       console.log('error signing in', error);
     }
   };
+
   return (
     <Form className="user-form" onSubmit={awsSignIn}>
       <TextField value={email} onChange={changeEmail} type="text"> Email </TextField>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import { Form } from 'react-bootstrap';
 import '../scss/components/form-elements.scss';
 
@@ -19,15 +19,16 @@ const TextField = (props) => {
 
   const [empty, changeEmptyState] = useState(true);
   const handleChange = (e) => {
-    changeEmptyState(e.target.value.length === 0);
-    if(onChange){
-      onChange(e.target.value);
-    }
     e.preventDefault();
+    const currValue = e.target.value
+    changeEmptyState(currValue.length === 0);
+    if (onChange) {
+      onChange(currValue);
+    }
   };
-
-  const hintStyle = showHint ? 'hint' : 'no-hint'
-  const errorStyle = error ? 'warning' : null
+  
+  const hintStyle = showHint ? 'hint' : 'no-hint';
+  const errorStyle = error ? 'warning' : null;
 
   return (
     <Form.Group as={as}>
@@ -37,7 +38,7 @@ const TextField = (props) => {
       <Form.Control
         type={type}
         value={value}
-        onInput={handleChange}
+        onChange={handleChange}
         onFocus={onFocus}
         onBlur={onBlur}
       />
@@ -56,8 +57,8 @@ TextField.propTypes = {
   as: PropTypes.string,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
-  onChange: PropTypes.func
-}
+  onChange: PropTypes.func,
+};
 
 TextField.defaultProps = {
   type: 'text',

@@ -1,9 +1,8 @@
 /* eslint-disable camelcase */
-import React, { createRef } from 'react';
+import React, {useState} from 'react';
 import { Form, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { Auth } from 'aws-amplify';
-import { useState } from 'react';
 import TextField from '../common/components/TextField';
 import style from './scss/signup.module.scss';
 // need to make first/last name email PW 2x PW devID  bool for checkbot
@@ -12,6 +11,7 @@ const validateName = (name) => {
   // TODO: check name
   return false;
 };
+
 const validatePassword = (password) => {
   // TODO: add password regex. length > 8, at least 1 char and 1 num
   return false;
@@ -67,6 +67,7 @@ const SignUpForm = () => {
       emailIsValid &&
       passwordIsValid &&
       passwordConIsValid;
+
     if (valid) {
       try {
         const res = await Auth.signUp({
