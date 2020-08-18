@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Form } from 'react-bootstrap'
 import '../scss/components/form-elements.scss'
+import { ExclamationSvg } from './SvgIcons'
 
 /**
  * Render text box input element with form group, with label and hint/error support
@@ -17,33 +18,51 @@ const TextField = (props) => {
     showHint,
     error,
     as,
-    onBlur,
-    onFocus,
+    changeIsFocused,
   } = props
 
-  const [empty, changeEmptyState] = useState(true)
-  const handleChange = (e) => {
-    e.preventDefault()
-    const currValue = e.target.value
-    changeEmptyState(currValue.length === 0)
-    if (onChange) {
-      onChange(currValue)
+  const [isEmpty, changeEmptyState] = useState(true)
+  const [isFocused, changeFocusState] = useState(false)
+
+  const handleFocusChange = (focused) => {
+    changeFocusState(focused)
+    if (changeIsFocused) {
+      changeIsFocused(focused)
     }
   }
 
-  const hintStyle = showHint ? 'hint' : 'no-hint'
-  const errorStyle = error ? 'warning' : ''
+  const handleChange = (e) => {
+    e.preventDefault()
+    changeEmptyState(e.target.value.length === 0)
+    onChange(e.target.value)
+  }
+
+  const hintStyle = showHint ? '' : 'd-none'
+  const errorShowing = error && showHint
+  const errorStyle = errorShowing ? 'warning' : ''
+  const labelStyle =
+    isFocused || !isEmpty ? `label-small ${errorStyle}` : 'label-center'
+  const inputLineStyle = errorShowing ? 'red-line' : 'normal-line'
+  const iconStyle = errorShowing ? 'hint-icon' : 'd-none'
 
   return (
     <Form.Group as={as}>
-      <Form.Label className={empty ? 'label-center' : 'label-small'}>
-        {label}
-      </Form.Label>
+      <Form.Label className={labelStyle}>{label}</Form.Label>
       <Form.Control
+        className={inputLineStyle}
         onChange={handleChange}
-        {...{ type, value, onBlur, onFocus }}
+        onFocus={() => handleFocusChange(true)}
+        onBlur={() => handleFocusChange(false)}
+        {...{ type, value }}
       />
-      <Form.Text className={`${hintStyle} ${errorStyle}`}>{hint}</Form.Text>
+      <Form.Text className={`${hintStyle} ${errorStyle}`}>
+        <div>
+          <span className={iconStyle}>
+            <ExclamationSvg />
+          </span>
+          <span className="hint-text"> {hint}</span>
+        </div>
+      </Form.Text>
     </Form.Group>
   )
 }
@@ -52,7 +71,7 @@ TextField.propTypes = {
   /** Controlled value of input field */
   value: PropTypes.string.isRequired,
   /** Function on change. Current value will be passed in. */
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
   /** Label for the input element */
   label: PropTypes.string.isRequired,
   /** Hint/warning text */
@@ -65,10 +84,8 @@ TextField.propTypes = {
   error: PropTypes.bool,
   /** Bootstrap form group 'as' */
   as: PropTypes.string,
-  /** Function triggered when input element is in focus */
-  onFocus: PropTypes.func,
-  /** Function triggered when input element is out of focus */
-  onBlur: PropTypes.func,
+  /** Function that takes in bool whether input is focused */
+  changeIsFocused: PropTypes.func,
 }
 
 TextField.defaultProps = {
@@ -77,9 +94,7 @@ TextField.defaultProps = {
   error: true,
   as: undefined,
   hint: '',
-  onFocus: undefined,
-  onBlur: undefined,
-  onChange: undefined,
+  changeIsFocused: undefined,
 }
 
 export default TextField
