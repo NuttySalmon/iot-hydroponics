@@ -10,6 +10,7 @@ import style from './scss/login.module.scss'
 const LoginForm = () => {
   const [email, changeEmail] = useState('')
   const [password, changePassword] = useState('')
+  const [err, changeErr] = useState('')
 
   const awsSignIn = async (event) => {
     event.preventDefault()
@@ -18,6 +19,7 @@ const LoginForm = () => {
       console.log(user)
     } catch (error) {
       console.log('error signing in', error)
+      changeErr('You have entered your email and password incorrectly.')
     }
   }
 
@@ -44,6 +46,11 @@ const LoginForm = () => {
           </Button>
         </Col>
       </Row>
+      <Row>
+          <Col>
+            <div style={{color:'red', textAlign:'center', marginTop:'6%'}}>{err}</div>
+          </Col>
+        </Row>
       <div className={style.formLink}>
         <Row>
           <Col>
