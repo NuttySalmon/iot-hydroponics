@@ -1,5 +1,6 @@
 @import '../../common/scss/base/base';
 @import '../../common/scss/base/mixins';
+@import '../../common/scss/base/variables';
 @import '../../common/scss/components/form-elements';
 
 .box {
@@ -10,10 +11,15 @@
 /* form button */
 .formBtn {
   text-align: center;
-  margin-top: 70px;
+  margin-top: 2.5em;
 }
 
 .formLink {
+  text-align: center;
+  margin-top: 2em;
+}
+.warning {
+  color: $warning;
   text-align: center;
   margin-top: 2em;
 }
