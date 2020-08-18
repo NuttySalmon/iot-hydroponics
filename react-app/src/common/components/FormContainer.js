@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Container, Row } from 'react-bootstrap';
-import '../scss/components/form-elements.scss';
-import LogoTrans from './LogoTrans';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Container, Row } from 'react-bootstrap'
+import '../scss/components/form-elements.scss'
+import LogoTrans from './LogoTrans'
 
 /**
  * Render form with box and style of the box
@@ -26,7 +26,7 @@ const FormContainer = ({ title, children, style, logoStyle }) => (
       {/* actual form */}
     </div>
   </Container>
-);
+)
 
 FormContainer.propTypes = {
   /** Form title */
@@ -37,10 +37,10 @@ FormContainer.propTypes = {
   style: PropTypes.string.isRequired,
   /** Optional */
   logoStyle: PropTypes.string,
-};
+}
 
 FormContainer.defaultProps = {
   title: null,
   logoStyle: '',
-};
-export default FormContainer;
+}
+export default FormContainer

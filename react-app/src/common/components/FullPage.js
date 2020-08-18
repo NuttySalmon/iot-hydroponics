@@ -10,26 +10,23 @@ import '../scss/components/form-elements.scss'
  */
 const FullPage = ({ children, bg }) => {
   return (
-    <div
-      className='full-bg'
-      style={{ backgroundImage: `url(${bg})` }}
-    >
+    <div className="full-bg" style={{ backgroundImage: `url(${bg})` }}>
       <Row style={{ margin: 0, height: '100%', width: '100vw' }}>
         {children}
       </Row>
     </div>
-  );
-};
+  )
+}
 
 FullPage.propTypes = {
   /** Element to render in page */
   children: PropTypes.node.isRequired,
   /** Background image path */
   bg: PropTypes.string,
-};
+}
 
 FullPage.defaultProps = {
   bg: null,
-};
+}
 
-export default FullPage;
+export default FullPage

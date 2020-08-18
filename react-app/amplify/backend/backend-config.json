@@ -1,0 +1,9 @@
+{
+	"auth": {
+		"iothydroponicsreact212321dc": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	}
+}
