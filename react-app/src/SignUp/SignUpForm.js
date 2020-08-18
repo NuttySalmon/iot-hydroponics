@@ -123,8 +123,7 @@ const SignUpForm = () => {
         label="New password"
         value={password}
         type="password"
-        onFocus={() => changePasswordFocus(true)}
-        onBlur={() => changePasswordFocus(false)}
+        changeIsFocused = {changePasswordFocus}
         hint={passwordHint}
         showHint={isPasswordFocus || !passwordValid}
         error={!passwordValid}
