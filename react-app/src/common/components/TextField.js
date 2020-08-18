@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { Form } from 'react-bootstrap';
-import '../scss/components/form-elements.scss';
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+import { Form } from 'react-bootstrap'
+import '../scss/components/form-elements.scss'
 
 /**
- * Render text box input element with form group, with label and hint/error support 
- * @param {object} props 
+ * Render text box input element with form group, with label and hint/error support
+ * @param {object} props
  */
 const TextField = (props) => {
   const {
@@ -18,21 +18,21 @@ const TextField = (props) => {
     error,
     as,
     onBlur,
-    onFocus 
-  } = props;
+    onFocus,
+  } = props
 
-  const [empty, changeEmptyState] = useState(true);
+  const [empty, changeEmptyState] = useState(true)
   const handleChange = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     const currValue = e.target.value
-    changeEmptyState(currValue.length === 0);
+    changeEmptyState(currValue.length === 0)
     if (onChange) {
-      onChange(currValue);
+      onChange(currValue)
     }
-  };
-  
-  const hintStyle = showHint ? 'hint' : 'no-hint';
-  const errorStyle = error ? 'warning' : ''; 
+  }
+
+  const hintStyle = showHint ? 'hint' : 'no-hint'
+  const errorStyle = error ? 'warning' : ''
 
   return (
     <Form.Group as={as}>
@@ -41,12 +41,12 @@ const TextField = (props) => {
       </Form.Label>
       <Form.Control
         onChange={handleChange}
-        {...{type, value, onBlur, onFocus}}
+        {...{ type, value, onBlur, onFocus }}
       />
       <Form.Text className={`${hintStyle} ${errorStyle}`}>{hint}</Form.Text>
     </Form.Group>
-  );
-};
+  )
+}
 
 TextField.propTypes = {
   /** Controlled value of input field */
@@ -69,7 +69,7 @@ TextField.propTypes = {
   onFocus: PropTypes.func,
   /** Function triggered when input element is out of focus */
   onBlur: PropTypes.func,
-};
+}
 
 TextField.defaultProps = {
   type: 'text',
@@ -80,6 +80,6 @@ TextField.defaultProps = {
   onFocus: undefined,
   onBlur: undefined,
   onChange: undefined,
-};
+}
 
-export default TextField;
+export default TextField
