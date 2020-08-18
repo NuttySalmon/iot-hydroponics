@@ -2,6 +2,7 @@ import React from "react";
 import { Row, Col, Button, Container,} from "react-bootstrap";
 import style from "./scss/landing.module.scss";
 import "../common/scss/components/logos.scss";
+import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 const Title = (props) => {
   const {bg, des} = props;
@@ -19,7 +20,7 @@ const Title = (props) => {
               <p>
                 {des}
                 <br />
-                <a href="#more">Learn More</a>
+                <AnchorLink href="#more">Learn More</AnchorLink>
               </p>
             </Col>
           </Row>

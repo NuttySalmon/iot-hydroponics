@@ -7,18 +7,18 @@ const EbbFlow = (props) => {
   const {diagram, des} = props;
   return (
     <Container fluid>
-      <Row className={style.titleBox3}>
-        <div className="col-sm-6 half-left">
-          <Image src={diagram} />
+      <Row>
+        <div className={`col-sm-4 half-left ${style.titleBox3}`} style={{ backgroundImage: `url(${diagram})` }}>
+          {/* <Image src={diagram} /> */}
         </div>
-        <div className="col-sm-6 half-right  mt-5">
+        <div className="col-sm-6 half-right">
           <Container fluid>
             <Row>
               <Container className={style.titleBox2}>
                 <Col>
                   <Row>
                     <Col>
-                      <span className="logo-title" style={{ fontSize: 50 }}>
+                      <span className="logo-lg" style={{ fontSize: 50, color: "#5D4C09" }}>
                         What is Ebb and Flow?
                       </span>
                     </Col>

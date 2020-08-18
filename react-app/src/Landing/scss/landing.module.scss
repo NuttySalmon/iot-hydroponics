@@ -36,11 +36,18 @@
   font-size: 1.3em;
   font-family: $serif;
   text-align: left;
-  color: $light;
+  color: #FFFDF9;
   @include media-breakpoint-down(md) {
     max-width: 100vw;
   }
+}
 
+.titleBox3 {
+  font-family: $serif;
+  align-content: space-around;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;;
 }
 
 .title {
@@ -51,6 +58,7 @@
 }
 
 .head {
+  border: 3px solid $dark;
   clip-path: circle(65px at center);
   object-position: 10%;
   height: 200px;
@@ -61,6 +69,34 @@
   margin-top: 20px;
   font-size: 30px;
   text-align: center;
-  color: $muted;
+  color: #717171;
   font-family: $sans;
+}
+
+.half-left img,
+.half-right img {
+  height: auto;
+  width: 100%;
+}
+
+@media screen and (min-width: 1001px) {
+  .logo-title {
+    font-size: 120px;
+  }
+  .half-left,
+  .half-right {
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+  }
+  .half-left > .container,
+  .half-right > .container {
+    position: absolute;
+  }
+  .half-left > .container {
+    right: 0;
+  }
+  .half-right > .container {
+    left: 0;
+  }
 }
