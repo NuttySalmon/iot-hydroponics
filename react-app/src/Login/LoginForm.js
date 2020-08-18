@@ -7,6 +7,18 @@ import '../common/scss/components/buttons.scss'
 import '../common/scss/components/form-elements.scss'
 import style from './scss/login.module.scss'
 
+const handleError = (error, callback) => {
+  if (error.name === 'NotAuthorizedException') {
+    callback('You have entered your email or password incorrectly.')
+  } 
+  else if (error.name === 'UserNotFoundException') {
+    callback('This account does not exist.')
+  }
+  else {
+    callback('Error logging in.')
+  }
+}
+
 const LoginForm = () => {
   const [email, changeEmail] = useState('')
   const [password, changePassword] = useState('')
@@ -18,13 +30,8 @@ const LoginForm = () => {
       const user = await Auth.signIn(email, password)
       console.log(user)
     } catch (error) {
-      console.log('error signing in', error)
-      if(error.name === 'NotAuthorizedException'){
-        changeErr('You have entered your email or password incorrectly.')
-      }
-      else{
-        changeErr('This account does not exist.')
-      }
+      console.log(error)
+      handleError(error, (msg) => changeErr(msg))
     }
   }
 
@@ -45,17 +52,17 @@ const LoginForm = () => {
         />
       </div>
       <Row>
+        <Col>
+          <div className={style.warning}>{err}</div>
+        </Col>
+      </Row>
+      <Row>
         <Col className={style.formBtn}>
           <Button variant="short" type="submit">
             Login
           </Button>
         </Col>
       </Row>
-      <Row>
-          <Col>
-            <div style={{color:'red', textAlign:'center', marginTop:'6%'}}>{err}</div>
-          </Col>
-        </Row>
       <div className={style.formLink}>
         <Row>
           <Col>
