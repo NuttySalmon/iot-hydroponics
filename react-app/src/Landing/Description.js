@@ -19,7 +19,7 @@ const Description = (props) => {
                   </span>
                 </Col>
               </Row>
-              <Row className="justify-content-md-center">
+              <Row className="justify-content-md-left">
                 <Col className="mb-4" style={{ maxWidth: 900 }}>
                   <p>
                     {des}
@@ -31,7 +31,6 @@ const Description = (props) => {
         </Row>
       </Container>
     </div>
-    
   );
 };
 
