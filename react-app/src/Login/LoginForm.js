@@ -19,7 +19,12 @@ const LoginForm = () => {
       console.log(user)
     } catch (error) {
       console.log('error signing in', error)
-      changeErr('You have entered your email and password incorrectly.')
+      if(error.name === 'NotAuthorizedException'){
+        changeErr('You have entered your email or password incorrectly.')
+      }
+      else{
+        changeErr('This account does not exist.')
+      }
     }
   }
 
