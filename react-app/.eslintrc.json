@@ -1,5 +1,8 @@
 {
   "env": { "browser": true, "jest": true, "node": true, "es6": true },
+  "settings": {
+
+  },
   "parser": "@typescript-eslint/parser",
   "extends": [
     "airbnb",
@@ -7,7 +10,10 @@
     "plugin:jsx-a11y/recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier",
-    "prettier/react"
+    "prettier/react",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript"
   ],
   "globals": { "Atomics": "readonly", "SharedArrayBuffer": "readonly" },
   "parserOptions": {
@@ -29,7 +35,12 @@
         "singleline": { "delimiter": "semi", "requireLast": false }
       }
     ],
-    "react/prop-types": "warn"
+    "react/prop-types": "warn",
+    "react/require-default-props": [1, {"ignoreFunctionalComponents": true}],
+    "import/extensions": [
+      "error",
+      { "js": "never", "jsx": "never", "ts": "never", "tsx": "never" }
+    ]
   },
   "overrides": [
     {
