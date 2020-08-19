@@ -1,33 +1,43 @@
 {
-  "env": {
-    "browser": true,
-    "jest": true,
-    "node": true,
-    "es6": true
-  },
-  "parser": "babel-eslint",
+  "env": { "browser": true, "jest": true, "node": true, "es6": true },
+  "parser": "@typescript-eslint/parser",
   "extends": [
     "airbnb",
-    "prettier",
+    "react-app", // create-react-app
     "plugin:jsx-a11y/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
     "prettier/react"
   ],
-  "globals": {
-    "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly"
-  },
+  "globals": { "Atomics": "readonly", "SharedArrayBuffer": "readonly" },
   "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true,
-      "modules": true
-    },
+    "ecmaFeatures": { "jsx": true, "modules": true },
     "ecmaVersion": 6,
     "sourceType": "module"
   },
-  "plugins": ["react", "prettier", "jsx-a11y"],
+  "plugins": ["react", "prettier", "jsx-a11y", "@typescript-eslint"],
   "rules": {
-    "prettier/prettier": 1,
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "react/prop-types": 1
-  }
+    "prettier/prettier": "warn",
+    "react/jsx-filename-extension": [
+      "warn",
+      { "extensions": [".js", ".jsx", ".tsx"] }
+    ],
+    "@typescript-eslint/member-delimiter-style": [
+      "error",
+      {
+        "multiline": { "delimiter": "none", "requireLast": true },
+        "singleline": { "delimiter": "semi", "requireLast": false }
+      }
+    ],
+    "react/prop-types": "warn"
+  },
+  "overrides": [
+    {
+      // enable the rule specifically for TypeScript files
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": ["warn"]
+      }
+    }
+  ]
 }
