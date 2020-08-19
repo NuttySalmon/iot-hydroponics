@@ -1,7 +1,6 @@
 import React from 'react';
 import { Auth } from 'aws-amplify';
 import { Redirect } from 'react-router-dom'
-import Login from '../Login/LoginForm'
 
 const Logout = () => {
   async function signOut() {
@@ -14,7 +13,7 @@ const Logout = () => {
     }
   }
   signOut()
-  return <Redirect to="/login" component={Login} />
+  return <Redirect to="/login" />
 }
 
 export default Logout
