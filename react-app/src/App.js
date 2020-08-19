@@ -6,6 +6,8 @@ import SignUp from './SignUp'
 import UISample from './common/UISample'
 import './common/scss/base/base.scss'
 
+import Logout from './Logout/Logout'
+
 const App = () => (
   // TODO: create forget passoword page
   <Router>
@@ -22,6 +24,11 @@ const App = () => (
       <Route path="/forget-password">
         <h1>Contact us to reset your password.</h1>
       </Route>
+
+      <Route path="/logout">
+        <Logout />
+      </Route>
+      
       <Route path="/">
         <Landing />
       </Route>

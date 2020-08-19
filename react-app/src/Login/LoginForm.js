@@ -7,15 +7,18 @@ import '../common/scss/components/buttons.scss'
 import '../common/scss/components/form-elements.scss'
 import style from './scss/login.module.scss'
 
+const userNotFoundException = 'UserNotFoundException';
+const notAuthorizedException = 'NotAuthorizedException';
+
 const handleError = (error, callback) => {
-  if (error.name === 'NotAuthorizedException') {
+  if (error.name === notAuthorizedException) {
     callback('You have entered your email or password incorrectly.')
-  } 
-  else if (error.name === 'UserNotFoundException') {
+  }
+  else if (error.name === userNotFoundException) {
     callback('This account does not exist.')
   }
   else {
-    callback('Error logging in.')
+    callback('Error occurred while logging in.')
   }
 }
 
@@ -76,6 +79,7 @@ const LoginForm = () => {
         </Row>
       </div>
     </Form>
+    
   )
 }
 
