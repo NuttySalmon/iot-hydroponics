@@ -7,7 +7,7 @@ const DisplayMembers = (props) => {
   return (
     <Col>
       <Row>
-        <Image className={`col ${style.head}`} src={props.head} />
+        <Image className={`col ${style.head}`} style={{objectPosition: props.pos}} src={props.head} />
       </Row>
       <Row>
         <span className={`col ${style.headName}`}>{props.name}</span>
@@ -29,6 +29,7 @@ const MeetTheTeam = (props) => {
             <DisplayMembers
                 name={member.name}
                 head={member.head}
+                pos={member.pos}
             />
           )}
             

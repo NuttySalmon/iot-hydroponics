@@ -20,18 +20,22 @@ const members = [
   {
     name: "Thomas Chan",
     head: head1,
+    pos: "0px -15px",
   },
   {
     name: "Jackson Truong",
     head: head2,
+    pos: "0px -30px",
   },
   {
     name: "Jason Chong",
     head: head3,
+    pos: "-0px -10px",
   },
   {
     name: "Jonathan Naraja",
     head: head4,
+    pos: "10px -25px",
   },
 ];
 
