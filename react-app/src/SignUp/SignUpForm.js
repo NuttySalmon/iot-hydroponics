@@ -6,26 +6,35 @@ import { Auth } from 'aws-amplify'
 import TextField from '../common/components/TextField'
 import style from './scss/signup.module.scss'
 // need to make first/last name email PW 2x PW devID  bool for checkbot
+// const re = /^ [a-zA-Z] /
+const NameChecker = /^[a-zA-Z ]{2,30}$/ // this is going to check for lowercase and upper case 
+const PasswordChecker = /^[a-zA-Z ].*[0-9].*/ // checking for alphabet lower/upper and number 
+const EmailChecker = /^\S+@\S+$/
 
 const validateName = (name) => {
-  // TODO: check name
-  return false
+  return NameChecker.test(name)
 }
 
 const validatePassword = (password) => {
   // TODO: add password regex. length > 8, at least 1 char and 1 num
-  return false
+  return PasswordChecker.test(password)
 }
-
+// (?=.*\d)(?=.*[a-zA-Z])
 const validatePasswordCon = (password, passwordCon) => {
+  if(passwordCon == password){
+    return true
+  }
+    return false
   // TODO: validate re-type password
-  return false
 }
-
+// need to get email to send validation because they can put in a fake email
 const validateEmail = (email) => {
   // TODO: regex to validate email address
-  return false
+  return EmailChecker.test(email)
 }
+
+
+
 
 const SignUpForm = () => {
   const [firstName, changeFirstName] = useState('')
@@ -45,7 +54,7 @@ const SignUpForm = () => {
   const passwordHint =
     'Minimum length of 8. At least 1 character (A-Z or a-z) and 1 number (0-9).'
   const passwordConErrorMsg = "Password doesn't match."
-
+// client side validation 
   const awsReg = async (event) => {
     event.preventDefault()
     const fNameIsValid = validateName(firstName)
@@ -66,7 +75,7 @@ const SignUpForm = () => {
       emailIsValid &&
       passwordIsValid &&
       passwordConIsValid
-
+// server side validation WORK ON THIS 
     if (valid) {
       try {
         const res = await Auth.signUp({
@@ -79,7 +88,9 @@ const SignUpForm = () => {
           },
         })
         console.log(res)
-      } catch (error) {
+      } catch (error) { // invalid emails, backend password checker to match amazon's policy 
+      // aws might not have fetched the information 
+      // none matching then show generic error message showing somewhere else 
         console.log('error signing up', error)
       }
     }
@@ -123,7 +134,7 @@ const SignUpForm = () => {
         label="New password"
         value={password}
         type="password"
-        changeIsFocused = {changePasswordFocus}
+        changeIsFocused={changePasswordFocus}
         hint={passwordHint}
         showHint={isPasswordFocus || !passwordValid}
         error={!passwordValid}

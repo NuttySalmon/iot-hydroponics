@@ -3,10 +3,11 @@ import { Container, Row, Col } from "react-bootstrap";
 import style from "./scss/landing.module.scss";
 import "../common/scss/components/logos.scss";
 
+
 const Description = (props) => {
-  const {bg, title, des} = props;
+  const {bg, title, des, idTag} = props;
   return (
-    <div className="full-bg" style={{ backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url(${bg})` }}>
+    <div className="full-bg justify-content-md-center" style={{ backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url(${bg})` }} id={idTag}>
       <Container className={style.titleBox2}>
         <Row>
           <Container>

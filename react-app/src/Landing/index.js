@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Container, Row } from "react-bootstrap";
+
 import Title from "./Title";
 import MeetTheTeam from "./MeetTheTeam";
 import Description from "./Description";
@@ -43,11 +44,7 @@ const Landing = () => {
           des="HydroGarden will actively monitor the plant’s desired light,
                 temperature, and moisture levels for the user. This will allow
                 users to grow any desired plant, disregarding weather conditions
-                given by the time of year. A dedicated user interface will be
-                designed to allow individuals to manage the environment without
-                physically being there. This is beneficial towards people that
-                may travel more often than others, but would still want to
-                maintain plant life."         
+                given by the time of year."         
         />
       </Row>
       <Row>
@@ -58,6 +55,7 @@ const Landing = () => {
           title="What is HydroGarden?"
           des="HydroGarden is an IoT hydroponic systems that allow users to create a self-managing environment for plants to thrive in. This product is geared towards individuals who would like to grow their own plants, but are afraid to fail at doing so. This product also allows users that do not believe that they have enough time to continually monitor plant conditions. It ultimately minimizes the amount of time and effort needed for indoor or urban gardening. The irrigation system will allow these people to micro-manage their plants and exceed their expectations."
           bg={bgWhatHydro}
+          idTag='more'
         />
       </Row>
       <Row>
