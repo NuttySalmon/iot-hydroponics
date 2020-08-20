@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Form, Button, Container } from 'react-bootstrap'
 import TextField from './components/TextField'
 
 function UISample() {
+  const [sampleInput1, changeSampleInput1] = useState('')
+  const [sampleInput2, changeSampleInput2] = useState('')
+  const [sampleInput3, changeSampleInput3] = useState('')
   return (
     <div style={{ padding: '30px' }}>
       <h1 className="logo-lg">TitleLogo</h1>
@@ -26,11 +29,31 @@ function UISample() {
             style={{
               backgroundColor: 'cornsilk',
               margin: '30px',
-              padding: '10px',
+              padding: '30px',
             }}
           >
             <Form>
-              <TextField> Text field </TextField>
+              <TextField
+                label="Sample input"
+                value={sampleInput1}
+                onChange={changeSampleInput1}
+              />
+
+              <TextField
+                label="Sample Error input"
+                value={sampleInput2}
+                hint="Hint text"
+                showHint
+                error={false}
+                onChange={changeSampleInput2}
+              />
+              <TextField
+                label="Sample Error input"
+                value={sampleInput3}
+                hint="Error text"
+                showHint
+                onChange={changeSampleInput3}
+              />
             </Form>
           </Container>
         </div>

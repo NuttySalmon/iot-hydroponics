@@ -1,33 +1,54 @@
 {
-  "env": {
-    "browser": true,
-    "jest": true,
-    "node": true,
-    "es6": true
+  "env": { "browser": true, "jest": true, "node": true, "es6": true },
+  "settings": {
+
   },
-  "parser": "babel-eslint",
+  "parser": "@typescript-eslint/parser",
   "extends": [
     "airbnb",
-    "prettier",
+    "react-app", // create-react-app
     "plugin:jsx-a11y/recommended",
-    "prettier/react"
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "prettier/react",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript"
   ],
-  "globals": {
-    "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly"
-  },
+  "globals": { "Atomics": "readonly", "SharedArrayBuffer": "readonly" },
   "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true,
-      "modules": true
-    },
+    "ecmaFeatures": { "jsx": true, "modules": true },
     "ecmaVersion": 6,
     "sourceType": "module"
   },
-  "plugins": ["react", "prettier", "jsx-a11y"],
+  "plugins": ["react", "prettier", "jsx-a11y", "@typescript-eslint"],
   "rules": {
-    "prettier/prettier": 1,
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "react/prop-types": 1
-  }
+    "prettier/prettier": "warn",
+    "react/jsx-filename-extension": [
+      "warn",
+      { "extensions": [".js", ".jsx", ".tsx"] }
+    ],
+    "@typescript-eslint/member-delimiter-style": [
+      "error",
+      {
+        "multiline": { "delimiter": "none", "requireLast": true },
+        "singleline": { "delimiter": "semi", "requireLast": false }
+      }
+    ],
+    "react/prop-types": "warn",
+    "react/require-default-props": [1, {"ignoreFunctionalComponents": true}],
+    "import/extensions": [
+      "error",
+      { "js": "never", "jsx": "never", "ts": "never", "tsx": "never" }
+    ]
+  },
+  "overrides": [
+    {
+      // enable the rule specifically for TypeScript files
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": ["warn"]
+      }
+    }
+  ]
 }

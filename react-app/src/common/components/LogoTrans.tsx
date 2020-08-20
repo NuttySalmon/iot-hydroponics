@@ -1,9 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import '../scss/components/logos.scss'
-import PropTypes from 'prop-types'
 
-const LogoTrans = ({ style }) => {
+/**
+ *
+ * @param {any} props
+ * @param {string | number} [props.style='']
+ */
+const LogoTrans = ({ style = '' }) => {
   return (
     <div className={`logo-trans ${style}`}>
       <Link to="/">
@@ -13,11 +17,4 @@ const LogoTrans = ({ style }) => {
   )
 }
 
-LogoTrans.propTypes = {
-  style: PropTypes.string,
-}
-LogoTrans.defaultProps = {
-  /** Optional additional style for logo */
-  style: '',
-}
 export default LogoTrans

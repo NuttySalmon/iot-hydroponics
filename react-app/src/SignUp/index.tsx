@@ -7,7 +7,7 @@ import SignUpForm from './SignUpForm'
 
 function SignUp() {
   return (
-    <FullPage bg={background} rightLogo>
+    <FullPage bg={background}>
       <FormContainer
         title="Create an account"
         style={style.box}
@@ -16,7 +16,7 @@ function SignUp() {
         <SignUpForm />
       </FormContainer>
     </FullPage>
-  );
+  )
 }
 
-export default SignUp;
+export default SignUp
