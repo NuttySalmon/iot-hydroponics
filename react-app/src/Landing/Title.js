@@ -8,7 +8,7 @@ const Title = (props) => {
   return (
     <div className="full-bg" style={{ backgroundImage: `url(${bg})` }}>
       <Container className={style.titleBox}>
-        <Col>
+        <Col className="align-self-center">
           <Row>
             <Col>
               <span className="logo-lg">HydroGarden</span>
