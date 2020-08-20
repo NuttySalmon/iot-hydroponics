@@ -14,6 +14,7 @@ import head1 from "./img/head2.jpg";
 import head2 from "./img/head1.jpg";
 import head3 from "./img/head4.png";
 import head4 from "./img/head3.jpg";
+import './scss/smooth-scroll.scss';
 
 const members = [
   {
