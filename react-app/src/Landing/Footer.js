@@ -1,10 +1,10 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import { Row, Container } from "react-bootstrap";
 import "../common/scss/components/logos.scss";
 
 const Footer = () => {
   return (
-    <footer className="p-1" style={{ backgroundColor: "#5D4C09" }}>
+    <Row className="p-1" style={{ backgroundColor: "#5D4C09" }}>
       <Container fluid className="col-12 text-center">
         <h5 style={{ color: "white" }}>
           Copyright © 2020 HydroGarden. All right reserved. |{" "}
@@ -17,7 +17,7 @@ const Footer = () => {
           </a>
         </h5>
       </Container>
-    </footer>
+    </Row>
   );
 };
 
