@@ -19,7 +19,7 @@ const Title = (props) => {
               <p>
                 {des}
                 <br />
-                <AnchorLink href="#more">Learn More</AnchorLink>
+                 <a href="#more">Learn More</a>
               </p>
             </Col>
           </Row>

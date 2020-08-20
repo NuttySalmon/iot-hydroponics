@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Container, Row } from "react-bootstrap";
-import AnchorLink from 'react-anchor-link-smooth-scroll'
+
 import Title from "./Title";
 import MeetTheTeam from "./MeetTheTeam";
 import Description from "./Description";
