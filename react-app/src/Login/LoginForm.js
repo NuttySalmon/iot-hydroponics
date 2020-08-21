@@ -1,26 +1,29 @@
 import React, { useState } from 'react'
 import { Form, Button, Row, Col } from 'react-bootstrap'
+
+import { Auth, withAuthenticator } from 'aws-amplify'
+// import aws_exports from '../aws-exports'
+// import { Authenticator } from 'aws-amplify-react'
 import { Link } from 'react-router-dom'
-import { Auth } from 'aws-amplify'
 import TextField from '../common/components/TextField'
 import '../common/scss/components/buttons.scss'
 import '../common/scss/components/form-elements.scss'
 import style from './scss/login.module.scss'
 
-const userNotFoundException = 'UserNotFoundException';
-const notAuthorizedException = 'NotAuthorizedException';
+const userNotFoundException = 'UserNotFoundException'
+const notAuthorizedException = 'NotAuthorizedException'
 
 const handleError = (error, callback) => {
   if (error.name === notAuthorizedException) {
     callback('You have entered your email or password incorrectly.')
-  }
-  else if (error.name === userNotFoundException) {
+  } else if (error.name === userNotFoundException) {
     callback('This account does not exist.')
-  }
-  else {
+  } else {
     callback('Error occurred while logging in.')
   }
 }
+
+const getUserData = () => {}
 
 const LoginForm = () => {
   const [email, changeEmail] = useState('')
@@ -31,9 +34,8 @@ const LoginForm = () => {
     event.preventDefault()
     try {
       const user = await Auth.signIn(email, password)
-      console.log(user)
+      console.log(user.email_verified)
     } catch (error) {
-      console.log(error)
       handleError(error, (msg) => changeErr(msg))
     }
   }
@@ -79,7 +81,6 @@ const LoginForm = () => {
         </Row>
       </div>
     </Form>
-    
   )
 }
 

@@ -1,4 +1,5 @@
 /* eslint-disable camelcase */
+
 import React, { useState } from 'react'
 import { Form, Col, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
@@ -76,7 +77,7 @@ const SignUpForm = () => {
       passwordIsValid &&
       passwordConIsValid
 // server side validation WORK ON THIS 
-    if (valid) {
+    if (true) {
       try {
         const res = await Auth.signUp({
           username: email,
