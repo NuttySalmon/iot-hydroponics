@@ -1,7 +1,9 @@
 import React from "react";
 import { Row, Col, Button, Container,} from "react-bootstrap";
+import { Link } from "react-router-dom";
 import style from "./scss/landing.module.scss";
 import "../common/scss/components/logos.scss";
+
 
 const Title = (props) => {
   const {bg, des} = props;
@@ -28,10 +30,14 @@ const Title = (props) => {
               <div className="d-flex justify-content-center">
                 <Row>
                   <Col>
-                    <Button variant="btn btn-trans">Get started</Button>
+                    <Link to="signup">
+                      <Button variant="btn btn-trans">Get started</Button>
+                    </Link>
                   </Col>
                   <Col>
-                    <Button variant="btn btn-trans">Login</Button>
+                    <Link to="/login">
+                      <Button variant="btn btn-trans">Login</Button>
+                    </Link>
                   </Col>
                 </Row>
               </div>
