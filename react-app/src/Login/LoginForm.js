@@ -34,7 +34,7 @@ const LoginForm = () => {
     event.preventDefault()
     try {
       const user = await Auth.signIn(email, password)
-      console.log(user.email_verified)
+      console.log(user.attributes.email_verified)
     } catch (error) {
       handleError(error, (msg) => changeErr(msg))
     }

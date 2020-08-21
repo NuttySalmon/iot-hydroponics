@@ -21,34 +21,34 @@ const AlwaysOn = (props) => {
 
 const App = () => (
   // TODO: create forget passoword page
-    <Router>
-      <Switch>
-        <Route path="/sample">
-          <UISample />
-        </Route>
-        <Route path="/login">
+  <Router>
+    <Switch>
+      <Route path="/sample">
+        <UISample />
+      </Route>
+      {/* <Route path="/login">
           <Login />
-        </Route>
-        <Route path="/signup">
-          <SignUp />
-        </Route>
-        <Route path="/forget-password">
-          <h1>Contact us to reset your password.</h1>
-        </Route>
+        </Route> */}
+      {/* <Route path="/signup">
+        <SignUp />
+      </Route> */}
+      <Route path="/forget-password">
+        <h1>Contact us to reset your password.</h1>
+      </Route>
 
-        <Route path="/logout">
-          <Logout />
-        </Route>
+      <Route path="/logout">
+        <Logout />
+      </Route>
 
-        <Route path="/dashboard">
-          <Dashboard />
-        </Route>
+      <Route path="/dashboard">
+        <Dashboard />
+      </Route>
 
-        <Route path="/">
-          <Landing />
-        </Route>
-      </Switch>
-    </Router>
+      <Route path="/">
+        <Landing />
+      </Route>
+    </Switch>
+  </Router>
 )
 
 export default App
