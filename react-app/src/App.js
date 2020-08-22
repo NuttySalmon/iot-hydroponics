@@ -1,15 +1,14 @@
-import React from 'react'
+import React, { useState, useContext, createContext } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Login from './Login'
 import Landing from './Landing'
 import SignUp from './SignUp'
 import UISample from './common/UISample'
 import './common/scss/base/base.scss'
-
 import Logout from './Logout/Logout'
 import Dashboard from './Dashboard'
-
-import { Authenticator } from 'aws-amplify-react'
+import User from './user'
+import RouteProtected from './user/RouteProtected'
 
 const AlwaysOn = (props) => {
   return (
@@ -19,36 +18,40 @@ const AlwaysOn = (props) => {
   )
 }
 
-const App = () => (
+export const UserContext = createContext({
+  user: null,
+  changeUser: (dummy) => {
+    console.log('ContextError')
+  },
+})
+
+const App = () => {
+  const [user, changeUser] = useState(null)
   // TODO: create forget passoword page
-  <Router>
-    <Switch>
-      <Route path="/sample">
-        <UISample />
-      </Route>
-      {/* <Route path="/login">
+  return (
+    <UserContext.Provider value={{ user, changeUser }}>
+      <Router>
+        <Switch>
+          <Route path="/sample">
+            <UISample />
+          </Route>
+          {/* <Route path="/login">
           <Login />
         </Route> */}
-      {/* <Route path="/signup">
+          {/* <Route path="/signup">
         <SignUp />
       </Route> */}
-      <Route path="/forget-password">
-        <h1>Contact us to reset your password.</h1>
-      </Route>
+         
 
-      <Route path="/logout">
-        <Logout />
-      </Route>
+          
 
-      <Route path="/dashboard">
-        <Dashboard />
-      </Route>
-
-      <Route path="/">
-        <Landing />
-      </Route>
-    </Switch>
-  </Router>
-)
+          <Route path="/">
+            <User />
+          </Route>
+        </Switch>
+      </Router>
+    </UserContext.Provider>
+  )
+}
 
 export default App

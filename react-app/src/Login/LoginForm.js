@@ -19,6 +19,7 @@ const handleError = (error, callback) => {
   } else if (error.name === userNotFoundException) {
     callback('This account does not exist.')
   } else {
+    console.log(error)
     callback('Error occurred while logging in.')
   }
 }
