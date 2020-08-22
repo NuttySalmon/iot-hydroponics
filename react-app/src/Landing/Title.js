@@ -30,7 +30,7 @@ const Title = (props) => {
               <div className="d-flex justify-content-center">
                 <Row>
                   <Col>
-                    <Link to="signup">
+                    <Link to="/signup">
                       <Button variant="btn btn-trans">Get started</Button>
                     </Link>
                   </Col>

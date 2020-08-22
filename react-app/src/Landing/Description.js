@@ -1,37 +1,21 @@
-import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import style from "./scss/landing.module.scss";
-import "../common/scss/components/logos.scss";
+import React from 'react'
+import {Container, Row} from 'react-bootstrap'
 
-
-const Description = (props) => {
-  const {bg, title, des, idTag} = props;
+const Description = ({title, des}) => {
   return (
-    <div className="full-bg justify-content-md-center" style={{ backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url(${bg})` }} id={idTag}>
-      <Container className={style.titleBox2}>
-        <Row>
-          <Container>
-            <Col>
-              <Row>
-                <Col>
-                  <span className="logo-lg" style={{ fontSize: 50 }}>
-                    {title}
-                  </span>
-                </Col>
-              </Row>
-              <Row className="justify-content-md-left">
-                <Col className="mb-4" style={{ maxWidth: 900 }}>
-                  <p>
-                    {des}
-                  </p>
-                </Col>
-              </Row>
-            </Col>
-          </Container>
-        </Row>
-      </Container>
-    </div>
-  );
-};
+    <Container className="align-self-center">
+      <Row>
+        <h1>
+          {title}
+        </h1>
+      </Row>
+      <Row className="justify-content-md-left">
+        <p style={{width: "100%"}}>
+          {des}
+        </p>
+      </Row>
+    </Container>
+  )
+}
 
-export default Description;
+export default Description

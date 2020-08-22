@@ -1,9 +1,8 @@
 import React from "react";
-import { Container, Row } from "react-bootstrap";
+import { Container, Row, Col, Image} from "react-bootstrap";
 import Title from "./Title";
 import MeetTheTeam from "./MeetTheTeam";
-import Description from "./Description";
-import EbbFlow from "./EbbFlow";
+import LandingSection from "./LandingSection";
 import Footer from "./Footer";
 import bgTitle from "./img/lettuce-bg.png";
 import ebbFlowDiagram from "./img/ebbflow.png";
@@ -13,7 +12,12 @@ import head1 from "./img/head2.jpg";
 import head2 from "./img/head1.jpg";
 import head3 from "./img/head4.png";
 import head4 from "./img/head3.jpg";
-import './scss/smooth-scroll.scss';
+import style from "./scss/landing.module.scss";
+import bullet1 from './img/chip.svg'
+import bullet2 from './img/leaf.svg'
+import bullet3 from './img/fast.svg'
+import "./scss/smooth-scroll.scss";
+import Description from './Description';
 
 const members = [
   {
@@ -38,6 +42,32 @@ const members = [
   },
 ];
 
+const BulletPoint = ({bullet, text})=> (  
+  <Row className="mt-4">
+    <Col className={style.bullet}><img src={bullet} style={{fill: 'white', height: '62px'}} /></Col>
+    <Col>{text}</Col>
+  </Row>
+)
+
+const WhatIsHydroGarden = (
+  <>
+    <BulletPoint bullet={bullet1} text="IoT technology automation" />
+    <BulletPoint bullet={bullet2} text="Self-managing enviroment for plants" />
+    <BulletPoint bullet={bullet3} text="Minimal effort, minimal time " />
+  </>
+)
+
+const EbbAndFlow = (
+  <>
+    <p>Also known as flood and drain:</p>
+    <p>1. Flood growtray with nutrients solution</p>
+    <p>2. Drain solution back to reservoir</p>
+    <p>3. Repeat! </p>
+  </>
+)
+ 
+// Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+
 const Landing = () => {
   return (
     <Container fluid>
@@ -51,28 +81,48 @@ const Landing = () => {
         />
       </Row>
       <Row>
-        <MeetTheTeam theTeam={members} />
+        <LandingSection>
+          <MeetTheTeam theTeam={members} />
+        </LandingSection>
       </Row>
-      <Row>
-        <Description 
-          title="What is HydroGarden?"
-          des="HydroGarden is an IoT hydroponic systems that allow users to create a self-managing environment for plants to thrive in. This product is geared towards individuals who would like to grow their own plants, but are afraid to fail at doing so. This product also allows users that do not believe that they have enough time to continually monitor plant conditions. It ultimately minimizes the amount of time and effort needed for indoor or urban gardening. The irrigation system will allow these people to micro-manage their plants and exceed their expectations."
+      <Row id='more'>
+        <LandingSection 
           bg={bgWhatHydro}
-          idTag='more'
-        />
+          dark
+        >
+          <Description
+            title="What is HydroGarden?"
+            des={WhatIsHydroGarden}
+          />
+        </LandingSection>
       </Row>
       <Row>
-        <EbbFlow 
-          diagram={ebbFlowDiagram}
-          des="HydroGarden implements an ebb and flow method, also known as flood and drain. There are 2 pumps used to handle the water within the reservoir: one to fill the flood tray and another to agitate the water in the bottom reservoir to prevent algae from growing."
-        />
+        <LandingSection>
+          <Container style={{display: 'grid'}}>
+            <Row className="align-self-center">
+              <Col className="text-center mr-5" xl={5}>
+                <Image src={ebbFlowDiagram} className="align-self-center" fluid />
+              </Col>
+              <Col xl>
+                <Description
+                  title="What is Ebb and Flow?"
+                  des={EbbAndFlow}
+                />
+              </Col>
+            </Row> 
+          </Container>
+        </LandingSection>
       </Row>
       <Row>
-        <Description 
-          title="Why Hydroponics?"
-          des="Hydroponics is a method of growing plants in a water based, nutrient rich solution. This is better for plants to absorb water and nutrients needed to thrive in unorthadox situations. The roots of a plant no longer need to find and rely on soil. There is less water consumption, making this product more environmentally friendly."
+        <LandingSection 
           bg={bgWhyHydro}
-        />
+          dark
+        >
+          <Description
+            title="Why Hydroponics?"
+            des={[ "Hydroponics is a method of growing plants in a water based, nutrient rich solution. This is better for plants to absorb water and nutrients needed to thrive in unorthadox situations. The roots of a plant no longer need to find and rely on soil. There is less water consumption, making this product more environmentally friendly." ]}
+          />
+        </LandingSection>
       </Row>
       <Footer />
     </Container>
