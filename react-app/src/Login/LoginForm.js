@@ -7,34 +7,52 @@ import '../common/scss/components/buttons.scss'
 import '../common/scss/components/form-elements.scss'
 import style from './scss/login.module.scss'
 
-const userNotFoundException = 'UserNotFoundException';
-const notAuthorizedException = 'NotAuthorizedException';
+const userNotFoundException = 'UserNotFoundException'
+const notAuthorizedException = 'NotAuthorizedException'
+const userNotConfirmedException = 'UserNotConfirmedException'
 
-const handleError = (error, callback) => {
-  if (error.name === notAuthorizedException) {
-    callback('You have entered your email or password incorrectly.')
-  }
-  else if (error.name === userNotFoundException) {
-    callback('This account does not exist.')
-  }
-  else {
-    callback('Error occurred while logging in.')
-  }
-}
+const checkValid = (fieldValue) => fieldValue !== ''
 
-const LoginForm = () => {
+const LoginForm = ({ changeAccVerify }) => {
   const [email, changeEmail] = useState('')
   const [password, changePassword] = useState('')
   const [err, changeErr] = useState('')
+  const [emailValid, changeEmailValid] = useState(true)
+  const [passValid, changePassValid] = useState(true)
+
+  const passEmpty = 'Password field cannot be empty.'
+  const emailEmpty = 'Email field cannot be empty.'
+
+  const handleError = (error) => {
+    // convert to switch case
+    if (error.name === notAuthorizedException) {
+      changeErr('You have entered your email or password incorrectly.')
+    } else if (error.name === userNotFoundException) {
+      changeErr('This account does not exist.')
+    } else if (error.name === userNotConfirmedException) {
+      changeAccVerify(true)
+    } else {
+      changeErr('Error occurred while logging in.')
+    }
+  }
 
   const awsSignIn = async (event) => {
     event.preventDefault()
-    try {
-      const user = await Auth.signIn(email, password)
-      console.log(user)
-    } catch (error) {
-      console.log(error)
-      handleError(error, (msg) => changeErr(msg))
+    changeAccVerify(false) // reset
+    changeErr('')
+    const emailValidTemp = checkValid(email)
+    const passwordValidTemp = checkValid(password)
+    changeEmailValid(emailValidTemp)
+    changePassValid(passwordValidTemp)
+
+    if (emailValidTemp && passwordValidTemp) {
+      try {
+        const user = await Auth.signIn(email, password)
+        console.log(user)
+      } catch (error) {
+        console.log(error)
+        handleError(error)
+      }
     }
   }
 
@@ -45,6 +63,8 @@ const LoginForm = () => {
         value={email}
         onChange={changeEmail}
         type="text"
+        hint={emailEmpty}
+        showHint={!emailValid}
       />
       <div style={{ marginTop: '1.5em' }}>
         <TextField
@@ -52,6 +72,8 @@ const LoginForm = () => {
           value={password}
           onChange={changePassword}
           type="password"
+          hint={passEmpty}
+          showHint={!passValid}
         />
       </div>
       <Row>
@@ -79,7 +101,6 @@ const LoginForm = () => {
         </Row>
       </div>
     </Form>
-    
   )
 }
 

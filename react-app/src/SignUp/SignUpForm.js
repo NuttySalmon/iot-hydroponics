@@ -55,7 +55,7 @@ const SignUpForm = () => {
     'Minimum length of 8. At least 1 character (A-Z or a-z) and 1 number (0-9).'
   const passwordConErrorMsg = "Password doesn't match."
 // client side validation 
-  const awsReg = async (event) => {
+   const awsReg = async (event) => {
     event.preventDefault()
     const fNameIsValid = validateName(firstName)
     const lNameIsValid = validateName(lastName)
