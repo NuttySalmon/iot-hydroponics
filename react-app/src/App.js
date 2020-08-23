@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Landing from './Landing'
 import UISample from './common/UISample'
 import './common/scss/base/base.scss'
-import User from './User'
-import UserContext from './User/UserContext'
+import User from './UserAuth'
+import UserContext from './UserAuth/UserContext'
 
 const App = () => {
   const [user, changeUser] = useState(null)
