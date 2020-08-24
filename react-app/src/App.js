@@ -3,28 +3,22 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Landing from './Landing'
 import UISample from './common/UISample'
 import './common/scss/base/base.scss'
-import User from './UserAuth'
-import UserContext from './UserAuth/UserContext'
+import UserAuth from './UserAuth'
+import Dashboard from './Dashboard'
 
 const App = () => {
-  const [user, changeUser] = useState(null)
   // TODO: create forget passoword page
   return (
-    <UserContext.Provider value={{ user, changeUser }}>
-      <Router>
-        <Switch>
-          <Route path="/sample">
-            <UISample />
-          </Route>
-          <Route exact path="/">
-            <Landing />
-          </Route>
-          <Route path="/user">
-            <User />
-          </Route>
-        </Switch>
-      </Router>
-    </UserContext.Provider>
+    <Router>
+      <Switch>
+        <Route path="/sample" render={UISample} />
+        <Route exact path="/" render={Landing} />
+        <Route path="/user">
+          <UserAuth />
+        </Route>
+        <Route path="/dashboard" render={Dashboard} />
+      </Switch>
+    </Router>
   )
 }
 

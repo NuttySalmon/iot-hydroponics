@@ -1,36 +1,35 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, RouteProps, Redirect } from 'react-router-dom'
+import PageStates from './PageStates'
 
-import { PagesEnum } from './pageStates'
-
-interface AuthComponent {
-  /** Auth state from authencator */
-  authState?: string
-}
 export type AuthRouteProps = {
   path: string
-  pageState?: PagesEnum
-  matchState: PagesEnum
-  changeCurrPage?: React.Dispatch<React.SetStateAction<PagesEnum>>
-  render: React.FC<AuthComponent>
-}
+  changePage?: React.Dispatch<React.SetStateAction<PageStates>>
+  // matchState: PageStates
+  // loggedInState?: PageStates
+  loggedInPath?: string
+  // pageState?: PageStates
+  render: React.FC
+} // render: React.FC<AuthComponent>
 
+// TODO: CHANGE THIS
+const loggedIn = false
 /** Authentication related routes. Responsible for updating page state when url accessed */
 const AuthRoute = ({
   path,
-  pageState = PagesEnum.LANDING,
-  matchState,
-  changeCurrPage,
+  // changePage,
+  // matchState = PageStates.DASHBOARD,
+  loggedInPath = '/user/dashboard',
+  // loggedInState = PageStates.DASHBOARD,
   render: C,
-  ...rest
 }: AuthRouteProps) => (
   <Route
     path={path}
     render={() => {
-      console.log(`authRoute Triggered. Path: ${path} State: ${pageState}`)
-      if (changeCurrPage) changeCurrPage(matchState) // change state when route visited
-      return <C {...rest} />
+      // if (changePage) changePage(loggedIn ? loggedInState : matchState)
+      if (loggedIn) return <Redirect to={loggedInPath} />
+      return <C />
     }}
   />
 )

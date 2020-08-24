@@ -1,31 +1,23 @@
 import React, { Children, cloneElement } from 'react'
-import { IAuthenticatorProps } from 'aws-amplify-react/lib-esm/Auth/Authenticator'
-import { PagesEnum } from './pageStates'
+// import { IAuthenticatorProps } from 'aws-amplify-react/lib-esm/Auth/Authenticator'
+import { AuthRouteProps } from './AuthRoute'
 
 type PageControlProps = {
   /** Children elements */
-  children: React.ReactChild[]
-  /** Current page state */
-  pageState: PagesEnum
+  children: React.ReactChild[] | React.ReactChild
   /** Function to change current page state */
-  changeCurrPage: React.Dispatch<React.SetStateAction<PagesEnum>>
-} & IAuthenticatorProps
+
+  /** Function to change current page state */
+} & Omit<AuthRouteProps, 'path' | 'matchState' | 'render'>
 
 /** Container around controlled pages for passing in props related to current page state */
-const PageControl = ({
-  children,
-  pageState,
-  authState,
-  changeCurrPage,
-  ...rest
-}: PageControlProps) => {
+const AuthRouteContain = ({ children, ...rest }: PageControlProps) => {
   const proppedChildren = Children.map(children, (child) =>
-    cloneElement(child as React.ReactElement, {
-      ...{ pageState, changeCurrPage },
+    cloneElement<AuthRouteProps>(child as React.ReactElement, {
       ...rest,
     })
   )
   return <> {proppedChildren} </>
 }
 
-export default PageControl
+export default AuthRouteContain
