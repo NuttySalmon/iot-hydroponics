@@ -19,20 +19,25 @@ const LoginForm = ({ changeAccVerify }) => {
   const [err, changeErr] = useState('')
   const [emailValid, changeEmailValid] = useState(true)
   const [passValid, changePassValid] = useState(true)
-
-  const passEmpty = 'Password field cannot be empty.'
-  const emailEmpty = 'Email field cannot be empty.'
+  const [emailErrMessage, changeEmailErrMessage] = useState('')
+  const [passErrMessage, changePassErrMessage] = useState('')
 
   const handleError = (error) => {
-    // convert to switch case
-    if (error.name === notAuthorizedException) {
-      changeErr('You have entered your email or password incorrectly.')
-    } else if (error.name === userNotFoundException) {
-      changeErr('This account does not exist.')
-    } else if (error.name === userNotConfirmedException) {
-      changeAccVerify(true)
-    } else {
-      changeErr('Error occurred while logging in.')
+    switch (error.name) {
+      case userNotFoundException:
+        // changeErr('You have entered your email or password incorrectly.')
+        changeEmailValid(false)
+        changeEmailErrMessage('This email does not exist. ')
+        break
+      case notAuthorizedException:
+        changePassValid(false)
+        changePassErrMessage('Email and password do not match. ')
+        break
+      case userNotConfirmedException:
+        changeAccVerify(true)
+        break
+      default:
+        changeErr('An error occured. Please try again.')
     }
   }
 
@@ -44,6 +49,8 @@ const LoginForm = ({ changeAccVerify }) => {
     const passwordValidTemp = checkValid(password)
     changeEmailValid(emailValidTemp)
     changePassValid(passwordValidTemp)
+    changeEmailErrMessage('Email field cannot be empty.')
+    changePassErrMessage('Password field cannot be empty. ')
 
     if (emailValidTemp && passwordValidTemp) {
       try {
@@ -63,7 +70,7 @@ const LoginForm = ({ changeAccVerify }) => {
         value={email}
         onChange={changeEmail}
         type="text"
-        hint={emailEmpty}
+        hint={emailErrMessage}
         showHint={!emailValid}
       />
       <div style={{ marginTop: '1.5em' }}>
@@ -72,7 +79,7 @@ const LoginForm = ({ changeAccVerify }) => {
           value={password}
           onChange={changePassword}
           type="password"
-          hint={passEmpty}
+          hint={passErrMessage}
           showHint={!passValid}
         />
       </div>
