@@ -5,20 +5,28 @@ import UISample from './common/UISample'
 import './common/scss/base/base.scss'
 import UserAuth from './UserAuth'
 import Dashboard from './Dashboard'
+import ProtectedRoute from './UserAuth/ProtectedRoute'
+import UserContext from './UserAuth/UserContext'
 
 const App = () => {
-  // TODO: create forget passoword page
+  const [loggedIn, changeLoggedIn] = useState(false)
   return (
-    <Router>
-      <Switch>
-        <Route path="/sample" render={UISample} />
-        <Route exact path="/" render={Landing} />
-        <Route path="/user">
-          <UserAuth />
-        </Route>
-        <Route path="/dashboard" render={Dashboard} />
-      </Switch>
-    </Router>
+    <UserContext.Provider value={{ loggedIn, changeLoggedIn }}>
+      <Router>
+        <Switch>
+          <Route path="/sample" render={UISample} />
+          <ProtectedRoute
+            path="/dashboard"
+            render={Dashboard}
+            notLoggedInPath="/login"
+          />
+          <Route exact path="/">
+            <Landing />
+          </Route>
+          <UserAuth loggedInPath="/dashboard" />
+        </Switch>
+      </Router>
+    </UserContext.Provider>
   )
 }
 
