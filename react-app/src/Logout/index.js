@@ -1,21 +1,22 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { Auth } from 'aws-amplify'
 import { Redirect } from 'react-router-dom'
-
-async function signOut() {
-  try {
-    const user = await Auth.signOut()
-    console.log(user)
-    console.log('Logged out.')
-  } catch (error) {
-    console.log('error signing out: ', error)
-  }
-}
+import UserContext from '../UserAuth/UserContext'
 
 const Logout = () => {
-  useEffect(() => {
-    signOut()
-  }) // Look up useEffect
+  const { changeLoggedIn } = useContext(UserContext)
+  async function signOut() {
+    try {
+      const user = await Auth.signOut()
+      console.log(user)
+      console.log('Logged out.')
+
+      changeLoggedIn(false)
+    } catch (error) {
+      console.log('error signing out: ', error)
+    }
+  }
+  useEffect(signOut)
   return <Redirect to="/login" />
 }
 

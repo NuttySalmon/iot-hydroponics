@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import { Auth } from 'aws-amplify'
 import TextField from '../common/components/TextField'
 import '../common/scss/components/buttons.scss'
 import '../common/scss/components/form-elements.scss'
+import UserContext from '../UserAuth/UserContext'
 
 const userNotFoundException = 'UserNotFoundException'
 const expiredCodeException = 'ExpiredCodeException'
+const codeMismatchException = 'CodeMismatchException'
 
 const checkValid = (fieldValue) => fieldValue !== ''
 
@@ -21,11 +23,13 @@ const VerifyForm = ({ email }) => {
     changeCodeValid(false)
     switch (error.name) {
       case userNotFoundException:
-        // changeErr('You have entered your email or password incorrectly.')
-        changeCodeErrMessage('Invalid Code. ')
+        changeCodeErrMessage('User could not be found. ')
         break
       case expiredCodeException:
         changeCodeErrMessage('The code you have entered has expired. ')
+        break
+      case codeMismatchException:
+        changeCodeErrMessage('Invalid verification code provided. ')
         break
       default:
         changeCodeErrMessage('')
@@ -34,7 +38,8 @@ const VerifyForm = ({ email }) => {
   }
 
   const history = useHistory()
-
+  const {changeLoggedIn} = useContext(UserContext)
+  
   const awsVerify = async (event) => {
     event.preventDefault()
     changeGeneralErrMsg('')
@@ -45,8 +50,11 @@ const VerifyForm = ({ email }) => {
     if (codeValidTemp) {
       try {
         await Auth.confirmSignUp(email, code)
-        Auth.currentAuthenticatedUser().then(user => {console.log(user)})
-        history.push("/dashboard")
+        Auth.currentAuthenticatedUser().then((user) => {
+          console.log(user)
+        })
+        changeLoggedIn(true)
+        history.push('/dashboard')
       } catch (error) {
         console.log(error)
         handleError(error)
@@ -69,9 +77,13 @@ const VerifyForm = ({ email }) => {
         <Row>
           <Col className="col text-center">
             <p>
-              The verfication code has been sent to <b>{email}</b>.   
+              The verfication code has been sent to <b>{email}</b>.
             </p>
-            <p><a href="#" onClick={resendCode}>Resend Code</a></p>
+            <p>
+              <a href="#" onClick={resendCode}>
+                Resend Code
+              </a>
+            </p>
           </Col>
         </Row>
         <TextField

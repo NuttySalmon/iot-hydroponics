@@ -9,6 +9,7 @@ import style from './scss/login.module.scss'
 function Login() {
   const [accVerify, changeAccVerify] = useState(false)
   const [email, changeEmail] = useState('')
+
   return (
     <FullPage bg={background}>
       <FormContainer
