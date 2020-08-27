@@ -89,7 +89,7 @@ const SignUpForm = () => {
       passwordIsValid &&
       passwordConIsValid
     // server side validation WORK ON THIS
-    if (true) {
+    if (valid) {
       try {
         const res = await Auth.signUp({
           username: email,

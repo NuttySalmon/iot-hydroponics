@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Form, Button, Row, Col } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { Auth } from 'aws-amplify'
 import TextField from '../common/components/TextField'
 import '../common/scss/components/buttons.scss'
@@ -13,7 +13,7 @@ const checkValid = (fieldValue) => fieldValue !== ''
 
 const VerifyForm = ({ email }) => {
   const [code, changeCode] = useState('')
-  const [err, changeErr] = useState('')
+  const [generalErrMsg, changeGeneralErrMsg] = useState('')
   const [codeValid, changeCodeValid] = useState(true)
   const [codeErrMessage, changeCodeErrMessage] = useState('')
 
@@ -29,13 +29,15 @@ const VerifyForm = ({ email }) => {
         break
       default:
         changeCodeErrMessage('')
-        changeErr('An error occured. Please try again.')
+        changeGeneralErrMsg('An error occured. Please try again.')
     }
   }
 
+  const history = useHistory()
+
   const awsVerify = async (event) => {
     event.preventDefault()
-    changeErr('')
+    changeGeneralErrMsg('')
     const codeValidTemp = checkValid(code)
     changeCodeValid(codeValidTemp)
     changeCodeErrMessage('Email field cannot be empty.')
@@ -43,10 +45,21 @@ const VerifyForm = ({ email }) => {
     if (codeValidTemp) {
       try {
         await Auth.confirmSignUp(email, code)
+        Auth.currentAuthenticatedUser().then(user => {console.log(user)})
+        history.push("/dashboard")
       } catch (error) {
         console.log(error)
         handleError(error)
       }
+    }
+  }
+
+  const resendCode = async () => {
+    try {
+      await Auth.resendSignUp(email)
+      console.log('code resent successfully')
+    } catch (error) {
+      console.log('error resending code: ', error)
     }
   }
 
@@ -56,8 +69,9 @@ const VerifyForm = ({ email }) => {
         <Row>
           <Col className="col text-center">
             <p>
-              The verfication code has been sent to <b>{email}</b>.
+              The verfication code has been sent to <b>{email}</b>.   
             </p>
+            <p><a href="#" onClick={resendCode}>Resend Code</a></p>
           </Col>
         </Row>
         <TextField
