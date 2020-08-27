@@ -8,11 +8,18 @@ import style from './scss/login.module.scss'
 
 function Login() {
   const [accVerify, changeAccVerify] = useState(false)
-
+  const [email, changeEmail] = useState('')
   return (
     <FullPage bg={background}>
-      <FormContainer title="Welcome Back" style={style.box}>
-        {accVerify ? <VerifyForm /> : <LoginForm changeAccVerify={changeAccVerify} />}
+      <FormContainer
+        title={accVerify ? 'Verify Account' : 'Welome Back'}
+        style={style.box}
+      >
+        {accVerify ? (
+          <VerifyForm {...{email}}/>
+        ) : (
+          <LoginForm {...{changeAccVerify, changeEmail, email}} />
+        )}
       </FormContainer>
     </FullPage>
   )

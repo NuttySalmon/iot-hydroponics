@@ -13,8 +13,7 @@ const userNotConfirmedException = 'UserNotConfirmedException'
 
 const checkValid = (fieldValue) => fieldValue !== ''
 
-const LoginForm = ({ changeAccVerify }) => {
-  const [email, changeEmail] = useState('')
+const LoginForm = ({ changeAccVerify, changeEmail, email }) => {
   const [password, changePassword] = useState('')
   const [err, changeErr] = useState('')
   const [emailValid, changeEmailValid] = useState(true)
