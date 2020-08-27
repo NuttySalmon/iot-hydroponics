@@ -12,6 +12,7 @@ const userNotFoundException = 'UserNotFoundException'
 const expiredCodeException = 'ExpiredCodeException'
 const codeMismatchException = 'CodeMismatchException'
 
+// check if code field is empty
 const checkValid = (fieldValue) => fieldValue !== ''
 
 const VerifyForm = ({ email }) => {
@@ -19,7 +20,12 @@ const VerifyForm = ({ email }) => {
   const [generalErrMsg, changeGeneralErrMsg] = useState('')
   const [codeValid, changeCodeValid] = useState(true)
   const [codeErrMessage, changeCodeErrMessage] = useState('')
+  const [resendMsg, changeResendMsg] = useState('') // Display message for resending code.
+  const history = useHistory()
+  const {changeLoggedIn} = useContext(UserContext)
 
+  
+  // for handling verification code submission error
   const handleError = (error) => {
     changeCodeValid(false)
     switch (error.name) {
@@ -27,10 +33,10 @@ const VerifyForm = ({ email }) => {
         changeCodeErrMessage('User could not be found. ')
         break
       case expiredCodeException:
-        changeCodeErrMessage('The code you have entered has expired. ')
+        changeCodeErrMessage('The code you have entered has expired.')
         break
       case codeMismatchException:
-        changeCodeErrMessage('Invalid verification code provided. ')
+        changeCodeErrMessage('Invalid verification code provided.')
         break
       default:
         changeCodeErrMessage('')
@@ -38,19 +44,18 @@ const VerifyForm = ({ email }) => {
     }
   }
 
-  const history = useHistory()
-  const {changeLoggedIn} = useContext(UserContext)
-  
+ 
+  // code to verify account
   const awsVerify = async (event) => {
     event.preventDefault()
-    changeGeneralErrMsg('')
-    const codeValidTemp = checkValid(code)
+    changeGeneralErrMsg('') // reset general error message
+    const codeValidTemp = checkValid(code) // check if code is valid
     changeCodeValid(codeValidTemp)
-    changeCodeErrMessage('Email field cannot be empty.')
+    changeCodeErrMessage('Verification code cannot be empty.')
 
     if (codeValidTemp) {
       try {
-        await Auth.confirmSignUp(email, code)
+        await Auth.confirmSignUp(email, code) // sent to aws
         Auth.currentAuthenticatedUser().then((user) => {
           console.log(user)
         })
@@ -66,9 +71,10 @@ const VerifyForm = ({ email }) => {
   const resendCode = async () => {
     try {
       await Auth.resendSignUp(email)
-      console.log('code resent successfully')
+      changeResendMsg('Code has been resent successfully! ')
+
     } catch (error) {
-      console.log('error resending code: ', error)
+      changeResendMsg('There has been an error resending verification code. ')
     }
   }
 
@@ -88,7 +94,7 @@ const VerifyForm = ({ email }) => {
               </Col>
             </Row>
             <Row>
-              <Col><p>{/* TODO: Resent code response or error message here */}</p></Col>
+              <Col><p>{resendMsg}</p></Col>
             </Row>
           </Col>
         </Row>
@@ -101,7 +107,7 @@ const VerifyForm = ({ email }) => {
           showHint={!codeValid}
         />
         <Row className={style.generalError}>
-          <Col>{/* TODO: General error message here */}</Col>
+          <Col>{generalErrMsg}</Col>
         </Row>
         <Row>
           <Col className={style.formBtn}>
