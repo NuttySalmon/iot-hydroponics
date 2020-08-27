@@ -3,6 +3,7 @@ import { Form, Button, Row, Col } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import { Auth } from 'aws-amplify'
 import TextField from '../common/components/TextField'
+import style from './scss/VerifyForm.module.scss'
 import '../common/scss/components/buttons.scss'
 import '../common/scss/components/form-elements.scss'
 import UserContext from '../UserAuth/UserContext'
@@ -74,16 +75,21 @@ const VerifyForm = ({ email }) => {
   return (
     <>
       <Form className="user-form" onSubmit={awsVerify}>
-        <Row>
-          <Col className="col text-center">
-            <p>
-              The verfication code has been sent to <b>{email}</b>.
-            </p>
-            <p>
-              <a href="#" onClick={resendCode}>
-                Resend Code
-              </a>
-            </p>
+        <Row className="mb-0">
+          <Col className={style.prompt}>
+            <Row>
+              <Col>
+                <p>The verfication code has been sent to <b>{email}</b>.</p>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+               <p> Click <a href="#" onClick={resendCode}> here </a> to resent code. </p>
+              </Col>
+            </Row>
+            <Row>
+              <Col><p>{/* TODO: Resent code response or error message here */}</p></Col>
+            </Row>
           </Col>
         </Row>
         <TextField
@@ -94,8 +100,11 @@ const VerifyForm = ({ email }) => {
           hint={codeErrMessage}
           showHint={!codeValid}
         />
+        <Row className={style.generalError}>
+          <Col>{/* TODO: General error message here */}</Col>
+        </Row>
         <Row>
-          <Col className="mt-5 text-center">
+          <Col className={style.formBtn}>
             <Button variant="short" type="submit">
               Verify
             </Button>
