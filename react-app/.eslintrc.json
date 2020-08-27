@@ -1,8 +1,6 @@
 {
   "env": { "browser": true, "jest": true, "node": true, "es6": true },
-  "settings": {
-
-  },
+  "settings": {},
   "parser": "@typescript-eslint/parser",
   "extends": [
     "airbnb",
@@ -36,19 +34,11 @@
       }
     ],
     "react/prop-types": "warn",
-    "react/require-default-props": [1, {"ignoreFunctionalComponents": true}],
+    "react/require-default-props": [1, { "ignoreFunctionalComponents": true }],
     "import/extensions": [
       "error",
       { "js": "never", "jsx": "never", "ts": "never", "tsx": "never" }
-    ]
-  },
-  "overrides": [
-    {
-      // enable the rule specifically for TypeScript files
-      "files": ["*.ts", "*.tsx"],
-      "rules": {
-        "@typescript-eslint/explicit-function-return-type": ["warn"]
-      }
-    }
-  ]
+    ],
+    "@typescript-eslint/explicit-function-return-type": ["off"]
+  }
 }

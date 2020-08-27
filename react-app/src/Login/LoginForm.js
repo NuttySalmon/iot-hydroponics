@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import { Form, Button, Row, Col } from 'react-bootstrap'
+
+import { Auth, withAuthenticator } from 'aws-amplify'
+// import aws_exports from '../aws-exports'
+// import { Authenticator } from 'aws-amplify-react'
 import { Link } from 'react-router-dom'
-import { Auth } from 'aws-amplify'
 import TextField from '../common/components/TextField'
 import '../common/scss/components/buttons.scss'
 import '../common/scss/components/form-elements.scss'
