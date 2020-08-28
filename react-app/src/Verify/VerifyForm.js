@@ -54,11 +54,11 @@ const VerifyForm = ({ email }) => {
         Auth.currentAuthenticatedUser().then((user) => {
           console.log(user)
         })
-        changeLoggedIn(true)
-        history.push('/dashboard')
+        changeLoggedIn(true) // Context function validating user's state.
+        history.push('/dashboard') // Reroute if user is validated.
       } catch (error) {
         console.log(error)
-        changeCodeErrMessage(getCodeErrMsg(error))
+        changeCodeErrMessage(getCodeErrMsg(error)) // Display error messages.
       }
     }
   }

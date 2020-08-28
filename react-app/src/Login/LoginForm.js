@@ -1,9 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { Form, Button, Row, Col } from 'react-bootstrap'
-
-import { Auth, withAuthenticator } from 'aws-amplify'
-// import aws_exports from '../aws-exports'
-// import { Authenticator } from 'aws-amplify-react'
+import { Auth } from 'aws-amplify'
 import { Link } from 'react-router-dom'
 import TextField from '../common/components/TextField'
 import '../common/scss/components/buttons.scss'
@@ -11,26 +8,27 @@ import '../common/scss/components/form-elements.scss'
 import style from './scss/login.module.scss'
 import UserContext from '../UserAuth/UserContext'
 
+// Initializing error message variables. Used for handleError switch statements.
 const userNotFoundException = 'UserNotFoundException'
 const notAuthorizedException = 'NotAuthorizedException'
 const userNotConfirmedException = 'UserNotConfirmedException'
 
-const checkValid = (fieldValue) => fieldValue !== ''
+const checkValid = (fieldValue) => fieldValue !== '' // Checks whether the email or password fields are empty.
 
 const LoginForm = ({ changeAccVerify, changeEmail, email }) => {
-  const [password, changePassword] = useState('')
-  const [err, changeErr] = useState('')
-  const [emailValid, changeEmailValid] = useState(true)
-  const [passValid, changePassValid] = useState(true)
-  const [emailErrMessage, changeEmailErrMessage] = useState('')
-  const [passErrMessage, changePassErrMessage] = useState('')
+  const [password, changePassword] = useState('') // Takes in the user's password.
+  const [err, changeErr] = useState('') // A general error handler for network related issues.
+  const [emailValid, changeEmailValid] = useState(true) // Checks if user's email is valid. If invalid, error message will be shown.
+  const [passValid, changePassValid] = useState(true) // Checks if the user's password is valid. If invalid, error message will be shown.
+  const [emailErrMessage, changeEmailErrMessage] = useState('') // Email error handler field.
+  const [passErrMessage, changePassErrMessage] = useState('') // Password error handler field.
 
-  const { changeLoggedIn } = useContext(UserContext)
+  const { changeLoggedIn } = useContext(UserContext) // Context for changing the user's state
 
+  // Error handling function that takes in error as a parameter from the awsSignIn function.
   const handleError = (error) => {
     switch (error.name) {
       case userNotFoundException:
-        // changeErr('You have entered your email or password incorrectly.')
         changeEmailValid(false)
         changeEmailErrMessage('This email does not exist. ')
         break
@@ -48,25 +46,24 @@ const LoginForm = ({ changeAccVerify, changeEmail, email }) => {
 
   const awsSignIn = async (event) => {
     event.preventDefault()
-    changeAccVerify(false) // reset
-    changeErr('')
-    const emailValidTemp = checkValid(email)
-    const passwordValidTemp = checkValid(password)
+    changeAccVerify(false) // Reset user's state.
+    changeErr('') // Reset general error messages.
+    const emailValidTemp = checkValid(email) // A helper temporary constant to change emailValid state.
+    const passwordValidTemp = checkValid(password) // A helper temporary constant to change passValid state.
     changeEmailValid(emailValidTemp)
     changePassValid(passwordValidTemp)
     changeEmailErrMessage('Email field cannot be empty.')
     changePassErrMessage('Password field cannot be empty. ')
 
-
-
+    // An if statement that either authenticates the user or displays error messages.
     if (emailValidTemp && passwordValidTemp) {
       try {
-        const user = await Auth.signIn(email, password)
+        const user = await Auth.signIn(email, password) // Use amplify to authenticate the user.
         console.log(user)
-        changeLoggedIn(true)
+        changeLoggedIn(true) // Context function that changes the user's state.
       } catch (error) {
         console.log(error)
-        handleError(error)
+        handleError(error) // Takes the cought error and uses it in the handleError function to display messages.
       }
     }
   }
