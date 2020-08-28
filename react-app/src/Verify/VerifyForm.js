@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import { Auth } from 'aws-amplify'
@@ -14,7 +14,7 @@ const codeMismatchException = 'CodeMismatchException'
 // check if code field is empty
 const checkValid = (fieldValue) => fieldValue !== ''
 
-const VerifyForm = ({ email }) => {
+const VerifyForm = ({ email, loginPagePath }) => {
   const [code, changeCode] = useState('')
   const [generalErrMsg, changeGeneralErrMsg] = useState('')
   const [codeValid, changeCodeValid] = useState(true)
@@ -51,8 +51,8 @@ const VerifyForm = ({ email }) => {
         await Auth.confirmSignUp(email, code) // sent to aws
         Auth.currentAuthenticatedUser().then((user) => {
           console.log(user)
-        })    
-        history.push('/dashboard') // Reroute if user is validated.
+        })
+        history.push(loginPagePath) // Reroute if user is validated.
       } catch (error) {
         console.log(error)
         changeCodeErrMessage(getCodeErrMsg(error)) // Display error messages.
@@ -85,7 +85,11 @@ const VerifyForm = ({ email }) => {
             <Row>
               <Col>
                 <p>
-                  Click <a href="#" onClick={resendCode}> here </a> to resent code.
+                  Click{' '}
+                  <a href="#" onClick={resendCode}>
+                    here
+                  </a>{' '}
+                  to resent code.
                 </p>
               </Col>
             </Row>

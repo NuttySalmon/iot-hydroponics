@@ -17,9 +17,9 @@ function Login() {
         style={style.box}
       >
         {accVerify ? (
-          <VerifyForm {...{email}}/>
+          <VerifyForm {...{ email }} loginPagePath="/login" />
         ) : (
-          <LoginForm {...{changeAccVerify, changeEmail, email}} />
+          <LoginForm {...{ changeAccVerify, changeEmail, email }} />
         )}
       </FormContainer>
     </FullPage>

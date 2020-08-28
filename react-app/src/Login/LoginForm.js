@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import { Auth } from 'aws-amplify'
 import { Link } from 'react-router-dom'
@@ -9,8 +9,8 @@ import style from './scss/login.module.scss'
 // import UserContext from '../UserAuth/UserContext'
 
 // Initializing error message variables. Used for handleError switch statements.
-const userNotFoundException = 'UserNotFoundException' 
-const notAuthorizedException = 'NotAuthorizedException' 
+const userNotFoundException = 'UserNotFoundException'
+const notAuthorizedException = 'NotAuthorizedException'
 const userNotConfirmedException = 'UserNotConfirmedException'
 
 const checkValid = (fieldValue) => fieldValue !== '' // Checks whether the email or password fields are empty.
@@ -22,7 +22,6 @@ const LoginForm = ({ changeAccVerify, changeEmail, email }) => {
   const [passValid, changePassValid] = useState(true) // Checks if the user's password is valid. If invalid, error message will be shown.
   const [emailErrMessage, changeEmailErrMessage] = useState('') // Email error handler field.
   const [passErrMessage, changePassErrMessage] = useState('') // Password error handler field.
-
 
   // Error handling function that takes in error as a parameter from the awsSignIn function.
   const handleError = (error) => {
