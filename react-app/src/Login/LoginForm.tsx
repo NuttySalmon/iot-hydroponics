@@ -13,9 +13,15 @@ const userNotFoundException = 'UserNotFoundException'
 const notAuthorizedException = 'NotAuthorizedException'
 const userNotConfirmedException = 'UserNotConfirmedException'
 
-const checkValid = (fieldValue) => fieldValue !== '' // Checks whether the email or password fields are empty.
+const checkValid = (fieldValue: string) => Boolean(fieldValue) // Checks whether the email or password fields are empty.
 
-const LoginForm = ({ changeAccVerify, changeEmail, email }) => {
+type LoginFormProps = {
+  changeAccVerify: React.Dispatch<React.SetStateAction<boolean>>
+  changeEmail: React.Dispatch<React.SetStateAction<string>>
+  email: string
+}
+
+const LoginForm = ({ changeAccVerify, changeEmail, email }: LoginFormProps) => {
   const [password, changePassword] = useState('') // Takes in the user's password.
   const [err, changeErr] = useState('') // A general error handler for network related issues.
   const [emailValid, changeEmailValid] = useState(true) // Checks if user's email is valid. If invalid, error message will be shown.
@@ -24,7 +30,7 @@ const LoginForm = ({ changeAccVerify, changeEmail, email }) => {
   const [passErrMessage, changePassErrMessage] = useState('') // Password error handler field.
 
   // Error handling function that takes in error as a parameter from the awsSignIn function.
-  const handleError = (error) => {
+  const handleError = (error: any) => {
     switch (error.name) {
       case userNotFoundException: // email not in system
         changeEmailValid(false)
@@ -42,7 +48,7 @@ const LoginForm = ({ changeAccVerify, changeEmail, email }) => {
     }
   }
 
-  const awsSignIn = async (event) => {
+  const awsSignIn = async (event: React.SyntheticEvent) => {
     event.preventDefault()
     changeAccVerify(false) // Reset user's state.
     changeErr('') // Reset general error messages.
