@@ -1,15 +1,13 @@
 import React, { useState, useContext } from 'react'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 
-import { Auth, withAuthenticator } from 'aws-amplify'
-// import aws_exports from '../aws-exports'
-// import { Authenticator } from 'aws-amplify-react'
+import { Auth } from 'aws-amplify'
 import { Link } from 'react-router-dom'
 import TextField from '../common/components/TextField'
 import '../common/scss/components/buttons.scss'
 import '../common/scss/components/form-elements.scss'
 import style from './scss/login.module.scss'
-import UserContext from '../UserAuth/UserContext'
+// import UserContext from '../UserAuth/UserContext'
 
 const userNotFoundException = 'UserNotFoundException'
 const notAuthorizedException = 'NotAuthorizedException'
@@ -25,7 +23,6 @@ const LoginForm = ({ changeAccVerify, changeEmail, email }) => {
   const [emailErrMessage, changeEmailErrMessage] = useState('')
   const [passErrMessage, changePassErrMessage] = useState('')
 
-  const { changeLoggedIn } = useContext(UserContext)
 
   const handleError = (error) => {
     switch (error.name) {
@@ -57,13 +54,10 @@ const LoginForm = ({ changeAccVerify, changeEmail, email }) => {
     changeEmailErrMessage('Email field cannot be empty.')
     changePassErrMessage('Password field cannot be empty. ')
 
-
-
     if (emailValidTemp && passwordValidTemp) {
       try {
         const user = await Auth.signIn(email, password)
         console.log(user)
-        changeLoggedIn(true)
       } catch (error) {
         console.log(error)
         handleError(error)

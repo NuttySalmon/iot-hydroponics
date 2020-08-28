@@ -6,7 +6,7 @@ import TextField from '../common/components/TextField'
 import style from './scss/VerifyForm.module.scss'
 import '../common/scss/components/buttons.scss'
 import '../common/scss/components/form-elements.scss'
-import UserContext from '../UserAuth/UserContext'
+// import UserContext from '../UserAuth/UserContext'
 
 const userNotFoundException = 'UserNotFoundException'
 const expiredCodeException = 'ExpiredCodeException'
@@ -22,7 +22,7 @@ const VerifyForm = ({ email }) => {
   const [codeErrMessage, changeCodeErrMessage] = useState('')
   const [resendMsg, changeResendMsg] = useState('') // Display message for resending code.
   const history = useHistory()
-  const { changeLoggedIn } = useContext(UserContext)
+  // const { changeLoggedIn } = useContext(UserContext)
 
   // for handling verification code submission error
   const getCodeErrMsg = (error) => {
@@ -54,7 +54,7 @@ const VerifyForm = ({ email }) => {
         Auth.currentAuthenticatedUser().then((user) => {
           console.log(user)
         })
-        changeLoggedIn(true)
+        // changeLoggedIn(true)
         history.push('/dashboard')
       } catch (error) {
         console.log(error)
