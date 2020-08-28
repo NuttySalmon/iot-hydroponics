@@ -6,11 +6,11 @@ import TextField from '../common/components/TextField'
 import '../common/scss/components/buttons.scss'
 import '../common/scss/components/form-elements.scss'
 import style from './scss/login.module.scss'
-import UserContext from '../UserAuth/UserContext'
+// import UserContext from '../UserAuth/UserContext'
 
 // Initializing error message variables. Used for handleError switch statements.
-const userNotFoundException = 'UserNotFoundException'
-const notAuthorizedException = 'NotAuthorizedException'
+const userNotFoundException = 'UserNotFoundException' 
+const notAuthorizedException = 'NotAuthorizedException' 
 const userNotConfirmedException = 'UserNotConfirmedException'
 
 const checkValid = (fieldValue) => fieldValue !== '' // Checks whether the email or password fields are empty.
@@ -23,20 +23,19 @@ const LoginForm = ({ changeAccVerify, changeEmail, email }) => {
   const [emailErrMessage, changeEmailErrMessage] = useState('') // Email error handler field.
   const [passErrMessage, changePassErrMessage] = useState('') // Password error handler field.
 
-  const { changeLoggedIn } = useContext(UserContext) // Context for changing the user's state
 
   // Error handling function that takes in error as a parameter from the awsSignIn function.
   const handleError = (error) => {
     switch (error.name) {
-      case userNotFoundException:
+      case userNotFoundException: // email not in system
         changeEmailValid(false)
         changeEmailErrMessage('This email does not exist. ')
         break
-      case notAuthorizedException:
+      case notAuthorizedException: // wrong password
         changePassValid(false)
         changePassErrMessage('Email and password do not match. ')
         break
-      case userNotConfirmedException:
+      case userNotConfirmedException: // verification needed
         changeAccVerify(true)
         break
       default:
@@ -60,10 +59,9 @@ const LoginForm = ({ changeAccVerify, changeEmail, email }) => {
       try {
         const user = await Auth.signIn(email, password) // Use amplify to authenticate the user.
         console.log(user)
-        changeLoggedIn(true) // Context function that changes the user's state.
       } catch (error) {
         console.log(error)
-        handleError(error) // Takes the cought error and uses it in the handleError function to display messages.
+        handleError(error) //  Display messages according to the error caught
       }
     }
   }

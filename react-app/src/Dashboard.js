@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 // import { Authenticator } from 'aws-amplify-react'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { Auth } from 'aws-amplify'
 
 // const Auth = () => {
 
@@ -14,7 +15,13 @@ import React from 'react'
 //   )
 // }
 
-
-const Dashboard = () => <h1> Dashboard </h1>
+const Dashboard = () => {
+  useEffect(() => {
+    Auth.currentAuthenticatedUser().then((user) => {
+      console.log(user)
+    })
+  })
+  return <h1> Dashboard </h1>
+}
 
 export default Dashboard

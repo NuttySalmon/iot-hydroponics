@@ -6,7 +6,6 @@ import TextField from '../common/components/TextField'
 import style from './scss/VerifyForm.module.scss'
 import '../common/scss/components/buttons.scss'
 import '../common/scss/components/form-elements.scss'
-import UserContext from '../UserAuth/UserContext'
 
 const userNotFoundException = 'UserNotFoundException'
 const expiredCodeException = 'ExpiredCodeException'
@@ -22,9 +21,8 @@ const VerifyForm = ({ email }) => {
   const [codeErrMessage, changeCodeErrMessage] = useState('')
   const [resendMsg, changeResendMsg] = useState('') // Display message for resending code.
   const history = useHistory()
-  const { changeLoggedIn } = useContext(UserContext)
 
-  // for handling verification code submission error
+  // for getting code related error message and handling general error
   const getCodeErrMsg = (error) => {
     changeCodeValid(false)
     switch (error.name) {
@@ -53,8 +51,7 @@ const VerifyForm = ({ email }) => {
         await Auth.confirmSignUp(email, code) // sent to aws
         Auth.currentAuthenticatedUser().then((user) => {
           console.log(user)
-        })
-        changeLoggedIn(true) // Context function validating user's state.
+        })    
         history.push('/dashboard') // Reroute if user is validated.
       } catch (error) {
         console.log(error)
