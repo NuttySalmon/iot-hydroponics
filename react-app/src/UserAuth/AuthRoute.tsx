@@ -1,16 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useContext } from 'react'
+import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import UserContext from './UserContext'
+import { AuthChildRouteProps } from './AuthRouteContain'
 
 export type AuthRouteProps = {
-  /** Path of route */
-  path: string
   /** Path to redirect if logged in */
   loggedInPath?: string
-  /** Component to be rendered for the path */
-  render: React.FC
-}
+} & AuthChildRouteProps
 
 /**
  * Route for rendering auth related components.
@@ -20,8 +16,8 @@ const AuthRoute = ({
   path,
   loggedInPath = '/dashboard',
   render: C,
+  loggedIn,
 }: AuthRouteProps) => {
-  const { loggedIn } = useContext(UserContext)
   return (
     <Route
       path={path}

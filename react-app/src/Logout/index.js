@@ -1,7 +1,5 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect } from 'react'
 import { Auth } from 'aws-amplify'
-import { Redirect } from 'react-router-dom'
-import UserContext from '../UserAuth/UserContext'
 
 const Logout = () => {
   // Function to sign out the user

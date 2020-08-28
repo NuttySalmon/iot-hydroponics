@@ -1,14 +1,19 @@
 import React, { Children, cloneElement } from 'react'
-import { AuthRouteProps } from './AuthRoute'
+
+export type AuthChildRouteProps = {
+  path: string
+  render: React.FC
+  loggedIn?: boolean
+}
 
 type PageControlProps = {
   children: React.ReactChild[] | React.ReactChild
-} & Omit<AuthRouteProps, 'path' | 'matchState' | 'render'>
+} & Omit<AuthChildRouteProps, 'path' | 'render'>
 
 /** Container around controlled pages for passing in props related to current page state */
 const AuthRouteContain = ({ children, ...rest }: PageControlProps) => {
   const proppedChildren = Children.map(children, (child) =>
-    cloneElement<AuthRouteProps>(child as React.ReactElement, {
+    cloneElement<AuthChildRouteProps>(child as React.ReactElement, {
       ...rest,
     })
   )

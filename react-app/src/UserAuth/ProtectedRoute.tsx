@@ -1,15 +1,11 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import UserContext from './UserContext'
+import { AuthChildRouteProps } from './AuthRouteContain'
 
 type ProtectedRouteProps = {
-  /** Path for route */
-  path: string
   /** Path to redirect if not logged in */
   notLoggedInPath: string
-  /** Component to render if logged in */
-  render: React.FC
-}
+} & AuthChildRouteProps
 
 /**
  * Handle route of component and only allow access if logged in
@@ -19,8 +15,8 @@ const ProtectedRoute = ({
   path,
   notLoggedInPath,
   render: C,
+  loggedIn,
 }: ProtectedRouteProps) => {
-  const { loggedIn } = useContext(UserContext)
   return (
     <Route
       path={path}

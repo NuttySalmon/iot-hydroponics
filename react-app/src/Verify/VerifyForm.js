@@ -78,7 +78,7 @@ const VerifyForm = ({ email, loginPagePath }) => {
             <Row>
               <Col>
                 <p>
-                  The verfication code has been sent to <b>{email}</b>.
+                  The verfication code has been send to <b>{email}</b>.
                 </p>
               </Col>
             </Row>

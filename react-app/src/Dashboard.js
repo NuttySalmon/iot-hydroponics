@@ -17,9 +17,13 @@ import { Auth } from 'aws-amplify'
 
 const Dashboard = () => {
   useEffect(() => {
-    Auth.currentAuthenticatedUser().then((user) => {
-      console.log(user)
-    })
+    Auth.currentAuthenticatedUser()
+      .then((user) => {
+        console.log(user)
+      })
+      .catch(() => {
+        console.log('dashboard no user')
+      })
   })
   return <h1> Dashboard </h1>
 }
