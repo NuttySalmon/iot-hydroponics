@@ -18,7 +18,7 @@ export type AuthRouteProps = {
  */
 const AuthRoute = ({
   path,
-  loggedInPath = '/user/dashboard',
+  loggedInPath = '/dashboard',
   render: C,
 }: AuthRouteProps) => {
   const { loggedIn } = useContext(UserContext)

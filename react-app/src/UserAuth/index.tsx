@@ -17,13 +17,13 @@ type UserAuthProps = {
 // Auth components
 const UserAuth = ({ loggedInPath }: UserAuthProps) => {
   const { changeLoggedIn } = useContext(UserContext)
-  const history = useHistory()
+  const history = useHistory() // for redirecting
   const AuthListener: HubCallback = (data) => {
     switch (data.payload.event) {
       case 'signIn':
         changeLoggedIn(true)
         console.log('user signed in') // [ERROR] My-Logger - user signed in
-        history.push('/dashboard')
+        history.push(loggedInPath)
         break
       case 'signUp':
         changeLoggedIn(false)
