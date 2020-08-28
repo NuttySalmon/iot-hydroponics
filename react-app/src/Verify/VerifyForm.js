@@ -22,29 +22,24 @@ const VerifyForm = ({ email }) => {
   const [codeErrMessage, changeCodeErrMessage] = useState('')
   const [resendMsg, changeResendMsg] = useState('') // Display message for resending code.
   const history = useHistory()
-  const {changeLoggedIn} = useContext(UserContext)
+  const { changeLoggedIn } = useContext(UserContext)
 
-  
   // for handling verification code submission error
-  const handleError = (error) => {
+  const getCodeErrMsg = (error) => {
     changeCodeValid(false)
     switch (error.name) {
       case userNotFoundException:
-        changeCodeErrMessage('User could not be found. ')
-        break
+        return 'User could not be found. '
       case expiredCodeException:
-        changeCodeErrMessage('The code you have entered has expired.')
-        break
+        return 'The code you have entered has expired.'
       case codeMismatchException:
-        changeCodeErrMessage('Invalid verification code provided.')
-        break
+        return 'Invalid verification code provided.'
       default:
-        changeCodeErrMessage('')
         changeGeneralErrMsg('An error occured. Please try again.')
+        return ''
     }
   }
 
- 
   // code to verify account
   const awsVerify = async (event) => {
     event.preventDefault()
@@ -63,16 +58,16 @@ const VerifyForm = ({ email }) => {
         history.push('/dashboard')
       } catch (error) {
         console.log(error)
-        handleError(error)
+        changeCodeErrMessage(getCodeErrMsg(error))
       }
     }
   }
 
+  // For resending verificaiton code
   const resendCode = async () => {
     try {
       await Auth.resendSignUp(email)
       changeResendMsg('Code has been resent successfully! ')
-
     } catch (error) {
       changeResendMsg('There has been an error resending verification code. ')
     }
@@ -85,16 +80,22 @@ const VerifyForm = ({ email }) => {
           <Col className={style.prompt}>
             <Row>
               <Col>
-                <p>The verfication code has been sent to <b>{email}</b>.</p>
+                <p>
+                  The verfication code has been sent to <b>{email}</b>.
+                </p>
               </Col>
             </Row>
             <Row>
               <Col>
-               <p> Click <a href="#" onClick={resendCode}> here </a> to resent code. </p>
+                <p>
+                  Click <a href="#" onClick={resendCode}> here </a> to resent code.
+                </p>
               </Col>
             </Row>
             <Row>
-              <Col><p>{resendMsg}</p></Col>
+              <Col>
+                <p>{resendMsg}</p>
+              </Col>
             </Row>
           </Col>
         </Row>
