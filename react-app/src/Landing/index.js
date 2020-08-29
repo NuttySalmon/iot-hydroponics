@@ -77,7 +77,7 @@ const Landing = () => {
       />
       
       
-      <LandingSection>
+      <LandingSection id="members">
         <Team {...{members}} />
       </LandingSection>
       

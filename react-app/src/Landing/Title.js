@@ -2,8 +2,7 @@ import React from "react";
 import { Row, Col, Button, Container,} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import style from "./scss/landing.module.scss";
-import "../common/scss/components/logos.scss";
-
+import arrowStyle from "./scss/arrow.module.scss";
 
 const Title = (props) => {
   const {bg, des} = props;
@@ -33,8 +32,12 @@ const Title = (props) => {
               </Link>
             </Col>
           </Row>
+          
         </Container>
-      </div>
+      </div>  
+      <a href="#members">
+        <div className={arrowStyle.arrow} />
+      </a>
     </Row>
   );
 };
