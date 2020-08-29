@@ -1,5 +1,6 @@
 @import '../base/typography';
 @import '../base/variables';
+@import '../base/animations';
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins/breakpoints';
@@ -11,7 +12,9 @@ $logo-text: 'HydroGarden';
   font-size: 130px;
   margin: 0;
   text-shadow: 0 0 0.1em rgba(0, 0, 0, 0.3);
-  @include media-breakpoint-down(md){
+  animation: fade-in 1s ease;
+  
+  @include media-breakpoint-down(md) {
     font-size: 90px;
   }
   @include media-breakpoint-down(sm) {

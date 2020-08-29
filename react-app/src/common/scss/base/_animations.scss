@@ -1,0 +1,12 @@
+@keyframes fade-in{
+  from{
+    top: -4px;
+    opacity: 0;
+    position: relative;
+  }
+  to{
+    top: 0;
+    position: initial;
+    opacity: 1;
+  }
+}
