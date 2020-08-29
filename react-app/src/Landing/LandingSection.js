@@ -9,9 +9,11 @@ const LandingSection = ({children, bg, dark}) => {
   const backgroundStyleString = `linear-gradient( rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.70)), url(${bg})`
   const backgroundImage = bg ? backgroundStyleString : null
   return (
-    <Container className={`${style.landingSection} ${darkStyle}`} style={{ backgroundImage }}>
-      {children}
-    </Container>
+    <Row>
+      <Container className={`${style.landingSection} ${darkStyle}`} style={{ backgroundImage }}>
+        {children}
+      </Container>
+    </Row>
   );
 };
 

@@ -71,59 +71,59 @@ const EbbAndFlow = (
 const Landing = () => {
   return (
     <Container fluid>
-      <Row>
-        <Title 
-          bg={bgTitle} 
-          des="HydroGarden will actively monitor the plant’s desired light,
+      
+      <Title 
+        bg={bgTitle} 
+        des="HydroGarden will actively monitor the plant’s desired light,
                 temperature, and moisture levels for the user. This will allow
                 users to grow any desired plant, disregarding weather conditions
-                given by the time of year."         
+                given by the time of year."
+      />
+      
+      
+      <LandingSection>
+        <Team {...{members}} />
+      </LandingSection>
+      
+      
+      <LandingSection 
+        bg={bgWhatHydro}
+        dark
+      >
+        <Description
+          title="What is HydroGarden?"
+          des={WhatIsHydroGarden}
         />
-      </Row>
-      <Row>
-        <LandingSection>
-          <Team {...{members}} />
-        </LandingSection>
-      </Row>
-      <Row id='more'>
-        <LandingSection 
-          bg={bgWhatHydro}
-          dark
-        >
-          <Description
-            title="What is HydroGarden?"
-            des={WhatIsHydroGarden}
-          />
-        </LandingSection>
-      </Row>
-      <Row>
-        <LandingSection>
-          <Container style={{display: 'grid'}}>
-            <Row className="align-self-center">
-              <Col className="text-center mr-5" xl={5}>
-                <Image src={ebbFlowDiagram} className="align-self-center" fluid />
-              </Col>
-              <Col xl>
-                <Description
-                  title="What is Ebb and Flow?"
-                  des={EbbAndFlow}
-                />
-              </Col>
-            </Row> 
-          </Container>
-        </LandingSection>
-      </Row>
-      <Row>
-        <LandingSection 
-          bg={bgWhyHydro}
-          dark
-        >
-          <Description
-            title="Why Hydroponics?"
-            des={[ "Hydroponics is a method of growing plants in a water based, nutrient rich solution. This is better for plants to absorb water and nutrients needed to thrive in unorthadox situations. The roots of a plant no longer need to find and rely on soil. There is less water consumption, making this product more environmentally friendly." ]}
-          />
-        </LandingSection>
-      </Row>
+      </LandingSection>
+      
+      
+      <LandingSection>
+        <Container style={{display: 'grid'}}>
+          <Row className="align-self-center">
+            <Col className="text-center mr-5" xl={5}>
+              <Image src={ebbFlowDiagram} className="align-self-center" fluid />
+            </Col>
+            <Col xl>
+              <Description
+                title="What is Ebb and Flow?"
+                des={EbbAndFlow}
+              />
+            </Col>
+          </Row> 
+        </Container>
+      </LandingSection>
+      
+      
+      <LandingSection 
+        bg={bgWhyHydro}
+        dark
+      >
+        <Description
+          title="Why Hydroponics?"
+          des={[ "Hydroponics is a method of growing plants in a water based, nutrient rich solution. This is better for plants to absorb water and nutrients needed to thrive in unorthadox situations. The roots of a plant no longer need to find and rely on soil. There is less water consumption, making this product more environmentally friendly." ]}
+        />
+      </LandingSection>
+      
       <Footer />
     </Container>
   );
