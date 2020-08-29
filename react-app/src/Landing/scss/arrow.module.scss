@@ -3,9 +3,9 @@
 $arrow-color: #d8c2a0;
 $rotation: 50deg; // arrow wings rotation
 $bottom-pos: 4%; // arrow position from bottom
-$height: 30px; // height of container box
+$height: 45px; // height of container box
 $width: $height * 1.6; // width of container box
-$closeness: $height * 0.41; // how close the wings are
+$closeness: $height * 0.54; // how close the wings are
 $shadow-offset: 3px; // vertical offset of shadow
 
 @mixin arrow-shadow($offset) {
@@ -24,11 +24,11 @@ $shadow-offset: 3px; // vertical offset of shadow
 .arrow {
   &::after,
   &::before {
-    top: 5%;
+    top: 30%;
     content: ' ';
     position: absolute;
-    width: 15%;
-    height: 90%;
+    width: 10%;
+    height: 60%;
     background-color: $arrow-color;
   }
   &.shadow {
