@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Container, Image } from "react-bootstrap";
+import { Row, Container, Image } from "react-bootstrap";
 import style from "./scss/landing.module.scss";
 
 const DisplayMembers = ({name, pos, head}) => {
@@ -13,13 +13,9 @@ const DisplayMembers = ({name, pos, head}) => {
 
 const Team = ({members}) => {
   return (
-    <Container className="align-self-center">
-      <Row className="mb-4">
-        <Col>
-          <h1>The Team</h1>
-        </Col>
-      </Row>
-      <Row className={style.heads}>
+    <Container className="pt-5 pb-5">
+      <h1 className="mb-5">The Team</h1>
+      <div className={style.heads}>
         { 
           members.map( ({name, head, pos}) => ( 
             <DisplayMembers
@@ -30,7 +26,7 @@ const Team = ({members}) => {
             />
           )) 
         } 
-      </Row>
+      </div>
     </Container>
   );
 };
