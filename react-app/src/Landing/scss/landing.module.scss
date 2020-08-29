@@ -1,9 +1,9 @@
 @import '../../common/scss/base/variables';
 @import '../../common/scss/base/typography';
+@import '../../common/scss/base/animations';
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins/breakpoints';
-@import '../../common/scss/base/animations';
 
 .titleBox {
   box-sizing: border-box; // accounting border
@@ -51,7 +51,7 @@
     max-width: 42em;
     padding: 0 1em;
     opacity: 0;
-    animation: fade-in 1s ease 0.4s forwards;
+    animation: fade-in 1s ease 0.6s forwards;
   }
 }
 

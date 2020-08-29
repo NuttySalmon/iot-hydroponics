@@ -10,10 +10,11 @@ $logo-text: 'HydroGarden';
   font-family: $logo-font;
   color: $highlight;
   font-size: 130px;
+  opacity: 0;
   margin: 0;
   text-shadow: 0 0 0.1em rgba(0, 0, 0, 0.3);
-  animation: fade-in 1s ease;
-  
+  animation: fade-in 1s ease 0.2s forwards;
+
   @include media-breakpoint-down(md) {
     font-size: 90px;
   }
