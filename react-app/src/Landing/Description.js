@@ -1,9 +1,10 @@
 import React from 'react'
 import {Container, Row} from 'react-bootstrap'
+import style from './scss/landing.module.scss'
 
 const Description = ({title, des}) => {
   return (
-    <Container className="align-self-center">
+    <Container className={style.description}>
       <Row>
         <h1>
           {title}
