@@ -36,7 +36,10 @@ const Title = (props) => {
         </Container>
       </div>  
       <a href="#members">
-        <div className={arrowStyle.arrow} />
+        <div className={arrowStyle.arrowContain}>
+          <div className={`${arrowStyle.arrow} ${arrowStyle.shadow}`}/>
+          <div className={arrowStyle.arrow} />
+        </div>
       </a>
     </Row>
   );

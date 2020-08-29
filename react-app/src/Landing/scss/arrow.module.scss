@@ -1,9 +1,16 @@
 @import '../../common/scss/base/variables';
+
 $arrow-color: #d8c2a0;
-$rotation: 50deg;
-$top-apart-offset: 29%;
-$bottom-pos: 3%;
-$size: 40px;
+$rotation: 50deg; // arrow wings rotation
+$bottom-pos: 4%; // arrow position from bottom
+$height: 30px; // height of container box
+$width: $height * 1.6; // width of container box
+$closeness: $height * 0.41; // how close the wings are
+$shadow-offset: 3px; // vertical offset of shadow
+
+@mixin arrow-shadow($offset) {
+  box-shadow: $offset 1px 2px 0px rgba(black, 0.5);
+}
 
 @keyframes arrow-move {
   from {
@@ -15,35 +22,45 @@ $size: 40px;
 }
 
 .arrow {
-  position: absolute;
   &::after,
   &::before {
-    content: '';
+    top: 5%;
+    content: ' ';
     position: absolute;
-    width: 100%;
-    height: 30%;
+    width: 15%;
+    height: 90%;
     background-color: $arrow-color;
   }
-
+  &.shadow {
+    &::after {
+      @include arrow-shadow($shadow-offset);
+    }
+    &::before {
+      @include arrow-shadow(-$shadow-offset);
+    }
+  }
   &::after {
-    top: -$top-apart-offset;
     transform: rotate($rotation);
+    right: $closeness;
   }
   &::before {
-    top: $top-apart-offset;
+    left: $closeness;
     transform: rotate(-$rotation);
   }
+}
+.arrowContain {
+  position: absolute;
   bottom: $bottom-pos;
-  transform: translate(-79%, 0) rotate(90deg);
+  transform: translate(-50%, 0);
   left: 50%;
-  width: $size;
-  height: $size;
+  width: $width;
+  height: $height;
   animation: arrow-move 400ms ease-out 1s 6 alternate;
-
   &:hover {
-    bottom: $bottom-pos - 1%;
-    width: $size + 2px;
-    height: $size + 2px;
-    transition: all 200ms linear;
+    bottom: $bottom-pos - 0.7%;
+    width: $width * 1.05;
+    height: $height * 1.1;
+    transition: all 150ms linear;
   }
+  cursor: default;
 }
