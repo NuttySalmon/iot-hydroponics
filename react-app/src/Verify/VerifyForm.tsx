@@ -12,9 +12,14 @@ const expiredCodeException = 'ExpiredCodeException'
 const codeMismatchException = 'CodeMismatchException'
 
 // check if code field is empty
-const checkValid = (fieldValue) => fieldValue !== ''
+const checkValid = (fieldValue: string) => Boolean(fieldValue)
 
-const VerifyForm = ({ email, loginPagePath }) => {
+type VerifyFormProps = {
+  email: string
+  loginPagePath: string
+}
+
+const VerifyForm = ({ email, loginPagePath }: VerifyFormProps) => {
   const [code, changeCode] = useState('')
   const [generalErrMsg, changeGeneralErrMsg] = useState('')
   const [codeValid, changeCodeValid] = useState(true)
@@ -23,7 +28,7 @@ const VerifyForm = ({ email, loginPagePath }) => {
   const history = useHistory()
 
   // for getting code related error message and handling general error
-  const getCodeErrMsg = (error) => {
+  const getCodeErrMsg = (error: any) => {
     changeCodeValid(false)
     switch (error.name) {
       case userNotFoundException:
@@ -39,7 +44,7 @@ const VerifyForm = ({ email, loginPagePath }) => {
   }
 
   // code to verify account
-  const awsVerify = async (event) => {
+  const awsVerify = async (event: any) => {
     event.preventDefault()
     changeGeneralErrMsg('') // reset general error message
     const codeValidTemp = checkValid(code) // check if code is valid
