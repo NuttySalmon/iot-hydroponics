@@ -1,28 +1,25 @@
 import React from "react";
 import { Row, Col, Container, Image } from "react-bootstrap";
 import style from "./scss/landing.module.scss";
-import "../common/scss/components/logos.scss";
 
 const DisplayMembers = ({name, pos, head}) => {
   return (
-    <Col>
-      <Row>
-        <Image className={`col ${style.head}`} style={{objectPosition: pos}} src={head} />
-      </Row>
-      <Row>
-        <span className={`col ${style.headName}`}>{name}</span>
-      </Row>
-    </Col>
+    <div className={style.head}>
+      <Image src={head} className="h-100" roundedCircle />
+      <p>{name}</p>
+    </div>
   );
 };
 
-const MeetTheTeam = ({members}) => {
+const Team = ({members}) => {
   return (
-    <Container>
-      <Row>
-        <span className={`col ${style.title}`}>Meet The Team</span>
+    <Container className="align-self-center">
+      <Row className="mb-4">
+        <Col>
+          <h1>The Team</h1>
+        </Col>
       </Row>
-      <Row>
+      <Row className={style.heads}>
         { 
           members.map( ({name, head, pos}) => ( 
             <DisplayMembers
@@ -38,4 +35,4 @@ const MeetTheTeam = ({members}) => {
   );
 };
 
-export default MeetTheTeam;
+export default Team;

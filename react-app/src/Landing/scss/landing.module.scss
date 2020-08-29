@@ -79,16 +79,16 @@
   background-color: $dark;
   color: $light;
   justify-content: center;
-  
-  p{
+
+  p {
     margin: 0 0.5em;
   }
-  a{
+  a {
     color: $light;
   }
 }
 
-.description{
+.description {
   align-self: center;
   padding: 0 30px;
 }
@@ -108,49 +108,37 @@
   margin-bottom: 30px;
 }
 
-.head {
-  border: 3px solid $dark;
-  clip-path: circle(100px at center);
-  height: 200px;
-  object-fit: cover;
-}
-
-.headName {
-  margin-top: 20px;
-  font-size: 30px;
-  text-align: center;
-  color: #717171;
-  font-family: $sans;
-}
-
-.half-left img,
-.half-right img {
-  height: auto;
-  width: 100%;
-}
-
-@media (max-width: 1200px) {
+.heads {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-row-gap: 1em;
+  @include media-breakpoint-down(md) {
+    grid-column-gap: 0;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include media-breakpoint-down(xs) {
+    margin-left: 15px;
+    grid-template-columns: auto;
+    grid-row-gap: 1.5em;
+    grid-template-rows: repeat(4, 3em);
+  }
   .head {
-    clip-path: circle(70px at center);
-  }
+    display: grid;
+    justify-content: center;
+    grid-template-rows: 3fr 1fr;
+    grid-row-gap: 1em;
 
-  .headName {
-    font-size: 90%;
-  }
-}
-
-@media (max-width: 992px) {
-  .head {
-    clip-path: circle(50px at center);
-  }
-
-  .headName {
-    font-size: 50%;
-  }
-}
-
-@media (max-width: 600px) {
-  .head {
-    clip-path: circle(50px at center);
+    p,
+    img {
+      text-align: center;
+      align-self: center;
+    }
+    @include media-breakpoint-down(xs) {
+      grid-template-columns: auto 5fr;
+      grid-column-gap: 25px;
+      p{
+        text-align: left;
+      }
+    }
   }
 }
