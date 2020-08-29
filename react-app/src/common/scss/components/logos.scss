@@ -11,13 +11,15 @@ $logo-text: 'HydroGarden';
   font-size: 130px;
   margin: 0;
   text-shadow: 0 0 0.1em rgba(0, 0, 0, 0.3);
-  @include media-breakpoint-down(md) {
-    font-size: 13vw;
+  @include media-breakpoint-down(md){
+    font-size: 90px;
+  }
+  @include media-breakpoint-down(sm) {
+    font-size: 12vw;
   }
 
   @include media-breakpoint-down(xs) {
     font-weight: bold;
-    font-size: 2em;
   }
 }
 $small-title-box-width: 8em;

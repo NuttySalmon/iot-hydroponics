@@ -5,6 +5,7 @@
 @import '~bootstrap/scss/mixins/breakpoints';
 
 .titleBox {
+  box-sizing: border-box;
   border: 6px solid darken($light-dark, 5);
   background-color: rgba(0, 0, 0, 0.55);
   height: 35em;
@@ -16,8 +17,9 @@
   font-size: 1.3em;
   font-family: $serif;
   color: $light;
-  @include media-breakpoint-down(md) {
-    max-width: 100vw;
+  @include media-breakpoint-down(sm) {
+   max-width: 100vw;
+   width: 100%;
   }
   @include media-breakpoint-down(sm) {
     height: 100%;
