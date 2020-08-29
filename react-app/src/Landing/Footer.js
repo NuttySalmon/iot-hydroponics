@@ -1,22 +1,25 @@
 import React from "react";
 import { Row, Container } from "react-bootstrap";
-import "../common/scss/components/logos.scss";
+import style from './scss/landing.module.scss'
 
 const Footer = () => {
   return (
-    <Row className="p-1" style={{ backgroundColor: "#5D4C09" }}>
-      <Container fluid className="col-12 text-center">
-        <h5 style={{ color: "white" }}>
-          Copyright © 2020 HydroGarden. All right reserved. |
-          <a href="#terms" style={{ color: "white" }}>
+    <Row className={style.footer}>
+        <p>
+          Copyright © 2020 HydroGarden.
+        </p> 
+        <p>
+          All right reserved. 
+        </p>
+        <p>
+          <a href="#terms"> 
             Terms of Use
           </a>
-          |
-          <a href="#policy" style={{ color: "white" }}>
+          &nbsp;|&nbsp;
+          <a href="#policy"> 
             Privacy Policy
           </a>
-        </h5>
-      </Container>
+        </p>
     </Row>
   );
 };

@@ -67,11 +67,24 @@
       color: $highlight;
     }
   }
-  @include media-breakpoint-down(sm) {
-    font-size: x-large;
+  @include media-breakpoint-down(md) {
+    font-size: 1.5em;
     h1 {
-      font-size: xx-large;
+      font-size: 2em;
     }
+  }
+}
+
+.footer {
+  background-color: $dark;
+  color: $light;
+  justify-content: center;
+  
+  p{
+    margin: 0 0.5em;
+  }
+  a{
+    color: $light;
   }
 }
 
