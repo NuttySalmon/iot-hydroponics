@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Image} from "react-bootstrap";
 import Title from "./Title";
-import MeetTheTeam from "./MeetTheTeam";
+import Team from "./Team";
 import LandingSection from "./LandingSection";
 import Footer from "./Footer";
 import bgTitle from "./img/lettuce-bg.png";
@@ -82,7 +82,7 @@ const Landing = () => {
       </Row>
       <Row>
         <LandingSection>
-          <MeetTheTeam theTeam={members} />
+          <Team {...{members}} />
         </LandingSection>
       </Row>
       <Row id='more'>
