@@ -85,6 +85,7 @@ const Landing = () => {
       <LandingSection 
         bg={bgWhatHydro}
         dark
+        id="more"
       >
         <Description
           title="What is HydroGarden?"
