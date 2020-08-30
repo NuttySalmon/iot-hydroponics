@@ -6,6 +6,7 @@ import TextField from '../../common/components/TextField'
 import '../../common/scss/components/buttons.scss'
 import '../../common/scss/components/form-elements.scss'
 import style from './scss/login.module.scss'
+import { WrappedFormProps } from  "../FormWrapper"
 // import UserContext from '../UserAuth/UserContext'
 
 // Initializing error message variables. Used for handleError switch statements.
@@ -15,13 +16,7 @@ const userNotConfirmedException = 'UserNotConfirmedException'
 
 const checkValid = (fieldValue: string) => Boolean(fieldValue) // Checks whether the email or password fields are empty.
 
-type LoginFormProps = {
-  changeAccVerify: React.Dispatch<React.SetStateAction<boolean>>
-  changeEmail: React.Dispatch<React.SetStateAction<string>>
-  email: string
-}
-
-const LoginForm = ({ changeAccVerify, changeEmail, email }: LoginFormProps) => {
+const LoginForm = ({ changeAccVerify, changeEmail, email }: WrappedFormProps) => {
   const [password, changePassword] = useState('') // Takes in the user's password.
   const [err, changeErr] = useState('') // A general error handler for network related issues.
   const [emailValid, changeEmailValid] = useState(true) // Checks if user's email is valid. If invalid, error message will be shown.
