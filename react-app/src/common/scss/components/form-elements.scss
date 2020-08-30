@@ -10,7 +10,7 @@ $form-font-size: 1.2em;
 /* text field with label animation */
 .form-group {
   font-family: $serif;
-  height: 5em;
+  height: $form-font-size*4;
   .form-label {
     position: relative;
     margin-left: map-get($map: $spacers, $key: 1);
