@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import style from "./scss/landing.module.scss";
 import "../common/scss/components/logos.scss";
 

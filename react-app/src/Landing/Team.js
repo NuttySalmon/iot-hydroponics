@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Container, Image } from "react-bootstrap";
+import { Container, Image } from "react-bootstrap";
 import style from "./scss/landing.module.scss";
 
 const DisplayMembers = ({name, pos, head}) => {

@@ -40,7 +40,7 @@ const members = [
 
 const BulletPoint = ({bullet, text})=> (  
   <Row className="mt-4">
-    <Col className={style.bullet}><img src={bullet} style={{fill: 'white', height: '62px'}} /></Col>
+    <Col className={style.bullet}><img alt="bullet" src={bullet} style={{fill: 'white', height: '62px'}} /></Col>
     <Col>{text}</Col>
   </Row>
 )
