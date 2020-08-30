@@ -81,7 +81,7 @@ const LoginForm = ({ changeAccVerify, changeEmail, email }: LoginFormProps) => {
         hint={emailErrMessage}
         showHint={!emailValid}
       />
-      <div style={{ marginTop: '1.5em' }}>
+      <div style={{ marginTop: '1em' }}>
         <TextField
           label="Password"
           value={password}

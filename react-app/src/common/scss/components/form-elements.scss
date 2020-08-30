@@ -5,6 +5,8 @@
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins/breakpoints';
 
+$form-font-size: 1.2em;
+
 /* text field with label animation */
 .form-group {
   font-family: $serif;
@@ -15,8 +17,8 @@
     pointer-events: none;
 
     &.label-center {
-      font-size: 1.3em;
-      top: 2.6rem;
+      font-size: $form-font-size;
+      top: $form-font-size * 1.8;
       transition: all 0.1s ease-in-out;
       color: $muted;
     }
@@ -31,7 +33,7 @@
   }
 
   input.form-control {
-    font-size: 1.3em;
+    font-size: $form-font-size;
     padding-left: map-get($map: $spacers, $key: 1);
     border-width: 0 0 1px 0;
     border-style: solid;
@@ -46,6 +48,7 @@
       transition: border ease 0.1s;
     }
 
+    // text box line
     &.normal-line {
       border-color: $muted;
       &:focus {
@@ -57,6 +60,7 @@
     }
   }
 
+  // hint/error text
   .form-text {
     .hint-text,
     .hint-icon {
@@ -73,21 +77,26 @@
 }
 
 $height-md: 700px;
-$form-box-height: 733px;
+$form-box-height: 680px;
 
 /* box in middle of page containing form */
 %form-box {
   background-color: rgba($light-bg, 0.95);
-  width: 636px;
+  width: $form-box-height * 0.85;
   height: $form-box-height;
   max-height: 100%;
   align-self: center;
   padding: 50px 70px;
   display: flex;
   box-sizing: border-box;
-
+  @include media-breakpoint-down(md) {
+    height: $form-box-height + 50px;
+  }
   @include media-breakpoint-down(sm) {
-    padding: 2em;
+    padding: 3em;
+  }
+  @include media-breakpoint-down(sm) {
+    padding: 0;
   }
 }
 
@@ -101,4 +110,7 @@ $form-box-height: 733px;
 .user-form {
   width: 100%;
   margin-top: 20px;
+  @include media-breakpoint-down(sm) {
+    padding: 0 1.5em;
+  }
 }

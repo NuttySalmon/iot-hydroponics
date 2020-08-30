@@ -13,7 +13,7 @@ function Login() {
   return (
     <FullPage bg={background}>
       <FormContainer
-        title={accVerify ? 'Verify Account' : 'Welome Back'}
+        title={accVerify ? 'Verify Account' : 'Welcome Back'}
         style={style.box}
       >
         {accVerify ? (

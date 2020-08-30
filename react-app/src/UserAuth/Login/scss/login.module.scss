@@ -6,6 +6,7 @@
 .box {
   @include on-one-side(right);
   @extend %form-box;
+  padding-top: 5em;
 }
 
 /* form button */

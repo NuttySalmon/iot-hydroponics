@@ -112,10 +112,10 @@ const SignUpForm = () => {
   }
 
   return (
-    <Form action="#" onSubmit={awsReg}>
+    <Form action="#" onSubmit={awsReg} className="user-form">
       {/* Names  */}
       <Form.Row>
-        <Col lg={6}>
+        <Col md={6}>
           <TextField
             label="First name"
             value={firstName}

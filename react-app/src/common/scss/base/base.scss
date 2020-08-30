@@ -17,7 +17,7 @@ body {
 }
 
 h1 {
-  font-size: 55px;
+  font-size: 45px;
   font-family: $serif;
   color: $light-dark;
   @include media-breakpoint-down(md) {
