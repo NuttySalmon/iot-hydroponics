@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 import { Form, Col, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { Auth } from 'aws-amplify'
-import TextField from '../common/components/TextField'
+import TextField from '../../common/components/TextField'
 import style from './scss/signup.module.scss'
 
 const minimumPasswordLength = 8

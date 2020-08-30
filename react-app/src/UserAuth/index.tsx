@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Hub, Auth } from 'aws-amplify'
 import { HubCallback } from '@aws-amplify/core/lib/Hub'
-import Login from '../Login'
-import SignUp from '../SignUp'
-import Logout from '../Logout'
+import Login from './Login'
+import SignUp from './SignUp'
+import Logout from './Logout'
 import AuthRoute from './AuthRoute'
 import AuthRouteContain from './AuthRouteContain'
 
