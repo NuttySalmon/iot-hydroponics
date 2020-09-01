@@ -4,13 +4,13 @@ import { Container, Row } from 'react-bootstrap'
 import '../scss/components/form-elements.scss'
 import LogoTrans from './LogoTrans'
 
-type FormContainerProps = {
+export type FormContainerProps = {
   /** Form title */
-  title?: string
+  title: string
   /** Children elements to be wrapped inside container */
   children: React.ReactNode
   /** Custom style of form box */
-  style?: string | undefined
+  boxStyle: string | undefined
   /** Custom style for logo */
   logoStyle?: string
 }
@@ -18,10 +18,10 @@ type FormContainerProps = {
 const FormContainer: React.FC<FormContainerProps> = ({
   title,
   children,
-  style,
+  boxStyle,
   logoStyle,
 }: FormContainerProps) => (
-  <Container className={style}>
+  <Container className={boxStyle}>
     <div className="align-self-center col">
       <Row className="m-0">
         <LogoTrans style={`col ${logoStyle}`} />
@@ -37,15 +37,13 @@ const FormContainer: React.FC<FormContainerProps> = ({
 )
 
 FormContainer.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
-  style: PropTypes.string,
+  boxStyle: PropTypes.string.isRequired,
   logoStyle: PropTypes.string,
 }
 
 FormContainer.defaultProps = {
-  title: '',
-  style: undefined,
   logoStyle: undefined,
 }
 export default FormContainer

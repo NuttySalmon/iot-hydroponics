@@ -7,35 +7,71 @@ import { Link } from 'react-router-dom'
 import { Auth } from 'aws-amplify'
 import TextField from '../../common/components/TextField'
 import style from './scss/signup.module.scss'
+import { WrappedFormProps } from '../FormWrapper'
 
 const minimumPasswordLength = 8
+
+/** Regex */
 // 2-30 chars, allows lower case, upper case, space
-const NameChecker = /^[a-zA-Z ]{2,30}$/
+const NameChecker = /^[a-zA-Z ]{1,30}$/
 // at least one digit, one uppecase/one lower case
 const PasswordChecker = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).+/
 // check for @ symbol with strings on each end
 const EmailChecker = /^\S+@\S+$/
+
+/** Exception name */
 const UserNameExistsException = 'UsernameExistsException'
 const InvalidPasswordException = 'InvalidPasswordException'
 const defaultEmailErrorMsg = 'Invalid email'
 const existedEmailErrorMsg = 'An account already exist with this email.'
 
-const validateName = (name) => NameChecker.test(name)
-const validatePasswordCon = (password, passwordCon) => passwordCon === password
-const validateEmail = (email) => EmailChecker.test(email)
+/**
+ * Check if a name is valid
+ * @param {string} name - first name or last name string
+ * @returns {boolean} - whether name is valid
+ */
+const validateName = (name: string) => NameChecker.test(name)
 
-const validatePassword = (password) => {
+/**
+ * Check if the re-entered passwords match
+ * @param {string} password - password string
+ * @param {string} passwordCon - re-entered password string
+ * @returns {boolean} - whether the passwords match
+ */
+const validatePasswordCon = (password: string, passwordCon: string) =>
+  passwordCon === password
+
+/**
+ * Checks to see if the email address is correct
+ * @param {string} email - email string
+ * @returns {boolean} - whether the email is valid or not
+ */
+const validateEmail = (email: string) => EmailChecker.test(email)
+
+/**
+ * Checks if password fufills policy requirement
+ * @param {string} password password string
+ * @returns {boolean} - whether the password meets the criteria
+ */
+const validatePassword = (password: string) => {
   if (password.length <= minimumPasswordLength) return false
   return PasswordChecker.test(password)
 }
 
-const SignUpForm = () => {
+/**
+ * Component for rendering sign up form and handling user sign up
+ */
+const SignUpForm = ({
+  changeAccVerify,
+  changeEmail,
+  email,
+}: WrappedFormProps) => {
   const [firstName, changeFirstName] = useState('')
   const [lastName, changeLastName] = useState('')
-  const [email, changeEmail] = useState('')
   const [password, changePassword] = useState('')
   const [passwordCon, changePasswordCon] = useState('')
 
+  // for displaying error messages in the front end
   const [fNameValid, changeFNameValid] = useState(true)
   const [lNameValid, changeLNameValid] = useState(true)
   const [emailValid, changeEmailValid] = useState(true)
@@ -43,6 +79,7 @@ const SignUpForm = () => {
   const [passwordConValid, changePasswordConValid] = useState(true)
   const [isPasswordFocus, changePasswordFocus] = useState(false)
 
+  // error messages for front end
   const [emailErrorMsg, changeEmailErrorMsg] = useState(defaultEmailErrorMsg)
   const [genericErrorMsg, changeGenericErrorMsg] = useState('')
   const nameErrorMsg = 'Invalid name'
@@ -50,7 +87,7 @@ const SignUpForm = () => {
     'Minimum length of 8. At least 1 character (A-Z or a-z) and 1 number (0-9).'
   const passwordConErrorMsg = "Password doesn't match."
 
-  const handleAWSError = (error) => {
+  const handleAWSError = (error: { name: string }) => {
     switch (error.name) {
       case UserNameExistsException:
         changeEmailErrorMsg(existedEmailErrorMsg)
@@ -64,10 +101,14 @@ const SignUpForm = () => {
     }
   }
 
-  const awsReg = async (event) => {
-    changeGenericErrorMsg('')
-    changeEmailErrorMsg(defaultEmailErrorMsg)
+  /**
+   * Handle user registration with form inputs
+   * @param {React.SyntheticEvent} event - onSubmit form event
+   */
+  const handleRegistration = async (event: React.SyntheticEvent) => {
     event.preventDefault()
+    changeGenericErrorMsg('') // reset generic message
+    changeEmailErrorMsg(defaultEmailErrorMsg) // reset email error msg to front end validation error message
 
     // client side validation
     const fNameIsValid = validateName(firstName)
@@ -91,6 +132,7 @@ const SignUpForm = () => {
     // server side validation WORK ON THIS
     if (valid) {
       try {
+        // sending request to aws
         const res = await Auth.signUp({
           username: email,
           password,
@@ -101,6 +143,7 @@ const SignUpForm = () => {
           },
         })
         console.log(res)
+        changeAccVerify(true)
       } catch (error) {
         // invalid emails, backend password checker to match amazon's policy
         // aws might not have fetched the information
@@ -112,7 +155,7 @@ const SignUpForm = () => {
   }
 
   return (
-    <Form action="#" onSubmit={awsReg} className="user-form">
+    <Form action="#" onSubmit={handleRegistration} className="user-form">
       {/* Names  */}
       <Form.Row>
         <Col md={6}>

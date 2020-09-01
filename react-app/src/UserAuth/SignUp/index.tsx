@@ -1,22 +1,27 @@
 import React from 'react'
 import background from './img/sign-up-bg.png'
-import FullPage from '../../common/components/FullPage'
-import FormContainer from '../../common/components/FormContainer'
+import FormWrapper from '../FormWrapper'
 import style from './scss/signup.module.scss'
 import SignUpForm from './SignUpForm'
 
-function SignUp() {
-  return (
-    <FullPage bg={background}>
-      <FormContainer
-        title="Create an account"
-        style={style.box}
-        logoStyle={style.logoRight}
-      >
-        <SignUpForm />
-      </FormContainer>
-    </FullPage>
-  )
-}
+const SignUp = () => (
+  <FormWrapper
+    background={background}
+    boxStyle={style.box}
+    form={SignUpForm}
+    title="Create an account"
+  />
+)
+
+// <FullPage bg={background}>
+//   <FormContainer
+//     title="Create an account"
+//     style={style.box}
+//     logoStyle={style.logoRight}
+//   >
+//     <SignUpForm />
+//   </FormContainer>
+// </FullPage>
+// }
 
 export default SignUp

@@ -4,15 +4,13 @@ import LoginForm from './LoginForm'
 import style from './scss/login.module.scss'
 import FormWrapper from '../FormWrapper'
 
-function Login() {
-  return (
-    <FormWrapper
-      background={background}
-      boxStyle={style.box}
-      form={LoginForm}
-      title="Welcome Back"
-    />
-  )
-}
+const Login = () => (
+  <FormWrapper
+    background={background}
+    boxStyle={style.box}
+    form={LoginForm}
+    title="Welcome Back"
+  />
+)
 
 export default Login
