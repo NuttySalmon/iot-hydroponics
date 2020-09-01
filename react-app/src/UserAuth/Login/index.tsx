@@ -1,8 +1,8 @@
 import React from 'react'
-import background from './img/login-bg.png'
+import background from './img/login-bg.jpg'
 import LoginForm from './LoginForm'
 import style from './scss/login.module.scss'
-import FormWrapper from '../FormWrapper'
+import FormWrapper from '../AuthFormWrapper'
 
 const Login = () => (
   <FormWrapper

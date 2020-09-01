@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react'
 import FullPage from '../common/components/FullPage'
-import FormContainer, {
-  FormContainerProps,
-} from '../common/components/FormContainer'
+import AuthFormContainer, {
+  AuthFormContainerProps,
+} from './AuthFormContainer'
 import VerifyForm from './Verify/VerifyForm'
 
 type WrapperProps = {
@@ -11,7 +11,7 @@ type WrapperProps = {
   background: string
   /** Form to be wrapped  */
   form: React.FC<WrappedFormProps>
-} & Omit<FormContainerProps, 'children'>
+} & Omit<AuthFormContainerProps, 'children'>
 
 /** Type for wrapped form */
 export type WrappedFormProps = {
@@ -35,7 +35,7 @@ function FormWrapper({ background, form: C, title, ...rest }: WrapperProps) {
 
   return (
     <FullPage bg={background}>
-      <FormContainer title={accVerify ? 'Verify Account' : title} {...rest}>
+      <AuthFormContainer title={accVerify ? 'Verify Account' : title} {...rest}>
         {accVerify ? (
           // show verification form
           <VerifyForm {...{ email }} loginPagePath="/login" />
@@ -43,7 +43,7 @@ function FormWrapper({ background, form: C, title, ...rest }: WrapperProps) {
           // show wrapped form
           <C {...{ changeAccVerify, changeEmail, email }} />
         )}
-      </FormContainer>
+      </AuthFormContainer>
     </FullPage>
   )
 }

@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Container, Row } from 'react-bootstrap'
-import '../scss/components/form-elements.scss'
-import LogoTrans from './LogoTrans'
+import '../common/scss/components/form-elements.scss'
+import LogoTrans from '../common/components/LogoTrans'
 
-export type FormContainerProps = {
+export type AuthFormContainerProps = {
   /** Form title */
   title: string
   /** Children elements to be wrapped inside container */
@@ -15,12 +15,12 @@ export type FormContainerProps = {
   logoStyle?: string
 }
 
-const FormContainer: React.FC<FormContainerProps> = ({
+const AuthFormContainer: React.FC<AuthFormContainerProps> = ({
   title,
   children,
   boxStyle,
   logoStyle,
-}: FormContainerProps) => (
+}: AuthFormContainerProps) => (
   <Container className={boxStyle}>
     <div className="align-self-center col">
       <Row className="m-0">
@@ -36,14 +36,14 @@ const FormContainer: React.FC<FormContainerProps> = ({
   </Container>
 )
 
-FormContainer.propTypes = {
+AuthFormContainer.propTypes = {
   title: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   boxStyle: PropTypes.string.isRequired,
   logoStyle: PropTypes.string,
 }
 
-FormContainer.defaultProps = {
+AuthFormContainer.defaultProps = {
   logoStyle: undefined,
 }
-export default FormContainer
+export default AuthFormContainer

@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import { Auth } from 'aws-amplify'
 import TextField from '../../common/components/TextField'
 import style from './scss/signup.module.scss'
-import { WrappedFormProps } from '../FormWrapper'
+import { WrappedFormProps } from '../AuthFormWrapper'
 
 const minimumPasswordLength = 8
 
@@ -15,7 +15,7 @@ const minimumPasswordLength = 8
 // 2-30 chars, allows lower case, upper case, space
 const NameChecker = /^[a-zA-Z ]{1,30}$/
 // at least one digit, one uppecase/one lower case
-const PasswordChecker = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).+/
+const PasswordChecker = /(?=.*\d)(?=.*[a-zA-Z]).+/
 // check for @ symbol with strings on each end
 const EmailChecker = /^\S+@\S+$/
 

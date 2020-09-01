@@ -6,7 +6,7 @@ import TextField from '../../common/components/TextField'
 import '../../common/scss/components/buttons.scss'
 import '../../common/scss/components/form-elements.scss'
 import style from './scss/login.module.scss'
-import { WrappedFormProps } from  "../FormWrapper"
+import { WrappedFormProps } from  "../AuthFormWrapper"
 // import UserContext from '../UserAuth/UserContext'
 
 // Initializing error message variables. Used for handleError switch statements.
