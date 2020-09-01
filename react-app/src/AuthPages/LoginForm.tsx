@@ -2,11 +2,9 @@ import React, { useState } from 'react'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import { Auth } from 'aws-amplify'
 import { Link } from 'react-router-dom'
-import TextField from '../../common/components/TextField'
-import '../../common/scss/components/buttons.scss'
-import '../../common/scss/components/form-elements.scss'
+import TextField from '../common/components/TextField'
 import style from './scss/login.module.scss'
-import { WrappedFormProps } from  "../AuthFormWrapper"
+import { WrappedFormProps } from './AuthFormWrapper'
 // import UserContext from '../UserAuth/UserContext'
 
 // Initializing error message variables. Used for handleError switch statements.
@@ -16,7 +14,11 @@ const userNotConfirmedException = 'UserNotConfirmedException'
 
 const checkValid = (fieldValue: string) => Boolean(fieldValue) // Checks whether the email or password fields are empty.
 
-const LoginForm = ({ changeAccVerify, changeEmail, email }: WrappedFormProps) => {
+const LoginForm = ({
+  changeAccVerify,
+  changeEmail,
+  email,
+}: WrappedFormProps) => {
   const [password, changePassword] = useState('') // Takes in the user's password.
   const [err, changeErr] = useState('') // A general error handler for network related issues.
   const [emailValid, changeEmailValid] = useState(true) // Checks if user's email is valid. If invalid, error message will be shown.
@@ -25,7 +27,7 @@ const LoginForm = ({ changeAccVerify, changeEmail, email }: WrappedFormProps) =>
   const [passErrMessage, changePassErrMessage] = useState('') // Password error handler field.
 
   // Error handling function that takes in error as a parameter from the awsSignIn function.
-  const handleError = (error: any) => {
+  const handleError = (error: { name: string }) => {
     switch (error.name) {
       case userNotFoundException: // email not in system
         changeEmailValid(false)

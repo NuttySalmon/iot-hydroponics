@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import { Auth } from 'aws-amplify'
-import TextField from '../../common/components/TextField'
-import style from './scss/VerifyForm.module.scss'
-import '../../common/scss/components/buttons.scss'
-import '../../common/scss/components/form-elements.scss'
+import TextField from '../common/components/TextField'
+import style from './scss/verifyForm.module.scss'
+import '../common/scss/components/buttons.scss'
+import '../common/scss/components/form-elements.scss'
 
 const userNotFoundException = 'UserNotFoundException'
 const expiredCodeException = 'ExpiredCodeException'
@@ -28,7 +28,7 @@ const VerifyForm = ({ email, loginPagePath }: VerifyFormProps) => {
   const history = useHistory()
 
   // for getting code related error message and handling general error
-  const getCodeErrMsg = (error: any) => {
+  const getCodeErrMsg = (error: { name: string }) => {
     changeCodeValid(false)
     switch (error.name) {
       case userNotFoundException:
@@ -44,7 +44,7 @@ const VerifyForm = ({ email, loginPagePath }: VerifyFormProps) => {
   }
 
   // code to verify account
-  const awsVerify = async (event: any) => {
+  const awsVerify = async (event: React.SyntheticEvent) => {
     event.preventDefault()
     changeGeneralErrMsg('') // reset general error message
     const codeValidTemp = checkValid(code) // check if code is valid

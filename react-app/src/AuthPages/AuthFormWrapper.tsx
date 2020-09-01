@@ -1,10 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react'
 import FullPage from '../common/components/FullPage'
-import AuthFormContainer, {
-  AuthFormContainerProps,
-} from './AuthFormContainer'
-import VerifyForm from './Verify/VerifyForm'
+import AuthFormContainer, { AuthFormContainerProps } from './AuthFormContainer'
+import VerifyForm from './VerifyForm'
 
 type WrapperProps = {
   /** Background image for the page */

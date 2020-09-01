@@ -1,6 +1,6 @@
 import React from 'react'
 import background from './img/sign-up-bg.jpg'
-import FormWrapper from '../AuthFormWrapper'
+import FormWrapper from './AuthFormWrapper'
 import style from './scss/signup.module.scss'
 import SignUpForm from './SignUpForm'
 
@@ -12,16 +12,5 @@ const SignUp = () => (
     title="Create an account"
   />
 )
-
-// <FullPage bg={background}>
-//   <FormContainer
-//     title="Create an account"
-//     style={style.box}
-//     logoStyle={style.logoRight}
-//   >
-//     <SignUpForm />
-//   </FormContainer>
-// </FullPage>
-// }
 
 export default SignUp

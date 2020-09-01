@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Container, Row } from 'react-bootstrap'
-import '../common/scss/components/form-elements.scss'
 import LogoTrans from '../common/components/LogoTrans'
 
 export type AuthFormContainerProps = {
@@ -15,6 +14,7 @@ export type AuthFormContainerProps = {
   logoStyle?: string
 }
 
+/** Render auth pages with logo and box for form */
 const AuthFormContainer: React.FC<AuthFormContainerProps> = ({
   title,
   children,

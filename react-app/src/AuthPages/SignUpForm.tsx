@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/camelcase */
 /* eslint-disable camelcase */
-
 import React, { useState } from 'react'
 import { Form, Col, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { Auth } from 'aws-amplify'
-import TextField from '../../common/components/TextField'
+import TextField from '../common/components/TextField'
 import style from './scss/signup.module.scss'
-import { WrappedFormProps } from '../AuthFormWrapper'
+import { WrappedFormProps } from './AuthFormWrapper'
 
 const minimumPasswordLength = 8
 
