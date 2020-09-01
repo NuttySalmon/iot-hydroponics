@@ -105,9 +105,12 @@ const Landing = () => {
       <LandingSection bg={bgWhyHydro} dark>
         <Description
           title="Why Hydroponics?"
-          des={[
-            'Hydroponics is a method of growing plants in a water based, nutrient rich solution. This is better for plants to absorb water and nutrients needed to thrive in unorthadox situations. The roots of a plant no longer need to find and rely on soil. There is less water consumption, making this product more environmentally friendly.',
-          ]}
+          justified
+          des="Hydroponics is a method of growing plants in a water based, 
+          nutrient rich solution. This is better for plants to absorb water and
+          nutrients needed to thrive in unorthadox situations. The roots of a
+          plant no longer need to find and rely on soil. There is less water
+          consumption, making this product more environmentally friendly."
         />
       </LandingSection>
 
