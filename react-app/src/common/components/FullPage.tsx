@@ -5,31 +5,34 @@ import '../scss/components/form-elements.scss'
 
 /**
  * Render page with full background and logo
- * @param {object} props
- * @param {string} props.bg - background image
  */
-const FullPage = ({ children, bg }) => {
+
+type FullPageProp = {
+  /** Element to render in page */
+  children: React.ReactNode
+  /** Background image path */
+  bg?: string
+}
+const FullPage = ({ children, bg }: FullPageProp) => {
   return (
     <div
-      className='full-bg'
-      style={{ backgroundImage: `url(${bg})` }}
+      className="full-bg"
+      style={{ backgroundImage: bg ? `url(${bg})` : undefined }}
     >
       <Row style={{ margin: 0, height: '100%', width: '100vw' }}>
         {children}
       </Row>
     </div>
-  );
-};
+  )
+}
 
 FullPage.propTypes = {
-  /** Element to render in page */
   children: PropTypes.node.isRequired,
-  /** Background image path */
   bg: PropTypes.string,
-};
+}
 
 FullPage.defaultProps = {
-  bg: null,
-};
+  bg: '',
+}
 
-export default FullPage;
+export default FullPage

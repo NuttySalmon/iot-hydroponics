@@ -1,0 +1,37 @@
+@startuml
+hide empty description
+[*] --> LoginPageURL: User go to /login
+[*] --> SignUpPageURL: User go to /signup
+[*] --> DashboardURL: User go to /dashboard
+' [*] --> DashboardURL: User go to /dashboard
+
+state isLoggedIn <<choice>>
+state pageRouter <<choice>>
+state "pageState: dashboard" as DisplayDashboard
+state "pageState: login" as DisplayLogin
+state "pageState: signUp" as DisplaySignUp
+' state "authState: signIn" as AuthSignIn
+' state "authState: signedIn" as AuthSignedIn
+state "URL = /signup" as SignUpPageURL
+state "URL = /login" as LoginPageURL
+state "URL = /dashboard" as DashboardURL  
+LoginPageURL --> isLoggedIn
+' AuthSignedIn --> DashboardURL 
+isLoggedIn --> DisplayDashboard:[signedIn]
+SignUpPageURL --> isLoggedIn
+
+state isLoggedInDashboard <<choice>>
+DashboardURL --> isLoggedInDashboard
+isLoggedInDashboard --> DisplayDashboard : [signedIn]
+isLoggedInDashboard --> LoginPageURL: [!signedIn]
+
+isLoggedIn --> pageRouter: [!signedIn]
+pageRouter --> DisplayLogin 
+' AuthSignIn --> DisplayLogin
+pageRouter --> DisplaySignUp
+' AuthSignUp --> DisplaySignUp
+' ShowDashboardPage -->[*]
+' ShowLoginPage --> [*]
+DisplaySignUp --> LoginPageURL : When user register
+DisplayLogin --> DisplayDashboard: When user login
+@enduml

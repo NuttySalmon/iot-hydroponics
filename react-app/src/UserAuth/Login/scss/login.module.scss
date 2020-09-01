@@ -1,0 +1,26 @@
+@import '../../../common/scss/base/base';
+@import '../../../common/scss/base/mixins';
+@import '../../../common/scss/base/variables';
+@import '../../../common/scss/components/form-elements';
+
+.box {
+  @include on-one-side(right);
+  @extend %form-box;
+  padding-top: 5em;
+}
+
+/* form button */
+.formBtn {
+  text-align: center;
+  margin-top: 2em;
+}
+
+.formLink {
+  text-align: center;
+  margin-top: 2em;
+}
+.warning {
+  color: $warning;
+  text-align: center;
+  margin-top: 2em;
+}

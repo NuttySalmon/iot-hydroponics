@@ -5,7 +5,7 @@ import style from "./scss/landing.module.scss";
 import arrowStyle from "./scss/arrow.module.scss";
 
 const Title = (props) => {
-  const {bg, des} = props;
+  const { bg, des } = props
   return (
     <Row>
       <div className="full-bg" style={{ backgroundImage: `url(${bg})` }}>
@@ -45,4 +45,4 @@ const Title = (props) => {
   );
 };
 
-export default Title;
+export default Title

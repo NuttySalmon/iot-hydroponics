@@ -1,11 +1,44 @@
 {
-  "extends": ["react-app", "airbnb", "plugin:jsx-a11y/recommended", "prettier"],
-  "plugins": ["jsx-a11y"],
+  "env": { "browser": true, "jest": true, "node": true, "es6": true },
+  "settings": {},
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "airbnb",
+    "react-app", // create-react-app
+    "plugin:jsx-a11y/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "prettier/react",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript"
+  ],
+  "globals": { "Atomics": "readonly", "SharedArrayBuffer": "readonly" },
+  "parserOptions": {
+    "ecmaFeatures": { "jsx": true, "modules": true },
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "prettier", "jsx-a11y", "@typescript-eslint"],
   "rules": {
-    "semi": 0,
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "react/prop-types": 1,
-    "react/jsx-one-expression-per-line": 1,
-    "react/jsx-indent": 1
+    "prettier/prettier": "warn",
+    "react/jsx-filename-extension": [
+      "warn",
+      { "extensions": [".js", ".jsx", ".tsx"] }
+    ],
+    "@typescript-eslint/member-delimiter-style": [
+      "error",
+      {
+        "multiline": { "delimiter": "none", "requireLast": true },
+        "singleline": { "delimiter": "semi", "requireLast": false }
+      }
+    ],
+    "react/prop-types": "warn",
+    "react/require-default-props": [1, { "ignoreFunctionalComponents": true }],
+    "import/extensions": [
+      "error",
+      { "js": "never", "jsx": "never", "ts": "never", "tsx": "never" }
+    ],
+    "@typescript-eslint/explicit-function-return-type": ["off"]
   }
 }

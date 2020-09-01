@@ -17,10 +17,10 @@ body {
 }
 
 h1 {
-  font-size: 55px;
+  font-size: 45px;
   font-family: $serif;
   color: $light-dark;
-  @include media-breakpoint-down(md){
+  @include media-breakpoint-down(md) {
     font-size: xxx-large;
   }
 
@@ -41,3 +41,8 @@ a {
     color: #7e7671;
   }
 }
+
+.warning {
+  color: $warning!important;
+}
+
