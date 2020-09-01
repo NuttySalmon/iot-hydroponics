@@ -5,28 +5,41 @@
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins/breakpoints';
 $logo-text: 'HydroGarden';
+$small-title-box-width: 8em;
 
-.logo-lg {
+.logo {
   font-family: $logo-font;
   color: $highlight;
-  font-size: 110px;
-  opacity: 0;
-  margin: 0;
-  text-shadow: 0 0 0.1em rgba(0, 0, 0, 0.3);
-  animation: fade-in 1s ease 0.2s forwards;
-
-  @include media-breakpoint-down(md) {
-    font-size: 90px;
+  &::after {
+    content: $logo-text;
   }
-  @include media-breakpoint-down(sm) {
-    font-size: 12vw;
+  &-lg {
+    font-size: 120px;
+
+    @include media-breakpoint-down(md) {
+      font-size: 10vw;
+    }
+    @include media-breakpoint-down(sm) {
+      font-size: 2em;
+    }
   }
 
-  @include media-breakpoint-down(xs) {
-    font-weight: bold;
+  &-sm {
+    font-size: 20px;
+  }
+
+  &-trans & {
+    font-size: 30px;
+    color: rgba(white, 0.9);
+    text-shadow: 0 0 0.5em black;
+
+    @include media-breakpoint-down(lg) {
+      text-shadow: none;
+      color: $highlight;
+      font-size: 1em;
+    }
   }
 }
-$small-title-box-width: 8em;
 
 .logo-trans {
   margin: 20px 40px;
@@ -39,18 +52,6 @@ $small-title-box-width: 8em;
   a {
     &:hover {
       text-decoration: none;
-    }
-  }
-  .logo {
-    font-size: 30px;
-    font-family: $logo-font;
-    color: rgba(white, 0.9);
-    text-shadow: 0 0 0.5em black;
-
-    @include media-breakpoint-down(lg) {
-      text-shadow: none;
-      color: $highlight;
-      font-size: 1em;
     }
   }
 
@@ -67,5 +68,20 @@ $small-title-box-width: 8em;
 
   @include media-breakpoint-down(xs) {
     font-size: 11vw;
+  }
+}
+
+a.logo-nav {
+  padding-right: 0.5em;
+  height: 100%;
+  width: 14em;
+  display: flex;
+  justify-content: flex-end;
+  background-color: $dark;
+  &:hover {
+    text-decoration: none;
+  }
+  .logo-sm{
+    align-self: center;
   }
 }
