@@ -12,12 +12,25 @@ $shadow-offset: 3px; // vertical offset of shadow
   box-shadow: $offset 1px 2px 0px rgba(black, 0.5);
 }
 
+
+$times: 3;
+// animation to move arrow up and down with pause
 @keyframes arrow-move {
-  from {
+  // move arrow down for $time times
+  @for $i from 0 through $times - 1 {
+    #{$i*10%} {
+      bottom: $bottom-pos;
+    }
+    #{$i*10% + 5%} {
+      bottom: $bottom-pos - 1.5%; // position when moved down
+    }
+  }
+  // last keyframe to reset position before pause
+  #{$times * 10%}{
     bottom: $bottom-pos;
   }
-  to {
-    bottom: $bottom-pos - 1.5%;
+  100% { // keep position for pause
+    bottom: $bottom-pos;
   }
 }
 
@@ -55,7 +68,7 @@ $shadow-offset: 3px; // vertical offset of shadow
   left: 50%;
   width: $width;
   height: $height;
-  animation: arrow-move 400ms ease-out 1s 6 alternate;
+  animation: arrow-move 8s ease-out 1s infinite;
   &:hover {
     bottom: $bottom-pos - 0.7%;
     width: $width * 1.05;
