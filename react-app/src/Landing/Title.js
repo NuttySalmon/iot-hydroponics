@@ -1,8 +1,8 @@
-import React from "react";
-import { Row, Col, Button, Container,} from "react-bootstrap";
-import { Link } from "react-router-dom";
-import style from "./scss/landing.module.scss";
-import arrowStyle from "./scss/arrow.module.scss";
+import React from 'react'
+import { Row, Col, Button, Container } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import style from './scss/landing.module.scss'
+import arrowStyle from './scss/arrow.module.scss'
 
 const Title = (props) => {
   const { bg, des } = props
@@ -32,17 +32,16 @@ const Title = (props) => {
               </Link>
             </Col>
           </Row>
-          
         </Container>
-      </div>  
+      </div>
       <a href="#members">
         <div className={arrowStyle.arrowContain}>
-          <div className={`${arrowStyle.arrow} ${arrowStyle.shadow}`}/>
+          <div className={`${arrowStyle.arrow} ${arrowStyle.shadow}`} />
           <div className={arrowStyle.arrow} />
         </div>
       </a>
     </Row>
-  );
-};
+  )
+}
 
 export default Title
