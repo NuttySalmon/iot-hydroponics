@@ -39,7 +39,7 @@ const members = [
 ]
 
 const BulletPoint = ({ bullet, text }) => (
-  <Row className="mt-4">
+  <Row className="mt-4 align-items-center">
     <Col className={style.bullet}>
       <img
         alt="bullet"
