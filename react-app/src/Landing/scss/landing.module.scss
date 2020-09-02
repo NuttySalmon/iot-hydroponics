@@ -73,6 +73,7 @@ $title-box-width-xl: 52em;
   background-color: white;
   display: flex;
   align-items: center;
+  justify-content: center;
   color: $dark;
   h1 {
     color: $light-dark;
@@ -104,7 +105,7 @@ $title-box-width-xl: 52em;
   justify-content: center;
 
   p {
-    margin: 0 0.5em;
+    margin: 0 0.3em;
   }
   a {
     color: $light;
@@ -151,6 +152,20 @@ $title-box-width-xl: 52em;
         align-self: center;
         margin: 0;
       }
+    }
+  }
+}
+
+.ebbflow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  > div {
+    flex: 1 0 15em;
+    align-self: center;
+    margin: 2em;
+    @include media-breakpoint-down(sm){
+      margin: 2em 0;
     }
   }
 }

@@ -90,16 +90,15 @@ const Landing = () => {
       </LandingSection>
 
       <LandingSection>
-        <Container style={{ display: 'grid' }}>
-          <Row className="align-self-center">
-            <Col className="text-center mr-5" xl={5}>
-              <Image src={ebbFlowDiagram} className="align-self-center" fluid />
-            </Col>
-            <Col xl>
-              <Description title="What is Ebb and Flow?" des={EbbAndFlow} />
-            </Col>
-          </Row>
-        </Container>
+        <div className={style.ebbflow}>
+          <Image
+            src={ebbFlowDiagram}
+            width="500"
+            className="align-self-center"
+            fluid
+          />
+          <Description title="What is Ebb and Flow?" des={EbbAndFlow} />
+        </div>
       </LandingSection>
 
       <LandingSection bg={bgWhyHydro} dark>
