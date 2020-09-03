@@ -2,6 +2,7 @@
 // import { Authenticator } from 'aws-amplify-react'
 import React, { useEffect } from 'react'
 import { Auth } from 'aws-amplify'
+import { Link } from 'react-router-dom'
 
 // const Auth = () => {
 
@@ -25,7 +26,12 @@ const Dashboard = () => {
         console.log('dashboard no user')
       })
   })
-  return <h1> Dashboard </h1>
+  return (
+    <div>
+      <Link to="/logout">Logout</Link>
+      <h1> Dashboard </h1>
+    </div>
+  )
 }
 
 export default Dashboard
