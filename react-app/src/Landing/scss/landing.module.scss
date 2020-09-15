@@ -97,6 +97,10 @@ $title-box-width-xl: 52em;
   .description {
     padding: 0 30px;
   }
+
+  @include media-breakpoint-down(sm) {
+    padding: 2em 0;
+  }
 }
 
 .footer {
@@ -160,11 +164,16 @@ $title-box-width-xl: 52em;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  > img {
+    @include media-breakpoint-down(lg) {
+      padding: 0 1em;
+    }
+  }
   > div {
     flex: 1 0 15em;
-    align-self: center;
     margin: 2em;
-    @include media-breakpoint-down(sm){
+    align-self: center;
+    @include media-breakpoint-down(sm) {
       margin: 2em 0;
     }
   }
