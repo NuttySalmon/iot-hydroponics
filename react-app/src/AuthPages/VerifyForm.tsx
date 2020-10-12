@@ -91,7 +91,7 @@ const VerifyForm = ({ email, loginPagePath }: VerifyFormProps) => {
               <Col>
                 <p>
                   Click{' '}
-                  <a href="#" onClick={resendCode}>
+                  <a href="/resend" onClick={resendCode}>
                     here
                   </a>{' '}
                   to resent code.
