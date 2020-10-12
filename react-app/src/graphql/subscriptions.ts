@@ -35,6 +35,7 @@ export const onCreateDevice = /* GraphQL */ `
         updatedAt
         owner
       }
+      owner
       histories {
         items {
           id
@@ -48,7 +49,6 @@ export const onCreateDevice = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -85,6 +85,7 @@ export const onUpdateDevice = /* GraphQL */ `
         updatedAt
         owner
       }
+      owner
       histories {
         items {
           id
@@ -98,7 +99,6 @@ export const onUpdateDevice = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -135,6 +135,7 @@ export const onDeleteDevice = /* GraphQL */ `
         updatedAt
         owner
       }
+      owner
       histories {
         items {
           id
@@ -148,7 +149,69 @@ export const onDeleteDevice = /* GraphQL */ `
       }
       createdAt
       updatedAt
+    }
+  }
+`;
+export const onCreateUser = /* GraphQL */ `
+  subscription OnCreateUser($owner: String!) {
+    onCreateUser(owner: $owner) {
+      id
       owner
+      devices {
+        items {
+          id
+          name
+          description
+          owner
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateUser = /* GraphQL */ `
+  subscription OnUpdateUser($owner: String!) {
+    onUpdateUser(owner: $owner) {
+      id
+      owner
+      devices {
+        items {
+          id
+          name
+          description
+          owner
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteUser = /* GraphQL */ `
+  subscription OnDeleteUser($owner: String!) {
+    onDeleteUser(owner: $owner) {
+      id
+      owner
+      devices {
+        items {
+          id
+          name
+          description
+          owner
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
     }
   }
 `;

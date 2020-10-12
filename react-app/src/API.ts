@@ -6,6 +6,7 @@ export type CreateDeviceInput = {
   id?: string | null,
   name: string,
   description?: string | null,
+  owner?: string | null,
   deviceCurrentDataId?: string | null,
   deviceCurrentSettingId?: string | null,
 };
@@ -62,11 +63,31 @@ export type UpdateDeviceInput = {
   id: string,
   name?: string | null,
   description?: string | null,
+  owner?: string | null,
   deviceCurrentDataId?: string | null,
   deviceCurrentSettingId?: string | null,
 };
 
 export type DeleteDeviceInput = {
+  id?: string | null,
+};
+
+export type CreateUserInput = {
+  id?: string | null,
+  owner: string,
+};
+
+export type ModelUserConditionInput = {
+  and?: Array< ModelUserConditionInput | null > | null,
+  or?: Array< ModelUserConditionInput | null > | null,
+  not?: ModelUserConditionInput | null,
+};
+
+export type UpdateUserInput = {
+  owner?: string | null,
+};
+
+export type DeleteUserInput = {
   id?: string | null,
 };
 
@@ -230,9 +251,17 @@ export type ModelDeviceFilterInput = {
   id?: ModelIDInput | null,
   name?: ModelStringInput | null,
   description?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
   and?: Array< ModelDeviceFilterInput | null > | null,
   or?: Array< ModelDeviceFilterInput | null > | null,
   not?: ModelDeviceFilterInput | null,
+};
+
+export type ModelUserFilterInput = {
+  owner?: ModelStringInput | null,
+  and?: Array< ModelUserFilterInput | null > | null,
+  or?: Array< ModelUserFilterInput | null > | null,
+  not?: ModelUserFilterInput | null,
 };
 
 export type ModelDataFilterInput = {
@@ -313,6 +342,7 @@ export type CreateDeviceMutation = {
       updatedAt: string,
       owner: string | null,
     } | null,
+    owner: string | null,
     histories:  {
       __typename: "ModelHistoryConnection",
       items:  Array< {
@@ -328,7 +358,6 @@ export type CreateDeviceMutation = {
     } | null,
     createdAt: string,
     updatedAt: string,
-    owner: string | null,
   } | null,
 };
 
@@ -372,6 +401,7 @@ export type UpdateDeviceMutation = {
       updatedAt: string,
       owner: string | null,
     } | null,
+    owner: string | null,
     histories:  {
       __typename: "ModelHistoryConnection",
       items:  Array< {
@@ -387,7 +417,6 @@ export type UpdateDeviceMutation = {
     } | null,
     createdAt: string,
     updatedAt: string,
-    owner: string | null,
   } | null,
 };
 
@@ -431,6 +460,7 @@ export type DeleteDeviceMutation = {
       updatedAt: string,
       owner: string | null,
     } | null,
+    owner: string | null,
     histories:  {
       __typename: "ModelHistoryConnection",
       items:  Array< {
@@ -446,7 +476,90 @@ export type DeleteDeviceMutation = {
     } | null,
     createdAt: string,
     updatedAt: string,
-    owner: string | null,
+  } | null,
+};
+
+export type CreateUserMutationVariables = {
+  input: CreateUserInput,
+  condition?: ModelUserConditionInput | null,
+};
+
+export type CreateUserMutation = {
+  createUser:  {
+    __typename: "User",
+    id: string,
+    owner: string,
+    devices:  {
+      __typename: "ModelDeviceConnection",
+      items:  Array< {
+        __typename: "Device",
+        id: string,
+        name: string,
+        description: string | null,
+        owner: string | null,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateUserMutationVariables = {
+  input: UpdateUserInput,
+  condition?: ModelUserConditionInput | null,
+};
+
+export type UpdateUserMutation = {
+  updateUser:  {
+    __typename: "User",
+    id: string,
+    owner: string,
+    devices:  {
+      __typename: "ModelDeviceConnection",
+      items:  Array< {
+        __typename: "Device",
+        id: string,
+        name: string,
+        description: string | null,
+        owner: string | null,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteUserMutationVariables = {
+  input: DeleteUserInput,
+  condition?: ModelUserConditionInput | null,
+};
+
+export type DeleteUserMutation = {
+  deleteUser:  {
+    __typename: "User",
+    id: string,
+    owner: string,
+    devices:  {
+      __typename: "ModelDeviceConnection",
+      items:  Array< {
+        __typename: "Device",
+        id: string,
+        name: string,
+        description: string | null,
+        owner: string | null,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
   } | null,
 };
 
@@ -762,6 +875,7 @@ export type GetDeviceQuery = {
       updatedAt: string,
       owner: string | null,
     } | null,
+    owner: string | null,
     histories:  {
       __typename: "ModelHistoryConnection",
       items:  Array< {
@@ -777,7 +891,6 @@ export type GetDeviceQuery = {
     } | null,
     createdAt: string,
     updatedAt: string,
-    owner: string | null,
   } | null,
 };
 
@@ -824,13 +937,64 @@ export type ListDevicesQuery = {
         updatedAt: string,
         owner: string | null,
       } | null,
+      owner: string | null,
       histories:  {
         __typename: "ModelHistoryConnection",
         nextToken: string | null,
       } | null,
       createdAt: string,
       updatedAt: string,
-      owner: string | null,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
+export type GetUserQueryVariables = {
+  id: string,
+};
+
+export type GetUserQuery = {
+  getUser:  {
+    __typename: "User",
+    id: string,
+    owner: string,
+    devices:  {
+      __typename: "ModelDeviceConnection",
+      items:  Array< {
+        __typename: "Device",
+        id: string,
+        name: string,
+        description: string | null,
+        owner: string | null,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListUsersQueryVariables = {
+  filter?: ModelUserFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListUsersQuery = {
+  listUsers:  {
+    __typename: "ModelUserConnection",
+    items:  Array< {
+      __typename: "User",
+      id: string,
+      owner: string,
+      devices:  {
+        __typename: "ModelDeviceConnection",
+        nextToken: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
     } | null > | null,
     nextToken: string | null,
   } | null,
@@ -1069,6 +1233,7 @@ export type OnCreateDeviceSubscription = {
       updatedAt: string,
       owner: string | null,
     } | null,
+    owner: string | null,
     histories:  {
       __typename: "ModelHistoryConnection",
       items:  Array< {
@@ -1084,7 +1249,6 @@ export type OnCreateDeviceSubscription = {
     } | null,
     createdAt: string,
     updatedAt: string,
-    owner: string | null,
   } | null,
 };
 
@@ -1127,6 +1291,7 @@ export type OnUpdateDeviceSubscription = {
       updatedAt: string,
       owner: string | null,
     } | null,
+    owner: string | null,
     histories:  {
       __typename: "ModelHistoryConnection",
       items:  Array< {
@@ -1142,7 +1307,6 @@ export type OnUpdateDeviceSubscription = {
     } | null,
     createdAt: string,
     updatedAt: string,
-    owner: string | null,
   } | null,
 };
 
@@ -1185,6 +1349,7 @@ export type OnDeleteDeviceSubscription = {
       updatedAt: string,
       owner: string | null,
     } | null,
+    owner: string | null,
     histories:  {
       __typename: "ModelHistoryConnection",
       items:  Array< {
@@ -1200,7 +1365,87 @@ export type OnDeleteDeviceSubscription = {
     } | null,
     createdAt: string,
     updatedAt: string,
-    owner: string | null,
+  } | null,
+};
+
+export type OnCreateUserSubscriptionVariables = {
+  owner: string,
+};
+
+export type OnCreateUserSubscription = {
+  onCreateUser:  {
+    __typename: "User",
+    id: string,
+    owner: string,
+    devices:  {
+      __typename: "ModelDeviceConnection",
+      items:  Array< {
+        __typename: "Device",
+        id: string,
+        name: string,
+        description: string | null,
+        owner: string | null,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateUserSubscriptionVariables = {
+  owner: string,
+};
+
+export type OnUpdateUserSubscription = {
+  onUpdateUser:  {
+    __typename: "User",
+    id: string,
+    owner: string,
+    devices:  {
+      __typename: "ModelDeviceConnection",
+      items:  Array< {
+        __typename: "Device",
+        id: string,
+        name: string,
+        description: string | null,
+        owner: string | null,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteUserSubscriptionVariables = {
+  owner: string,
+};
+
+export type OnDeleteUserSubscription = {
+  onDeleteUser:  {
+    __typename: "User",
+    id: string,
+    owner: string,
+    devices:  {
+      __typename: "ModelDeviceConnection",
+      items:  Array< {
+        __typename: "Device",
+        id: string,
+        name: string,
+        description: string | null,
+        owner: string | null,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
   } | null,
 };
 

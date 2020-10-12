@@ -1,10 +1,19 @@
-type Device @model @auth(rules: [{ allow: owner }]) {
+type Device
+  @model
+  @auth(rules: [{ allow: owner }])
+  @key(name: "byUser", fields: ["owner"]) {
   id: ID!
   name: String!
   description: String
   currentData: Data @connection
   currentSetting: Setting @connection
+  owner: String
   histories: [History] @connection(keyName: "byDevice", fields: ["id"])
+}
+
+type User @model @auth(rules: [{ allow: owner }]) {
+  owner: String!
+  devices: [Device] @connection(keyName: "byUser", fields: ["owner"])
 }
 
 type Data @model @auth(rules: [{ allow: owner }]) {

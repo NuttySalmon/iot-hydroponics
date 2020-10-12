@@ -38,6 +38,7 @@ export const createDevice = /* GraphQL */ `
         updatedAt
         owner
       }
+      owner
       histories {
         items {
           id
@@ -51,7 +52,6 @@ export const createDevice = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -91,6 +91,7 @@ export const updateDevice = /* GraphQL */ `
         updatedAt
         owner
       }
+      owner
       histories {
         items {
           id
@@ -104,7 +105,6 @@ export const updateDevice = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -144,6 +144,7 @@ export const deleteDevice = /* GraphQL */ `
         updatedAt
         owner
       }
+      owner
       histories {
         items {
           id
@@ -157,7 +158,78 @@ export const deleteDevice = /* GraphQL */ `
       }
       createdAt
       updatedAt
+    }
+  }
+`;
+export const createUser = /* GraphQL */ `
+  mutation CreateUser(
+    $input: CreateUserInput!
+    $condition: ModelUserConditionInput
+  ) {
+    createUser(input: $input, condition: $condition) {
+      id
       owner
+      devices {
+        items {
+          id
+          name
+          description
+          owner
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateUser = /* GraphQL */ `
+  mutation UpdateUser(
+    $input: UpdateUserInput!
+    $condition: ModelUserConditionInput
+  ) {
+    updateUser(input: $input, condition: $condition) {
+      id
+      owner
+      devices {
+        items {
+          id
+          name
+          description
+          owner
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteUser = /* GraphQL */ `
+  mutation DeleteUser(
+    $input: DeleteUserInput!
+    $condition: ModelUserConditionInput
+  ) {
+    deleteUser(input: $input, condition: $condition) {
+      id
+      owner
+      devices {
+        items {
+          id
+          name
+          description
+          owner
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
     }
   }
 `;
