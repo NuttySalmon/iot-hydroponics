@@ -11,7 +11,7 @@ const Title = (props) => {
       <div className="full-bg" style={{ backgroundImage: `url(${bg})` }}>
         <Container className={style.titleBox}>
           <Row>
-            <span className="logo-lg">HydroGarden</span>
+            <span className="logo logo-lg" />
           </Row>
           <Row className={style.titleDesc}>
             <p>

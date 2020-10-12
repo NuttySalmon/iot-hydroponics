@@ -8,6 +8,7 @@ const SignUp = () => (
   <FormWrapper
     background={background}
     boxStyle={style.box}
+    logoStyle={style.logoRight}
     form={SignUpForm}
     title="Create an account"
   />

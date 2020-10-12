@@ -11,7 +11,7 @@ const LogoTrans = ({ style = '' }) => {
   return (
     <div className={`logo-trans ${style}`}>
       <Link to="/">
-        <span className="logo">HydroGarden</span>
+        <span className="logo" />
       </Link>
     </div>
   )
