@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react'
 import { Auth } from 'aws-amplify'
 import Navi from './Navi'
+import AddDevice from './AddDevice'
 
 const Dashboard = () => {
   useEffect(() => {
@@ -13,7 +14,7 @@ const Dashboard = () => {
         console.log('dashboard no user')
       })
   })
-  return <Navi />
+  return <div><Navi /><AddDevice/></div>
 }
 
 export default Dashboard
