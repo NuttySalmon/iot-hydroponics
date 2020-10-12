@@ -84,4 +84,8 @@ a.logo-nav {
   .logo-sm{
     align-self: center;
   }
+  @include media-breakpoint-down(md){
+    width: auto;
+    padding: 0 1em;
+  }
 }
