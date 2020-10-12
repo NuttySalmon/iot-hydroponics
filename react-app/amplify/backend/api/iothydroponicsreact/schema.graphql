@@ -1,0 +1,43 @@
+type Device @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  name: String!
+  description: String
+  currentData: Data @connection
+  currentSetting: Setting @connection
+  histories: [History] @connection(keyName: "byDevice", fields: ["id"])
+}
+
+type Data @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  time: AWSDateTime!
+  fanOn: Boolean!
+  LEDOn: Boolean!
+  temp: Float!
+  hum: Float!
+  pumpOn: Boolean!
+  valveOpen: Boolean!
+}
+
+type Setting @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  waterLevel: Int!
+  floodFrequency: Int!
+  LEDOnTime: AWSTime!
+  LEDOffTime: AWSTime!
+  FanDuration: Int!
+  red: Int!
+  green: Int!
+  blue: Int!
+}
+
+type History 
+@model 
+@auth(rules: [{ allow: owner }])
+@key(name: "byDevice", fields: ["deviceID", "datetime"]) {
+  id: ID!
+  deviceID: ID!
+  datetime: AWSDateTime!
+  data: Data @connection
+  setting: Setting @connection
+}
+
