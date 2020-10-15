@@ -302,6 +302,12 @@ export type ModelHistoryFilterInput = {
   not?: ModelHistoryFilterInput | null,
 };
 
+export enum ModelSortDirection {
+  ASC = "ASC",
+  DESC = "DESC",
+}
+
+
 export type CreateDeviceMutationVariables = {
   input: CreateDeviceInput,
   condition?: ModelDeviceConditionInput | null,
@@ -1189,6 +1195,32 @@ export type ListHistorysQuery = {
       createdAt: string,
       updatedAt: string,
       owner: string | null,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
+export type UserByCognitoIdQueryVariables = {
+  owner?: string | null,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelUserFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type UserByCognitoIdQuery = {
+  userByCognitoID:  {
+    __typename: "ModelUserConnection",
+    items:  Array< {
+      __typename: "User",
+      id: string,
+      owner: string,
+      devices:  {
+        __typename: "ModelDeviceConnection",
+        nextToken: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
     } | null > | null,
     nextToken: string | null,
   } | null,

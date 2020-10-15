@@ -311,3 +311,31 @@ export const listHistorys = /* GraphQL */ `
     }
   }
 `;
+export const userByCognitoId = /* GraphQL */ `
+  query UserByCognitoId(
+    $owner: String
+    $sortDirection: ModelSortDirection
+    $filter: ModelUserFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    userByCognitoID(
+      owner: $owner
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        owner
+        devices {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;

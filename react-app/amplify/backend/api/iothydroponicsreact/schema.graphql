@@ -11,7 +11,10 @@ type Device
   histories: [History] @connection(keyName: "byDevice", fields: ["id"])
 }
 
-type User @model @auth(rules: [{ allow: owner }]) {
+type User
+  @model
+  @auth(rules: [{ allow: owner }])
+  @key(name: "byCognitoID", fields: ["owner"], queryField: "userByCognitoID") {
   owner: String!
   devices: [Device] @connection(keyName: "byUser", fields: ["owner"])
 }
@@ -49,4 +52,3 @@ type History
   data: Data @connection
   setting: Setting @connection
 }
-
