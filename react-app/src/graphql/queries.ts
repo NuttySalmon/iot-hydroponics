@@ -41,6 +41,33 @@ export const getDevice = /* GraphQL */ `
           id
           deviceID
           datetime
+          data {
+            id
+            time
+            fanOn
+            LEDOn
+            temp
+            hum
+            pumpOn
+            valveOpen
+            createdAt
+            updatedAt
+            owner
+          }
+          setting {
+            id
+            waterLevel
+            floodFrequency
+            LEDOnTime
+            LEDOffTime
+            FanDuration
+            red
+            green
+            blue
+            createdAt
+            updatedAt
+            owner
+          }
           createdAt
           updatedAt
           owner
@@ -92,6 +119,41 @@ export const listDevices = /* GraphQL */ `
         }
         owner
         histories {
+          items {
+            id
+            deviceID
+            datetime
+            data {
+              id
+              time
+              fanOn
+              LEDOn
+              temp
+              hum
+              pumpOn
+              valveOpen
+              createdAt
+              updatedAt
+              owner
+            }
+            setting {
+              id
+              waterLevel
+              floodFrequency
+              LEDOnTime
+              LEDOffTime
+              FanDuration
+              red
+              green
+              blue
+              createdAt
+              updatedAt
+              owner
+            }
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         createdAt
@@ -111,7 +173,45 @@ export const getUser = /* GraphQL */ `
           id
           name
           description
+          currentData {
+            id
+            time
+            fanOn
+            LEDOn
+            temp
+            hum
+            pumpOn
+            valveOpen
+            createdAt
+            updatedAt
+            owner
+          }
+          currentSetting {
+            id
+            waterLevel
+            floodFrequency
+            LEDOnTime
+            LEDOffTime
+            FanDuration
+            red
+            green
+            blue
+            createdAt
+            updatedAt
+            owner
+          }
           owner
+          histories {
+            items {
+              id
+              deviceID
+              datetime
+              createdAt
+              updatedAt
+              owner
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -133,6 +233,44 @@ export const listUsers = /* GraphQL */ `
         id
         owner
         devices {
+          items {
+            id
+            name
+            description
+            currentData {
+              id
+              time
+              fanOn
+              LEDOn
+              temp
+              hum
+              pumpOn
+              valveOpen
+              createdAt
+              updatedAt
+              owner
+            }
+            currentSetting {
+              id
+              waterLevel
+              floodFrequency
+              LEDOnTime
+              LEDOffTime
+              FanDuration
+              red
+              green
+              blue
+              createdAt
+              updatedAt
+              owner
+            }
+            owner
+            histories {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         createdAt
@@ -330,6 +468,44 @@ export const userByCognitoId = /* GraphQL */ `
         id
         owner
         devices {
+          items {
+            id
+            name
+            description
+            currentData {
+              id
+              time
+              fanOn
+              LEDOn
+              temp
+              hum
+              pumpOn
+              valveOpen
+              createdAt
+              updatedAt
+              owner
+            }
+            currentSetting {
+              id
+              waterLevel
+              floodFrequency
+              LEDOnTime
+              LEDOffTime
+              FanDuration
+              red
+              green
+              blue
+              createdAt
+              updatedAt
+              owner
+            }
+            owner
+            histories {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         createdAt
