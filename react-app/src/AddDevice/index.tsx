@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { Form, Container, Button } from 'react-bootstrap'
 import TextField from '../common/components/TextField'
 import { createDevice } from '../graphql/mutations'
-import { userByCognitoId } from '../graphql/queries test'
+import { userByCognitoId } from '../graphql/queries'
 
 const AddDevice = () => {
   const [id, setId] = useState('')
