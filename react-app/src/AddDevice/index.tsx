@@ -1,8 +1,9 @@
 import { API, graphqlOperation } from 'aws-amplify'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Form, Container, Button } from 'react-bootstrap'
 import TextField from '../common/components/TextField'
 import { createDevice } from '../graphql/mutations'
+import { userByCognitoId } from '../graphql/queries'
 
 const AddDevice = () => {
   const [id, setId] = useState('')
@@ -11,6 +12,18 @@ const AddDevice = () => {
   const [nameError, setNameError] = useState(false)
   const [generalError, setGeneralError] = useState(false)
 
+  useEffect(() => {
+    fetchUser()
+  }, [])
+
+  const fetchUser = async () => {
+    const result = await API.graphql(
+      graphqlOperation(userByCognitoId, {
+        owner: '5d9e2347-dd9d-4bcf-9731-6c084d5d0f0f',
+      })
+    )
+    console.log(result)
+  }
   const createDeviceAWS = async (e: React.FormEvent) => {
     e.preventDefault()
     setGeneralError(false)

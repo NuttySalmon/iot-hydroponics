@@ -44,6 +44,33 @@ export const createDevice = /* GraphQL */ `
           id
           deviceID
           datetime
+          data {
+            id
+            time
+            fanOn
+            LEDOn
+            temp
+            hum
+            pumpOn
+            valveOpen
+            createdAt
+            updatedAt
+            owner
+          }
+          setting {
+            id
+            waterLevel
+            floodFrequency
+            LEDOnTime
+            LEDOffTime
+            FanDuration
+            red
+            green
+            blue
+            createdAt
+            updatedAt
+            owner
+          }
           createdAt
           updatedAt
           owner
@@ -97,6 +124,33 @@ export const updateDevice = /* GraphQL */ `
           id
           deviceID
           datetime
+          data {
+            id
+            time
+            fanOn
+            LEDOn
+            temp
+            hum
+            pumpOn
+            valveOpen
+            createdAt
+            updatedAt
+            owner
+          }
+          setting {
+            id
+            waterLevel
+            floodFrequency
+            LEDOnTime
+            LEDOffTime
+            FanDuration
+            red
+            green
+            blue
+            createdAt
+            updatedAt
+            owner
+          }
           createdAt
           updatedAt
           owner
@@ -150,6 +204,33 @@ export const deleteDevice = /* GraphQL */ `
           id
           deviceID
           datetime
+          data {
+            id
+            time
+            fanOn
+            LEDOn
+            temp
+            hum
+            pumpOn
+            valveOpen
+            createdAt
+            updatedAt
+            owner
+          }
+          setting {
+            id
+            waterLevel
+            floodFrequency
+            LEDOnTime
+            LEDOffTime
+            FanDuration
+            red
+            green
+            blue
+            createdAt
+            updatedAt
+            owner
+          }
           createdAt
           updatedAt
           owner
@@ -174,7 +255,45 @@ export const createUser = /* GraphQL */ `
           id
           name
           description
+          currentData {
+            id
+            time
+            fanOn
+            LEDOn
+            temp
+            hum
+            pumpOn
+            valveOpen
+            createdAt
+            updatedAt
+            owner
+          }
+          currentSetting {
+            id
+            waterLevel
+            floodFrequency
+            LEDOnTime
+            LEDOffTime
+            FanDuration
+            red
+            green
+            blue
+            createdAt
+            updatedAt
+            owner
+          }
           owner
+          histories {
+            items {
+              id
+              deviceID
+              datetime
+              createdAt
+              updatedAt
+              owner
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -198,7 +317,45 @@ export const updateUser = /* GraphQL */ `
           id
           name
           description
+          currentData {
+            id
+            time
+            fanOn
+            LEDOn
+            temp
+            hum
+            pumpOn
+            valveOpen
+            createdAt
+            updatedAt
+            owner
+          }
+          currentSetting {
+            id
+            waterLevel
+            floodFrequency
+            LEDOnTime
+            LEDOffTime
+            FanDuration
+            red
+            green
+            blue
+            createdAt
+            updatedAt
+            owner
+          }
           owner
+          histories {
+            items {
+              id
+              deviceID
+              datetime
+              createdAt
+              updatedAt
+              owner
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -222,7 +379,45 @@ export const deleteUser = /* GraphQL */ `
           id
           name
           description
+          currentData {
+            id
+            time
+            fanOn
+            LEDOn
+            temp
+            hum
+            pumpOn
+            valveOpen
+            createdAt
+            updatedAt
+            owner
+          }
+          currentSetting {
+            id
+            waterLevel
+            floodFrequency
+            LEDOnTime
+            LEDOffTime
+            FanDuration
+            red
+            green
+            blue
+            createdAt
+            updatedAt
+            owner
+          }
           owner
+          histories {
+            items {
+              id
+              deviceID
+              datetime
+              createdAt
+              updatedAt
+              owner
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
