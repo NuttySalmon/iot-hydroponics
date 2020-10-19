@@ -18,9 +18,25 @@ type userDataType = {
     updatedAt: string
   } | null
 
-const Settings = () => {
+function Settings() {
+    const [userData, setUserData] = useState<userDataType>(null)
+    const fetchUser = async () => { 
+        const result = (await API.graphql(
+          graphqlOperation(userByCognitoId, {
+            owner: 'b904a3a4-ae51-4b23-ba74-fe9106091f7d',
+          })
+        )) as GraphQLResult<UserByCognitoIdQuery>
+        const userList = result.data?.userByCognitoID?.items!
+        if (userList) setUserData(userList[0])
+    
+        // const devices = userData.
+        console.log(result.data)
+      }
+      return (
+        <div>
+          {' '}
+        </div>
+      )
+    }
 
-
-    return <h1>test</h1>
-}
 export default Settings
