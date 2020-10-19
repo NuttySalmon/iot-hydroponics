@@ -7,10 +7,20 @@ import UserAuth from './UserAuth'
 import Dashboard from './Dashboard'
 import ProtectedRoute from './UserAuth/ProtectedRoute'
 
+import Details from './Details'
+{/* Added Code */}
+
 const App = () => {
   return (
     <Router>
       <Switch>
+
+        {/* Added Code */}
+        <Route path="/details">
+          <Details />
+        </Route>
+        {/* Added Code */}
+
         <Route path="/sample" render={UISample} />
         <Route exact path="/">
           <Landing />
