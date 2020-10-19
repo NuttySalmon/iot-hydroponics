@@ -44,24 +44,21 @@ function Home() {
     fetchUser()
   }, [])
 
-  useEffect(() => {
-    console.log(userData)
-  })
-
+  const listDevices = () => {
+    if (userData) {
+      return userData?.devices?.items!.map((device, index) => (
+        <div key={device.id ? device.id : index}>
+          <p>{JSON.stringify(device)}</p>
+        </div>
+      ))
+    }
+    return null
+  }
   return (
     <div>
-      {' '}
       <p> Test from Home </p>
-      {() => {
-        if (userData !== null) {
-          return userData?.devices?.items!.map((device, index) => (
-            <div key={device.id ? device.id : index}>
-              <p>{device.id}</p>
-            </div>
-          ))
-        }
-      }}
-      <DeviceCard />{' '}
+      {listDevices()}
+      <DeviceCard />
     </div>
   )
 }
