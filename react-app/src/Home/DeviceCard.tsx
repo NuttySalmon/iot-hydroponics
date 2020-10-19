@@ -1,11 +1,14 @@
-import React, { useEffect, useState }  from 'react'
-import Amplify, { API, graphqlOperation } from 'aws-amplify'
-import 
+import React from 'react'
+import { Row, Col } from 'react-bootstrap'
 
 function DeviceCard() {
-    return (
-        
-    )
+  return (
+    <Row>
+      <Col>
+        <p> Test From DeviceCard </p>
+      </Col>
+    </Row>
+  )
 }
 
 export default DeviceCard
