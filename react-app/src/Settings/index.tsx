@@ -21,7 +21,7 @@ waterLevel: 10
 */
 type DeviceSettingsType = {
   FanDuration: number
-  LEDOffTime: string 
+  LEDOffTime: string
   LEDOnTime: string
   blue: number
   createdAt: string
@@ -32,33 +32,36 @@ type DeviceSettingsType = {
   red: number
   updatedAt: string
   waterLevel: number
-}
+} | null
 
-
-
-function Settings() {
-  const [deviceSettings, setDeviceSettings] = useState<any>(null)
+function Settings() { 
+  const [deviceSettings, setDeviceSettings] = useState<DeviceSettingsType>(null)
   const fetchUser = async () => {
-    const result = (await API.graphql(
-      graphqlOperation(getDevice, {
-        id: '012345',
-      })
-    )) as GraphQLResult<GetDeviceQuery>
-    // const devices = userData.
-    console.log(result.data?.getDevice?.currentSetting)
-// save settings here
-
-
+    try {
+      const result = (await API.graphql(
+        graphqlOperation(getDevice, {
+          id: '1', // manually change this
+        })
+      )) as GraphQLResult<GetDeviceQuery>
+      // const devices = userData.
+      console.log('hello')
+      console.log(result.data?.getDevice?.currentSetting!)
+      // save settings here (if no data is here, set the data's value to 0 or nothing)
+    } catch (error) {
+      console.log(error)
+    }
   }
   useEffect(() => {
     fetchUser()
   }, [])
 
-  return <div>
-    <p>
-      On time:
-    </p>
-     </div>
+
+  return (
+    <div>
+      <p>Testing:</p>
+
+    </div>
+  )
 }
 
 export default Settings
