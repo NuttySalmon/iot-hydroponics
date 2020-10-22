@@ -5,7 +5,7 @@ import UISample from './common/UISample'
 import './common/scss/base/base.scss'
 import UserAuth from './UserAuth'
 import Dashboard from './Dashboard'
-import ProtectedRoute from './UserAuth/ProtectedRoute'
+import { ProtectedRoute } from './UserAuth/RouteRedirect'
 
 const App = () => {
   return (
@@ -16,11 +16,7 @@ const App = () => {
           <Landing />
         </Route>
         <UserAuth loggedInPath="/dashboard">
-          <ProtectedRoute
-            path="/dashboard"
-            render={Dashboard}
-            notLoggedInPath="/login"
-          />
+          <ProtectedRoute path="/dashboard" component={Dashboard} to="/login" />
         </UserAuth>
       </Switch>
     </Router>

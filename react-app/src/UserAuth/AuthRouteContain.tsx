@@ -1,23 +1,19 @@
 import React, { Children, cloneElement } from 'react'
-
-export type AuthChildRouteProps = {
-  path: string
-  render: React.FC
-  loggedIn?: boolean
-}
+import { AuthRoutingProps } from './RouteRedirect'
 
 type PageControlProps = {
   children: React.ReactChild[] | React.ReactChild
-} & Omit<AuthChildRouteProps, 'path' | 'render'>
+  loggedIn: boolean
+}
 
-/** Container around controlled pages for passing in props related to log in state */
+/** Container around controlled pages for passing in props for logged in state */
 const AuthRouteContain = ({ children, ...rest }: PageControlProps) => {
   const proppedChildren = Children.map(children, (child) =>
-    cloneElement<AuthChildRouteProps>(child as React.ReactElement, {
+    cloneElement<AuthRoutingProps>(child as React.ReactElement, {
       ...rest,
     })
   )
-  return <> {proppedChildren} </>
+  return <>{proppedChildren} </>
 }
 
 export default AuthRouteContain

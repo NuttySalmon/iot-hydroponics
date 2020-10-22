@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Hub, Auth } from 'aws-amplify'
 import { HubCallback } from '@aws-amplify/core/lib/Hub'
+import { Route } from 'react-router-dom'
 import Login from '../AuthPages/Login'
 import SignUp from '../AuthPages/SignUp'
 import Logout from '../AuthPages/Logout'
-import AuthRoute from './AuthRoute'
+import { AuthPageRoute } from './RouteRedirect'
 import AuthRouteContain from './AuthRouteContain'
-import ProtectedRoute from './ProtectedRoute'
 
 type UserAuthProps = {
   // path to redirefct if logged in
@@ -50,10 +50,12 @@ const UserAuth = ({ loggedInPath, children }: UserAuthProps) => {
   }
   Hub.listen('auth', AuthListener)
   return (
-    <AuthRouteContain {...{ loggedInPath, loggedIn }}>
-      <AuthRoute path="/signup" render={SignUp} />
-      <AuthRoute path="/login" render={Login} />
-      <ProtectedRoute path="/logout" notLoggedInPath="/login" render={Logout} />
+    <AuthRouteContain {...{ loggedIn }}>
+      <AuthPageRoute path="/signup" component={SignUp} to="/dashboard" />
+      <AuthPageRoute path="/login" component={Login} to="/dashboard" />
+      <Route path="/logout">
+        <Logout />
+      </Route>
       {children}
     </AuthRouteContain>
   )
