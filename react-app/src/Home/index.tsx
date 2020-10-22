@@ -47,9 +47,7 @@ function Home() {
   const listDevices = () => {
     if (userData) {
       return userData?.devices?.items!.map((device, index) => (
-        <div key={device.id ? device.id : index}>
-          <p>{JSON.stringify(device)}</p>
-        </div>
+        <DeviceCard { ...device } key= {device.id ? device.id : index} />
       ))
     }
     return null
@@ -58,7 +56,6 @@ function Home() {
     <div>
       <p> Test from Home </p>
       {listDevices()}
-      <DeviceCard />
     </div>
   )
 }
