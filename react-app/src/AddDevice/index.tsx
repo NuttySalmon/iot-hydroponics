@@ -41,14 +41,14 @@ const AddDevice = () => {
 
   return (
     <Container className="mt-5">
-      <h1> Add device</h1>
+      <h2> Add device</h2>
       <p
         className="warning"
         style={{ display: generalError ? 'inherit' : 'none' }}
       >
         Error occured and we cannot add the device
       </p>
-      <Form onSubmit={createDeviceAWS}>
+      <Form onSubmit={createDeviceAWS} style={{ maxWidth: '400px' }}>
         <TextField
           label="Device ID"
           value={id}
