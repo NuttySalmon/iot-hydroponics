@@ -7,6 +7,7 @@ import SignUp from '../AuthPages/SignUp'
 import Logout from '../AuthPages/Logout'
 import { AuthPageRoute } from './RouteRedirect'
 import AuthRouteContain from './AuthRouteContain'
+import Loading from '../common/components/Loading'
 
 type UserAuthProps = {
   // path to redirefct if logged in
@@ -16,16 +17,8 @@ type UserAuthProps = {
 
 // Auth components
 const UserAuth = ({ loggedInPath, children }: UserAuthProps) => {
+  const [ready, setReady] = useState(false)
   const [loggedIn, changeLoggedIn] = useState(false)
-  useEffect(() => {
-    Auth.currentAuthenticatedUser()
-      .then((user) => {
-        changeLoggedIn(Boolean(user))
-      })
-      .catch(() => {
-        console.log('User not found')
-      })
-  })
   const AuthListener: HubCallback = (data) => {
     switch (data.payload.event) {
       case 'signIn':
@@ -48,17 +41,35 @@ const UserAuth = ({ loggedInPath, children }: UserAuthProps) => {
         console.log('the Auth module is configured')
     }
   }
-  Hub.listen('auth', AuthListener)
-  return (
-    <AuthRouteContain {...{ loggedIn }}>
-      <AuthPageRoute path="/signup" component={SignUp} to="/dashboard" />
-      <AuthPageRoute path="/login" component={Login} to="/dashboard" />
-      <Route path="/logout">
-        <Logout />
-      </Route>
-      {children}
-    </AuthRouteContain>
-  )
+  useEffect(() => {
+    Hub.listen('auth', AuthListener)
+    Auth.currentAuthenticatedUser()
+      .then((user) => {
+        changeLoggedIn(Boolean(user))
+        setReady(true)
+      })
+      .catch(() => {
+        console.log('User not found')
+      })
+  })
+  return (() => {
+    if (ready)
+      return (
+        <AuthRouteContain loggedIn={loggedIn}>
+          {children}
+          <AuthPageRoute path="/signup" component={SignUp} to={loggedInPath} />
+          <AuthPageRoute path="/login" component={Login} to={loggedInPath} />
+          <Route path="/logout">
+            <Logout />
+          </Route>
+        </AuthRouteContain>
+      )
+    return (
+      <h3 className="text-center">
+        <Loading />
+      </h3>
+    )
+  })()
 }
 
 export default UserAuth

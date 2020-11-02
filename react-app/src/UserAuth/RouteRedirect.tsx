@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react'
-import { Route, Redirect } from 'react-router-dom'
+import { Route, Redirect, useLocation } from 'react-router-dom'
 
 export type RouteRedirectProps = {
   /** Path of route */
@@ -23,14 +23,20 @@ export const RouteRedirect = ({
   component: C,
   redirect,
 }: RouteRedirectProps) => {
-  return (
-    <>
-      {(() => {
-        if (redirect) return <Redirect path={path} to={to} />
-        return <Route path={path} component={C} />
-      })()}
-    </>
-  )
+  const location = useLocation()
+  const getComponent = () => {
+    if (redirect) {
+      return (
+        <Redirect
+          exact
+          path={path}
+          to={{ pathname: to, state: { from: location } }}
+        />
+      )
+    }
+    return <C />
+  }
+  return <Route path={path} render={getComponent} />
 }
 
 export type AuthRoutingProps = {
