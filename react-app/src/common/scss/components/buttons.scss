@@ -38,6 +38,13 @@
   width: 213px;
 }
 
+.btn-long-sm {
+  @extend .btn-long;
+  height: 40px;
+  border-radius: 40px;
+  font-size: large;
+}
+
 @mixin button-trans-base {
   font: 1em/0px $serif;
   backdrop-filter: blur(30px);

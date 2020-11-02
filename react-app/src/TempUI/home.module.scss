@@ -1,0 +1,31 @@
+@import '../common/scss/base/variables';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins/breakpoints';
+
+.devCardParent {
+  // display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 1rem;
+  column-gap: 50px;
+  row-gap: 50px;
+  justify-items: center;
+  @include media-breakpoint-down(md) {
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(unquote('min(250px, 100%)'), 1fr)
+    );
+  }
+}
+
+$width: 250px;
+$height: 300px;
+.devCard {
+  width: $width;
+  height: $height;
+  transition: all 0.2s;
+  &:hover {
+    box-shadow: 5px 5px 2px rgba($dark, 0.5);
+  }
+}
