@@ -3,10 +3,10 @@
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins/breakpoints';
 .bar {
-  height: 2.5em;
+  // height: 2.5em;
   padding: 0;
   background-color: white;
-  border-bottom: solid 1.5px $dark;
+  // border-bottom: solid 1.5px $dark;
 }
 
 .navLink {
@@ -23,7 +23,7 @@
 }
 
 .bell {
-  color: $highlight;
+  color: $highlight!important;
   align-self: center;
   &:visited {
     color: $highlight;
@@ -63,4 +63,8 @@
   &:hover {
     color: transparent;
   }
+}
+
+.navbarMenu{
+  background-color: $light;
 }
