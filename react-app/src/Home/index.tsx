@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Amplify, { API, graphqlOperation } from 'aws-amplify'
+import Observable from 'zen-observable'
 import { GraphQLResult } from '@aws-amplify/api'
 import * as subscriptions from '../graphql/subscriptions'
 import DeviceCard from './DeviceCard'
@@ -52,9 +53,15 @@ function Home() {
       if (userList) {
         const subscription = API.graphql(
           graphqlOperation(subscriptions.onUpdateData)
-      ).subscribe({
-          next: (subData: any) => console.log(subData)
-      });
+        )
+        if (subscription instanceof Observable) {
+          subscription.subscribe({
+            next: (todoData) => console.log(todoData),
+          })
+        }
+        // ).subscribe({
+        //     next: (subData: any) => console.log(subData)
+        // });
       }
 
       // const devices = userData.
@@ -71,7 +78,7 @@ function Home() {
   const listDevices = () => {
     if (userData) {
       return userData?.devices?.items!.map((device, index) => (
-        <DeviceCard { ...device } key= {device.id ? device.id : index} />
+        <DeviceCard {...device} key={device.id ? device.id : index} />
       ))
     }
     return null
