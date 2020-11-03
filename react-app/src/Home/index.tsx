@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Amplify, { API, graphqlOperation } from 'aws-amplify'
 import { GraphQLResult } from '@aws-amplify/api'
+import * as subscriptions from '../graphql/subscriptions'
 import DeviceCard from './DeviceCard'
 import { userByCognitoId } from '../graphql/queries'
 import { UserByCognitoIdQuery } from '../API'
@@ -31,6 +32,29 @@ function Home() {
       if (userList) {
         setUserData(userList[0])
         console.log('hello')
+      }
+
+      // const devices = userData.
+      console.log(result.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const subscribeData = async () => {
+    try {
+      const result = (await API.graphql(
+        graphqlOperation(userByCognitoId, {
+          owner: '990be0c7-7c8b-4556-82f2-63fb9c73ed1e',
+        })
+      )) as GraphQLResult<UserByCognitoIdQuery>
+      const userList = result.data?.userByCognitoID?.items!
+      if (userList) {
+        const subscription = API.graphql(
+          graphqlOperation(subscriptions.onUpdateData)
+      ).subscribe({
+          next: (subData: any) => console.log(subData)
+      });
       }
 
       // const devices = userData.

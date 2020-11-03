@@ -1,4 +1,4 @@
-import { API, graphqlOperation } from 'aws-amplify'
+import { API, graphqlOperation, PubSub } from 'aws-amplify'
 import React, { useState, useEffect } from 'react'
 import { Form, Container, Button } from 'react-bootstrap'
 import TextField from '../common/components/TextField'
@@ -24,6 +24,7 @@ const AddDevice = () => {
     )
     console.log(result)
   }
+
   const createDeviceAWS = async (e: React.FormEvent) => {
     e.preventDefault()
     setGeneralError(false)
