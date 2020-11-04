@@ -52,11 +52,11 @@ function Home() {
       const userList = result.data?.userByCognitoID?.items!
       if (userList) {
         const subscription = API.graphql(
-          graphqlOperation(subscriptions.onUpdateData)
+          graphqlOperation(subscriptions.onUpdateDevice)
         )
         if (subscription instanceof Observable) {
           subscription.subscribe({
-            next: (todoData) => console.log(todoData),
+            next: (todoData) => console.log("Triggered"),
           })
         }
         // ).subscribe({
@@ -65,7 +65,6 @@ function Home() {
       }
 
       // const devices = userData.
-      console.log("hi")
       console.log(result.data)
     } catch (error) {
       console.log(error)
