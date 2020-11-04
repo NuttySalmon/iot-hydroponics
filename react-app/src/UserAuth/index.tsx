@@ -52,7 +52,7 @@ const UserAuth = ({ loggedInPath, children }: UserAuthProps) => {
         console.log('User not found')
       })
     setReady(true)
-  }, [])
+  })
   return (() => {
     if (ready)
       return (

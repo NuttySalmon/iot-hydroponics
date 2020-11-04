@@ -1,12 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect } from 'react'
 import { Auth } from 'aws-amplify'
-import { Route } from 'react-router-dom'
+import { Route, useRouteMatch } from 'react-router-dom'
 import Navi from './Navi'
 import AddDevice from './AddDevice'
 import Home from './TempUI/Home'
+import Device from './TempUI/Device'
 
 const Dashboard = () => {
+  const match = useRouteMatch()
   useEffect(() => {
     console.log('Dashboard')
     Auth.currentAuthenticatedUser()
@@ -20,11 +22,14 @@ const Dashboard = () => {
   return (
     <div>
       <Navi />
-      <Route exact path="/dashboard/">
+      <Route exact path={match.url}>
         <Home />
       </Route>
-      <Route path="/dashboard/add">
+      <Route path={`${match.url}/add`}>
         <AddDevice />
+      </Route>
+      <Route path={`${match.url}/plant/:id`}>
+        <Device />
       </Route>
     </div>
   )
