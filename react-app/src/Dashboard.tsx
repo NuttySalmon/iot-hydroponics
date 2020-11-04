@@ -28,7 +28,7 @@ const Dashboard = () => {
       <Route path={`${match.url}/add`}>
         <AddDevice />
       </Route>
-      <Route path={`${match.url}/plant/:id`}>
+      <Route path={`${match.url}/plant/:deviceId`}>
         <Device />
       </Route>
     </div>
