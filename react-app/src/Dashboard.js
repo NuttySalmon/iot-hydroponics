@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect } from 'react'
 import { Auth } from 'aws-amplify'
+import { Route } from 'react-router-dom'
 import Navi from './Navi'
 import AddDevice from './AddDevice'
-import { Route, Switch } from 'react-router-dom'
 import Home from './TempUI/Home'
 
 const Dashboard = () => {

@@ -9,6 +9,7 @@ const Home = () => {
   for (let i = 0; i < 5; i += 1) {
     cards.push(
       <DevCard
+        key={i}
         className={style.devCard}
         name={i.toString()}
         temp={123}
