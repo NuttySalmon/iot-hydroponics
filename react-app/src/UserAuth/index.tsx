@@ -46,13 +46,13 @@ const UserAuth = ({ loggedInPath, children }: UserAuthProps) => {
     Auth.currentAuthenticatedUser()
       .then((user) => {
         changeLoggedIn(Boolean(user))
+        setReady(true)
       })
       .catch(() => {
         changeLoggedIn(false)
         console.log('User not found')
       })
-    setReady(true)
-  })
+  }, [])
   return (() => {
     if (ready)
       return (
