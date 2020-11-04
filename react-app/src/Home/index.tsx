@@ -65,6 +65,7 @@ function Home() {
       }
 
       // const devices = userData.
+      console.log("hi")
       console.log(result.data)
     } catch (error) {
       console.log(error)
@@ -73,6 +74,7 @@ function Home() {
 
   useEffect(() => {
     fetchUser()
+    subscribeData()
   }, [])
 
   const listDevices = () => {
