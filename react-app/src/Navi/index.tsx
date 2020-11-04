@@ -22,7 +22,7 @@ function Navi() {
             </Nav.Link>
           </LinkContainer>
 
-          <Dropdown as={Nav.Link}>
+          <Dropdown className="nav-link">
             <Dropdown.Toggle id={style.dropdown} as={HeadDropdown}>
               <div className={style.headContain}>
                 <img
