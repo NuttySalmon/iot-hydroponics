@@ -27,7 +27,7 @@ const AddDevice = () => {
 
   return (
     <Container className="mt-5">
-      <h2> Add device</h2>
+      <h2>Add your new device</h2>
       <p
         className="warning"
         style={{ display: generalError ? 'inherit' : 'none' }}
