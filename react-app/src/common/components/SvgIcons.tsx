@@ -36,3 +36,14 @@ export const Bell = ({
     </svg>
   )
 }
+
+export const Circle = ({ className = '', size = 12 }) => {
+  const dimensions = size.toString()
+  const centerCoor = (size / 2 - 1).toString()
+  const radius = ((size / 2) * 0.8).toString()
+  return (
+    <svg height={dimensions} width={dimensions} className={className}>
+      <circle cx={centerCoor} cy={centerCoor} r={radius} fill="currentColor" />
+    </svg>
+  )
+}

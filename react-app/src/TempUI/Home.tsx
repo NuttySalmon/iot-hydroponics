@@ -1,26 +1,23 @@
 import React from 'react'
 import { Button, Col, Container, Row } from 'react-bootstrap'
 import { Link, useRouteMatch } from 'react-router-dom'
+import moment from 'moment'
 import DevCard from './DevCard'
 import style from './home.module.scss'
+import { DeviceInfo } from './DeviceInfo'
 
-const Home = () => {
-  const cards = []
+const Home = ({ deviceInfos }: { deviceInfos: Array<DeviceInfo> }) => {
   const match = useRouteMatch()
-  for (let i = 0; i < 5; i += 1) {
-    cards.push(
-      <Link to={`${match.url}/plant/${i}`}>
-        <DevCard
-          key={i}
-          className={style.devCard}
-          name={i.toString()}
-          temp={123}
-          hum={340}
-        />
+  const getCards = () => {
+    deviceInfos.map((deviceInfo) => (
+      <Link
+        to={`${match.url}/plant/${deviceInfo.id}`}
+        className={style.devCardLink}
+      >
+        <DevCard name={deviceInfo.name} {...deviceInfo.data} isOnline={true} />
       </Link>
-    )
+    ))
   }
-  console.log(match)
   return (
     <Container className="mt-4">
       <Row>
@@ -33,7 +30,21 @@ const Home = () => {
           </Link>
         </Col>
       </Row>
-      <div className={style.devCardParent}>{cards}</div>
+      <div className={style.devCardParent}>
+        {deviceInfos.map((deviceInfo) => (
+          <Link
+            to={`${match.url}/plant/${deviceInfo.id}`}
+            className={style.devCardLink}
+          >
+            <DevCard
+              name={deviceInfo.name}
+              {...deviceInfo.data}
+              isOnline={true}
+              className={style.devCard}
+            />
+          </Link>
+        ))}
+      </div>
     </Container>
   )
 }
