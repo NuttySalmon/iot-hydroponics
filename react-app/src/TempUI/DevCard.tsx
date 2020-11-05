@@ -28,10 +28,10 @@ const DevCard = ({
   ...rest
 }: DevCardProps) => {
   const onlineIndicatorClass = () =>
-    `${style.onlineIndicator} ${isOnline ? style.online : 'warning'}`
+    `${style.onlineIndicator} ${isOnline ? style.online : style.offline}`
   return (
     <Card {...rest}>
-      <Card.Img  height="150px" variant="top" src={devicePic} />
+      <Card.Img height="150px" variant="top" src={devicePic} />
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <Card.Text>
@@ -39,22 +39,22 @@ const DevCard = ({
             <Col className={style.lastUpdatedText}>
               Last updated {lastUpdatedSince}
             </Col>
-            <Col md={1} className={style.onlineIndicator}>
+            <Col xs={1} className={style.onlineIndicator}>
               <Circle className={onlineIndicatorClass()} />
             </Col>
           </Row>
           <Row>
-            <Col md={1}>
+            <Col xs={1}>
               <Image src={tempIcon} className={style.icon} />
             </Col>
             <Col> {temp}°F</Col>
-            <Col md={1}>
+            <Col xs={1}>
               <Image src={humIcon} className={style.icon} />
             </Col>
             <Col> {hum}%</Col>
           </Row>
           <Row className="mt-2">
-            <Col md={1}>
+            <Col xs={1}>
               <Image src={infoIcon} className={style.icon} />
             </Col>
             <Col>{status}</Col>
