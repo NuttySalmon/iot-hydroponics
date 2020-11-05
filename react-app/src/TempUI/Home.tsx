@@ -6,45 +6,38 @@ import DevCard from './DevCard'
 import style from './home.module.scss'
 import { DeviceInfo } from './DeviceInfo'
 
-const Home = ({ deviceInfos }: { deviceInfos: Array<DeviceInfo> }) => {
+type HomeProps = {
+  deviceInfos: Array<DeviceInfo>
+  greetings: string
+}
+const Home = ({ deviceInfos, greetings }: HomeProps) => {
   const match = useRouteMatch()
-  const getCards = () => {
-    deviceInfos.map((deviceInfo) => (
-      <Link
-        to={`${match.url}/plant/${deviceInfo.id}`}
-        className={style.devCardLink}
-      >
-        <DevCard name={deviceInfo.name} {...deviceInfo.data} isOnline={true} />
-      </Link>
-    ))
-  }
+  const cards = deviceInfos.map((deviceInfo) => (
+    <Link
+      to={`${match.url}/plant/${deviceInfo.id}`}
+      className={style.devCardLink}
+    >
+      <DevCard
+        name={deviceInfo.name}
+        {...deviceInfo.data}
+        className={style.devCard}
+      />
+    </Link>
+  ))
+
   return (
     <Container className="mt-4">
-      <Row>
-        <Col>
-          <h2 className="mb-5"> Good Morning, Mark!</h2>
+      <Row className={style.headerRow}>
+        <Col sm={12} md="auto">
+          <h2> {greetings} Mark!</h2>
         </Col>
-        <Col style={{ maxWidth: 'fit-content' }}>
+        <Col className={style.addDevice}>
           <Link to="/dashboard/add">
             <Button variant="long-sm"> Add device</Button>
           </Link>
         </Col>
       </Row>
-      <div className={style.devCardParent}>
-        {deviceInfos.map((deviceInfo) => (
-          <Link
-            to={`${match.url}/plant/${deviceInfo.id}`}
-            className={style.devCardLink}
-          >
-            <DevCard
-              name={deviceInfo.name}
-              {...deviceInfo.data}
-              isOnline={true}
-              className={style.devCard}
-            />
-          </Link>
-        ))}
-      </div>
+      <div className={style.devCardParent}>{cards}</div>
     </Container>
   )
 }
