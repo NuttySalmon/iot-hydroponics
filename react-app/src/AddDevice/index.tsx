@@ -1,6 +1,7 @@
 import { API, graphqlOperation } from 'aws-amplify'
 import React, { useState } from 'react'
-import { Form, Container, Button } from 'react-bootstrap'
+import { Form, Button } from 'react-bootstrap'
+import HeaderBody from '../common/components/HeaderBody'
 import TextField from '../common/components/TextField'
 import { createDevice } from '../graphql/mutations'
 
@@ -27,8 +28,7 @@ const AddDevice = () => {
   }
 
   return (
-    <Container className="mt-5">
-      <h2>Add your new device</h2>
+    <HeaderBody header="Add your new device">
       <p
         className="warning"
         style={{ display: generalError ? 'inherit' : 'none' }}
@@ -56,7 +56,7 @@ const AddDevice = () => {
           Submit
         </Button>
       </Form>
-    </Container>
+    </HeaderBody>
   )
 }
 

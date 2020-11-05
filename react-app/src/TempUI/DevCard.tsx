@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Card, CardProps, Col, Image, Row } from 'react-bootstrap'
-import moment from 'moment'
 import infoIcon from './img/info.svg'
 import humIcon from './img/water.svg'
 import tempIcon from './img/thermometer.svg'
@@ -33,7 +32,7 @@ const DevCard = ({
     <Card {...rest}>
       <Card.Img height="150px" variant="top" src={devicePic} />
       <Card.Body>
-        <Card.Title>{name}</Card.Title>
+        <Card.Title className={style.cardName}>{name}</Card.Title>
         <Card.Text>
           <Row className={style.lastUpdated}>
             <Col className={style.lastUpdatedText}>

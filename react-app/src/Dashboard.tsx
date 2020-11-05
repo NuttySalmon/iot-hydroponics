@@ -2,11 +2,11 @@
 import React, { useEffect, useState } from 'react'
 import { Auth } from 'aws-amplify'
 import { Route, useRouteMatch } from 'react-router-dom'
+import moment from 'moment'
 import Navi from './Navi'
 import AddDevice from './AddDevice'
 import Home from './TempUI/Home'
 import Device from './TempUI/Device'
-import moment from 'moment'
 import { DeviceInfo } from './TempUI/DeviceInfo'
 
 let fakeData: Array<DeviceInfo> = []
@@ -62,7 +62,8 @@ const Dashboard = () => {
       .catch(() => {
         console.log('dashboard no user')
       })
-  })
+  }, [])
+
   return (
     <div>
       <Navi />

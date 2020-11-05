@@ -1,10 +1,10 @@
 import React from 'react'
-import { Button, Col, Container, Row } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import { Link, useRouteMatch } from 'react-router-dom'
-import moment from 'moment'
 import DevCard from './DevCard'
 import style from './home.module.scss'
 import { DeviceInfo } from './DeviceInfo'
+import HeaderBody from '../common/components/HeaderBody'
 
 type HomeProps = {
   deviceInfos: Array<DeviceInfo>
@@ -25,20 +25,15 @@ const Home = ({ deviceInfos, greetings }: HomeProps) => {
     </Link>
   ))
 
+  const addDeviceButton = (
+    <Link to="/dashboard/add">
+      <Button variant="long-sm"> Add device</Button>
+    </Link>
+  )
   return (
-    <Container className="mt-4">
-      <Row className={style.headerRow}>
-        <Col sm={12} md="auto">
-          <h2> {greetings} Mark!</h2>
-        </Col>
-        <Col className={style.addDevice}>
-          <Link to="/dashboard/add">
-            <Button variant="long-sm"> Add device</Button>
-          </Link>
-        </Col>
-      </Row>
+    <HeaderBody header={`${greetings} Mark!`} button={addDeviceButton}>
       <div className={style.devCardParent}>{cards}</div>
-    </Container>
+    </HeaderBody>
   )
 }
 

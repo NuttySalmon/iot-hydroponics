@@ -1,7 +1,15 @@
 @import '../common/scss/base/variables';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+
 .icon {
   height: 20px;
   width: 20px;
+}
+
+.cardName{
+  color: $dark;
+  font-size: x-large;
 }
 
 .onlineIndicator {
@@ -17,8 +25,9 @@
 }
 
 .lastUpdated {
-  color: $light-dark;
+  color: lighten($light-dark, 1);
   font-size: small;
+  margin-bottom: $spacer;
 }
 
 .lastUpdatedText {
