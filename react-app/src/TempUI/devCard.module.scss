@@ -9,7 +9,11 @@
   margin: 0;
 }
 .online {
-  color: #1ada10;
+  color: #3ac233;
+}
+
+.offline {
+  color: $muted;
 }
 
 .lastUpdated {
