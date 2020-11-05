@@ -16,14 +16,6 @@ const AddDevice = () => {
     fetchUser()
   }, [])
 
-  const fetchUser = async () => {
-    const result = await API.graphql(
-      graphqlOperation(userByCognitoId, {
-        owner: '5d9e2347-dd9d-4bcf-9731-6c084d5d0f0f',
-      })
-    )
-    console.log(result)
-  }
   const createDeviceAWS = async (e: React.FormEvent) => {
     e.preventDefault()
     setGeneralError(false)
@@ -41,7 +33,7 @@ const AddDevice = () => {
 
   return (
     <Container className="mt-5">
-      <h2> Add device</h2>
+      <h2>Add your new device</h2>
       <p
         className="warning"
         style={{ display: generalError ? 'inherit' : 'none' }}
