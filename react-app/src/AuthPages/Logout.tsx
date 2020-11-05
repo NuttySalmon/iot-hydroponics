@@ -18,7 +18,7 @@ const Logout = () => {
   // handles sign out when this componenet is mounted
   useEffect(() => {
     signOut()
-  })
+  }, [])
   return <p>Logging out...</p>
 }
 
