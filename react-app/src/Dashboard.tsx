@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Auth } from 'aws-amplify'
 import { Route, useRouteMatch } from 'react-router-dom'
 import Navi from './Navi'
@@ -38,10 +38,22 @@ const calcIsOnline = (lastUpdated: Date): boolean => {
   const minutes = duartionSince.asMinutes()
   return minutes <= 15
 }
+
+const calcGreetings = () => {
+  const now = new Date()
+  const hrs = now.getHours()
+  if (hrs < 12) return 'Good morning'
+  if (hrs <= 17) return 'Good afternoon'
+  if (hrs <= 24) return 'Good evening'
+  return 'Hello'
+}
+
 const Dashboard = () => {
   makeFakeData()
   const match = useRouteMatch()
+  const [greetings, setGreetings] = useState('Hello')
   useEffect(() => {
+    setGreetings(calcGreetings())
     console.log('Dashboard')
     Auth.currentAuthenticatedUser()
       .then((user) => {
@@ -55,7 +67,7 @@ const Dashboard = () => {
     <div>
       <Navi />
       <Route exact path={match.url}>
-        <Home deviceInfos={fakeData} />
+        <Home deviceInfos={fakeData} greetings={greetings} />
       </Route>
       <Route path={`${match.url}/add`}>
         <AddDevice />
