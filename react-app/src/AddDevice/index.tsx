@@ -10,6 +10,7 @@ const AddDevice = () => {
   const [idError, setIdError] = useState(false)
   const [nameError, setNameError] = useState(false)
   const [generalError, setGeneralError] = useState(false)
+
   const createDeviceAWS = async (e: React.FormEvent) => {
     e.preventDefault()
     setGeneralError(false)
