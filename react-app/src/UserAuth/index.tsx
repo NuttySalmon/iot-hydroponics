@@ -41,17 +41,20 @@ const UserAuth = ({ loggedInPath, children }: UserAuthProps) => {
         console.log('the Auth module is configured')
     }
   }
+  const getUser = async () => {
+    try {
+      const user = await Auth.currentAuthenticatedUser()
+      changeLoggedIn(Boolean(user))
+    } catch (error) {
+      changeLoggedIn(false)
+      console.log('User not found')
+    } finally {
+      setReady(true)
+    }
+  }
   useEffect(() => {
     Hub.listen('auth', AuthListener)
-    Auth.currentAuthenticatedUser()
-      .then((user) => {
-        changeLoggedIn(Boolean(user))
-        setReady(true)
-      })
-      .catch(() => {
-        changeLoggedIn(false)
-        console.log('User not found')
-      })
+    getUser()
   }, [])
   return (() => {
     if (ready)
