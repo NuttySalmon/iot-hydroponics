@@ -19,6 +19,21 @@
   }
 }
 
+.headerRow {
+  margin-bottom: ($spacer*2);
+  @include media-breakpoint-down(sm) {
+    text-align: center;
+  }
+}
+
+.addDevice {
+  text-align: right;
+  @include media-breakpoint-down(sm) {
+    margin-top: $spacer;
+    text-align: inherit;
+  }
+}
+
 $width: 250px;
 $height: 300px;
 .devCard {
@@ -38,4 +53,3 @@ $height: 300px;
     text-decoration: none;
   }
 }
-
