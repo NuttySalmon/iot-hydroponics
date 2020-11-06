@@ -1,18 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import Amplify, { API, Auth, graphqlOperation } from 'aws-amplify'
+import { API, Auth, PubSub, graphqlOperation } from 'aws-amplify'
 import { GraphQLResult } from '@aws-amplify/api'
-import PubSub from '@aws-amplify/pubsub'
-import { AWSIoTProvider } from '@aws-amplify/pubsub/lib/Providers'
 import { ICredentials } from '@aws-amplify/core'
-import { userByCognitoId, getDevice } from '../graphql/queries'
-import { UserByCognitoIdQuery, GetDeviceQuery } from '../API'
-
-Amplify.addPluggable(
-  new AWSIoTProvider({
-    aws_pubsub_region: 'us-west-2',
-    aws_pubsub_endpoint: 'a1778zndtxlcj-ats.iot.us-west-2.amazonaws.com',
-  })
-)
+import { getDevice } from '../graphql/queries'
+import { GetDeviceQuery } from '../API'
 
 // error with these as well, specifically the close statement in these functions for subscriptions
 // PubSub.subscribe('myTopic').subscribe({
@@ -53,23 +44,29 @@ function Settings() {
         })
       )) as GraphQLResult<GetDeviceQuery>
       // const devices = userData.
-      console.log('hello')
       console.log(result.data?.getDevice?.currentSetting!)
       // save settings here (if no data is here, set the data's value to 0 or nothing)
     } catch (error) {
       console.log(error)
     }
   }
+  // fetchUser()
   useEffect(() => {
-    // fetchUser()
+    fetchUser()
+    sub()
     pub()
   }, [])
 
+  const sub = () => {
+    PubSub.subscribe('myTopic/1').subscribe({
+      next: (data) => console.log('Message received', data),
+      error: (error) => console.error(error),
+      complete: () => console.log('Done'),
+    })
+  }
   const pub = async () => {
     try {
-      console.log('test1')
-      const result = await PubSub.publish('myTopic', { msg: 'testing123!' })
-      console.log(result)
+      await PubSub.publish('myTopic/1', { msg: 'testing123!' })
     } catch (error) {
       console.warn(error)
       console.log('testing')
