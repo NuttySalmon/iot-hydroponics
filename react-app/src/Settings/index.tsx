@@ -1,24 +1,33 @@
 import React, { useEffect, useState } from 'react'
-import Amplify, { API, graphqlOperation } from 'aws-amplify'
+import Amplify, { API, Auth, graphqlOperation } from 'aws-amplify'
 import { GraphQLResult } from '@aws-amplify/api'
+import PubSub from '@aws-amplify/pubsub'
+import { AWSIoTProvider } from '@aws-amplify/pubsub/lib/Providers'
+import { ICredentials } from '@aws-amplify/core'
 import { userByCognitoId, getDevice } from '../graphql/queries'
 import { UserByCognitoIdQuery, GetDeviceQuery } from '../API'
 
-// need a use case function
-/*
-FanDuration: 10
-LEDOffTime: "01:01:00.001-08:00"
-LEDOnTime: "01:01:00.001-08:00"
-blue: 10
-createdAt: "2020-10-19T19:09:51.462Z"
-floodFrequency: 10
-green: 10
-id: "6019425d-1176-41c3-8c59-4b271b7568a9"
-owner: "d13d5864-54db-48ce-b5f1-c18c4977df88"
-red: 10
-updatedAt: "2020-10-19T19:09:51.462Z"
-waterLevel: 10
-*/
+Amplify.addPluggable(
+  new AWSIoTProvider({
+    aws_pubsub_region: 'us-west-2',
+    aws_pubsub_endpoint: 'a1778zndtxlcj-ats.iot.us-west-2.amazonaws.com',
+  })
+)
+
+// error with these as well, specifically the close statement in these functions for subscriptions
+// PubSub.subscribe('myTopic').subscribe({
+//   next: data => console.log('Message received', data),
+//   error: error => console.error(error),
+//   // close: () => console.log('Done'),
+// });
+
+// const sub1 = PubSub.subscribe('myTopic').subscribe({
+//   next: data => console.log('Message received', data),
+//   error: error => console.error(error),
+//  //  close: () => console.log('Done'),
+// });
+// sub1.unsubscribe();
+
 type DeviceSettingsType = {
   FanDuration: number
   LEDOffTime: string
@@ -34,7 +43,7 @@ type DeviceSettingsType = {
   waterLevel: number
 } | null
 
-function Settings() { 
+function Settings() {
   const [deviceSettings, setDeviceSettings] = useState<DeviceSettingsType>(null)
   const fetchUser = async () => {
     try {
@@ -52,14 +61,29 @@ function Settings() {
     }
   }
   useEffect(() => {
-    fetchUser()
+    // fetchUser()
+    pub()
   }, [])
 
+  const pub = async () => {
+    try {
+      console.log('test1')
+      const result = await PubSub.publish('myTopic', { msg: 'testing123!' })
+      console.log(result)
+    } catch (error) {
+      console.warn(error)
+      console.log('testing')
+    }
+  }
+
+  Auth.currentCredentials().then((info: ICredentials) => {
+    const cognitoIdentityId = info.identityId
+    console.log(cognitoIdentityId)
+  })
 
   return (
     <div>
       <p>Testing:</p>
-
     </div>
   )
 }
