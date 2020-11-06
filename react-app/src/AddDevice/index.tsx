@@ -26,9 +26,9 @@ const AddDevice = () => {
       setGeneralError(true)
     }
   }
-
+  const header = <h2>Add your new device</h2>
   return (
-    <HeaderBody header="Add your new device">
+    <HeaderBody header={header}>
       <p
         className="warning"
         style={{ display: generalError ? 'inherit' : 'none' }}
