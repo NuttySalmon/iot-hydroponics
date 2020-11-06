@@ -30,8 +30,10 @@ const Home = ({ deviceInfos, greetings }: HomeProps) => {
       <Button variant="long-sm"> Add device</Button>
     </Link>
   )
+
+  const header = <h2>{`${greetings} Mark!`}</h2>
   return (
-    <HeaderBody header={`${greetings} Mark!`} button={addDeviceButton}>
+    <HeaderBody header={header} button={addDeviceButton}>
       <div className={style.devCardParent}>{cards}</div>
     </HeaderBody>
   )
