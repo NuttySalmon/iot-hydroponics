@@ -38,6 +38,27 @@ function Home() {
     }
   }
 
+  // TODO: setup type for device data to replace any
+  const updateDevice = (newDeviceData: any) => {
+    setUserData(
+      (prev: userDataType): userDataType => {
+        if (prev?.devices!.items) {
+          const updatedDevices = prev.devices.items?.map((device) => {
+            if (newDeviceData.id === device.id) {
+              return newDeviceData
+            }
+            return device
+          })
+          const updatedUserData = prev
+          updatedUserData.devices!.items = updatedDevices
+          return prev
+        }
+
+        return prev
+      }
+    )
+  }
+
   const subscribeData = async () => {
     try {
       const subscriber = await API.graphql(
@@ -49,6 +70,7 @@ function Home() {
         subscriber.subscribe({
           next: (deviceData) => {
             console.log(deviceData.value.data.onUpdateDevice)
+            updateDevice(deviceData)
             if (deviceData.value.errors) console.warn(deviceData.value.errors)
           },
           error: (error) => {
