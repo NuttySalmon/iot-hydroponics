@@ -37,23 +37,25 @@ function Home() {
       console.log(error)
     }
   }
-
+  // TODO: create subscription for device create
   // TODO: setup type for device data to replace any
   const updateDevice = (newDeviceData: any) => {
     setUserData(
       (prev: userDataType): userDataType => {
+        // add update device if device data is already fetched
         if (prev?.devices!.items) {
+          const updatedUserData = prev // duplicate original state
+          // find device by id and update with new data
           const updatedDevices = prev.devices.items?.map((device) => {
             if (newDeviceData.id === device.id) {
               return newDeviceData
             }
             return device
           })
-          const updatedUserData = prev
           updatedUserData.devices!.items = updatedDevices
-          return prev
+          return updatedUserData
         }
-
+        // return previous if device data is not fetched
         return prev
       }
     )
