@@ -4,6 +4,7 @@
 
 .headerRow {
   margin-bottom: ($spacer * 3);
+  align-items: center;
   @include media-breakpoint-down(sm) {
     text-align: center;
   }

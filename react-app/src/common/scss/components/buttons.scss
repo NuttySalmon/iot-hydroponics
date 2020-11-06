@@ -44,6 +44,16 @@
   border-radius: 40px;
   font-size: large;
 }
+.btn-long-sm-white {
+  @extend .btn-long-sm;
+  color: $dark;
+  background-color: white;
+  border-color: $dark;
+  &:hover {
+    color: white;
+    background-color: $dark!important;
+  }
+}
 
 @mixin button-trans-base {
   font: 1em/0px $serif;

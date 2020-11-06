@@ -6,14 +6,14 @@ import moment from 'moment'
 import Navi from './Navi'
 import AddDevice from './AddDevice'
 import Home from './TempUI/Home'
-import Device from './TempUI/Device'
+import DeviceDetails from './TempUI/DeviceDetails'
 import { DeviceInfo } from './TempUI/DeviceInfo'
 
 let fakeData: Array<DeviceInfo> = []
 const makeFakeData = () => {
   fakeData = []
   for (let i = 0; i < 6; i += 1) {
-    const fakeLastUpdated = moment(Date())
+    const fakeLastUpdated = moment(new Date())
       .subtract(Math.floor(Math.random() * 3000), 'seconds')
       .toDate()
 
@@ -74,7 +74,7 @@ const Dashboard = () => {
         <AddDevice />
       </Route>
       <Route path={`${match.url}/plant/:deviceId`}>
-        <Device />
+        <DeviceDetails deviceInfos={fakeData} />
       </Route>
     </div>
   )
