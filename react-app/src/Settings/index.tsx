@@ -55,10 +55,11 @@ function Settings() {
     fetchUser()
     sub()
     pub()
+    
   }, [])
 
   const sub = () => {
-    PubSub.subscribe('myTopic/1').subscribe({
+    PubSub.subscribe('topic').subscribe({
       next: (data) => console.log('Message received', data),
       error: (error) => console.error(error),
       complete: () => console.log('Done'),
@@ -66,7 +67,8 @@ function Settings() {
   }
   const pub = async () => {
     try {
-      await PubSub.publish('myTopic/1', { msg: 'testing123!' })
+      await PubSub.publish('topic', { msg: 'New message 2:22PM' })
+      console.log('publish work')
     } catch (error) {
       console.warn(error)
       console.log('testing')
