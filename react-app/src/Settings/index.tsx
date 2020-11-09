@@ -1,23 +1,14 @@
 import React, { useEffect, useState } from 'react'
+import { Form, Col, Button } from 'react-bootstrap'
 import { API, Auth, PubSub, graphqlOperation } from 'aws-amplify'
 import { GraphQLResult } from '@aws-amplify/api'
+import RangeSlider from 'react-bootstrap-range-slider'
 import { ICredentials } from '@aws-amplify/core'
 import { getDevice } from '../graphql/queries'
 import { GetDeviceQuery } from '../API'
+import 'bootstrap/dist/css/bootstrap.css'
 
-// error with these as well, specifically the close statement in these functions for subscriptions
-// PubSub.subscribe('myTopic').subscribe({
-//   next: data => console.log('Message received', data),
-//   error: error => console.error(error),
-//   // close: () => console.log('Done'),
-// });
-
-// const sub1 = PubSub.subscribe('myTopic').subscribe({
-//   next: data => console.log('Message received', data),
-//   error: error => console.error(error),
-//  //  close: () => console.log('Done'),
-// });
-// sub1.unsubscribe();
+import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css'
 
 type DeviceSettingsType = {
   FanDuration: number
@@ -35,6 +26,9 @@ type DeviceSettingsType = {
 } | null
 
 function Settings() {
+  const [fanvalue, setFanValue] = useState(0)
+  const [freqvalue, setFreqvalue] = useState(0)
+  const [lightvalue, setLEDvalue] = useState(0)
   const [deviceSettings, setDeviceSettings] = useState<DeviceSettingsType>(null)
   const fetchUser = async () => {
     try {
@@ -50,12 +44,20 @@ function Settings() {
       console.log(error)
     }
   }
-  // fetchUser()
+
+  // const Hey = () => {
+  // const [value, setValue] = useState(0)
+  //   return (
+  //     <RangeSlider
+  //       value={value}
+  //       onChange={changeEvent => setValue(changeEvent.target.valueAsNumber)}
+  //     />
+  //   );
+  // };
   useEffect(() => {
     fetchUser()
     sub()
     pub()
-    
   }, [])
 
   const sub = () => {
@@ -79,11 +81,46 @@ function Settings() {
     const cognitoIdentityId = info.identityId
     console.log(cognitoIdentityId)
   })
+  /**
+   * Handle Setting with Submit and Reset Buttons
+   * @param {React.SyntheticEvent} event - onSubmit form event
+   */
 
   return (
-    <div>
-      <p>Testing:</p>
-    </div>
+    <Form>
+      <Col xs="2">
+        <Form.Label>Fan Duration</Form.Label>
+        <RangeSlider
+          min={1}
+          max={100}
+          value={fanvalue}
+          onChange={(changeEvent) => setFanValue(changeEvent.target.valueAsNumber)}
+        />
+      </Col>
+      <Col xs="2">
+        <Form.Label>Flood Frequency</Form.Label>
+        <RangeSlider
+          min={1}
+          max={100}
+          value={freqvalue}
+          onChange={(changeEvent) => setFreqvalue(changeEvent.target.valueAsNumber)}
+        />
+      </Col>
+      <Col xs="2">
+        <Form.Label>LED Duration</Form.Label>
+        <RangeSlider
+          min={1}
+          max={100}
+          value={lightvalue}
+          onChange={(changeEvent) => setLEDvalue(changeEvent.target.valueAsNumber)}
+        />
+      </Col>
+      <Col>
+        <Button variant="short" type="submit">
+          Register
+        </Button>
+      </Col>
+    </Form>
   )
 }
 

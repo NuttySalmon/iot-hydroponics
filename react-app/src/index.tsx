@@ -15,7 +15,7 @@ Amplify.addPluggable(
 )
 Amplify.configure(awsExports)
 
-PubSub.configure({})
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
