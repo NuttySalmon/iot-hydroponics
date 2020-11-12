@@ -47,7 +47,9 @@ function Home() {
         // add update device if device data is already fetched
 
         if (prev?.devices!.items) {
-          const updatedUserData = prev // duplicate original state
+          const updatedUserData: userDataType = { ...prev } // duplicate original state
+
+          Object.assign(updatedUserData, prev)
           // find device by id and update with new data
           const updatedDevices = prev.devices.items?.map((device) => {
             // console.log("new")
