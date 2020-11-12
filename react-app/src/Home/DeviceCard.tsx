@@ -8,14 +8,21 @@ type DeviceCardProps = {
     temp: string
     valveOpen: boolean
   }
+  updatedAt: string
 }
 
-function DeviceCard({ name, currentData }: DeviceCardProps) {
+function DeviceCard({ name, currentData, updatedAt }: DeviceCardProps) {
+
+  const data = currentData
+  const hum = currentData?.hum
+  console.log("hello")
+  console.log(data, hum)
+
   return (
     <Row>
       <Col>
         <p> {name} </p>
-        <p> {currentData?.updatedAt}</p>
+        <p> {updatedAt}</p>
         <p> {currentData?.hum}</p>
         <p> {currentData?.temp}</p>
         {/* <p>Draining: {currentData?.valveOpen}</p> */}
