@@ -11,14 +11,14 @@ const HeaderBody: React.FC<HeaderBodyProps> = ({
   header,
   children,
 }) => (
-  <Container className="pt-5">
+  <Container className="pt-5 pl-5 pr-5">
     <Row className={style.headerRow}>
       <Col sm={12} md="auto">
         {header}
       </Col>
       {button ? <Col className={style.headerButton}>{button}</Col> : null}
     </Row>
-    <div>{children}</div>
+    <Row>{children}</Row>
   </Container>
 )
 

@@ -1,11 +1,11 @@
 import React from 'react'
 import { Card, CardProps, Col, Image, Row } from 'react-bootstrap'
-import infoIcon from './img/info.svg'
-import humIcon from './img/water.svg'
-import tempIcon from './img/thermometer.svg'
-import style from './devCard.module.scss'
-import { Circle } from '../common/components/SvgIcons'
-import devicePic from './img/lettuce.png'
+import infoIcon from '../img/info.svg'
+import humIcon from '../img/water.svg'
+import tempIcon from '../img/thermometer.svg'
+import style from './scss/devCard.module.scss'
+import { Circle } from '../../common/components/SvgIcons'
+import devicePic from '../img/lettuce.png'
 
 type DevCardProps = {
   name: string

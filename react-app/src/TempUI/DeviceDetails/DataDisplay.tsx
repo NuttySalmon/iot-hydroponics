@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
-import style from './deviceDetails.module.scss'
+import style from './scss/deviceDetails.module.scss'
 
 export type displayData = {
   temp: string | number

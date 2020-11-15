@@ -1,10 +1,10 @@
 import React from 'react'
-import { Button } from 'react-bootstrap'
+import { Button, Container, Row } from 'react-bootstrap'
 import { Link, useRouteMatch } from 'react-router-dom'
 import DevCard from './DevCard'
-import style from './home.module.scss'
-import { DeviceInfo } from './DeviceInfo'
-import HeaderBody from '../common/components/HeaderBody'
+import style from './scss/home.module.scss'
+import { DeviceInfo } from '../DeviceInfo'
+import HeaderBody from '../../common/components/HeaderBody'
 
 type HomeProps = {
   deviceInfos: Array<DeviceInfo>
@@ -31,10 +31,14 @@ const Home = ({ deviceInfos, greetings }: HomeProps) => {
     </Link>
   )
 
-  const header = <h2>{`${greetings} Mark!`}</h2>
+  const header = (
+    <Row className="justify-content-center">
+      <h2>{`${greetings} Mark!`}</h2>
+    </Row>
+  )
   return (
     <HeaderBody header={header} button={addDeviceButton}>
-      <div className={style.devCardParent}>{cards}</div>
+      <Container className={style.devCardParent}>{cards}</Container>
     </HeaderBody>
   )
 }

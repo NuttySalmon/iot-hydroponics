@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
-import HeaderBody from '../common/components/HeaderBody'
-import { DeviceInfo } from './DeviceInfo'
-import style from './deviceDetails.module.scss'
+import HeaderBody from '../../common/components/HeaderBody'
+import { DeviceInfo } from '../DeviceInfo'
+import style from './scss/deviceDetails.module.scss'
 import DataDisplay, { displayData } from './DataDisplay'
-import './DeviceDetailsBg.scss'
+import './scss/DeviceDetailsBg.scss'
 
 const DeviceDetails = ({ deviceInfos }: { deviceInfos: Array<DeviceInfo> }) => {
   const { deviceId } = useParams()
@@ -18,6 +18,20 @@ const DeviceDetails = ({ deviceInfos }: { deviceInfos: Array<DeviceInfo> }) => {
     status: 'Getting data...',
     isOnline: false,
   })
+
+  useEffect(() => {
+    deviceInfos.forEach((deviceInfo: DeviceInfo) => {
+      if (deviceInfo.id === deviceId) {
+        setId(deviceInfo.id)
+        setName(deviceInfo.name)
+        const infoData = deviceInfo.data
+        if (infoData) {
+          setData(infoData)
+        }
+      }
+    })
+  }, [deviceInfos, deviceId])
+
   const header = (
     <div>
       <Row className={style.lastUpdatedSince}>
@@ -31,19 +45,6 @@ const DeviceDetails = ({ deviceInfos }: { deviceInfos: Array<DeviceInfo> }) => {
       <Row>Device id: {id}</Row>
     </div>
   )
-
-  useEffect(() => {
-    deviceInfos.forEach((deviceInfo: DeviceInfo) => {
-      if (deviceInfo.id === deviceId) {
-        setId(deviceInfo.id)
-        setName(deviceInfo.name)
-        const { data } = deviceInfo
-        if (data) {
-          setData(data)
-        }
-      }
-    })
-  }, [deviceInfos, deviceId])
   const button = <Button variant="long-sm-white">Device Settings</Button>
   return (
     <div className={style.devicePage}>
