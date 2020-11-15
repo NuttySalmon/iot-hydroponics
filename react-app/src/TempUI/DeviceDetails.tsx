@@ -5,6 +5,7 @@ import HeaderBody from '../common/components/HeaderBody'
 import { DeviceInfo } from './DeviceInfo'
 import style from './deviceDetails.module.scss'
 import DataDisplay, { displayData } from './DataDisplay'
+import './DeviceDetailsBg.scss'
 
 const DeviceDetails = ({ deviceInfos }: { deviceInfos: Array<DeviceInfo> }) => {
   const { deviceId } = useParams()
@@ -45,9 +46,11 @@ const DeviceDetails = ({ deviceInfos }: { deviceInfos: Array<DeviceInfo> }) => {
   }, [deviceInfos, deviceId])
   const button = <Button variant="long-sm-white">Device Settings</Button>
   return (
-    <HeaderBody header={header} button={button}>
-      <DataDisplay {...data} />
-    </HeaderBody>
+    <div className={style.devicePage}>
+      <HeaderBody header={header} button={button}>
+        <DataDisplay {...data} />
+      </HeaderBody>
+    </div>
   )
 }
 

@@ -11,7 +11,7 @@ const HeaderBody: React.FC<HeaderBodyProps> = ({
   header,
   children,
 }) => (
-  <Container className="mt-5">
+  <Container className="pt-5">
     <Row className={style.headerRow}>
       <Col sm={12} md="auto">
         {header}
