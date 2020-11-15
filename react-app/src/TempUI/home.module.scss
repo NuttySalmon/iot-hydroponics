@@ -19,14 +19,13 @@
   }
 }
 
-
 $width: 250px;
 $height: 330px;
 .devCard {
   width: $width;
   height: $height;
   transition: all 0.15s;
-  background-color: $bg-light;
+  background-color: $light-bg;
   outline: 2px $dark solid;
   &:hover {
     background-color: #fff;

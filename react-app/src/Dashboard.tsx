@@ -65,7 +65,7 @@ const Dashboard = () => {
   }, [])
 
   return (
-    <div>
+    <div className="dashboard">
       <Navi />
       <Route exact path={match.url}>
         <Home deviceInfos={fakeData} greetings={greetings} />
