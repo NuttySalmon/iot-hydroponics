@@ -39,6 +39,9 @@ const makeFakeData = () => {
         ledOnTime: fakeHour(),
         ledOffTime: fakeHour(),
         fanInterval: 20,
+        fanDuration: 30,
+        floodFreq: 300,
+        floodDuration: 20,
       },
     })
   }
