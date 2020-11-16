@@ -22,16 +22,22 @@ const makeFakeData = () => {
       name: 'Lettuce',
       id: i.toString(),
       data: {
-        temp: 123,
-        hum: 340,
-        pumpOn: Math.random() > 0.5,
-        valveClosed: Math.random() > 0.5,
+        temp: 25,
+        hum: 30,
+        pumpOn: fakeBool(),
+        valveClose: fakeBool(),
+        ledOn: fakeBool(),
+        fanOn: fakeBool(),
         lastUpdated: fakeLastUpdated,
         lastUpdatedSince: lastUpdatedSinceText(fakeLastUpdated),
         isOnline: calcIsOnline(fakeLastUpdated),
       },
     })
   }
+}
+
+function fakeBool(): boolean {
+  return Math.random() > 0.5
 }
 
 const calcGreetings = () => {

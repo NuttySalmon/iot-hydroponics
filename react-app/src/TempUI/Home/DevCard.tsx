@@ -11,15 +11,7 @@ import { getStatus } from '../util'
 
 type DevCardProps = DeviceInfo & CardProps
 const DevCard = ({ name, data, ...rest }: DevCardProps) => {
-  const {
-    temp,
-    hum,
-    valveClosed,
-    pumpOn,
-    lastUpdated,
-    lastUpdatedSince,
-    isOnline,
-  } = data
+  const { temp, hum, valveClose, pumpOn, lastUpdatedSince, isOnline } = data
   const onlineIndicatorClass = () =>
     `${style.onlineIndicator} ${isOnline ? style.online : style.offline}`
   return (
@@ -50,7 +42,7 @@ const DevCard = ({ name, data, ...rest }: DevCardProps) => {
             <Col xs={1}>
               <Image src={infoIcon} className={style.icon} />
             </Col>
-            <Col>{getStatus(valveClosed, pumpOn)}</Col>
+            <Col>{getStatus(valveClose, pumpOn)}</Col>
           </Row>
         </Card.Text>
       </Card.Body>

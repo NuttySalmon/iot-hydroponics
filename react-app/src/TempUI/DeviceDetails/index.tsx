@@ -18,7 +18,9 @@ const DeviceDetails = ({ deviceInfos }: { deviceInfos: Array<DeviceInfo> }) => {
     lastUpdated: null,
     isOnline: false,
     pumpOn: null,
-    valveClosed: null,
+    valveClose: null,
+    ledOn: null,
+    fanOn: null,
   })
 
   useEffect(() => {
