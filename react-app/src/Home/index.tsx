@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { API, graphqlOperation } from 'aws-amplify'
+import { useHistory } from "react-router-dom";
+import { API, Auth, graphqlOperation } from 'aws-amplify'
 import Observable from 'zen-observable'
 import { GraphQLResult } from '@aws-amplify/api'
 import * as subscriptions from '../graphql/subscriptions'
@@ -22,6 +23,8 @@ type userDataType = {
 function Home() {
   const [userData, setUserData] = useState<userDataType>(null)
 
+  let history = useHistory()
+
   const fetchUser = async () => {
     try {
       const result = (await API.graphql(
@@ -37,8 +40,7 @@ function Home() {
       console.log(error)
     }
   }
-  // TODO: create subscription for device create
-  // TODO: setup type for device data to replace any
+
   const updateDevice = (newDeviceData: any) => {
     console.log('This is the new device data')
     console.log(newDeviceData)
@@ -52,14 +54,7 @@ function Home() {
           Object.assign(updatedUserData, prev)
           // find device by id and update with new data
           const updatedDevices = prev.devices.items?.map((device) => {
-            // console.log("new")
-            // console.log(newDeviceData.value.data.onUpdateDevice.id)
-            // console.log("old")
-            // console.log(device.id)
-
             if (newDeviceData.value.data.onUpdateDevice.id === device.id) {
-              //Where current issue lies
-              console.log('hi')
               return newDeviceData.value.data.onUpdateDevice
             }
             return device
@@ -97,14 +92,23 @@ function Home() {
     } catch (error) {
       console.log(error)
     }
-    // ).subscribe({
-    //     next: (subData: any) => console.log(subData)
-    // });
+  }
 
-    // const devices = userData.
+  function userNotLoggedIn() {
+    history.push("/login")
   }
 
   useEffect(() => {
+    Auth.currentAuthenticatedUser()
+      .then((user) => {
+        console.log("Current user ID!")
+        console.log(user.username)
+      })
+      .catch(() => {
+        console.log('dashboard no user')
+        userNotLoggedIn()
+      })
+
     fetchUser()
     subscribeData()
   }, [])

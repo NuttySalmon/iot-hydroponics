@@ -15,7 +15,6 @@ function DeviceCard({ name, currentData, updatedAt }: DeviceCardProps) {
 
   const data = currentData
   const hum = currentData?.hum
-  console.log("hello")
   console.log(data, hum)
 
   return (
@@ -25,7 +24,6 @@ function DeviceCard({ name, currentData, updatedAt }: DeviceCardProps) {
         <p> {updatedAt}</p>
         <p> {currentData?.hum}</p>
         <p> {currentData?.temp}</p>
-        {/* <p>Draining: {currentData?.valveOpen}</p> */}
       </Col>
     </Row>
   )
