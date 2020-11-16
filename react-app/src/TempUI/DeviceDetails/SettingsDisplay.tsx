@@ -1,4 +1,3 @@
-import { number } from 'prop-types'
 import React from 'react'
 import { Container } from 'react-bootstrap'
 import { DeviceSettings } from '../DeviceInfo'
