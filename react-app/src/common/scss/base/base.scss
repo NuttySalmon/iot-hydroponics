@@ -29,9 +29,13 @@ h1 {
   }
 }
 
-h2 {
+h2, h3 {
   color: $light-dark;
   font-family: $serif;
+}
+
+h3 {
+  font-size: x-large;
 }
 
 a {

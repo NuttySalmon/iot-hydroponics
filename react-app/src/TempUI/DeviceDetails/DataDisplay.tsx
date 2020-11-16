@@ -1,20 +1,18 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
+import { DeviceData } from '../DeviceInfo'
+import DataBlock from './DataBlock'
 import style from './scss/deviceDetails.module.scss'
 
-export type displayData = {
-  temp: string | number
-  hum: string | number
-  lastUpdatedSince: string
-  status: string
-  isOnline: boolean
-}
 
-type DataDisplayProp = Omit<displayData, 'status, isOnline, lastUpdatedSince'>
-const DataDisplay = ({ temp, hum }: displayData) => {
+type DataDisplayProp = Omit<DeviceData, 'status, isOnline, lastUpdatedSince'>
+const DataDisplay = ({ temp, hum, pumpOn, valveClosed }: DataDisplayProp) => {
   return (
-    <Container className={style.dataBox}>
-      {temp} {hum}
+    <Container fluid className={style.dataBox}>
+      <DataBlock title="Temperature" data={temp} unit="&#730;C" />
+      <DataBlock title="Humidity" data={hum} unit="%" />
+      <DataBlock title="Temperature" data={temp} />
+      <DataBlock title="Temperature" data={temp} />
     </Container>
   )
 }
