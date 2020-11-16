@@ -10,4 +10,14 @@
 .dataBox{
   border: 2px solid $dark;
   background-color: white;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding: 1em 0;
+}
+
+.dataBlock{
+  text-align: center;
+  width: 200px;
+  font-size: large;
 }
