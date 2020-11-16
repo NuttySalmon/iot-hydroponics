@@ -15,7 +15,7 @@ const DataBlock = ({ img, title, data, unit }: DataBlockProps) => {
 
   return (
     <div className={style.dataBlock}>
-      <div>{title}</div>
+      <div className={style.title}>{title}</div>
       <div>{displayData}</div>
     </div>
   )
