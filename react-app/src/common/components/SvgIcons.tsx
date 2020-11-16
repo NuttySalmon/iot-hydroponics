@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const ExclamationSvg = ({
+export const ExclamationIcon = ({
   fill = 'CurrentColor',
   width = '16px',
   height = '16px',
@@ -17,7 +17,7 @@ export const ExclamationSvg = ({
   )
 }
 
-export const Bell = ({
+export const BellIcon = ({
   // fill = 'CurrentColor',
   // width = '16px',
   // height = '16px',
@@ -37,7 +37,7 @@ export const Bell = ({
   )
 }
 
-export const Circle = ({ className = '', size = 12 }) => {
+export const CircleIcon = ({ className = '', size = 12 }) => {
   const dimensions = size.toString()
   const centerCoor = (size / 2 - 1).toString()
   const radius = ((size / 2) * 0.8).toString()
@@ -48,7 +48,7 @@ export const Circle = ({ className = '', size = 12 }) => {
   )
 }
 
-export const Gear = ({ className = '' }) => (
+export const GearIcon = ({ className = '' }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="26"
@@ -63,7 +63,7 @@ export const Gear = ({ className = '' }) => (
   </svg>
 )
 
-export const Graph = ({ className = '' }) => (
+export const GraphIcon = ({ className = '' }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="21.458"

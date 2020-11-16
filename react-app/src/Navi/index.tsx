@@ -2,7 +2,7 @@ import React from 'react'
 import { Navbar, Nav, Dropdown } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
-import { Bell } from '../common/components/SvgIcons'
+import { BellIcon } from '../common/components/SvgIcons'
 import '../common/scss/components/logos.scss'
 import style from './scss/navi.module.scss'
 import HeadDropdown from './HeadDropdown'
@@ -18,7 +18,7 @@ function Navi() {
         <Nav className="ml-auto">
           <LinkContainer to="#notification">
             <Nav.Link className={style.bell}>
-              <Bell />
+              <BellIcon />
             </Nav.Link>
           </LinkContainer>
 
