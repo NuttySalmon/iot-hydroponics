@@ -4,7 +4,7 @@ import infoIcon from '../img/info.svg'
 import humIcon from '../img/water.svg'
 import tempIcon from '../img/thermometer.svg'
 import style from './scss/devCard.module.scss'
-import { Circle } from '../../common/components/SvgIcons'
+import { CircleIcon } from '../../common/components/SvgIcons'
 import devicePic from '../img/lettuce.png'
 import { DeviceInfo } from '../DeviceInfo'
 import { getStatus } from '../util'
@@ -25,7 +25,7 @@ const DevCard = ({ name, data, ...rest }: DevCardProps) => {
               Last updated {lastUpdatedSince}
             </Col>
             <Col xs={1} className={style.onlineIndicator}>
-              <Circle className={onlineIndicatorClass()} />
+              <CircleIcon className={onlineIndicatorClass()} />
             </Col>
           </Row>
           <Row>

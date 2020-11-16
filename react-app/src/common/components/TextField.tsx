@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Form } from 'react-bootstrap'
 import '../scss/components/form-elements.scss'
-import { ExclamationSvg } from './SvgIcons'
+import { ExclamationIcon } from './SvgIcons'
 
 /**
  * Render text box input element with form group, with label and hint/error support
@@ -79,7 +79,7 @@ const TextField = (props: TextFieldProp) => {
       <Form.Text className={`${hintStyle} ${errorStyle}`}>
         <div>
           <span className={iconStyle}>
-            <ExclamationSvg />
+            <ExclamationIcon />
           </span>
           <span className="hint-text"> {hint}</span>
         </div>

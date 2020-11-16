@@ -3,7 +3,7 @@ import { DeviceInfo } from '../DeviceInfo'
 import DataDisplay from './DataDisplay'
 import style from './scss/deviceDetails.module.scss'
 import SettingsDisplay from './SettingsDisplay'
-const Details = ({ deviceDetails }: { deviceDetails: DeviceInfo }) => {
+const Info = ({ deviceDetails }: { deviceDetails: DeviceInfo }) => {
   const { data, settings } = deviceDetails
   return (
     <>
@@ -15,4 +15,4 @@ const Details = ({ deviceDetails }: { deviceDetails: DeviceInfo }) => {
   )
 }
 
-export default Details
+export default Info

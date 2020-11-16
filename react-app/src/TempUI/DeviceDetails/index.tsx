@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import HeaderBody from '../../common/components/HeaderBody'
 import { DeviceInfo } from '../DeviceInfo'
 import style from './scss/deviceDetails.module.scss'
-import Details from './Details'
+import Info from './Info'
 import { emptyDeviceInfo } from '../util'
 import SettingsToggleButton from './SettingsToggleButton'
 import DetailsHeader from './DetailsHeader'
@@ -29,7 +29,7 @@ const DeviceDetails = ({ deviceInfos }: { deviceInfos: Array<DeviceInfo> }) => {
   return (
     <div className={style.detailsPage}>
       <HeaderBody header={header} button={button}>
-        <Details deviceDetails={device} />
+        <Info deviceDetails={device} />
       </HeaderBody>
     </div>
   )

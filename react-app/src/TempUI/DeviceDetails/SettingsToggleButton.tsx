@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
-import { Gear, Graph } from '../../common/components/SvgIcons'
+import { GearIcon, GraphIcon } from '../../common/components/SvgIcons'
 import style from './scss/deviceDetails.module.scss'
 
 type SettingsToggleButtonProps = {
@@ -18,9 +18,9 @@ const SettingsToggleButton = ({
     <Button variant="long-sm-white" onClick={toggleDisplaySettings}>
       <div className="d-inline-flex">
         {displaySettings ? (
-          <Graph className={style.buttonIcon} />
+          <GraphIcon className={style.buttonIcon} />
         ) : (
-          <Gear className={style.buttonIcon} />
+          <GearIcon className={style.buttonIcon} />
         )}
         <div>{displaySettings ? 'Info' : 'Settings'}</div>
       </div>
