@@ -1,8 +1,8 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
-import { DeviceData } from '../DeviceInfo'
+import { DeviceData } from '../../DeviceInfo'
 import DataBlock from './DataBlock'
-import style from './scss/deviceDetails.module.scss'
+import style from './scss/infoPage.module.scss'
 
 type DataDisplayProp = Omit<DeviceData, 'status, isOnline, lastUpdatedSince'>
 function getOnOff(

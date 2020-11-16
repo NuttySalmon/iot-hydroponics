@@ -1,6 +1,6 @@
 import React from 'react'
 import SettingsSlider, { SettingsSliderProps } from '.'
-import { convertToTimeStr } from '../../util'
+import { convertToTimeStr } from '../../../util'
 
 const timeRange = () => {
   const mark: any = {}

@@ -1,5 +1,5 @@
 import React from 'react'
-import style from './scss/deviceDetails.module.scss'
+import style from './scss/infoPage.module.scss'
 
 type DataBlockProps = {
   img?: string
