@@ -1,6 +1,5 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
-import moment from 'moment'
 import { DeviceSettings } from '../../DeviceInfo'
 import { convertToTimeStr, getHourMinFromDuration } from '../../util'
 import DataBlock from './DataBlock'
