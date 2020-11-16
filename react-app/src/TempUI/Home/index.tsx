@@ -17,11 +17,7 @@ const Home = ({ deviceInfos, greetings }: HomeProps) => {
       to={`${match.url}/plant/${deviceInfo.id}`}
       className={style.devCardLink}
     >
-      <DevCard
-        name={deviceInfo.name}
-        {...deviceInfo.data}
-        className={style.devCard}
-      />
+      <DevCard {...deviceInfo} className={style.devCard} />
     </Link>
   ))
 

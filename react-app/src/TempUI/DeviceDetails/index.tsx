@@ -2,21 +2,23 @@ import React, { useEffect, useState } from 'react'
 import { Button, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import HeaderBody from '../../common/components/HeaderBody'
-import { DeviceInfo } from '../DeviceInfo'
+import { DeviceData, DeviceInfo } from '../DeviceInfo'
 import style from './scss/deviceDetails.module.scss'
-import DataDisplay, { displayData } from './DataDisplay'
+import DataDisplay from './DataDisplay'
 import './scss/DeviceDetailsBg.scss'
 
 const DeviceDetails = ({ deviceInfos }: { deviceInfos: Array<DeviceInfo> }) => {
   const { deviceId } = useParams()
   const [id, setId] = useState('Loading...')
   const [name, setName] = useState('Loading...')
-  const [data, setData] = useState<displayData>({
-    temp: '-',
-    hum: '-',
-    lastUpdatedSince: 'Loading last updated time...',
-    status: 'Getting data...',
+  const [data, setData] = useState<DeviceData>({
+    temp: null,
+    hum: null,
+    lastUpdatedSince: null,
+    lastUpdated: null,
     isOnline: false,
+    pumpOn: null,
+    valveClosed: null,
   })
 
   useEffect(() => {
@@ -40,7 +42,7 @@ const DeviceDetails = ({ deviceInfos }: { deviceInfos: Array<DeviceInfo> }) => {
           : 'Loading...'}
       </Row>
       <Row>
-        <h2>{name}</h2>
+        <h1>{name}</h1>
       </Row>
       <Row>Device id: {id}</Row>
     </div>
@@ -49,6 +51,7 @@ const DeviceDetails = ({ deviceInfos }: { deviceInfos: Array<DeviceInfo> }) => {
   return (
     <div className={style.devicePage}>
       <HeaderBody header={header} button={button}>
+        <h3>Status report</h3>
         <DataDisplay {...data} />
       </HeaderBody>
     </div>

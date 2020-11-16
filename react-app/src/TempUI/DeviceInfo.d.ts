@@ -5,10 +5,14 @@ export type DeviceInfo = {
 }
 
 export type DeviceData = {
-  temp: number
-  hum: number
-  lastUpdated: Date
-  status: string
+  temp: number | null
+  hum: number | null
+  lastUpdated: Date | null
+  // status: string
   isOnline: boolean
-  lastUpdatedSince: string
+  lastUpdatedSince: string | null
+  pumpOn: boolean | null
+  valveClosed: boolean | null
 }
+
+export type DeviceSettings = {}

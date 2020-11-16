@@ -8,6 +8,7 @@ import AddDevice from './AddDevice'
 import Home from './TempUI/Home'
 import DeviceDetails from './TempUI/DeviceDetails'
 import { DeviceInfo } from './TempUI/DeviceInfo'
+import { calcIsOnline, lastUpdatedSinceText } from './TempUI/util'
 
 let fakeData: Array<DeviceInfo> = []
 const makeFakeData = () => {
@@ -23,20 +24,14 @@ const makeFakeData = () => {
       data: {
         temp: 123,
         hum: 340,
-        status: 'Draining',
+        pumpOn: Math.random() > 0.5,
+        valveClosed: Math.random() > 0.5,
         lastUpdated: fakeLastUpdated,
-        lastUpdatedSince: moment(fakeLastUpdated).fromNow(),
+        lastUpdatedSince: lastUpdatedSinceText(fakeLastUpdated),
         isOnline: calcIsOnline(fakeLastUpdated),
       },
     })
   }
-}
-
-const calcIsOnline = (lastUpdated: Date): boolean => {
-  const now = moment(Date.now())
-  const duartionSince = moment.duration(now.diff(lastUpdated))
-  const minutes = duartionSince.asMinutes()
-  return minutes <= 15
 }
 
 const calcGreetings = () => {
