@@ -4,7 +4,7 @@ import { DeviceInfo } from '../../DeviceInfo'
 import style from './scss/settingsPage.module.scss'
 import { convertToTimeStr, calcDur } from '../../util'
 import PercentSlider from './SettingsSlider/PercentSlider'
-import SliderUnit from './SettingsSlider/SliderUnit'
+import SliderUnit from './SliderUnit'
 import TimeSlider from './SettingsSlider/TimeSlider'
 import { durationSlider, freqSlider } from './SettingsSlider'
 
