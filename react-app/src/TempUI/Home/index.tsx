@@ -13,12 +13,7 @@ type HomeProps = {
 const Home = ({ deviceInfos, greetings }: HomeProps) => {
   const match = useRouteMatch()
   const cards = deviceInfos.map((deviceInfo) => (
-    <Link
-      to={`${match.url}/plant/${deviceInfo.id}`}
-      className={style.devCardLink}
-    >
-      <DevCard {...deviceInfo} className={style.devCard} />
-    </Link>
+    <DevCard deviceInfo={deviceInfo} currRoute={match.url} />
   ))
 
   const addDeviceButton = (
