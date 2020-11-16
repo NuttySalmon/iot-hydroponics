@@ -6,26 +6,20 @@ import tempIcon from '../img/thermometer.svg'
 import style from './scss/devCard.module.scss'
 import { Circle } from '../../common/components/SvgIcons'
 import devicePic from '../img/lettuce.png'
+import { DeviceInfo } from '../DeviceInfo'
+import { getStatus } from '../util'
 
-type DevCardProps = {
-  name: string
-  temp: number
-  hum: number
-  status: string
-  lastUpdated?: Date
-  isOnline: boolean
-  lastUpdatedSince: string
-} & CardProps
-const DevCard = ({
-  name,
-  temp,
-  hum,
-  status,
-  lastUpdated,
-  lastUpdatedSince,
-  isOnline,
-  ...rest
-}: DevCardProps) => {
+type DevCardProps = DeviceInfo & CardProps
+const DevCard = ({ name, data, ...rest }: DevCardProps) => {
+  const {
+    temp,
+    hum,
+    valveClosed,
+    pumpOn,
+    lastUpdated,
+    lastUpdatedSince,
+    isOnline,
+  } = data
   const onlineIndicatorClass = () =>
     `${style.onlineIndicator} ${isOnline ? style.online : style.offline}`
   return (
@@ -56,7 +50,7 @@ const DevCard = ({
             <Col xs={1}>
               <Image src={infoIcon} className={style.icon} />
             </Col>
-            <Col>{status}</Col>
+            <Col>{getStatus(valveClosed, pumpOn)}</Col>
           </Row>
         </Card.Text>
       </Card.Body>
