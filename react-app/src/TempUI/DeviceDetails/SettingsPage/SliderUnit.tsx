@@ -1,7 +1,7 @@
 import React from 'react'
 import { Col } from 'react-bootstrap'
-import { SettingsSliderProps } from '.'
-import style from '../scss/settingsPage.module.scss'
+import { SettingsSliderProps } from './SettingsSlider'
+import style from './scss/settingsPage.module.scss'
 type SliderUnit = {
   name: string
   newSettings: any
@@ -27,10 +27,10 @@ const SliderUnit = ({
   const displayVal = newSettings[field] || 0
   return (
     <Col xs={12} lg={lg} className={style.sliderUnit}>
-      <h3> {name} </h3>
-      <h4>
+      <div className={style.title}> {name} </div>
+      <h5>
         {`${valueFormat ? valueFormat(displayVal) : displayVal}${unit || ''}`}
-      </h4>
+      </h5>
       <C
         value={newSettings[field]}
         // defaultValue={newSettings[field] || 0}
