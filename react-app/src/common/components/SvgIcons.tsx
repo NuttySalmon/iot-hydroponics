@@ -62,3 +62,15 @@ export const Gear = ({ className = '' }) => (
     />
   </svg>
 )
+
+export const Graph = ({ className = '' }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="21.458"
+    height="21.458"
+    viewBox="0 0 21.458 21.458"
+    className={className}
+  >
+    <path d="M18.856,0,10.729,8.047,8.047,5.365,0,13.492l2.682,2.682,5.365-5.445,2.682,2.682L21.458,2.682ZM0,18.776v2.682H21.458V18.776Z" />
+  </svg>
+)

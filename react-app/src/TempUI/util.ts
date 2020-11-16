@@ -21,3 +21,28 @@ export const getStatus = (
   if (!valveClosed && pumpOn) return 'Filling. Max level reached'
   return 'Draining'
 }
+
+export const emptyDeviceInfo = (deviceId = '-') => ({
+  id: deviceId,
+  name: 'Loading',
+  data: {
+    temp: null,
+    hum: null,
+    lastUpdated: null,
+    isOnline: false,
+    lastUpdatedSince: null,
+    pumpOn: null,
+    valveClose: null,
+    ledOn: null,
+    fanOn: null,
+  },
+
+  settings: {
+    red: null,
+    green: null,
+    blue: null,
+    ledOnTime: null,
+    ledOffTime: null,
+    fanInterval: null,
+  },
+})
