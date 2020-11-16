@@ -101,6 +101,7 @@ function Home() {
   useEffect(() => {
     Auth.currentAuthenticatedUser()
       .then((user) => {
+        //TODO: set state for user ID and replace string 
         console.log("Current user ID!")
         console.log(user.username)
       })
