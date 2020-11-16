@@ -24,4 +24,7 @@ export type DeviceSettings = {
   ledOnTime: number | null
   ledOffTime: number | null
   fanInterval: number | null
+  fanDuration: number | null
+  floodFreq: number | null
+  floodDuration: number | null
 }

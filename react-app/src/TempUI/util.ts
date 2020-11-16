@@ -21,28 +21,46 @@ export const getStatus = (
   if (!valveClosed && pumpOn) return 'Filling. Max level reached'
   return 'Draining'
 }
+export function convertToTimeStr(hr: number | null, noSpace = false): string {
+  const space = noSpace ? '' : ' '
+  if (hr === null) return '-'
+  if (hr === 0) return `12${space}am`
+  if (hr === 12) return `12${space}pm`
+  if (hr < 12) return `${hr}${space}am`
+  return `${hr - 12}${space}pm`
+}
 
-export const emptyDeviceInfo = (deviceId = '-') => ({
-  id: deviceId,
-  name: 'Loading',
-  data: {
-    temp: null,
-    hum: null,
-    lastUpdated: null,
-    isOnline: false,
-    lastUpdatedSince: null,
-    pumpOn: null,
-    valveClose: null,
-    ledOn: null,
-    fanOn: null,
-  },
+export function emptyDeviceInfo(deviceId = '-') {
+  return {
+    id: deviceId,
+    name: 'Loading',
+    data: {
+      temp: null,
+      hum: null,
+      lastUpdated: null,
+      isOnline: false,
+      lastUpdatedSince: null,
+      pumpOn: null,
+      valveClose: null,
+      ledOn: null,
+      fanOn: null,
+    },
 
-  settings: {
-    red: null,
-    green: null,
-    blue: null,
-    ledOnTime: null,
-    ledOffTime: null,
-    fanInterval: null,
-  },
-})
+    settings: {
+      red: null,
+      green: null,
+      blue: null,
+      ledOnTime: null,
+      ledOffTime: null,
+      fanInterval: null,
+      fanDuration: null,
+      floodFreq: null,
+      floodDuration: null,
+    },
+  }
+}
+
+export function calcDur(begin: number, end: number): number {
+  if (begin > end) end += 24
+  return end - begin
+}

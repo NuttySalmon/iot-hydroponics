@@ -7,11 +7,12 @@ import Info from './Info'
 import { emptyDeviceInfo } from '../util'
 import SettingsToggleButton from './SettingsToggleButton'
 import DetailsHeader from './DetailsHeader'
+import Settings from './Settings'
 
 const DeviceDetails = ({ deviceInfos }: { deviceInfos: Array<DeviceInfo> }) => {
   const { deviceId } = useParams()
   // for toggling between settings and data page
-  const [displaySettings, setDisplaySettings] = useState(false)
+  const [displaySettings, setDisplaySettings] = useState(true)
   // init values with null
   const [device, setDevice] = useState<DeviceInfo>(emptyDeviceInfo(deviceId))
   useEffect(() => {
@@ -29,7 +30,11 @@ const DeviceDetails = ({ deviceInfos }: { deviceInfos: Array<DeviceInfo> }) => {
   return (
     <div className={style.detailsPage}>
       <HeaderBody header={header} button={button}>
-        <Info deviceDetails={device} />
+        {displaySettings ? (
+          <Settings deviceDetails={device} />
+        ) : (
+          <Info deviceDetails={device} />
+        )}
       </HeaderBody>
     </div>
   )
