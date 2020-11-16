@@ -2,6 +2,7 @@ export type DeviceInfo = {
   id: string
   name: string
   data: DeviceData
+  settings: DeviceSettings
 }
 
 export type DeviceData = {
@@ -14,4 +15,13 @@ export type DeviceData = {
   valveClose: boolean | null
   ledOn: boolean | null
   fanOn: boolean | null
+}
+
+export type DeviceSettings = {
+  red: number | null
+  green: number | null
+  blue: number | null
+  ledOnTime: number | null
+  ledOffTime: number | null
+  fanInterval: number | null
 }

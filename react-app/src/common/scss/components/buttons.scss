@@ -51,7 +51,10 @@
   border-color: $dark;
   &:hover {
     color: white;
-    background-color: $dark!important;
+    background-color: $dark !important;
+  }
+  &> img {
+    color: red;
   }
 }
 

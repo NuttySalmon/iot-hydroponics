@@ -9,8 +9,9 @@ function getOnOff(
   val: boolean | null,
   trueVal = 'On',
   falseVal = 'Off'
-): string | null {
-  return val === null ? null : val ? trueVal : falseVal
+): string {
+  if (val === null) return '-'
+  return val ? trueVal : falseVal
 }
 const DataDisplay = ({
   temp,

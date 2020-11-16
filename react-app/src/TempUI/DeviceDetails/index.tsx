@@ -1,41 +1,48 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Row } from 'react-bootstrap'
+import { Button, Col, Image, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import HeaderBody from '../../common/components/HeaderBody'
-import { DeviceData, DeviceInfo } from '../DeviceInfo'
+import { DeviceInfo } from '../DeviceInfo'
 import style from './scss/deviceDetails.module.scss'
 import DataDisplay from './DataDisplay'
-import './scss/DeviceDetailsBg.scss'
+import SettingsDisplay from './SettingsDisplay'
+import { Gear } from '../../common/components/SvgIcons'
 
 const DeviceDetails = ({ deviceInfos }: { deviceInfos: Array<DeviceInfo> }) => {
   const { deviceId } = useParams()
-  const [id, setId] = useState('Loading...')
-  const [name, setName] = useState('Loading...')
-  const [data, setData] = useState<DeviceData>({
-    temp: null,
-    hum: null,
-    lastUpdatedSince: null,
-    lastUpdated: null,
-    isOnline: false,
-    pumpOn: null,
-    valveClose: null,
-    ledOn: null,
-    fanOn: null,
-  })
+  const [device, setDevice] = useState<DeviceInfo>({
+    id: deviceId,
+    name: 'Loading',
+    data: {
+      temp: null,
+      hum: null,
+      lastUpdated: null,
+      isOnline: false,
+      lastUpdatedSince: null,
+      pumpOn: null,
+      valveClose: null,
+      ledOn: null,
+      fanOn: null,
+    },
 
+    settings: {
+      red: null,
+      green: null,
+      blue: null,
+      ledOnTime: null,
+      ledOffTime: null,
+      fanInterval: null,
+    },
+  })
   useEffect(() => {
     deviceInfos.forEach((deviceInfo: DeviceInfo) => {
       if (deviceInfo.id === deviceId) {
-        setId(deviceInfo.id)
-        setName(deviceInfo.name)
-        const infoData = deviceInfo.data
-        if (infoData) {
-          setData(infoData)
-        }
+        setDevice(deviceInfo)
       }
     })
   }, [deviceInfos, deviceId])
 
+  const { data, settings } = device
   const header = (
     <div>
       <Row className={style.lastUpdatedSince}>
@@ -44,17 +51,26 @@ const DeviceDetails = ({ deviceInfos }: { deviceInfos: Array<DeviceInfo> }) => {
           : 'Loading...'}
       </Row>
       <Row>
-        <h1>{name}</h1>
+        <h1>{device.name}</h1>
       </Row>
-      <Row>Device id: {id}</Row>
+      <Row>Device id: {device.id}</Row>
     </div>
   )
-  const button = <Button variant="long-sm-white">Device Settings</Button>
+  const button = (
+    <Button variant="long-sm-white">
+      <div className="d-inline-flex">
+        <Gear className={style.gear} />
+        <div> Settings</div>
+      </div>
+    </Button>
+  )
   return (
-    <div className={style.devicePage}>
+    <div className={style.detailsPage}>
       <HeaderBody header={header} button={button}>
-        <h3>Status report</h3>
+        <h3 className={style.sectionTitle}>Status report</h3>
         <DataDisplay {...data} />
+        <h3 className={style.sectionTitle}>Current settings</h3>
+        <SettingsDisplay {...settings} />
       </HeaderBody>
     </div>
   )

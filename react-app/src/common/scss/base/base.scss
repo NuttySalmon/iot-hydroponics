@@ -16,6 +16,13 @@ body {
   color: $dark;
 }
 
+html,
+body,
+#root,
+.dashboard {
+  height: 100%;
+}
+
 h1 {
   font-size: 45px;
   font-family: $serif;
@@ -29,7 +36,8 @@ h1 {
   }
 }
 
-h2, h3 {
+h2,
+h3 {
   color: $light-dark;
   font-family: $serif;
 }

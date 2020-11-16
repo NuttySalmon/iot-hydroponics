@@ -32,12 +32,24 @@ const makeFakeData = () => {
         lastUpdatedSince: lastUpdatedSinceText(fakeLastUpdated),
         isOnline: calcIsOnline(fakeLastUpdated),
       },
+      settings: {
+        red: 80,
+        green: 20,
+        blue: 80,
+        ledOnTime: fakeHour(),
+        ledOffTime: fakeHour(),
+        fanInterval: 20,
+      },
     })
   }
 }
 
 function fakeBool(): boolean {
   return Math.random() > 0.5
+}
+
+function fakeHour(): number {
+  return Math.floor(Math.random() * 23)
 }
 
 const calcGreetings = () => {
