@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { Button, Col, Container, Row } from 'react-bootstrap'
-import { DeviceInfo } from '../DeviceInfo'
-import style from './scss/deviceDetails.module.scss'
-import { convertToTimeStr, calcDur } from '../util'
+import React, { useState } from 'react'
+import { Button, Container, Row } from 'react-bootstrap'
+import { DeviceInfo } from '../../DeviceInfo'
+import style from './scss/settingsPage.module.scss'
+import { convertToTimeStr, calcDur } from '../../util'
 import PercentSlider from './SettingsSlider/PercentSlider'
 import SliderUnit from './SettingsSlider/SliderUnit'
 import TimeSlider from './SettingsSlider/TimeSlider'
@@ -16,7 +16,7 @@ function formatMinuteEveryDisplay(value: number) {
   return value ? `Every ${value} min` : 'Continuous'
 }
 
-const Settings = ({ deviceDetails }: { deviceDetails: DeviceInfo }) => {
+const SettingsPage = ({ deviceDetails }: { deviceDetails: DeviceInfo }) => {
   const [newSettings, setNewSettings] = useState(deviceDetails.settings)
   const handleChange = (field: string, value: number) => {
     setNewSettings((prev) => {
@@ -167,4 +167,4 @@ const Settings = ({ deviceDetails }: { deviceDetails: DeviceInfo }) => {
   )
 }
 
-export default Settings
+export default SettingsPage

@@ -1,0 +1,21 @@
+@import '../../../../common/scss/base/variables';
+
+.dataBox {
+  border: 1px solid $dark;
+  background-color: white;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-bottom: 2em;
+}
+
+.dataBlock {
+  text-align: center;
+  width: 160px;
+  font-size: large;
+  padding: 1em;
+  .title {
+    color: $grey;
+    font-size: medium;
+  }
+}

@@ -64,3 +64,12 @@ export function calcDur(begin: number, end: number): number {
   if (begin > end) end += 24
   return end - begin
 }
+
+export function getHourMinFromDuration(
+  min: number,
+  unit: 'minute' | 'seconds' = 'minute'
+) {
+  return moment
+    .utc(moment.duration(min, unit).asMilliseconds())
+    .format('H [hr] m [min]')
+}

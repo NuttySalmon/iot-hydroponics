@@ -1,8 +1,8 @@
 import React from 'react'
 import { DeviceInfo } from '../DeviceInfo'
-import DataDisplay from './DataDisplay'
+import DataDisplay from './InfoPage/DataDisplay'
 import style from './scss/deviceDetails.module.scss'
-import SettingsDisplay from './SettingsDisplay'
+import SettingsDisplay from './InfoPage/SettingsDisplay'
 const Info = ({ deviceDetails }: { deviceDetails: DeviceInfo }) => {
   const { data, settings } = deviceDetails
   return (

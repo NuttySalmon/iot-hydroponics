@@ -1,9 +1,10 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
-import { DeviceSettings } from '../DeviceInfo'
-import { convertToTimeStr } from '../util'
+import moment from 'moment'
+import { DeviceSettings } from '../../DeviceInfo'
+import { convertToTimeStr, getHourMinFromDuration } from '../../util'
 import DataBlock from './DataBlock'
-import style from './scss/deviceDetails.module.scss'
+import style from './scss/infoPage.module.scss'
 
 const SettingsDisplay = ({
   red,
@@ -26,7 +27,10 @@ const SettingsDisplay = ({
         <DataBlock title="LED off" data={convertToTimeStr(ledOffTime)} />
       </Container>
       <Container fluid className={style.dataBox}>
-        <DataBlock title="Flood Frequency" data={floodFreq} unit=" times" />
+        <DataBlock
+          title="Flood Frequency"
+          data={getHourMinFromDuration(floodFreq || 0)}
+        />
         <DataBlock title="Flood duration" data={floodDuration} unit=" min" />
         <DataBlock title="Fan interval" data={fanInterval} unit=" min" />
         <DataBlock title="Fan duration" data={fanDuration} unit=" min" />

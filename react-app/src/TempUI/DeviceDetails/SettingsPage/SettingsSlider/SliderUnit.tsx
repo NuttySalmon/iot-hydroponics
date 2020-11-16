@@ -1,9 +1,7 @@
 import React from 'react'
-import { Col, Row } from 'react-bootstrap'
-import { RefactorActionInfo } from 'typescript'
+import { Col } from 'react-bootstrap'
 import { SettingsSliderProps } from '.'
-import { DeviceSettings } from '../../DeviceInfo'
-import style from '../scss/deviceDetails.module.scss'
+import style from '../scss/settingsPage.module.scss'
 type SliderUnit = {
   name: string
   newSettings: any
