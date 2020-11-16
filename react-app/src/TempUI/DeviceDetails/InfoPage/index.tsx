@@ -1,9 +1,9 @@
 import React from 'react'
-import { DeviceInfo } from '../DeviceInfo'
-import DataDisplay from './InfoPage/DataDisplay'
-import style from './scss/deviceDetails.module.scss'
-import SettingsDisplay from './InfoPage/SettingsDisplay'
-const Info = ({ deviceDetails }: { deviceDetails: DeviceInfo }) => {
+import { DeviceInfo } from '../../DeviceInfo'
+import DataDisplay from './DataDisplay'
+import style from './scss/infoPage.module.scss'
+import SettingsDisplay from './SettingsDisplay'
+const InfoPage = ({ deviceDetails }: { deviceDetails: DeviceInfo }) => {
   const { data, settings } = deviceDetails
   return (
     <>
@@ -15,4 +15,4 @@ const Info = ({ deviceDetails }: { deviceDetails: DeviceInfo }) => {
   )
 }
 
-export default Info
+export default InfoPage

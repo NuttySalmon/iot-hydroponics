@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import HeaderBody from '../../common/components/HeaderBody'
 import { DeviceInfo } from '../DeviceInfo'
 import style from './scss/deviceDetails.module.scss'
-import Info from './Info'
+import InfoPage from './InfoPage'
 import { emptyDeviceInfo } from '../util'
 import SettingsToggleButton from './SettingsToggleButton'
 import DetailsHeader from './DetailsHeader'
@@ -33,7 +33,7 @@ const DeviceDetails = ({ deviceInfos }: { deviceInfos: Array<DeviceInfo> }) => {
         {displaySettings ? (
           <SettingsPage deviceDetails={device} />
         ) : (
-          <Info deviceDetails={device} />
+          <InfoPage deviceDetails={device} />
         )}
       </HeaderBody>
     </div>
