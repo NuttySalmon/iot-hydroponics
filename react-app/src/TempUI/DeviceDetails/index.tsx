@@ -29,7 +29,7 @@ const DeviceDetails = ({ deviceInfos }: { deviceInfos: Array<DeviceInfo> }) => {
   )
   return (
     <div className={style.detailsPage}>
-      <HeaderBody header={header} button={button}>
+      <HeaderBody header={header} button={button} back>
         {displaySettings ? (
           <SettingsPage deviceDetails={device} />
         ) : (
