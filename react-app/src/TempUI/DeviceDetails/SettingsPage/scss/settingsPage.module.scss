@@ -5,12 +5,11 @@
   & > div {
     margin-bottom: 0.5em;
   }
-  .title{
+  .title {
     font-size: large;
-    font-family: $sans ;
+    font-family: $sans;
   }
-  .value{
-
+  .value {
   }
 }
 .colorPreview {
@@ -23,5 +22,5 @@
 .settingsSection {
   border: 1px solid $dark;
   background-color: white;
-  margin: 50px 0;
+  margin-bottom: 50px;
 }
