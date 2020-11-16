@@ -26,6 +26,7 @@ type DeviceSettingsType = {
 } | null
 // time turn off 0-23
 // time turn on 0-23
+// need to convert time to RTC
 function Settings() {
   const [fanvalue, setFanValue] = useState(0)
   const [freqvalue, setFreqvalue] = useState(0)
@@ -41,30 +42,32 @@ function Settings() {
     try {
       const result = (await API.graphql(
         graphqlOperation(getDevice, {
-          id: '637', // manually change this
+          id: '637', // manually change this, this is to fetch current setting data
         })
       )) as GraphQLResult<GetDeviceQuery>
-      console.log('Displaying settings')
-      console.log(result.data?.getDevice?.currentSetting!)
+      // commenting out these, console log was just to see if we successfully fetched
+      // console.log('Displaying settings')
+      // console.log(result.data?.getDevice?.currentSetting!)
     } catch (error) {
       console.log(error)
     }
   }
 
   useEffect(() => {
-    fetchUser()
-    sub()
+    fetchUser() 
+    sub() // subscribe function 
   }, [])
 
-  const sub = () => {
+  const sub = () => { // subscribing with the topic listed as 'topic'
     PubSub.subscribe('topic').subscribe({
-      next: (data) => console.log('Message received', data),
+      next: (data) => console.log('Message received', data), // to ensure everything was received
       error: (error) => console.error(error),
-      complete: () => console.log('Done'),
+      complete: () => console.log('Done'), // complete message
     })
   }
   const pub = async () => {
     try {
+      // All of these were initialized in the settings function as 0, called by button
       await PubSub.publish('topic', {
         fan: fanvalue,
         freq: freqvalue,
@@ -74,13 +77,11 @@ function Settings() {
         greenlevel: green,
         bluelevel: blue,
       })
-      console.log('publish work')
     } catch (error) {
       console.warn(error)
-      console.log('testing')
     }
   }
-
+// this is from AWS tutorial
   Auth.currentCredentials().then((info: ICredentials) => {
     const cognitoIdentityId = info.identityId
     console.log(cognitoIdentityId)
@@ -93,14 +94,14 @@ function Settings() {
     event.preventDefault()
     try {
       pub()
-
-      // console.log('Displaying settings')
-      // console.log(result.data?.getDevice?.currentSetting!)
     } catch (error) {
       console.log(error)
     }
   }
   return (
+    // on submit is the handle settings call which goes into pub() 
+    // values are based on hours, and intensity levels for LED, pressing the button will save values
+    // and will be published right afterwards
     <Form action="#" onSubmit={handleSettings} className="setting-form">
       <Col xs="2">
         <Form.Label>Fan Duration</Form.Label>
@@ -183,11 +184,6 @@ function Settings() {
         <Col>
           <Button variant="short" type="submit">
             Save
-          </Button>
-        </Col>
-        <Col>
-          <Button variant="short" type="submit">
-            Reset
           </Button>
         </Col>
       </Form.Row>
