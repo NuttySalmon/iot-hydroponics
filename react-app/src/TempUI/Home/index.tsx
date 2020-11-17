@@ -24,15 +24,15 @@ const Home = ({ deviceInfos, greetings, ready }: HomeProps) => {
 
   const addDeviceButton = (
     <Link to="/dashboard/add">
-      <Button variant="long-sm">
-        &#65291;&nbsp;&nbsp;&nbsp;Add device
-      </Button>
+      <Button variant="long-sm">+&nbsp;&nbsp;&nbsp;Add a device</Button>
     </Link>
   )
 
   const header = (
     <Row className="justify-content-center">
-      <h2>{`${greetings} Mark!`}</h2>
+      <h1 id={style.greet}>
+        {greetings}, <span id={style.userFName}>Mark</span>
+      </h1>
     </Row>
   )
 

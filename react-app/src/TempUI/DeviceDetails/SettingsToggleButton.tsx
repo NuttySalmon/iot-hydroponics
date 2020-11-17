@@ -22,7 +22,7 @@ const SettingsToggleButton = ({
         ) : (
           <GearIcon className={style.buttonIcon} />
         )}
-        <div>{displaySettings ? 'Info' : 'Settings'}</div>
+        <div>{displaySettings ? 'Show info' : 'Set behaviour'}</div>
       </div>
     </Button>
   )

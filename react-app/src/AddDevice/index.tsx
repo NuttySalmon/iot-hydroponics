@@ -12,6 +12,7 @@ const AddDevice = () => {
   const [nameError, setNameError] = useState(false)
   const [generalError, setGeneralError] = useState(false)
 
+  // const ref1 = useRef<HTMLInputElement>(null)
   const createDeviceAWS = async (e: React.FormEvent) => {
     e.preventDefault()
     setGeneralError(false)
@@ -43,6 +44,15 @@ const AddDevice = () => {
           </p>
         </Row>
         <Form onSubmit={createDeviceAWS} style={{ maxWidth: '400px' }}>
+          {/* <input
+            maxLength={1}
+            style={{ width: '1.5em' }}
+            onChange={() => {
+              if (ref1) console.log(ref1.current?.focus())
+            }}
+          /> */}
+          {/* <input style={{ width: '1.5em' }} ref={ref1} /> */}
+
           <TextField
             label="Device ID"
             value={id}

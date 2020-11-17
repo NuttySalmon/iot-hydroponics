@@ -178,7 +178,9 @@ const SettingsPage = ({ settings }: SettingsPageProps) => {
           />
         </Row>
       </Container>
-      <Button variant="long">Submit new settings </Button>
+      <Container className="text-center">
+        <Button variant="long">Send to device </Button>
+      </Container>
     </Container>
   )
 }

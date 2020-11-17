@@ -18,11 +18,11 @@ const HeaderBody: React.FC<HeaderBodyProps> = ({
   const history = useHistory()
   return (
     <Container className="pt-5 pl-5 pr-5">
-        {back ? (
-          <button id={style.backButton} onClick={history.goBack}>
-            &#9664;&nbsp;Back
-          </button>
-        ) : null}
+      {back ? (
+        <button id={style.backButton} onClick={history.goBack}>
+          &#9664;&nbsp;Back
+        </button>
+      ) : null}
       <Row className={style.headerRow}>
         <Col sm={12} md="auto">
           {header}

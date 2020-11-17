@@ -21,7 +21,7 @@ const DetailsHeader = ({ id, name, data }: DetailsHeaderProps) => {
         }
       </Row>
       <Row>
-        <h1>{name}</h1>
+        <h1 id={style.name}>{name}</h1>
       </Row>
       <Row>Device id: {id}</Row>
     </div>

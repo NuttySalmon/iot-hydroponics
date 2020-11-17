@@ -1,16 +1,16 @@
 @import '../../../../common/scss/base/variables';
 @import '../../../../common/scss/base/animations';
 @import '../../../../common/scss/base/typography';
+@import '../../../../common/scss/base/mixins';
+
 .sliderUnit {
-  padding: 20px 30px;
+  padding: 20px 35px;
   & > div {
     margin-bottom: 0.5em;
   }
   .title {
     font-size: large;
     font-family: $sans;
-  }
-  .value {
   }
 }
 .colorPreview {
@@ -21,8 +21,10 @@
 }
 
 .settingsSection {
+  @include shadow-box;
   border: 1px solid $dark;
   background-color: white;
+  min-height: 180px;
   margin-bottom: 50px;
   animation: fade-in-no-motion ease 0.5s forwards;
 }

@@ -1,12 +1,24 @@
 @keyframes fade-in {
   from {
-    top: -4px;
-    opacity: 0;
+    top: -5px;
+    opacity: 0.1;
     position: relative;
   }
   to {
     top: 0;
-    position: initial;
+    position: relative;
+    opacity: 1;
+  }
+}
+@keyframes fade-in-up {
+  from {
+    top: 5px;
+    opacity: 0.1;
+    position: relative;
+  }
+  to {
+    top: 0;
+    position: relative;
     opacity: 1;
   }
 }
@@ -14,10 +26,8 @@
 @keyframes fade-in-no-motion {
   from {
     opacity: 0;
-    position: relative;
   }
   to {
-    position: initial;
     opacity: 1;
   }
 }

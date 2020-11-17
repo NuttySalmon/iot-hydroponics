@@ -29,7 +29,7 @@ const DevCard = ({ deviceInfo, currRoute, ...rest }: DevCardProps) => {
   return (
     <Link to={`${currRoute}/plant/${id}`} className={style.devCardLink}>
       <Card className={style.devCard}>
-        <Card.Img height="150px" variant="top" src={devicePic} />
+        <Card.Img height="150px" width="100px" variant="top" src={devicePic} />
         <Card.Body>
           <Card.Title className={style.cardName}>{name}</Card.Title>
           <div className="card-text">
