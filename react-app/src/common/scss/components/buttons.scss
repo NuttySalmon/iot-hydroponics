@@ -22,7 +22,7 @@
   }
 
   &:focus {
-    box-shadow: 0 0 0 0.2rem lighten($light-dark, 10);
+    box-shadow: 0 0 0 3px lighten($light-dark, 10);
   }
 }
 
@@ -49,12 +49,10 @@
   color: $dark;
   background-color: white;
   border-color: $dark;
-  &:hover {
+  &:hover,
+  &:focus {
     color: white;
     background-color: $dark !important;
-  }
-  &> img {
-    color: red;
   }
 }
 

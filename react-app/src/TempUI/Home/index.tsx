@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Button, Container, Row } from 'react-bootstrap'
 import { Link, useRouteMatch } from 'react-router-dom'
 import DevCard from './DevCard'
