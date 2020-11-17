@@ -1,4 +1,4 @@
-type userDataType = {
+export type userDataType = {
   __typename: string
   id: string
   owner: string
