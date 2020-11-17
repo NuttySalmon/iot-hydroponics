@@ -4,18 +4,32 @@ import { DeviceSettings } from '../../DeviceInfo'
 import { convertToTimeStr, getHourMinFromDuration } from '../../util'
 import DataBlock from './DataBlock'
 import style from './scss/infoPage.module.scss'
-
-const SettingsDisplay = ({
-  red,
-  green,
-  blue,
-  ledOnTime,
-  ledOffTime,
-  fanDuration,
-  fanInterval,
-  floodFreq,
-  floodDuration,
-}: DeviceSettings) => {
+const defaultSettingsDisplay = {
+  red: null,
+  green: null,
+  blue: null,
+  ledOnTime: null,
+  ledOffTime: null,
+  fanDuration: null,
+  fanInterval: null,
+  floodFreq: null,
+  floodDuration: null,
+}
+type SettingsDisplayProps = {
+  settings: DeviceSettings | null
+}
+const SettingsDisplay = ({ settings }: SettingsDisplayProps) => {
+  const {
+    red,
+    green,
+    blue,
+    ledOnTime,
+    ledOffTime,
+    fanDuration,
+    fanInterval,
+    floodFreq,
+    floodDuration,
+  } = settings || defaultSettingsDisplay
   return (
     <>
       <Container fluid className={style.dataBox}>
@@ -28,7 +42,7 @@ const SettingsDisplay = ({
       <Container fluid className={style.dataBox}>
         <DataBlock
           title="Flood Frequency"
-          data={getHourMinFromDuration(floodFreq || 0)}
+          data={getHourMinFromDuration(floodFreq)}
         />
         <DataBlock title="Flood duration" data={floodDuration} unit=" min" />
         <DataBlock title="Fan interval" data={fanInterval} unit=" min" />

@@ -66,9 +66,10 @@ export function calcDur(begin: number, end: number): number {
 }
 
 export function getHourMinFromDuration(
-  min: number,
+  min: number| null,
   unit: 'minute' | 'seconds' = 'minute'
 ) {
+  if(min === null) return '-'
   return moment
     .utc(moment.duration(min, unit).asMilliseconds())
     .format('H [hr] m [min]')

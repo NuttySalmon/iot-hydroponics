@@ -14,7 +14,12 @@ const DeviceDetails = ({ deviceInfos }: { deviceInfos: Array<DeviceInfo> }) => {
   // for toggling between settings and data page
   const [displaySettings, setDisplaySettings] = useState(false)
   // init values with null
-  const [device, setDevice] = useState<DeviceInfo>(emptyDeviceInfo(deviceId))
+  const [device, setDevice] = useState<DeviceInfo>({
+    id: deviceId,
+    name: 'Loading...',
+    settings: null,
+    data: null,
+  })
   useEffect(() => {
     deviceInfos.forEach((deviceInfo: DeviceInfo) => {
       if (deviceInfo.id === deviceId) {
@@ -23,7 +28,7 @@ const DeviceDetails = ({ deviceInfos }: { deviceInfos: Array<DeviceInfo> }) => {
     })
   }, [deviceInfos, deviceId])
 
-  const header = <DetailsHeader deviceDetails={device} />
+  const header = <DetailsHeader {...device} />
   const button = (
     <SettingsToggleButton {...{ displaySettings, setDisplaySettings }} />
   )
@@ -31,9 +36,9 @@ const DeviceDetails = ({ deviceInfos }: { deviceInfos: Array<DeviceInfo> }) => {
     <div className={style.detailsPage}>
       <HeaderBody header={header} button={button} back>
         {displaySettings ? (
-          <SettingsPage deviceDetails={device} />
+          <SettingsPage {...device} />
         ) : (
-          <InfoPage deviceDetails={device} />
+          <InfoPage {...device} />
         )}
       </HeaderBody>
     </div>

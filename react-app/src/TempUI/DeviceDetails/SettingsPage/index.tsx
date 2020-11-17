@@ -1,12 +1,24 @@
 import React, { useState } from 'react'
 import { Button, Container, Row } from 'react-bootstrap'
-import { DeviceInfo } from '../../DeviceInfo'
+import { DeviceInfo, DeviceSettings } from '../../DeviceInfo'
 import style from './scss/settingsPage.module.scss'
 import { convertToTimeStr, calcDur } from '../../util'
 import PercentSlider from './SettingsSlider/PercentSlider'
 import SliderUnit from './SliderUnit'
 import TimeSlider from './SettingsSlider/TimeSlider'
 import { durationSlider, freqSlider } from './SettingsSlider'
+
+const defaultSettings = {
+  red: 0,
+  green: 0,
+  blue: 0,
+  ledOnTime: 0,
+  ledOffTime: 0,
+  fanInterval: 0,
+  fanDuration: 0,
+  floodFreq: 0,
+  floodDuration: 0,
+}
 
 function formatMinuteDisplay(value: number) {
   return value ? `${value} min` : 'Off'
@@ -16,15 +28,19 @@ function formatMinuteEveryDisplay(value: number) {
   return value ? `Every ${value} min` : 'Continuous'
 }
 
-const SettingsPage = ({ deviceDetails }: { deviceDetails: DeviceInfo }) => {
-  const [newSettings, setNewSettings] = useState(deviceDetails.settings)
+type SettingsPageProps = {
+  settings: DeviceSettings | null
+}
+const SettingsPage = ({ settings }: SettingsPageProps) => {
+  const [newSettings, setNewSettings] = useState<DeviceSettings>(
+    settings || defaultSettings
+  )
   const handleChange = (field: string, value: number) => {
     setNewSettings((prev) => {
       const tempSettings = {
         ...prev,
         [field]: value,
       }
-
       return tempSettings
     })
   }

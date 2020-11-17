@@ -9,11 +9,19 @@ import { CircleIcon } from '../../common/components/SvgIcons'
 import devicePic from '../img/lettuce.png'
 import { DeviceInfo } from '../DeviceInfo'
 import { getStatus } from '../util'
-
+const defaultData = {
+  temp: '-',
+  hum: '-',
+  valveClose: null,
+  pumpOn: null,
+  lastUpdatedSince: null,
+  isOnline: false,
+}
 type DevCardProps = { deviceInfo: DeviceInfo; currRoute: string } & CardProps
 const DevCard = ({ deviceInfo, currRoute, ...rest }: DevCardProps) => {
   const { name, id, data } = deviceInfo
-  const { temp, hum, valveClose, pumpOn, lastUpdatedSince, isOnline } = data
+  const { temp, hum, valveClose, pumpOn, lastUpdatedSince, isOnline } =
+    data || defaultData
   const onlineIndicatorClass = () =>
     `${style.onlineIndicator} ${isOnline ? style.online : style.offline}`
   return (
@@ -25,7 +33,9 @@ const DevCard = ({ deviceInfo, currRoute, ...rest }: DevCardProps) => {
           <Card.Text>
             <Row className={style.lastUpdated}>
               <Col className={style.lastUpdatedText}>
-                Last updated {lastUpdatedSince}
+                {lastUpdatedSince
+                  ? `Last updated ${lastUpdatedSince}`
+                  : 'Waiting connection'}
               </Col>
               <Col xs={1} className={style.onlineIndicator}>
                 <CircleIcon className={onlineIndicatorClass()} />

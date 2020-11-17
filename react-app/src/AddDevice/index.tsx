@@ -1,6 +1,6 @@
 import { API, graphqlOperation } from 'aws-amplify'
 import React, { useState } from 'react'
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Row, Container } from 'react-bootstrap'
 import HeaderBody from '../common/components/HeaderBody'
 import TextField from '../common/components/TextField'
 import { createDevice } from '../graphql/mutations'
@@ -26,36 +26,44 @@ const AddDevice = () => {
       setGeneralError(true)
     }
   }
-  const header = <h2>Add your new device</h2>
+  const header = (
+    <Row>
+      <h2>Add your new device</h2>
+    </Row>
+  )
   return (
     <HeaderBody header={header}>
-      <p
-        className="warning"
-        style={{ display: generalError ? 'inherit' : 'none' }}
-      >
-        Error occured and we cannot add the device
-      </p>
-      <Form onSubmit={createDeviceAWS} style={{ maxWidth: '400px' }}>
-        <TextField
-          label="Device ID"
-          value={id}
-          onChange={setId}
-          hint="Invalid ID"
-          error
-          showHint={idError}
-        />
-        <TextField
-          label="Nickname"
-          value={name}
-          onChange={setName}
-          hint="Invalid nickname"
-          error
-          showHint={nameError}
-        />
-        <Button className="mt-5" variant="short" type="submit">
-          Submit
-        </Button>
-      </Form>
+      <Container>
+        <Row>
+          <p
+            className="warning"
+            style={{ display: generalError ? 'inherit' : 'none' }}
+          >
+            Error occured and we cannot add the device
+          </p>
+        </Row>
+        <Form onSubmit={createDeviceAWS} style={{ maxWidth: '400px' }}>
+          <TextField
+            label="Device ID"
+            value={id}
+            onChange={setId}
+            hint="Invalid ID"
+            error
+            showHint={idError}
+          />
+          <TextField
+            label="Nickname"
+            value={name}
+            onChange={setName}
+            hint="Invalid nickname"
+            error
+            showHint={nameError}
+          />
+          <Button className="mt-5" variant="short" type="submit">
+            Submit
+          </Button>
+        </Form>
+      </Container>
     </HeaderBody>
   )
 }

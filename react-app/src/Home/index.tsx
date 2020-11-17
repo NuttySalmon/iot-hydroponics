@@ -1,8 +1,8 @@
 import React from 'react'
 import DeviceCard from './DeviceCard'
-import { userDataType } from '../Dashboard/UserData'
+import { GraphQLUserDataType } from '../Dashboard/UserData'
 
-function Home({ userData }: { userData: userDataType }) {
+function Home({ userData }: { userData: GraphQLUserDataType }) {
   const listDevices = () => {
     if (userData) {
       return userData?.devices?.items!.map((device, index) => (

@@ -1,4 +1,4 @@
-export type userDataType = {
+export type GraphQLUserDataType = {
   __typename: string
   id: string
   owner: string
@@ -9,3 +9,10 @@ export type userDataType = {
   createdAt: string
   updatedAt: string
 } | null
+
+import { DeviceInfo } from "../TempUI/DeviceInfo";
+
+export type userDataType2 = {
+  userId: string
+  devices:Array<DeviceInfo>
+}

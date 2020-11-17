@@ -13,7 +13,7 @@ import DeviceDetails from '../TempUI/DeviceDetails'
 import { DeviceInfo } from '../TempUI/DeviceInfo'
 import moment from 'moment'
 import { calcIsOnline, lastUpdatedSinceText } from '../TempUI/util'
-import { userDataType } from './UserData'
+import { GraphQLUserDataType } from './UserData'
 
 let fakeData: Array<DeviceInfo> = []
 const makeFakeData = () => {
@@ -70,7 +70,7 @@ const calcGreetings = () => {
 }
 
 const Dashboard = () => {
-  const [userData, setUserData] = useState<userDataType>(null)
+  const [userData, setUserData] = useState<GraphQLUserDataType>(null)
   let history = useHistory()
 
   const fetchUser = async (userId: string) => {
@@ -81,6 +81,7 @@ const Dashboard = () => {
         })
       )) as GraphQLResult<UserByCognitoIdQuery>
       const userList = result.data?.userByCognitoID?.items!
+      console.log(userList)
       if (userList) {
         setUserData(userList[0])
       }
@@ -93,11 +94,11 @@ const Dashboard = () => {
     console.log('This is the new device data')
     console.log(newDeviceData)
     setUserData(
-      (prev: userDataType): userDataType => {
+      (prev: GraphQLUserDataType): GraphQLUserDataType => {
         // add update device if device data is already fetched
 
         if (prev?.devices!.items) {
-          const updatedUserData: userDataType = { ...prev } // duplicate original state
+          const updatedUserData: GraphQLUserDataType = { ...prev } // duplicate original state
 
           Object.assign(updatedUserData, prev)
           // find device by id and update with new data

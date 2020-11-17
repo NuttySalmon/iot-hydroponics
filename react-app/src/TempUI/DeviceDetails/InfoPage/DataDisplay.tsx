@@ -3,8 +3,18 @@ import { Container } from 'react-bootstrap'
 import { DeviceData } from '../../DeviceInfo'
 import DataBlock from './DataBlock'
 import style from './scss/infoPage.module.scss'
-
-type DataDisplayProp = Omit<DeviceData, 'status, isOnline, lastUpdatedSince'>
+const defaultDataDisplay = {
+  temp: null,
+  hum: null,
+  ledOn: null,
+  fanOn: null,
+  pumpOn: null,
+  valveClose: null,
+}
+type DataDisplayProp = Omit<
+  DeviceData,
+  'status, isOnline, lastUpdatedSince'
+> | null
 function getOnOff(
   val: boolean | null,
   trueVal = 'On',
@@ -13,14 +23,10 @@ function getOnOff(
   if (val === null) return '-'
   return val ? trueVal : falseVal
 }
-const DataDisplay = ({
-  temp,
-  hum,
-  ledOn,
-  fanOn,
-  pumpOn,
-  valveClose,
-}: DataDisplayProp) => {
+const DataDisplay = ({ data }: { data: DataDisplayProp }) => {
+  const { temp, hum, ledOn, fanOn, pumpOn, valveClose } =
+    data || defaultDataDisplay
+
   return (
     <Container fluid className={style.dataBox}>
       <DataBlock title="Temperature" data={temp} unit="&#730;C" />

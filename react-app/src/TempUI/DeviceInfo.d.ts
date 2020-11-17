@@ -1,30 +1,30 @@
 export type DeviceInfo = {
   id: string
   name: string
-  data: DeviceData
-  settings: DeviceSettings
+  data: DeviceData | null
+  settings: DeviceSettings | null
 }
 
 export type DeviceData = {
-  temp: number | null
-  hum: number | null
-  lastUpdated: Date | null
+  temp: number
+  hum: number 
+  lastUpdated: Date
   isOnline: boolean
-  lastUpdatedSince: string | null
-  pumpOn: boolean | null
-  valveClose: boolean | null
-  ledOn: boolean | null
-  fanOn: boolean | null
+  lastUpdatedSince: string
+  pumpOn: boolean
+  valveClose: boolean
+  ledOn: boolean
+  fanOn: boolean
 }
 
 export type DeviceSettings = {
-  red: number | null
-  green: number | null
-  blue: number | null
-  ledOnTime: number | null
-  ledOffTime: number | null
-  fanInterval: number | null
-  fanDuration: number | null
-  floodFreq: number | null
-  floodDuration: number | null
+  red: number
+  green: number 
+  blue: number
+  ledOnTime: number
+  ledOffTime: number
+  fanInterval: number
+  fanDuration: number
+  floodFreq: number
+  floodDuration: number
 }

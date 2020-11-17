@@ -1,18 +1,23 @@
 import React from 'react'
 import { Row } from 'react-bootstrap'
-import { DeviceInfo } from '../DeviceInfo'
+import { DeviceData, DeviceInfo } from '../DeviceInfo'
 import style from './scss/deviceDetails.module.scss'
 
-const DetailsHeader = ({ deviceDetails }: { deviceDetails: DeviceInfo }) => {
-  const { data, id, name } = deviceDetails
+type DetailsHeaderProps = {
+  data?: DeviceData | null
+  id: string
+  name: string
+}
+
+const DetailsHeader = ({ id, name, data }: DetailsHeaderProps) => {
   return (
     <div>
       <Row className={style.lastUpdatedSince}>
         {
           // get last updated text. display loading if null
-          data.lastUpdatedSince
+          data
             ? `Last updated ${data.lastUpdatedSince}`
-            : 'Loading...'
+            : 'Waiting to be connected.'
         }
       </Row>
       <Row>

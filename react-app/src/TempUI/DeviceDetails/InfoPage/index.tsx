@@ -1,16 +1,19 @@
 import React from 'react'
-import { DeviceInfo } from '../../DeviceInfo'
+import { DeviceData, DeviceInfo, DeviceSettings } from '../../DeviceInfo'
 import DataDisplay from './DataDisplay'
 import style from './scss/infoPage.module.scss'
 import SettingsDisplay from './SettingsDisplay'
-const InfoPage = ({ deviceDetails }: { deviceDetails: DeviceInfo }) => {
-  const { data, settings } = deviceDetails
+type InfoPageProps = {
+  data: DeviceData | null
+  settings: DeviceSettings | null
+}
+const InfoPage = ({ data, settings }: InfoPageProps) => {
   return (
     <>
       <h3 className={style.sectionTitle}>Status report</h3>
-      <DataDisplay {...data} />
+      <DataDisplay data={data} />
       <h3 className={style.sectionTitle}>Current settings</h3>
-      <SettingsDisplay {...settings} />
+      <SettingsDisplay settings={settings} />
     </>
   )
 }
