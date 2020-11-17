@@ -1,64 +1,17 @@
 import React, { useEffect, useState } from 'react'
+import { Route, useHistory, useRouteMatch } from 'react-router-dom'
 import { API, Auth } from 'aws-amplify'
+import { userByCognitoId } from '../graphql/queries'
+import Home from '../TempUI/Home'
 import Navi from '../Navi'
 import AddDevice from '../AddDevice'
-import { Route, useHistory, useRouteMatch } from 'react-router-dom'
-import Home from '../TempUI/Home'
-import { userByCognitoId } from '../graphql/queries'
 import { graphqlOperation, GraphQLResult } from '@aws-amplify/api'
 import { onUpdateDevice } from '../graphql/subscriptions'
 import Observable from 'zen-observable'
 import { UserByCognitoIdQuery } from '../API'
 import DeviceDetails from '../TempUI/DeviceDetails'
-import { DeviceInfo } from '../TempUI/DeviceInfo'
-import moment from 'moment'
-import { calcIsOnline, lastUpdatedSinceText } from '../TempUI/util'
-import { GraphQLUserDataType } from './UserData'
-
-let fakeData: Array<DeviceInfo> = []
-const makeFakeData = () => {
-  fakeData = []
-  for (let i = 0; i < 6; i += 1) {
-    const fakeLastUpdated = moment(new Date())
-      .subtract(Math.floor(Math.random() * 3000), 'seconds')
-      .toDate()
-
-    fakeData.push({
-      name: 'Lettuce',
-      id: i.toString(),
-      data: {
-        temp: 25,
-        hum: 30,
-        pumpOn: fakeBool(),
-        valveClose: fakeBool(),
-        ledOn: fakeBool(),
-        fanOn: fakeBool(),
-        lastUpdated: fakeLastUpdated,
-        lastUpdatedSince: lastUpdatedSinceText(fakeLastUpdated),
-        isOnline: calcIsOnline(fakeLastUpdated),
-      },
-      settings: {
-        red: 80,
-        green: 20,
-        blue: 80,
-        ledOnTime: fakeHour(),
-        ledOffTime: fakeHour(),
-        fanInterval: 20,
-        fanDuration: 30,
-        floodFreq: 300,
-        floodDuration: 20,
-      },
-    })
-  }
-}
-
-function fakeBool(): boolean {
-  return Math.random() > 0.5
-}
-
-function fakeHour(): number {
-  return Math.floor(Math.random() * 23)
-}
+import { makeDeviceInfoFromQuery } from '../TempUI/util'
+import { GraphQLUserDataType, UserDataType } from './UserData'
 
 const calcGreetings = () => {
   const now = new Date()
@@ -70,9 +23,25 @@ const calcGreetings = () => {
 }
 
 const Dashboard = () => {
-  const [userData, setUserData] = useState<GraphQLUserDataType>(null)
+  const [userData, setUserData] = useState<UserDataType>({
+    userId: '',
+    devices: [],
+    createdAt: '',
+    updatedAt: '',
+  })
   let history = useHistory()
-
+  // const setDeviceDataFromQuery
+  const setUserDataFromQuery = (data: GraphQLUserDataType) => {
+    const devices = data.devices.items.map(makeDeviceInfoFromQuery)
+    const newUserData: UserDataType = {
+      userId: data.owner || '',
+      devices: devices,
+      createdAt: data?.createdAt || '',
+      updatedAt: data?.updatedAt || '',
+    }
+    setUserData(newUserData)
+    return newUserData
+  }
   const fetchUser = async (userId: string) => {
     try {
       const result = (await API.graphql(
@@ -81,9 +50,12 @@ const Dashboard = () => {
         })
       )) as GraphQLResult<UserByCognitoIdQuery>
       const userList = result.data?.userByCognitoID?.items!
-      console.log(userList)
-      if (userList) {
-        setUserData(userList[0])
+
+      // if user found
+      if (userList[0]) {
+        const temp = setUserDataFromQuery(userList[0])
+        console.log(temp)
+        // setUserDataFromQuery
       }
     } catch (error) {
       console.log(error)
@@ -93,28 +65,28 @@ const Dashboard = () => {
   const updateDevice = (newDeviceData: any) => {
     console.log('This is the new device data')
     console.log(newDeviceData)
-    setUserData(
-      (prev: GraphQLUserDataType): GraphQLUserDataType => {
-        // add update device if device data is already fetched
+    // setUserData(
+    //   (prev: GraphQLUserDataType): GraphQLUserDataType => {
+    //     // add update device if device data is already fetched
 
-        if (prev?.devices!.items) {
-          const updatedUserData: GraphQLUserDataType = { ...prev } // duplicate original state
+    //     if (prev?.devices!.items) {
+    //       const updatedUserData: GraphQLUserDataType = { ...prev } // duplicate original state
 
-          Object.assign(updatedUserData, prev)
-          // find device by id and update with new data
-          const updatedDevices = prev.devices.items?.map((device) => {
-            if (newDeviceData.value.data.onUpdateDevice.id === device.id) {
-              return newDeviceData.value.data.onUpdateDevice
-            }
-            return device
-          })
-          updatedUserData.devices!.items = updatedDevices
-          return updatedUserData
-        }
-        // return previous if device data is not fetched
-        return prev
-      }
-    )
+    //       Object.assign(updatedUserData, prev)
+    //       // find device by id and update with new data
+    //       const updatedDevices = prev.devices.items?.map((device) => {
+    //         if (newDeviceData.value.data.onUpdateDevice.id === device.id) {
+    //           return newDeviceData.value.data.onUpdateDevice
+    //         }
+    //         return device
+    //       })
+    //       updatedUserData.devices!.items = updatedDevices
+    //       return updatedUserData
+    //     }
+    //     // return previous if device data is not fetched
+    //     return prev
+    //   }
+    // )
   }
 
   const subscribeData = async (userId: string) => {
@@ -144,7 +116,7 @@ const Dashboard = () => {
   }
 
   function userNotLoggedIn() {
-    history.push('/login')
+    history.push('/logout')
   }
 
   useEffect(() => {
@@ -161,7 +133,7 @@ const Dashboard = () => {
         userNotLoggedIn()
       })
   }, [])
-  makeFakeData()
+  // makeFakeData()
   const match = useRouteMatch()
   const [greetings, setGreetings] = useState('Hello')
   useEffect(() => {
@@ -180,13 +152,13 @@ const Dashboard = () => {
     <div className="dashboard">
       <Navi />
       <Route exact path={match.url}>
-        <Home deviceInfos={fakeData} greetings={greetings} />
+        <Home deviceInfos={userData.devices} greetings={greetings} />
       </Route>
       <Route path={`${match.url}/add`}>
         <AddDevice />
       </Route>
       <Route path={`${match.url}/plant/:deviceId`}>
-        <DeviceDetails deviceInfos={fakeData} />
+        <DeviceDetails deviceInfos={userData.devices} />
       </Route>
     </div>
   )

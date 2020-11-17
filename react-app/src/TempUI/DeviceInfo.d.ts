@@ -7,19 +7,19 @@ export type DeviceInfo = {
 
 export type DeviceData = {
   temp: number
-  hum: number 
+  hum: number
   lastUpdated: Date
   isOnline: boolean
   lastUpdatedSince: string
   pumpOn: boolean
-  valveClose: boolean
+  valveClosed: boolean
   ledOn: boolean
   fanOn: boolean
 }
 
 export type DeviceSettings = {
   red: number
-  green: number 
+  green: number
   blue: number
   ledOnTime: number
   ledOffTime: number

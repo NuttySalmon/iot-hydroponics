@@ -1,4 +1,10 @@
 import moment from 'moment'
+import {
+  GraphQLUserDeviceDataType,
+  GraphQLUserDeviceType,
+  GraphQLUserDeviceSettingsType,
+} from '../Dashboard/UserData'
+import { DeviceData, DeviceInfo, DeviceSettings } from './DeviceInfo'
 
 export const calcIsOnline = (lastUpdated: Date): boolean => {
   const now = moment(Date.now())
@@ -15,7 +21,7 @@ export const getStatus = (
   valveClosed: boolean | null,
   pumpOn: boolean | null
 ): string => {
-  if (valveClosed === null || pumpOn === null) return 'Loading...'
+  if (valveClosed === null || pumpOn === null) return 'Not connected'
   if (valveClosed && pumpOn) return 'Filling flood tray'
   if (valveClosed && !pumpOn) return 'Flooding'
   if (!valveClosed && pumpOn) return 'Filling. Max level reached'
@@ -41,7 +47,7 @@ export function emptyDeviceInfo(deviceId = '-') {
       isOnline: false,
       lastUpdatedSince: null,
       pumpOn: null,
-      valveClose: null,
+      valveClosed: null,
       ledOn: null,
       fanOn: null,
     },
@@ -66,11 +72,52 @@ export function calcDur(begin: number, end: number): number {
 }
 
 export function getHourMinFromDuration(
-  min: number| null,
+  min: number | null,
   unit: 'minute' | 'seconds' = 'minute'
 ) {
-  if(min === null) return '-'
+  if (min === null) return '-'
   return moment
     .utc(moment.duration(min, unit).asMilliseconds())
     .format('H [hr] m [min]')
+}
+
+const makeDeviceSettingsFromQuery = (
+  data: GraphQLUserDeviceSettingsType
+): DeviceSettings => {
+  const settings: DeviceSettings = data
+  return settings
+}
+
+const updateLastUpdatedFields = (datetime: string) => {
+  const lastUpdated = new Date(datetime)
+  return {
+    lastUpdated,
+    isOnline: calcIsOnline(lastUpdated),
+    lastUpdatedSince: lastUpdatedSinceText(lastUpdated),
+  }
+}
+const makeDeviceDataFromQuery = (
+  data: GraphQLUserDeviceDataType
+): DeviceData => {
+  const { fanOn, ledOn, temp, hum, pumpOn, valveClosed, updatedAt } = data
+  return {
+    temp,
+    hum,
+    pumpOn,
+    valveClosed,
+    ledOn,
+    fanOn,
+    ...updateLastUpdatedFields(updatedAt),
+  }
+}
+export const makeDeviceInfoFromQuery = (
+  device: GraphQLUserDeviceType
+): DeviceInfo => {
+  const { id, name, currentData, currentSetting } = device
+  return {
+    id,
+    name,
+    data: currentData ? makeDeviceDataFromQuery(currentData) : null,
+    settings: currentSetting ? { ...currentSetting } : null,
+  }
 }

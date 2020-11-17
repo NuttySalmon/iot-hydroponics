@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Container, Row } from 'react-bootstrap'
-import { DeviceInfo, DeviceSettings } from '../../DeviceInfo'
+import { DeviceSettings } from '../../DeviceInfo'
 import style from './scss/settingsPage.module.scss'
 import { convertToTimeStr, calcDur } from '../../util'
 import PercentSlider from './SettingsSlider/PercentSlider'

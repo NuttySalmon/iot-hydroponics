@@ -9,7 +9,7 @@ const defaultDataDisplay = {
   ledOn: null,
   fanOn: null,
   pumpOn: null,
-  valveClose: null,
+  valveClosed: null,
 }
 type DataDisplayProp = Omit<
   DeviceData,
@@ -24,7 +24,7 @@ function getOnOff(
   return val ? trueVal : falseVal
 }
 const DataDisplay = ({ data }: { data: DataDisplayProp }) => {
-  const { temp, hum, ledOn, fanOn, pumpOn, valveClose } =
+  const { temp, hum, ledOn, fanOn, pumpOn, valveClosed } =
     data || defaultDataDisplay
 
   return (
@@ -33,7 +33,7 @@ const DataDisplay = ({ data }: { data: DataDisplayProp }) => {
       <DataBlock title="Humidity" data={hum} unit="%" />
       <DataBlock title="LED" data={getOnOff(ledOn)} />
       <DataBlock title="Pump" data={getOnOff(pumpOn)} />
-      <DataBlock title="Valve" data={getOnOff(valveClose, 'Close', 'Open')} />
+      <DataBlock title="Valve" data={getOnOff(valveClosed, 'Close', 'Open')} />
       <DataBlock title="Fan" data={getOnOff(fanOn)} />
     </Container>
   )

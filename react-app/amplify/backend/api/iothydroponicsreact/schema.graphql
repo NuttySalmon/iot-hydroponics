@@ -22,20 +22,19 @@ type User
 type Data @model @auth(rules: [{ allow: owner }]) {
   id: ID!
   fanOn: Boolean!
-  LEDOn: Boolean!
+  ledOn: Boolean!
   temp: Float!
   hum: Float!
   pumpOn: Boolean!
-  valveOpen: Boolean!
+  valveClosed: Boolean!
 }
 
 type Setting @model @auth(rules: [{ allow: owner }]) {
   id: ID!
-  waterLevel: Int!
   floodFreq: Int!
   floodDuration: Int!
-  LEDOnTime: Int!
-  LEDOffTime: Int!
+  ledOnTime: Int!
+  ledOffTime: Int!
   fanDuration: Int!
   fanInterval: Int!
   red: Int!
@@ -43,10 +42,10 @@ type Setting @model @auth(rules: [{ allow: owner }]) {
   blue: Int!
 }
 
-type History 
-@model 
-@auth(rules: [{ allow: owner }])
-@key(name: "byDevice", fields: ["deviceID", "datetime"]) {
+type History
+  @model
+  @auth(rules: [{ allow: owner }])
+  @key(name: "byDevice", fields: ["deviceID", "datetime"]) {
   id: ID!
   deviceID: ID!
   datetime: AWSDateTime!
