@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
-import { DeviceData } from '../../DeviceInfo'
+import { DeviceData } from '../../Dashboard/DeviceInfo'
 import DataBlock from './DataBlock'
 import style from './scss/infoPage.module.scss'
 const defaultDataDisplay = {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
-import { GearIcon, GraphIcon } from '../../common/components/SvgIcons'
+import { GearIcon, GraphIcon } from '../common/components/SvgIcons'
 import style from './scss/deviceDetails.module.scss'
 
 type SettingsToggleButtonProps = {

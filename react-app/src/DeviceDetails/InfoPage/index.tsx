@@ -1,5 +1,5 @@
 import React from 'react'
-import { DeviceData, DeviceSettings } from '../../DeviceInfo'
+import { DeviceData, DeviceSettings } from '../../Dashboard/DeviceInfo'
 import DataDisplay from './DataDisplay'
 import style from './scss/infoPage.module.scss'
 import SettingsDisplay from './SettingsDisplay'

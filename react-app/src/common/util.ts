@@ -4,7 +4,7 @@ import {
   GraphQLUserDeviceType,
   GraphQLUserDeviceSettingsType,
 } from '../Dashboard/UserData'
-import { DeviceData, DeviceInfo, DeviceSettings } from './DeviceInfo'
+import { DeviceData, DeviceInfo, DeviceSettings } from '../Dashboard/DeviceInfo'
 
 export const calcIsOnline = (lastUpdated: Date): boolean => {
   const now = moment(Date.now())

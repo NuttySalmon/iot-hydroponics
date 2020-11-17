@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
-import { DeviceSettings } from '../../DeviceInfo'
-import { convertToTimeStr, getHourMinFromDuration } from '../../util'
+import { DeviceSettings } from '../../Dashboard/DeviceInfo'
+import { convertToTimeStr, getHourMinFromDuration } from '../../common/util'
 import DataBlock from './DataBlock'
 import style from './scss/infoPage.module.scss'
 const defaultSettingsDisplay = {

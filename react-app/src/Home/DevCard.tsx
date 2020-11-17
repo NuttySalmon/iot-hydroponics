@@ -1,14 +1,14 @@
 import React from 'react'
 import { Card, CardProps, Col, Image, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import infoIcon from '../img/info.svg'
-import humIcon from '../img/water.svg'
-import tempIcon from '../img/thermometer.svg'
+import infoIcon from '../common/img/info.svg'
+import humIcon from '../common/img/water.svg'
+import tempIcon from '../common/img/thermometer.svg'
 import style from './scss/devCard.module.scss'
-import { CircleIcon } from '../../common/components/SvgIcons'
-import devicePic from '../img/lettuce.png'
-import { DeviceInfo } from '../DeviceInfo'
-import { getStatus } from '../util'
+import { CircleIcon } from '../common/components/SvgIcons'
+import devicePic from '../common/img/lettuce.png'
+import { DeviceInfo } from '../Dashboard/DeviceInfo'
+import { getStatus } from '../common/util'
 
 const defaultData = {
   temp: '-',

@@ -3,9 +3,9 @@ import { Button, Container, Row } from 'react-bootstrap'
 import { Link, useRouteMatch } from 'react-router-dom'
 import DevCard from './DevCard'
 import style from './scss/home.module.scss'
-import { DeviceInfo } from '../DeviceInfo'
-import HeaderBody from '../../common/components/HeaderBody'
-import Loading from '../../common/components/Loading'
+import { DeviceInfo } from '../Dashboard/DeviceInfo'
+import HeaderBody from '../common/components/HeaderBody'
+import Loading from '../common/components/Loading'
 
 type HomeProps = {
   deviceInfos: Array<DeviceInfo>

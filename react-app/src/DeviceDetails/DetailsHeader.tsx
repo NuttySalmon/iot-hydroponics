@@ -1,6 +1,6 @@
 import React from 'react'
 import { Row } from 'react-bootstrap'
-import { DeviceData } from '../DeviceInfo'
+import { DeviceData } from '../Dashboard/DeviceInfo'
 import style from './scss/deviceDetails.module.scss'
 
 type DetailsHeaderProps = {
