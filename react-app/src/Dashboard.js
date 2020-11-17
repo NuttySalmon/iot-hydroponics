@@ -11,7 +11,7 @@ const Dashboard = () => {
     console.log('Dashboard')
     Auth.currentAuthenticatedUser()
       .then((user) => {
-        console.log(user)
+        // console.log(user)
       })
       .catch(() => {
         console.log('dashboard no user')
