@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom'
 import { API, Auth, graphqlOperation } from 'aws-amplify'
 import Observable from 'zen-observable'
 import { GraphQLResult } from '@aws-amplify/api'
@@ -22,14 +22,13 @@ type userDataType = {
 
 function Home() {
   const [userData, setUserData] = useState<userDataType>(null)
-
   let history = useHistory()
 
-  const fetchUser = async () => {
+  const fetchUser = async (userId: string) => {
     try {
       const result = (await API.graphql(
         graphqlOperation(userByCognitoId, {
-          owner: '990be0c7-7c8b-4556-82f2-63fb9c73ed1e',
+          owner: userId,
         })
       )) as GraphQLResult<UserByCognitoIdQuery>
       const userList = result.data?.userByCognitoID?.items!
@@ -68,11 +67,11 @@ function Home() {
     )
   }
 
-  const subscribeData = async () => {
+  const subscribeData = async (userId: string) => {
     try {
       const subscriber = await API.graphql(
         graphqlOperation(subscriptions.onUpdateDevice, {
-          owner: '990be0c7-7c8b-4556-82f2-63fb9c73ed1e',
+          owner: userId,
         })
       )
       if (subscriber instanceof Observable) {
@@ -95,23 +94,22 @@ function Home() {
   }
 
   function userNotLoggedIn() {
-    history.push("/login")
+    history.push('/login')
   }
 
   useEffect(() => {
     Auth.currentAuthenticatedUser()
       .then((user) => {
-        //TODO: set state for user ID and replace string 
-        console.log("Current user ID!")
+        console.log('Current user ID!')
         console.log(user.username)
+        const userId = user.username
+        subscribeData(userId)
+        fetchUser(userId)
       })
       .catch(() => {
         console.log('dashboard no user')
         userNotLoggedIn()
       })
-
-    fetchUser()
-    subscribeData()
   }, [])
 
   const listDevices = () => {

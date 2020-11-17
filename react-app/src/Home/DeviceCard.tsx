@@ -2,6 +2,7 @@ import React from 'react'
 import { Row, Col } from 'react-bootstrap'
 type DeviceCardProps = {
   name: string
+  id: string
   currentData: {
     updatedAt: string
     hum: string
@@ -11,8 +12,7 @@ type DeviceCardProps = {
   updatedAt: string
 }
 
-function DeviceCard({ name, currentData, updatedAt }: DeviceCardProps) {
-
+function DeviceCard({ name, id, currentData, updatedAt }: DeviceCardProps) {
   const data = currentData
   const hum = currentData?.hum
   console.log(data, hum)
@@ -21,6 +21,7 @@ function DeviceCard({ name, currentData, updatedAt }: DeviceCardProps) {
     <Row>
       <Col>
         <p> {name} </p>
+        <p> {id} </p>
         <p> {updatedAt}</p>
         <p> {currentData?.hum}</p>
         <p> {currentData?.temp}</p>

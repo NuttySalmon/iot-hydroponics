@@ -4,7 +4,7 @@ import { Auth } from 'aws-amplify'
 import Navi from './Navi'
 import AddDevice from './AddDevice'
 import { Route, Switch } from 'react-router-dom'
-import Home from './TempUI/Home'
+import Home from './Home'
 
 const Dashboard = () => {
   useEffect(() => {
