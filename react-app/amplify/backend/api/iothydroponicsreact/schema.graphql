@@ -21,7 +21,6 @@ type User
 
 type Data @model @auth(rules: [{ allow: owner }]) {
   id: ID!
-  time: AWSDateTime!
   fanOn: Boolean!
   LEDOn: Boolean!
   temp: Float!
@@ -33,10 +32,12 @@ type Data @model @auth(rules: [{ allow: owner }]) {
 type Setting @model @auth(rules: [{ allow: owner }]) {
   id: ID!
   waterLevel: Int!
-  floodFrequency: Int!
-  LEDOnTime: AWSTime!
-  LEDOffTime: AWSTime!
-  FanDuration: Int!
+  floodFreq: Int!
+  floodDuration: Int!
+  LEDOnTime: Int!
+  LEDOffTime: Int!
+  fanDuration: Int!
+  fanInterval: Int!
   red: Int!
   green: Int!
   blue: Int!

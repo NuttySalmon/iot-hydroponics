@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { API, Auth } from 'aws-amplify'
 import Navi from '../Navi'
 import AddDevice from '../AddDevice'
-import { Route, Switch, useHistory, useRouteMatch } from 'react-router-dom'
+import { Route, useHistory, useRouteMatch } from 'react-router-dom'
 import Home from '../TempUI/Home'
 import { userByCognitoId } from '../graphql/queries'
 import { graphqlOperation, GraphQLResult } from '@aws-amplify/api'
@@ -13,6 +13,7 @@ import DeviceDetails from '../TempUI/DeviceDetails'
 import { DeviceInfo } from '../TempUI/DeviceInfo'
 import moment from 'moment'
 import { calcIsOnline, lastUpdatedSinceText } from '../TempUI/util'
+import { userDataType } from './UserData'
 
 let fakeData: Array<DeviceInfo> = []
 const makeFakeData = () => {

@@ -10,7 +10,6 @@ export const onCreateDevice = /* GraphQL */ `
       description
       currentData {
         id
-        time
         fanOn
         LEDOn
         temp
@@ -24,10 +23,12 @@ export const onCreateDevice = /* GraphQL */ `
       currentSetting {
         id
         waterLevel
-        floodFrequency
+        floodFreq
+        floodDuration
         LEDOnTime
         LEDOffTime
-        FanDuration
+        fanDuration
+        fanInterval
         red
         green
         blue
@@ -43,7 +44,6 @@ export const onCreateDevice = /* GraphQL */ `
           datetime
           data {
             id
-            time
             fanOn
             LEDOn
             temp
@@ -57,10 +57,12 @@ export const onCreateDevice = /* GraphQL */ `
           setting {
             id
             waterLevel
-            floodFrequency
+            floodFreq
+            floodDuration
             LEDOnTime
             LEDOffTime
-            FanDuration
+            fanDuration
+            fanInterval
             red
             green
             blue
@@ -87,7 +89,6 @@ export const onUpdateDevice = /* GraphQL */ `
       description
       currentData {
         id
-        time
         fanOn
         LEDOn
         temp
@@ -101,10 +102,12 @@ export const onUpdateDevice = /* GraphQL */ `
       currentSetting {
         id
         waterLevel
-        floodFrequency
+        floodFreq
+        floodDuration
         LEDOnTime
         LEDOffTime
-        FanDuration
+        fanDuration
+        fanInterval
         red
         green
         blue
@@ -120,7 +123,6 @@ export const onUpdateDevice = /* GraphQL */ `
           datetime
           data {
             id
-            time
             fanOn
             LEDOn
             temp
@@ -134,10 +136,12 @@ export const onUpdateDevice = /* GraphQL */ `
           setting {
             id
             waterLevel
-            floodFrequency
+            floodFreq
+            floodDuration
             LEDOnTime
             LEDOffTime
-            FanDuration
+            fanDuration
+            fanInterval
             red
             green
             blue
@@ -164,7 +168,6 @@ export const onDeleteDevice = /* GraphQL */ `
       description
       currentData {
         id
-        time
         fanOn
         LEDOn
         temp
@@ -178,10 +181,12 @@ export const onDeleteDevice = /* GraphQL */ `
       currentSetting {
         id
         waterLevel
-        floodFrequency
+        floodFreq
+        floodDuration
         LEDOnTime
         LEDOffTime
-        FanDuration
+        fanDuration
+        fanInterval
         red
         green
         blue
@@ -197,7 +202,6 @@ export const onDeleteDevice = /* GraphQL */ `
           datetime
           data {
             id
-            time
             fanOn
             LEDOn
             temp
@@ -211,10 +215,12 @@ export const onDeleteDevice = /* GraphQL */ `
           setting {
             id
             waterLevel
-            floodFrequency
+            floodFreq
+            floodDuration
             LEDOnTime
             LEDOffTime
-            FanDuration
+            fanDuration
+            fanInterval
             red
             green
             blue
@@ -245,7 +251,6 @@ export const onCreateUser = /* GraphQL */ `
           description
           currentData {
             id
-            time
             fanOn
             LEDOn
             temp
@@ -259,10 +264,12 @@ export const onCreateUser = /* GraphQL */ `
           currentSetting {
             id
             waterLevel
-            floodFrequency
+            floodFreq
+            floodDuration
             LEDOnTime
             LEDOffTime
-            FanDuration
+            fanDuration
+            fanInterval
             red
             green
             blue
@@ -304,7 +311,6 @@ export const onUpdateUser = /* GraphQL */ `
           description
           currentData {
             id
-            time
             fanOn
             LEDOn
             temp
@@ -318,10 +324,12 @@ export const onUpdateUser = /* GraphQL */ `
           currentSetting {
             id
             waterLevel
-            floodFrequency
+            floodFreq
+            floodDuration
             LEDOnTime
             LEDOffTime
-            FanDuration
+            fanDuration
+            fanInterval
             red
             green
             blue
@@ -363,7 +371,6 @@ export const onDeleteUser = /* GraphQL */ `
           description
           currentData {
             id
-            time
             fanOn
             LEDOn
             temp
@@ -377,10 +384,12 @@ export const onDeleteUser = /* GraphQL */ `
           currentSetting {
             id
             waterLevel
-            floodFrequency
+            floodFreq
+            floodDuration
             LEDOnTime
             LEDOffTime
-            FanDuration
+            fanDuration
+            fanInterval
             red
             green
             blue
@@ -414,7 +423,6 @@ export const onCreateData = /* GraphQL */ `
   subscription OnCreateData($owner: String!) {
     onCreateData(owner: $owner) {
       id
-      time
       fanOn
       LEDOn
       temp
@@ -431,7 +439,6 @@ export const onUpdateData = /* GraphQL */ `
   subscription OnUpdateData($owner: String!) {
     onUpdateData(owner: $owner) {
       id
-      time
       fanOn
       LEDOn
       temp
@@ -448,7 +455,6 @@ export const onDeleteData = /* GraphQL */ `
   subscription OnDeleteData($owner: String!) {
     onDeleteData(owner: $owner) {
       id
-      time
       fanOn
       LEDOn
       temp
@@ -466,10 +472,12 @@ export const onCreateSetting = /* GraphQL */ `
     onCreateSetting(owner: $owner) {
       id
       waterLevel
-      floodFrequency
+      floodFreq
+      floodDuration
       LEDOnTime
       LEDOffTime
-      FanDuration
+      fanDuration
+      fanInterval
       red
       green
       blue
@@ -484,10 +492,12 @@ export const onUpdateSetting = /* GraphQL */ `
     onUpdateSetting(owner: $owner) {
       id
       waterLevel
-      floodFrequency
+      floodFreq
+      floodDuration
       LEDOnTime
       LEDOffTime
-      FanDuration
+      fanDuration
+      fanInterval
       red
       green
       blue
@@ -502,10 +512,12 @@ export const onDeleteSetting = /* GraphQL */ `
     onDeleteSetting(owner: $owner) {
       id
       waterLevel
-      floodFrequency
+      floodFreq
+      floodDuration
       LEDOnTime
       LEDOffTime
-      FanDuration
+      fanDuration
+      fanInterval
       red
       green
       blue
@@ -523,7 +535,6 @@ export const onCreateHistory = /* GraphQL */ `
       datetime
       data {
         id
-        time
         fanOn
         LEDOn
         temp
@@ -537,10 +548,12 @@ export const onCreateHistory = /* GraphQL */ `
       setting {
         id
         waterLevel
-        floodFrequency
+        floodFreq
+        floodDuration
         LEDOnTime
         LEDOffTime
-        FanDuration
+        fanDuration
+        fanInterval
         red
         green
         blue
@@ -562,7 +575,6 @@ export const onUpdateHistory = /* GraphQL */ `
       datetime
       data {
         id
-        time
         fanOn
         LEDOn
         temp
@@ -576,10 +588,12 @@ export const onUpdateHistory = /* GraphQL */ `
       setting {
         id
         waterLevel
-        floodFrequency
+        floodFreq
+        floodDuration
         LEDOnTime
         LEDOffTime
-        FanDuration
+        fanDuration
+        fanInterval
         red
         green
         blue
@@ -601,7 +615,6 @@ export const onDeleteHistory = /* GraphQL */ `
       datetime
       data {
         id
-        time
         fanOn
         LEDOn
         temp
@@ -615,10 +628,12 @@ export const onDeleteHistory = /* GraphQL */ `
       setting {
         id
         waterLevel
-        floodFrequency
+        floodFreq
+        floodDuration
         LEDOnTime
         LEDOffTime
-        FanDuration
+        fanDuration
+        fanInterval
         red
         green
         blue
