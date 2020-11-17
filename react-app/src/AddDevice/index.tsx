@@ -32,7 +32,7 @@ const AddDevice = () => {
     </Row>
   )
   return (
-    <HeaderBody header={header}>
+    <HeaderBody back header={header}>
       <Container>
         <Row>
           <p

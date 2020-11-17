@@ -10,3 +10,15 @@
     opacity: 1;
   }
 }
+
+@keyframes fade-in-no-motion {
+  from {
+    opacity: 0;
+    position: relative;
+  }
+  to {
+    position: initial;
+    opacity: 1;
+  }
+}
+

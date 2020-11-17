@@ -5,12 +5,12 @@
 
 .devCardParent {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   column-gap: 50px;
   row-gap: 50px;
-  justify-items: center;
+  justify-items: auto;
   @include media-breakpoint-down(md) {
+    justify-items: center;
     grid-template-columns: repeat(
       auto-fill,
       minmax(unquote('min(250px, 100%)'), 1fr)

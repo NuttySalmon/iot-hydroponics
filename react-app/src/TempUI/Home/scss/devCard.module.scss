@@ -1,4 +1,5 @@
 @import '../../../common/scss/base/variables';
+@import '../../../common/scss/base/animations';
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
 
@@ -48,8 +49,10 @@ $height: 330px;
     outline-width: 3px;
     box-shadow: 8px 8px 2px rgba($dark, 0.5);
   }
+  animation: fade-in ease 0.5s forwards;
 }
 .devCardLink {
+  width: fit-content;
   &:hover {
     text-decoration: none;
   }

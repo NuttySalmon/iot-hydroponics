@@ -29,6 +29,7 @@ const Dashboard = () => {
     createdAt: '',
     updatedAt: '',
   })
+  const [ready, setReady] = useState(false)
   let history = useHistory()
   // const setDeviceDataFromQuery
   const setUserDataFromQuery = (data: GraphQLUserDataType) => {
@@ -59,6 +60,8 @@ const Dashboard = () => {
       }
     } catch (error) {
       console.log(error)
+    } finally {
+      setReady(true)
     }
   }
 
@@ -152,7 +155,11 @@ const Dashboard = () => {
     <div className="dashboard">
       <Navi />
       <Route exact path={match.url}>
-        <Home deviceInfos={userData.devices} greetings={greetings} />
+        <Home
+          deviceInfos={userData.devices}
+          ready={ready}
+          greetings={greetings}
+        />
       </Route>
       <Route path={`${match.url}/add`}>
         <AddDevice />

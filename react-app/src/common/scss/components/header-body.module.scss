@@ -19,13 +19,22 @@
   }
 }
 
-#backButton{
+#backButton {
   position: absolute;
   color: $muted;
-  top: 60px;
-  left: 2em;
+  top: 51px;
+  left: 1em;
   background: none;
   border: none;
-  font-style: italic;
   font-size: small;
+  &:hover,
+  &:focus {
+    padding: 1px 6px 1px 0;
+    color: $dark;
+    transition: all 0.3s;
+    outline: none;
+    border: 1px solid $light-dark;
+    border-left: 0;
+    border-right: 0;
+  }
 }

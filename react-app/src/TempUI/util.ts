@@ -118,6 +118,8 @@ export const makeDeviceInfoFromQuery = (
     id,
     name,
     data: currentData ? makeDeviceDataFromQuery(currentData) : null,
-    settings: currentSetting ? { ...currentSetting } : null,
+    settings: currentSetting
+      ? makeDeviceSettingsFromQuery(currentSetting)
+      : null,
   }
 }

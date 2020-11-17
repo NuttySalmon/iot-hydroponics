@@ -17,22 +17,20 @@ const HeaderBody: React.FC<HeaderBodyProps> = ({
 }) => {
   const history = useHistory()
   return (
-    <>
-      {back ? (
-        <button id={style.backButton} onClick={history.goBack}>
-          &lt; Back
-        </button>
-      ) : null}
-      <Container className="pt-5 pl-5 pr-5">
-        <Row className={style.headerRow}>
-          <Col sm={12} md="auto">
-            {header}
-          </Col>
-          {button ? <Col className={style.headerButton}>{button}</Col> : null}
-        </Row>
-        <Row>{children}</Row>
-      </Container>
-    </>
+    <Container className="pt-5 pl-5 pr-5">
+        {back ? (
+          <button id={style.backButton} onClick={history.goBack}>
+            &#9664;&nbsp;Back
+          </button>
+        ) : null}
+      <Row className={style.headerRow}>
+        <Col sm={12} md="auto">
+          {header}
+        </Col>
+        {button ? <Col className={style.headerButton}>{button}</Col> : null}
+      </Row>
+      <Row>{children}</Row>
+    </Container>
   )
 }
 

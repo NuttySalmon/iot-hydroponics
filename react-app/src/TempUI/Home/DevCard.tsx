@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Card, CardProps, Col, Image, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import infoIcon from '../img/info.svg'
@@ -9,6 +9,7 @@ import { CircleIcon } from '../../common/components/SvgIcons'
 import devicePic from '../img/lettuce.png'
 import { DeviceInfo } from '../DeviceInfo'
 import { getStatus } from '../util'
+import Loading from '../../common/components/Loading'
 const defaultData = {
   temp: '-',
   hum: '-',
@@ -19,6 +20,7 @@ const defaultData = {
 }
 type DevCardProps = { deviceInfo: DeviceInfo; currRoute: string } & CardProps
 const DevCard = ({ deviceInfo, currRoute, ...rest }: DevCardProps) => {
+  const [ready, setReady] = useState(false)
   const { name, id, data } = deviceInfo
   const { temp, hum, valveClosed, pumpOn, lastUpdatedSince, isOnline } =
     data || defaultData
@@ -30,7 +32,7 @@ const DevCard = ({ deviceInfo, currRoute, ...rest }: DevCardProps) => {
         <Card.Img height="150px" variant="top" src={devicePic} />
         <Card.Body>
           <Card.Title className={style.cardName}>{name}</Card.Title>
-          <Card.Text>
+          <div className="card-text">
             <Row className={style.lastUpdated}>
               <Col className={style.lastUpdatedText}>
                 {lastUpdatedSince
@@ -57,7 +59,7 @@ const DevCard = ({ deviceInfo, currRoute, ...rest }: DevCardProps) => {
               </Col>
               <Col>{getStatus(valveClosed, pumpOn)}</Col>
             </Row>
-          </Card.Text>
+          </div>
         </Card.Body>
       </Card>
     </Link>
