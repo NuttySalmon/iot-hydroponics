@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { Route, useHistory, useRouteMatch } from 'react-router-dom'
 import { API, Auth } from 'aws-amplify'
+import Observable from 'zen-observable'
+import { graphqlOperation, GraphQLResult } from '@aws-amplify/api'
 import { userByCognitoId } from '../graphql/queries'
 import Home from '../Home'
 import Navi from '../Navi'
 import AddDevice from '../AddDevice'
-import { graphqlOperation, GraphQLResult } from '@aws-amplify/api'
 import { onUpdateDevice } from '../graphql/subscriptions'
-import Observable from 'zen-observable'
 import { UserByCognitoIdQuery } from '../API'
 import DeviceDetails from '../DeviceDetails'
 import { makeDeviceInfoFromQuery } from '../common/util'
-import { GraphQLUserDataType, UserDataType } from './UserData'
+import {
+  GraphQLUserDataType,
+  OnUpdateDeviceType,
+  UserDataType,
+} from './UserData'
+import { DeviceInfo } from './DeviceInfo'
 
 const calcGreetings = () => {
   const now = new Date()
@@ -30,13 +35,13 @@ const Dashboard = () => {
     updatedAt: '',
   })
   const [ready, setReady] = useState(false)
-  let history = useHistory()
+  const history = useHistory()
   // const setDeviceDataFromQuery
   const setUserDataFromQuery = (data: GraphQLUserDataType) => {
     const devices = data.devices.items.map(makeDeviceInfoFromQuery)
     const newUserData: UserDataType = {
       userId: data.owner || '',
-      devices: devices,
+      devices,
       createdAt: data?.createdAt || '',
       updatedAt: data?.updatedAt || '',
     }
@@ -50,48 +55,43 @@ const Dashboard = () => {
           owner: userId,
         })
       )) as GraphQLResult<UserByCognitoIdQuery>
-      const userList = result.data?.userByCognitoID?.items!
+      const userList = result.data?.userByCognitoID?.items
 
       // if user found
-      if (userList[0]) {
+      if (userList && userList[0]) {
         const temp = setUserDataFromQuery(userList[0])
         console.log(temp)
         // setUserDataFromQuery
       }
     } catch (error) {
-      console.log(error)
+      console.warn(error)
     } finally {
+      // indicate page ready and remove loading
       setReady(true)
     }
   }
 
-  const updateDevice = (newDeviceData: any) => {
-    console.log('This is the new device data')
+  const updateDeviceOnSub = (newDeviceData: OnUpdateDeviceType) => {
     console.log(newDeviceData)
-    // setUserData(
-    //   (prev: GraphQLUserDataType): GraphQLUserDataType => {
-    //     // add update device if device data is already fetched
-
-    //     if (prev?.devices!.items) {
-    //       const updatedUserData: GraphQLUserDataType = { ...prev } // duplicate original state
-
-    //       Object.assign(updatedUserData, prev)
-    //       // find device by id and update with new data
-    //       const updatedDevices = prev.devices.items?.map((device) => {
-    //         if (newDeviceData.value.data.onUpdateDevice.id === device.id) {
-    //           return newDeviceData.value.data.onUpdateDevice
-    //         }
-    //         return device
-    //       })
-    //       updatedUserData.devices!.items = updatedDevices
-    //       return updatedUserData
-    //     }
-    //     // return previous if device data is not fetched
-    //     return prev
-    //   }
-    // )
+    setUserData(
+      (prev: UserDataType): UserDataType => {
+        // add update device if device data is already fetched
+        const updatedUserData: UserDataType = { ...prev } // duplicate original state
+        Object.assign(updatedUserData, prev)
+        // find device by id and update with new data
+        const updatedDevices = prev.devices.map((device: DeviceInfo) => {
+          if (newDeviceData.id === device.id) {
+            return makeDeviceInfoFromQuery(newDeviceData) 
+          }
+          return device
+        })
+        updatedUserData.devices = updatedDevices
+        return updatedUserData
+      }
+    )
   }
 
+  /** Subscription  */
   const subscribeData = async (userId: string) => {
     try {
       const subscriber = await API.graphql(
@@ -100,13 +100,11 @@ const Dashboard = () => {
         })
       )
       if (subscriber instanceof Observable) {
+        // subscribe
         subscriber.subscribe({
-          next: (deviceData) => {
-            console.log(deviceData.value.data.onUpdateDevice)
-            if (deviceData.value.errors) console.warn(deviceData.value.errors)
-            else {
-              updateDevice(deviceData)
-            }
+          next: ({ value }) => {
+            if (value.errors) console.warn(value.errors)
+            else updateDeviceOnSub(value.data.onUpdateDevice)
           },
           error: (error) => {
             console.warn(error)
@@ -114,7 +112,7 @@ const Dashboard = () => {
         })
       }
     } catch (error) {
-      console.log(error)
+      console.warn(error)
     }
   }
 
@@ -136,7 +134,7 @@ const Dashboard = () => {
         userNotLoggedIn()
       })
   }, [])
-  // makeFakeData()
+
   const match = useRouteMatch()
   const [greetings, setGreetings] = useState('Hello')
   useEffect(() => {

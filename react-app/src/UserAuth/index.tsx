@@ -5,14 +5,14 @@ import { Route } from 'react-router-dom'
 import Login from '../AuthPages/Login'
 import SignUp from '../AuthPages/SignUp'
 import Logout from '../AuthPages/Logout'
-import { AuthPageRoute } from './RouteRedirect'
+import { AuthPageRoute, AuthRoutingProps } from './RouteRedirect'
 import AuthRouteContain from './AuthRouteContain'
 import Loading from '../common/components/Loading'
 
 type UserAuthProps = {
   // path to redirefct if logged in
   loggedInPath: string
-  children: React.ReactElement<any>
+  children: React.ReactElement<AuthRoutingProps>
 }
 
 // Auth components

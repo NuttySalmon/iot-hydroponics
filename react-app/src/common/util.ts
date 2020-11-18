@@ -1,8 +1,8 @@
 import moment from 'moment'
 import {
-  GraphQLUserDeviceDataType,
-  GraphQLUserDeviceType,
-  GraphQLUserDeviceSettingsType,
+  GraphQLDataType,
+  GraphQLDeviceType,
+  GraphQLSettingsType,
 } from '../Dashboard/UserData'
 import { DeviceData, DeviceInfo, DeviceSettings } from '../Dashboard/DeviceInfo'
 
@@ -82,7 +82,7 @@ export function getHourMinFromDuration(
 }
 
 const makeDeviceSettingsFromQuery = (
-  data: GraphQLUserDeviceSettingsType
+  data: GraphQLSettingsType
 ): DeviceSettings => {
   const settings: DeviceSettings = data
   return settings
@@ -96,9 +96,7 @@ const updateLastUpdatedFields = (datetime: string) => {
     lastUpdatedSince: lastUpdatedSinceText(lastUpdated),
   }
 }
-const makeDeviceDataFromQuery = (
-  data: GraphQLUserDeviceDataType
-): DeviceData => {
+const makeDeviceDataFromQuery = (data: GraphQLDataType): DeviceData => {
   const { fanOn, ledOn, temp, hum, pumpOn, valveClosed, updatedAt } = data
   return {
     temp,
@@ -110,9 +108,7 @@ const makeDeviceDataFromQuery = (
     ...updateLastUpdatedFields(updatedAt),
   }
 }
-export const makeDeviceInfoFromQuery = (
-  device: GraphQLUserDeviceType
-): DeviceInfo => {
+export const makeDeviceInfoFromQuery = (device: GraphQLDeviceType): DeviceInfo => {
   const { id, name, currentData, currentSetting } = device
   return {
     id,
