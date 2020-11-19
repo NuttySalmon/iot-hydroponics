@@ -166,7 +166,6 @@ export const listDevices = /* GraphQL */ `
 export const getUser = /* GraphQL */ `
   query GetUser($id: ID!) {
     getUser(id: $id) {
-      id
       owner
       devices {
         items {
@@ -217,6 +216,7 @@ export const getUser = /* GraphQL */ `
         }
         nextToken
       }
+      id
       createdAt
       updatedAt
     }
@@ -230,7 +230,6 @@ export const listUsers = /* GraphQL */ `
   ) {
     listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
-        id
         owner
         devices {
           items {
@@ -273,6 +272,7 @@ export const listUsers = /* GraphQL */ `
           }
           nextToken
         }
+        id
         createdAt
         updatedAt
       }
@@ -465,7 +465,6 @@ export const userByCognitoId = /* GraphQL */ `
       nextToken: $nextToken
     ) {
       items {
-        id
         owner
         devices {
           items {
@@ -508,6 +507,7 @@ export const userByCognitoId = /* GraphQL */ `
           }
           nextToken
         }
+        id
         createdAt
         updatedAt
       }

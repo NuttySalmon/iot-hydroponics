@@ -73,8 +73,8 @@ export type DeleteDeviceInput = {
 };
 
 export type CreateUserInput = {
-  id?: string | null,
   owner: string,
+  id?: string | null,
 };
 
 export type ModelUserConditionInput = {
@@ -85,6 +85,7 @@ export type ModelUserConditionInput = {
 
 export type UpdateUserInput = {
   owner?: string | null,
+  id: string,
 };
 
 export type DeleteUserInput = {
@@ -259,6 +260,7 @@ export type ModelDeviceFilterInput = {
 
 export type ModelUserFilterInput = {
   owner?: ModelStringInput | null,
+  id?: ModelIDInput | null,
   and?: Array< ModelUserFilterInput | null > | null,
   or?: Array< ModelUserFilterInput | null > | null,
   not?: ModelUserFilterInput | null,
@@ -580,7 +582,6 @@ export type CreateUserMutationVariables = {
 export type CreateUserMutation = {
   createUser:  {
     __typename: "User",
-    id: string,
     owner: string,
     devices:  {
       __typename: "ModelDeviceConnection",
@@ -637,6 +638,7 @@ export type CreateUserMutation = {
       } | null > | null,
       nextToken: string | null,
     } | null,
+    id: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -650,7 +652,6 @@ export type UpdateUserMutationVariables = {
 export type UpdateUserMutation = {
   updateUser:  {
     __typename: "User",
-    id: string,
     owner: string,
     devices:  {
       __typename: "ModelDeviceConnection",
@@ -707,6 +708,7 @@ export type UpdateUserMutation = {
       } | null > | null,
       nextToken: string | null,
     } | null,
+    id: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -720,7 +722,6 @@ export type DeleteUserMutationVariables = {
 export type DeleteUserMutation = {
   deleteUser:  {
     __typename: "User",
-    id: string,
     owner: string,
     devices:  {
       __typename: "ModelDeviceConnection",
@@ -777,6 +778,7 @@ export type DeleteUserMutation = {
       } | null > | null,
       nextToken: string | null,
     } | null,
+    id: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -1242,7 +1244,6 @@ export type GetUserQueryVariables = {
 export type GetUserQuery = {
   getUser:  {
     __typename: "User",
-    id: string,
     owner: string,
     devices:  {
       __typename: "ModelDeviceConnection",
@@ -1299,6 +1300,7 @@ export type GetUserQuery = {
       } | null > | null,
       nextToken: string | null,
     } | null,
+    id: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -1315,7 +1317,6 @@ export type ListUsersQuery = {
     __typename: "ModelUserConnection",
     items:  Array< {
       __typename: "User",
-      id: string,
       owner: string,
       devices:  {
         __typename: "ModelDeviceConnection",
@@ -1363,6 +1364,7 @@ export type ListUsersQuery = {
         } | null > | null,
         nextToken: string | null,
       } | null,
+      id: string,
       createdAt: string,
       updatedAt: string,
     } | null > | null,
@@ -1577,7 +1579,6 @@ export type UserByCognitoIdQuery = {
     __typename: "ModelUserConnection",
     items:  Array< {
       __typename: "User",
-      id: string,
       owner: string,
       devices:  {
         __typename: "ModelDeviceConnection",
@@ -1625,6 +1626,7 @@ export type UserByCognitoIdQuery = {
         } | null > | null,
         nextToken: string | null,
       } | null,
+      id: string,
       createdAt: string,
       updatedAt: string,
     } | null > | null,
@@ -1900,7 +1902,6 @@ export type OnCreateUserSubscriptionVariables = {
 export type OnCreateUserSubscription = {
   onCreateUser:  {
     __typename: "User",
-    id: string,
     owner: string,
     devices:  {
       __typename: "ModelDeviceConnection",
@@ -1957,6 +1958,7 @@ export type OnCreateUserSubscription = {
       } | null > | null,
       nextToken: string | null,
     } | null,
+    id: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -1969,7 +1971,6 @@ export type OnUpdateUserSubscriptionVariables = {
 export type OnUpdateUserSubscription = {
   onUpdateUser:  {
     __typename: "User",
-    id: string,
     owner: string,
     devices:  {
       __typename: "ModelDeviceConnection",
@@ -2026,6 +2027,7 @@ export type OnUpdateUserSubscription = {
       } | null > | null,
       nextToken: string | null,
     } | null,
+    id: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -2038,7 +2040,6 @@ export type OnDeleteUserSubscriptionVariables = {
 export type OnDeleteUserSubscription = {
   onDeleteUser:  {
     __typename: "User",
-    id: string,
     owner: string,
     devices:  {
       __typename: "ModelDeviceConnection",
@@ -2095,6 +2096,7 @@ export type OnDeleteUserSubscription = {
       } | null > | null,
       nextToken: string | null,
     } | null,
+    id: string,
     createdAt: string,
     updatedAt: string,
   } | null,

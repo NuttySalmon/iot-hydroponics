@@ -248,7 +248,6 @@ export const createUser = /* GraphQL */ `
     $condition: ModelUserConditionInput
   ) {
     createUser(input: $input, condition: $condition) {
-      id
       owner
       devices {
         items {
@@ -299,6 +298,7 @@ export const createUser = /* GraphQL */ `
         }
         nextToken
       }
+      id
       createdAt
       updatedAt
     }
@@ -310,7 +310,6 @@ export const updateUser = /* GraphQL */ `
     $condition: ModelUserConditionInput
   ) {
     updateUser(input: $input, condition: $condition) {
-      id
       owner
       devices {
         items {
@@ -361,6 +360,7 @@ export const updateUser = /* GraphQL */ `
         }
         nextToken
       }
+      id
       createdAt
       updatedAt
     }
@@ -372,7 +372,6 @@ export const deleteUser = /* GraphQL */ `
     $condition: ModelUserConditionInput
   ) {
     deleteUser(input: $input, condition: $condition) {
-      id
       owner
       devices {
         items {
@@ -423,6 +422,7 @@ export const deleteUser = /* GraphQL */ `
         }
         nextToken
       }
+      id
       createdAt
       updatedAt
     }

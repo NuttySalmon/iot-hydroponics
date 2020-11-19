@@ -17,6 +17,7 @@ type User
   @key(name: "byCognitoID", fields: ["owner"], queryField: "userByCognitoID") {
   owner: String!
   devices: [Device] @connection(keyName: "byUser", fields: ["owner"])
+  id: ID!
 }
 
 type Data @model @auth(rules: [{ allow: owner }]) {

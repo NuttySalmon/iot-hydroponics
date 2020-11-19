@@ -236,7 +236,6 @@ export const onDeleteDevice = /* GraphQL */ `
 export const onCreateUser = /* GraphQL */ `
   subscription OnCreateUser($owner: String!) {
     onCreateUser(owner: $owner) {
-      id
       owner
       devices {
         items {
@@ -287,6 +286,7 @@ export const onCreateUser = /* GraphQL */ `
         }
         nextToken
       }
+      id
       createdAt
       updatedAt
     }
@@ -295,7 +295,6 @@ export const onCreateUser = /* GraphQL */ `
 export const onUpdateUser = /* GraphQL */ `
   subscription OnUpdateUser($owner: String!) {
     onUpdateUser(owner: $owner) {
-      id
       owner
       devices {
         items {
@@ -346,6 +345,7 @@ export const onUpdateUser = /* GraphQL */ `
         }
         nextToken
       }
+      id
       createdAt
       updatedAt
     }
@@ -354,7 +354,6 @@ export const onUpdateUser = /* GraphQL */ `
 export const onDeleteUser = /* GraphQL */ `
   subscription OnDeleteUser($owner: String!) {
     onDeleteUser(owner: $owner) {
-      id
       owner
       devices {
         items {
@@ -405,6 +404,7 @@ export const onDeleteUser = /* GraphQL */ `
         }
         nextToken
       }
+      id
       createdAt
       updatedAt
     }
