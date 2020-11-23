@@ -1,6 +1,6 @@
 type Device
   @model
-  @auth(rules: [{ allow: owner }])
+  @auth(rules: [{ allow: owner }, { allow: public, provider: apiKey }])
   @key(name: "byUser", fields: ["owner"]) {
   id: ID!
   name: String!
@@ -13,14 +13,16 @@ type Device
 
 type User
   @model
-  @auth(rules: [{ allow: owner }])
+  @auth(rules: [{ allow: owner }, { allow: public, provider: apiKey }])
   @key(name: "byCognitoID", fields: ["owner"], queryField: "userByCognitoID") {
   owner: String!
   devices: [Device] @connection(keyName: "byUser", fields: ["owner"])
   id: ID!
 }
 
-type Data @model @auth(rules: [{ allow: owner }]) {
+type Data
+  @model
+  @auth(rules: [{ allow: owner }, { allow: public, provider: apiKey }]) {
   id: ID!
   fanOn: Boolean!
   ledOn: Boolean!
@@ -28,9 +30,12 @@ type Data @model @auth(rules: [{ allow: owner }]) {
   hum: Float!
   pumpOn: Boolean!
   valveClosed: Boolean!
+  owner: String
 }
 
-type Setting @model @auth(rules: [{ allow: owner }]) {
+type Setting
+  @model
+  @auth(rules: [{ allow: owner }, { allow: public, provider: apiKey }]) {
   id: ID!
   floodFreq: Int!
   floodDuration: Int!
@@ -41,15 +46,17 @@ type Setting @model @auth(rules: [{ allow: owner }]) {
   red: Int!
   green: Int!
   blue: Int!
+  owner: String
 }
 
 type History
   @model
-  @auth(rules: [{ allow: owner }])
+  @auth(rules: [{ allow: owner }, { allow: public, provider: apiKey }])
   @key(name: "byDevice", fields: ["deviceID", "datetime"]) {
   id: ID!
   deviceID: ID!
   datetime: AWSDateTime!
   data: Data @connection
   setting: Setting @connection
+  owner: String
 }

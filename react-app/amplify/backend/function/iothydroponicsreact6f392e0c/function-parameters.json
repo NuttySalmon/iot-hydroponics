@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "auth": {
+      "iothydroponicsreact212321dc": [
+        "create",
+        "read",
+        "update"
+      ]
+    },
+    "api": {
+      "iothydroponicsreact": [
+        "create",
+        "read",
+        "update"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

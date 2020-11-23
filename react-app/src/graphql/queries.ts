@@ -8,6 +8,9 @@ export const getDevice = /* GraphQL */ `
       id
       name
       description
+      owner
+      createdAt
+      updatedAt
       currentData {
         id
         fanOn
@@ -16,9 +19,9 @@ export const getDevice = /* GraphQL */ `
         hum
         pumpOn
         valveClosed
+        owner
         createdAt
         updatedAt
-        owner
       }
       currentSetting {
         id
@@ -31,16 +34,18 @@ export const getDevice = /* GraphQL */ `
         red
         green
         blue
+        owner
         createdAt
         updatedAt
-        owner
       }
-      owner
       histories {
         items {
           id
           deviceID
           datetime
+          owner
+          createdAt
+          updatedAt
           data {
             id
             fanOn
@@ -49,9 +54,9 @@ export const getDevice = /* GraphQL */ `
             hum
             pumpOn
             valveClosed
+            owner
             createdAt
             updatedAt
-            owner
           }
           setting {
             id
@@ -64,18 +69,13 @@ export const getDevice = /* GraphQL */ `
             red
             green
             blue
+            owner
             createdAt
             updatedAt
-            owner
           }
-          createdAt
-          updatedAt
-          owner
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -90,6 +90,9 @@ export const listDevices = /* GraphQL */ `
         id
         name
         description
+        owner
+        createdAt
+        updatedAt
         currentData {
           id
           fanOn
@@ -98,9 +101,9 @@ export const listDevices = /* GraphQL */ `
           hum
           pumpOn
           valveClosed
+          owner
           createdAt
           updatedAt
-          owner
         }
         currentSetting {
           id
@@ -113,16 +116,18 @@ export const listDevices = /* GraphQL */ `
           red
           green
           blue
+          owner
           createdAt
           updatedAt
-          owner
         }
-        owner
         histories {
           items {
             id
             deviceID
             datetime
+            owner
+            createdAt
+            updatedAt
             data {
               id
               fanOn
@@ -131,9 +136,9 @@ export const listDevices = /* GraphQL */ `
               hum
               pumpOn
               valveClosed
+              owner
               createdAt
               updatedAt
-              owner
             }
             setting {
               id
@@ -146,18 +151,13 @@ export const listDevices = /* GraphQL */ `
               red
               green
               blue
+              owner
               createdAt
               updatedAt
-              owner
             }
-            createdAt
-            updatedAt
-            owner
           }
           nextToken
         }
-        createdAt
-        updatedAt
       }
       nextToken
     }
@@ -167,11 +167,17 @@ export const getUser = /* GraphQL */ `
   query GetUser($id: ID!) {
     getUser(id: $id) {
       owner
+      id
+      createdAt
+      updatedAt
       devices {
         items {
           id
           name
           description
+          owner
+          createdAt
+          updatedAt
           currentData {
             id
             fanOn
@@ -180,9 +186,9 @@ export const getUser = /* GraphQL */ `
             hum
             pumpOn
             valveClosed
+            owner
             createdAt
             updatedAt
-            owner
           }
           currentSetting {
             id
@@ -195,30 +201,24 @@ export const getUser = /* GraphQL */ `
             red
             green
             blue
+            owner
             createdAt
             updatedAt
-            owner
           }
-          owner
           histories {
             items {
               id
               deviceID
               datetime
+              owner
               createdAt
               updatedAt
-              owner
             }
             nextToken
           }
-          createdAt
-          updatedAt
         }
         nextToken
       }
-      id
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -231,11 +231,17 @@ export const listUsers = /* GraphQL */ `
     listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         owner
+        id
+        createdAt
+        updatedAt
         devices {
           items {
             id
             name
             description
+            owner
+            createdAt
+            updatedAt
             currentData {
               id
               fanOn
@@ -244,9 +250,9 @@ export const listUsers = /* GraphQL */ `
               hum
               pumpOn
               valveClosed
+              owner
               createdAt
               updatedAt
-              owner
             }
             currentSetting {
               id
@@ -259,191 +265,16 @@ export const listUsers = /* GraphQL */ `
               red
               green
               blue
+              owner
               createdAt
               updatedAt
-              owner
             }
-            owner
             histories {
               nextToken
             }
-            createdAt
-            updatedAt
           }
           nextToken
         }
-        id
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getData = /* GraphQL */ `
-  query GetData($id: ID!) {
-    getData(id: $id) {
-      id
-      fanOn
-      ledOn
-      temp
-      hum
-      pumpOn
-      valveClosed
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const listDatas = /* GraphQL */ `
-  query ListDatas(
-    $filter: ModelDataFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listDatas(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        fanOn
-        ledOn
-        temp
-        hum
-        pumpOn
-        valveClosed
-        createdAt
-        updatedAt
-        owner
-      }
-      nextToken
-    }
-  }
-`;
-export const getSetting = /* GraphQL */ `
-  query GetSetting($id: ID!) {
-    getSetting(id: $id) {
-      id
-      floodFreq
-      floodDuration
-      ledOnTime
-      ledOffTime
-      fanDuration
-      fanInterval
-      red
-      green
-      blue
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const listSettings = /* GraphQL */ `
-  query ListSettings(
-    $filter: ModelSettingFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listSettings(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        floodFreq
-        floodDuration
-        ledOnTime
-        ledOffTime
-        fanDuration
-        fanInterval
-        red
-        green
-        blue
-        createdAt
-        updatedAt
-        owner
-      }
-      nextToken
-    }
-  }
-`;
-export const getHistory = /* GraphQL */ `
-  query GetHistory($id: ID!) {
-    getHistory(id: $id) {
-      id
-      deviceID
-      datetime
-      data {
-        id
-        fanOn
-        ledOn
-        temp
-        hum
-        pumpOn
-        valveClosed
-        createdAt
-        updatedAt
-        owner
-      }
-      setting {
-        id
-        floodFreq
-        floodDuration
-        ledOnTime
-        ledOffTime
-        fanDuration
-        fanInterval
-        red
-        green
-        blue
-        createdAt
-        updatedAt
-        owner
-      }
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const listHistorys = /* GraphQL */ `
-  query ListHistorys(
-    $filter: ModelHistoryFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listHistorys(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        deviceID
-        datetime
-        data {
-          id
-          fanOn
-          ledOn
-          temp
-          hum
-          pumpOn
-          valveClosed
-          createdAt
-          updatedAt
-          owner
-        }
-        setting {
-          id
-          floodFreq
-          floodDuration
-          ledOnTime
-          ledOffTime
-          fanDuration
-          fanInterval
-          red
-          green
-          blue
-          createdAt
-          updatedAt
-          owner
-        }
-        createdAt
-        updatedAt
-        owner
       }
       nextToken
     }
@@ -466,11 +297,17 @@ export const userByCognitoId = /* GraphQL */ `
     ) {
       items {
         owner
+        id
+        createdAt
+        updatedAt
         devices {
           items {
             id
             name
             description
+            owner
+            createdAt
+            updatedAt
             currentData {
               id
               fanOn
@@ -479,9 +316,9 @@ export const userByCognitoId = /* GraphQL */ `
               hum
               pumpOn
               valveClosed
+              owner
               createdAt
               updatedAt
-              owner
             }
             currentSetting {
               id
@@ -494,22 +331,185 @@ export const userByCognitoId = /* GraphQL */ `
               red
               green
               blue
+              owner
               createdAt
               updatedAt
-              owner
             }
-            owner
             histories {
               nextToken
             }
-            createdAt
-            updatedAt
           }
           nextToken
         }
+      }
+      nextToken
+    }
+  }
+`;
+export const listDatas = /* GraphQL */ `
+  query ListDatas(
+    $filter: ModelDataFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listDatas(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
         id
+        fanOn
+        ledOn
+        temp
+        hum
+        pumpOn
+        valveClosed
+        owner
         createdAt
         updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getData = /* GraphQL */ `
+  query GetData($id: ID!) {
+    getData(id: $id) {
+      id
+      fanOn
+      ledOn
+      temp
+      hum
+      pumpOn
+      valveClosed
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listSettings = /* GraphQL */ `
+  query ListSettings(
+    $filter: ModelSettingFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listSettings(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        floodFreq
+        floodDuration
+        ledOnTime
+        ledOffTime
+        fanDuration
+        fanInterval
+        red
+        green
+        blue
+        owner
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getSetting = /* GraphQL */ `
+  query GetSetting($id: ID!) {
+    getSetting(id: $id) {
+      id
+      floodFreq
+      floodDuration
+      ledOnTime
+      ledOffTime
+      fanDuration
+      fanInterval
+      red
+      green
+      blue
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const getHistory = /* GraphQL */ `
+  query GetHistory($id: ID!) {
+    getHistory(id: $id) {
+      id
+      deviceID
+      datetime
+      owner
+      createdAt
+      updatedAt
+      data {
+        id
+        fanOn
+        ledOn
+        temp
+        hum
+        pumpOn
+        valveClosed
+        owner
+        createdAt
+        updatedAt
+      }
+      setting {
+        id
+        floodFreq
+        floodDuration
+        ledOnTime
+        ledOffTime
+        fanDuration
+        fanInterval
+        red
+        green
+        blue
+        owner
+        createdAt
+        updatedAt
+      }
+    }
+  }
+`;
+export const listHistorys = /* GraphQL */ `
+  query ListHistorys(
+    $filter: ModelHistoryFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listHistorys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        deviceID
+        datetime
+        owner
+        createdAt
+        updatedAt
+        data {
+          id
+          fanOn
+          ledOn
+          temp
+          hum
+          pumpOn
+          valveClosed
+          owner
+          createdAt
+          updatedAt
+        }
+        setting {
+          id
+          floodFreq
+          floodDuration
+          ledOnTime
+          ledOffTime
+          fanDuration
+          fanInterval
+          red
+          green
+          blue
+          owner
+          createdAt
+          updatedAt
+        }
       }
       nextToken
     }

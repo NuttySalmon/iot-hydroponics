@@ -3,11 +3,14 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreateDevice = /* GraphQL */ `
-  subscription OnCreateDevice($owner: String!) {
+  subscription OnCreateDevice($owner: String) {
     onCreateDevice(owner: $owner) {
       id
       name
       description
+      owner
+      createdAt
+      updatedAt
       currentData {
         id
         fanOn
@@ -16,9 +19,9 @@ export const onCreateDevice = /* GraphQL */ `
         hum
         pumpOn
         valveClosed
+        owner
         createdAt
         updatedAt
-        owner
       }
       currentSetting {
         id
@@ -31,16 +34,18 @@ export const onCreateDevice = /* GraphQL */ `
         red
         green
         blue
+        owner
         createdAt
         updatedAt
-        owner
       }
-      owner
       histories {
         items {
           id
           deviceID
           datetime
+          owner
+          createdAt
+          updatedAt
           data {
             id
             fanOn
@@ -49,9 +54,9 @@ export const onCreateDevice = /* GraphQL */ `
             hum
             pumpOn
             valveClosed
+            owner
             createdAt
             updatedAt
-            owner
           }
           setting {
             id
@@ -64,27 +69,25 @@ export const onCreateDevice = /* GraphQL */ `
             red
             green
             blue
+            owner
             createdAt
             updatedAt
-            owner
           }
-          createdAt
-          updatedAt
-          owner
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
 export const onUpdateDevice = /* GraphQL */ `
-  subscription OnUpdateDevice($owner: String!) {
+  subscription OnUpdateDevice($owner: String) {
     onUpdateDevice(owner: $owner) {
       id
       name
       description
+      owner
+      createdAt
+      updatedAt
       currentData {
         id
         fanOn
@@ -93,9 +96,9 @@ export const onUpdateDevice = /* GraphQL */ `
         hum
         pumpOn
         valveClosed
+        owner
         createdAt
         updatedAt
-        owner
       }
       currentSetting {
         id
@@ -108,16 +111,18 @@ export const onUpdateDevice = /* GraphQL */ `
         red
         green
         blue
+        owner
         createdAt
         updatedAt
-        owner
       }
-      owner
       histories {
         items {
           id
           deviceID
           datetime
+          owner
+          createdAt
+          updatedAt
           data {
             id
             fanOn
@@ -126,9 +131,9 @@ export const onUpdateDevice = /* GraphQL */ `
             hum
             pumpOn
             valveClosed
+            owner
             createdAt
             updatedAt
-            owner
           }
           setting {
             id
@@ -141,27 +146,25 @@ export const onUpdateDevice = /* GraphQL */ `
             red
             green
             blue
+            owner
             createdAt
             updatedAt
-            owner
           }
-          createdAt
-          updatedAt
-          owner
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
 export const onDeleteDevice = /* GraphQL */ `
-  subscription OnDeleteDevice($owner: String!) {
+  subscription OnDeleteDevice($owner: String) {
     onDeleteDevice(owner: $owner) {
       id
       name
       description
+      owner
+      createdAt
+      updatedAt
       currentData {
         id
         fanOn
@@ -170,9 +173,9 @@ export const onDeleteDevice = /* GraphQL */ `
         hum
         pumpOn
         valveClosed
+        owner
         createdAt
         updatedAt
-        owner
       }
       currentSetting {
         id
@@ -185,16 +188,18 @@ export const onDeleteDevice = /* GraphQL */ `
         red
         green
         blue
+        owner
         createdAt
         updatedAt
-        owner
       }
-      owner
       histories {
         items {
           id
           deviceID
           datetime
+          owner
+          createdAt
+          updatedAt
           data {
             id
             fanOn
@@ -203,9 +208,9 @@ export const onDeleteDevice = /* GraphQL */ `
             hum
             pumpOn
             valveClosed
+            owner
             createdAt
             updatedAt
-            owner
           }
           setting {
             id
@@ -218,30 +223,31 @@ export const onDeleteDevice = /* GraphQL */ `
             red
             green
             blue
+            owner
             createdAt
             updatedAt
-            owner
           }
-          createdAt
-          updatedAt
-          owner
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
 export const onCreateUser = /* GraphQL */ `
-  subscription OnCreateUser($owner: String!) {
+  subscription OnCreateUser($owner: String) {
     onCreateUser(owner: $owner) {
       owner
+      id
+      createdAt
+      updatedAt
       devices {
         items {
           id
           name
           description
+          owner
+          createdAt
+          updatedAt
           currentData {
             id
             fanOn
@@ -250,9 +256,9 @@ export const onCreateUser = /* GraphQL */ `
             hum
             pumpOn
             valveClosed
+            owner
             createdAt
             updatedAt
-            owner
           }
           currentSetting {
             id
@@ -265,42 +271,42 @@ export const onCreateUser = /* GraphQL */ `
             red
             green
             blue
+            owner
             createdAt
             updatedAt
-            owner
           }
-          owner
           histories {
             items {
               id
               deviceID
               datetime
+              owner
               createdAt
               updatedAt
-              owner
             }
             nextToken
           }
-          createdAt
-          updatedAt
         }
         nextToken
       }
-      id
-      createdAt
-      updatedAt
     }
   }
 `;
 export const onUpdateUser = /* GraphQL */ `
-  subscription OnUpdateUser($owner: String!) {
+  subscription OnUpdateUser($owner: String) {
     onUpdateUser(owner: $owner) {
       owner
+      id
+      createdAt
+      updatedAt
       devices {
         items {
           id
           name
           description
+          owner
+          createdAt
+          updatedAt
           currentData {
             id
             fanOn
@@ -309,9 +315,9 @@ export const onUpdateUser = /* GraphQL */ `
             hum
             pumpOn
             valveClosed
+            owner
             createdAt
             updatedAt
-            owner
           }
           currentSetting {
             id
@@ -324,42 +330,42 @@ export const onUpdateUser = /* GraphQL */ `
             red
             green
             blue
+            owner
             createdAt
             updatedAt
-            owner
           }
-          owner
           histories {
             items {
               id
               deviceID
               datetime
+              owner
               createdAt
               updatedAt
-              owner
             }
             nextToken
           }
-          createdAt
-          updatedAt
         }
         nextToken
       }
-      id
-      createdAt
-      updatedAt
     }
   }
 `;
 export const onDeleteUser = /* GraphQL */ `
-  subscription OnDeleteUser($owner: String!) {
+  subscription OnDeleteUser($owner: String) {
     onDeleteUser(owner: $owner) {
       owner
+      id
+      createdAt
+      updatedAt
       devices {
         items {
           id
           name
           description
+          owner
+          createdAt
+          updatedAt
           currentData {
             id
             fanOn
@@ -368,9 +374,9 @@ export const onDeleteUser = /* GraphQL */ `
             hum
             pumpOn
             valveClosed
+            owner
             createdAt
             updatedAt
-            owner
           }
           currentSetting {
             id
@@ -383,35 +389,29 @@ export const onDeleteUser = /* GraphQL */ `
             red
             green
             blue
+            owner
             createdAt
             updatedAt
-            owner
           }
-          owner
           histories {
             items {
               id
               deviceID
               datetime
+              owner
               createdAt
               updatedAt
-              owner
             }
             nextToken
           }
-          createdAt
-          updatedAt
         }
         nextToken
       }
-      id
-      createdAt
-      updatedAt
     }
   }
 `;
 export const onCreateData = /* GraphQL */ `
-  subscription OnCreateData($owner: String!) {
+  subscription OnCreateData($owner: String) {
     onCreateData(owner: $owner) {
       id
       fanOn
@@ -420,14 +420,14 @@ export const onCreateData = /* GraphQL */ `
       hum
       pumpOn
       valveClosed
+      owner
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onUpdateData = /* GraphQL */ `
-  subscription OnUpdateData($owner: String!) {
+  subscription OnUpdateData($owner: String) {
     onUpdateData(owner: $owner) {
       id
       fanOn
@@ -436,14 +436,14 @@ export const onUpdateData = /* GraphQL */ `
       hum
       pumpOn
       valveClosed
+      owner
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onDeleteData = /* GraphQL */ `
-  subscription OnDeleteData($owner: String!) {
+  subscription OnDeleteData($owner: String) {
     onDeleteData(owner: $owner) {
       id
       fanOn
@@ -452,14 +452,14 @@ export const onDeleteData = /* GraphQL */ `
       hum
       pumpOn
       valveClosed
+      owner
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onCreateSetting = /* GraphQL */ `
-  subscription OnCreateSetting($owner: String!) {
+  subscription OnCreateSetting($owner: String) {
     onCreateSetting(owner: $owner) {
       id
       floodFreq
@@ -471,14 +471,14 @@ export const onCreateSetting = /* GraphQL */ `
       red
       green
       blue
+      owner
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onUpdateSetting = /* GraphQL */ `
-  subscription OnUpdateSetting($owner: String!) {
+  subscription OnUpdateSetting($owner: String) {
     onUpdateSetting(owner: $owner) {
       id
       floodFreq
@@ -490,14 +490,14 @@ export const onUpdateSetting = /* GraphQL */ `
       red
       green
       blue
+      owner
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onDeleteSetting = /* GraphQL */ `
-  subscription OnDeleteSetting($owner: String!) {
+  subscription OnDeleteSetting($owner: String) {
     onDeleteSetting(owner: $owner) {
       id
       floodFreq
@@ -509,18 +509,21 @@ export const onDeleteSetting = /* GraphQL */ `
       red
       green
       blue
+      owner
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onCreateHistory = /* GraphQL */ `
-  subscription OnCreateHistory($owner: String!) {
+  subscription OnCreateHistory($owner: String) {
     onCreateHistory(owner: $owner) {
       id
       deviceID
       datetime
+      owner
+      createdAt
+      updatedAt
       data {
         id
         fanOn
@@ -529,9 +532,9 @@ export const onCreateHistory = /* GraphQL */ `
         hum
         pumpOn
         valveClosed
+        owner
         createdAt
         updatedAt
-        owner
       }
       setting {
         id
@@ -544,22 +547,22 @@ export const onCreateHistory = /* GraphQL */ `
         red
         green
         blue
+        owner
         createdAt
         updatedAt
-        owner
       }
-      createdAt
-      updatedAt
-      owner
     }
   }
 `;
 export const onUpdateHistory = /* GraphQL */ `
-  subscription OnUpdateHistory($owner: String!) {
+  subscription OnUpdateHistory($owner: String) {
     onUpdateHistory(owner: $owner) {
       id
       deviceID
       datetime
+      owner
+      createdAt
+      updatedAt
       data {
         id
         fanOn
@@ -568,9 +571,9 @@ export const onUpdateHistory = /* GraphQL */ `
         hum
         pumpOn
         valveClosed
+        owner
         createdAt
         updatedAt
-        owner
       }
       setting {
         id
@@ -583,22 +586,22 @@ export const onUpdateHistory = /* GraphQL */ `
         red
         green
         blue
+        owner
         createdAt
         updatedAt
-        owner
       }
-      createdAt
-      updatedAt
-      owner
     }
   }
 `;
 export const onDeleteHistory = /* GraphQL */ `
-  subscription OnDeleteHistory($owner: String!) {
+  subscription OnDeleteHistory($owner: String) {
     onDeleteHistory(owner: $owner) {
       id
       deviceID
       datetime
+      owner
+      createdAt
+      updatedAt
       data {
         id
         fanOn
@@ -607,9 +610,9 @@ export const onDeleteHistory = /* GraphQL */ `
         hum
         pumpOn
         valveClosed
+        owner
         createdAt
         updatedAt
-        owner
       }
       setting {
         id
@@ -622,13 +625,10 @@ export const onDeleteHistory = /* GraphQL */ `
         red
         green
         blue
+        owner
         createdAt
         updatedAt
-        owner
       }
-      createdAt
-      updatedAt
-      owner
     }
   }
 `;

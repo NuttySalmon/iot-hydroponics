@@ -100,6 +100,7 @@ export type CreateDataInput = {
   hum: number,
   pumpOn: boolean,
   valveClosed: boolean,
+  owner?: string | null,
 };
 
 export type ModelDataConditionInput = {
@@ -141,6 +142,7 @@ export type UpdateDataInput = {
   hum?: number | null,
   pumpOn?: boolean | null,
   valveClosed?: boolean | null,
+  owner?: string | null,
 };
 
 export type DeleteDataInput = {
@@ -158,6 +160,7 @@ export type CreateSettingInput = {
   red: number,
   green: number,
   blue: number,
+  owner?: string | null,
 };
 
 export type ModelSettingConditionInput = {
@@ -198,6 +201,7 @@ export type UpdateSettingInput = {
   red?: number | null,
   green?: number | null,
   blue?: number | null,
+  owner?: string | null,
 };
 
 export type DeleteSettingInput = {
@@ -208,6 +212,7 @@ export type CreateHistoryInput = {
   id?: string | null,
   deviceID: string,
   datetime: string,
+  owner?: string | null,
   historyDataId?: string | null,
   historySettingId?: string | null,
 };
@@ -240,6 +245,7 @@ export type UpdateHistoryInput = {
   id: string,
   deviceID?: string | null,
   datetime?: string | null,
+  owner?: string | null,
   historyDataId?: string | null,
   historySettingId?: string | null,
 };
@@ -266,6 +272,12 @@ export type ModelUserFilterInput = {
   not?: ModelUserFilterInput | null,
 };
 
+export enum ModelSortDirection {
+  ASC = "ASC",
+  DESC = "DESC",
+}
+
+
 export type ModelDataFilterInput = {
   id?: ModelIDInput | null,
   fanOn?: ModelBooleanInput | null,
@@ -274,6 +286,7 @@ export type ModelDataFilterInput = {
   hum?: ModelFloatInput | null,
   pumpOn?: ModelBooleanInput | null,
   valveClosed?: ModelBooleanInput | null,
+  owner?: ModelStringInput | null,
   and?: Array< ModelDataFilterInput | null > | null,
   or?: Array< ModelDataFilterInput | null > | null,
   not?: ModelDataFilterInput | null,
@@ -290,6 +303,7 @@ export type ModelSettingFilterInput = {
   red?: ModelIntInput | null,
   green?: ModelIntInput | null,
   blue?: ModelIntInput | null,
+  owner?: ModelStringInput | null,
   and?: Array< ModelSettingFilterInput | null > | null,
   or?: Array< ModelSettingFilterInput | null > | null,
   not?: ModelSettingFilterInput | null,
@@ -299,16 +313,11 @@ export type ModelHistoryFilterInput = {
   id?: ModelIDInput | null,
   deviceID?: ModelIDInput | null,
   datetime?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
   and?: Array< ModelHistoryFilterInput | null > | null,
   or?: Array< ModelHistoryFilterInput | null > | null,
   not?: ModelHistoryFilterInput | null,
 };
-
-export enum ModelSortDirection {
-  ASC = "ASC",
-  DESC = "DESC",
-}
-
 
 export type CreateDeviceMutationVariables = {
   input: CreateDeviceInput,
@@ -321,6 +330,9 @@ export type CreateDeviceMutation = {
     id: string,
     name: string,
     description: string | null,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
     currentData:  {
       __typename: "Data",
       id: string,
@@ -330,9 +342,9 @@ export type CreateDeviceMutation = {
       hum: number,
       pumpOn: boolean,
       valveClosed: boolean,
+      owner: string | null,
       createdAt: string,
       updatedAt: string,
-      owner: string | null,
     } | null,
     currentSetting:  {
       __typename: "Setting",
@@ -346,11 +358,10 @@ export type CreateDeviceMutation = {
       red: number,
       green: number,
       blue: number,
+      owner: string | null,
       createdAt: string,
       updatedAt: string,
-      owner: string | null,
     } | null,
-    owner: string | null,
     histories:  {
       __typename: "ModelHistoryConnection",
       items:  Array< {
@@ -358,6 +369,9 @@ export type CreateDeviceMutation = {
         id: string,
         deviceID: string,
         datetime: string,
+        owner: string | null,
+        createdAt: string,
+        updatedAt: string,
         data:  {
           __typename: "Data",
           id: string,
@@ -367,9 +381,9 @@ export type CreateDeviceMutation = {
           hum: number,
           pumpOn: boolean,
           valveClosed: boolean,
+          owner: string | null,
           createdAt: string,
           updatedAt: string,
-          owner: string | null,
         } | null,
         setting:  {
           __typename: "Setting",
@@ -383,18 +397,13 @@ export type CreateDeviceMutation = {
           red: number,
           green: number,
           blue: number,
+          owner: string | null,
           createdAt: string,
           updatedAt: string,
-          owner: string | null,
         } | null,
-        createdAt: string,
-        updatedAt: string,
-        owner: string | null,
       } | null > | null,
       nextToken: string | null,
     } | null,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -409,6 +418,9 @@ export type UpdateDeviceMutation = {
     id: string,
     name: string,
     description: string | null,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
     currentData:  {
       __typename: "Data",
       id: string,
@@ -418,9 +430,9 @@ export type UpdateDeviceMutation = {
       hum: number,
       pumpOn: boolean,
       valveClosed: boolean,
+      owner: string | null,
       createdAt: string,
       updatedAt: string,
-      owner: string | null,
     } | null,
     currentSetting:  {
       __typename: "Setting",
@@ -434,11 +446,10 @@ export type UpdateDeviceMutation = {
       red: number,
       green: number,
       blue: number,
+      owner: string | null,
       createdAt: string,
       updatedAt: string,
-      owner: string | null,
     } | null,
-    owner: string | null,
     histories:  {
       __typename: "ModelHistoryConnection",
       items:  Array< {
@@ -446,6 +457,9 @@ export type UpdateDeviceMutation = {
         id: string,
         deviceID: string,
         datetime: string,
+        owner: string | null,
+        createdAt: string,
+        updatedAt: string,
         data:  {
           __typename: "Data",
           id: string,
@@ -455,9 +469,9 @@ export type UpdateDeviceMutation = {
           hum: number,
           pumpOn: boolean,
           valveClosed: boolean,
+          owner: string | null,
           createdAt: string,
           updatedAt: string,
-          owner: string | null,
         } | null,
         setting:  {
           __typename: "Setting",
@@ -471,18 +485,13 @@ export type UpdateDeviceMutation = {
           red: number,
           green: number,
           blue: number,
+          owner: string | null,
           createdAt: string,
           updatedAt: string,
-          owner: string | null,
         } | null,
-        createdAt: string,
-        updatedAt: string,
-        owner: string | null,
       } | null > | null,
       nextToken: string | null,
     } | null,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -497,6 +506,9 @@ export type DeleteDeviceMutation = {
     id: string,
     name: string,
     description: string | null,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
     currentData:  {
       __typename: "Data",
       id: string,
@@ -506,9 +518,9 @@ export type DeleteDeviceMutation = {
       hum: number,
       pumpOn: boolean,
       valveClosed: boolean,
+      owner: string | null,
       createdAt: string,
       updatedAt: string,
-      owner: string | null,
     } | null,
     currentSetting:  {
       __typename: "Setting",
@@ -522,11 +534,10 @@ export type DeleteDeviceMutation = {
       red: number,
       green: number,
       blue: number,
+      owner: string | null,
       createdAt: string,
       updatedAt: string,
-      owner: string | null,
     } | null,
-    owner: string | null,
     histories:  {
       __typename: "ModelHistoryConnection",
       items:  Array< {
@@ -534,6 +545,9 @@ export type DeleteDeviceMutation = {
         id: string,
         deviceID: string,
         datetime: string,
+        owner: string | null,
+        createdAt: string,
+        updatedAt: string,
         data:  {
           __typename: "Data",
           id: string,
@@ -543,9 +557,9 @@ export type DeleteDeviceMutation = {
           hum: number,
           pumpOn: boolean,
           valveClosed: boolean,
+          owner: string | null,
           createdAt: string,
           updatedAt: string,
-          owner: string | null,
         } | null,
         setting:  {
           __typename: "Setting",
@@ -559,18 +573,13 @@ export type DeleteDeviceMutation = {
           red: number,
           green: number,
           blue: number,
+          owner: string | null,
           createdAt: string,
           updatedAt: string,
-          owner: string | null,
         } | null,
-        createdAt: string,
-        updatedAt: string,
-        owner: string | null,
       } | null > | null,
       nextToken: string | null,
     } | null,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -583,6 +592,9 @@ export type CreateUserMutation = {
   createUser:  {
     __typename: "User",
     owner: string,
+    id: string,
+    createdAt: string,
+    updatedAt: string,
     devices:  {
       __typename: "ModelDeviceConnection",
       items:  Array< {
@@ -590,6 +602,9 @@ export type CreateUserMutation = {
         id: string,
         name: string,
         description: string | null,
+        owner: string | null,
+        createdAt: string,
+        updatedAt: string,
         currentData:  {
           __typename: "Data",
           id: string,
@@ -599,9 +614,9 @@ export type CreateUserMutation = {
           hum: number,
           pumpOn: boolean,
           valveClosed: boolean,
+          owner: string | null,
           createdAt: string,
           updatedAt: string,
-          owner: string | null,
         } | null,
         currentSetting:  {
           __typename: "Setting",
@@ -615,11 +630,10 @@ export type CreateUserMutation = {
           red: number,
           green: number,
           blue: number,
+          owner: string | null,
           createdAt: string,
           updatedAt: string,
-          owner: string | null,
         } | null,
-        owner: string | null,
         histories:  {
           __typename: "ModelHistoryConnection",
           items:  Array< {
@@ -627,20 +641,15 @@ export type CreateUserMutation = {
             id: string,
             deviceID: string,
             datetime: string,
+            owner: string | null,
             createdAt: string,
             updatedAt: string,
-            owner: string | null,
           } | null > | null,
           nextToken: string | null,
         } | null,
-        createdAt: string,
-        updatedAt: string,
       } | null > | null,
       nextToken: string | null,
     } | null,
-    id: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -653,6 +662,9 @@ export type UpdateUserMutation = {
   updateUser:  {
     __typename: "User",
     owner: string,
+    id: string,
+    createdAt: string,
+    updatedAt: string,
     devices:  {
       __typename: "ModelDeviceConnection",
       items:  Array< {
@@ -660,6 +672,9 @@ export type UpdateUserMutation = {
         id: string,
         name: string,
         description: string | null,
+        owner: string | null,
+        createdAt: string,
+        updatedAt: string,
         currentData:  {
           __typename: "Data",
           id: string,
@@ -669,9 +684,9 @@ export type UpdateUserMutation = {
           hum: number,
           pumpOn: boolean,
           valveClosed: boolean,
+          owner: string | null,
           createdAt: string,
           updatedAt: string,
-          owner: string | null,
         } | null,
         currentSetting:  {
           __typename: "Setting",
@@ -685,11 +700,10 @@ export type UpdateUserMutation = {
           red: number,
           green: number,
           blue: number,
+          owner: string | null,
           createdAt: string,
           updatedAt: string,
-          owner: string | null,
         } | null,
-        owner: string | null,
         histories:  {
           __typename: "ModelHistoryConnection",
           items:  Array< {
@@ -697,20 +711,15 @@ export type UpdateUserMutation = {
             id: string,
             deviceID: string,
             datetime: string,
+            owner: string | null,
             createdAt: string,
             updatedAt: string,
-            owner: string | null,
           } | null > | null,
           nextToken: string | null,
         } | null,
-        createdAt: string,
-        updatedAt: string,
       } | null > | null,
       nextToken: string | null,
     } | null,
-    id: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -723,6 +732,9 @@ export type DeleteUserMutation = {
   deleteUser:  {
     __typename: "User",
     owner: string,
+    id: string,
+    createdAt: string,
+    updatedAt: string,
     devices:  {
       __typename: "ModelDeviceConnection",
       items:  Array< {
@@ -730,6 +742,9 @@ export type DeleteUserMutation = {
         id: string,
         name: string,
         description: string | null,
+        owner: string | null,
+        createdAt: string,
+        updatedAt: string,
         currentData:  {
           __typename: "Data",
           id: string,
@@ -739,9 +754,9 @@ export type DeleteUserMutation = {
           hum: number,
           pumpOn: boolean,
           valveClosed: boolean,
+          owner: string | null,
           createdAt: string,
           updatedAt: string,
-          owner: string | null,
         } | null,
         currentSetting:  {
           __typename: "Setting",
@@ -755,11 +770,10 @@ export type DeleteUserMutation = {
           red: number,
           green: number,
           blue: number,
+          owner: string | null,
           createdAt: string,
           updatedAt: string,
-          owner: string | null,
         } | null,
-        owner: string | null,
         histories:  {
           __typename: "ModelHistoryConnection",
           items:  Array< {
@@ -767,20 +781,15 @@ export type DeleteUserMutation = {
             id: string,
             deviceID: string,
             datetime: string,
+            owner: string | null,
             createdAt: string,
             updatedAt: string,
-            owner: string | null,
           } | null > | null,
           nextToken: string | null,
         } | null,
-        createdAt: string,
-        updatedAt: string,
       } | null > | null,
       nextToken: string | null,
     } | null,
-    id: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -799,9 +808,9 @@ export type CreateDataMutation = {
     hum: number,
     pumpOn: boolean,
     valveClosed: boolean,
+    owner: string | null,
     createdAt: string,
     updatedAt: string,
-    owner: string | null,
   } | null,
 };
 
@@ -820,9 +829,9 @@ export type UpdateDataMutation = {
     hum: number,
     pumpOn: boolean,
     valveClosed: boolean,
+    owner: string | null,
     createdAt: string,
     updatedAt: string,
-    owner: string | null,
   } | null,
 };
 
@@ -841,9 +850,9 @@ export type DeleteDataMutation = {
     hum: number,
     pumpOn: boolean,
     valveClosed: boolean,
+    owner: string | null,
     createdAt: string,
     updatedAt: string,
-    owner: string | null,
   } | null,
 };
 
@@ -865,9 +874,9 @@ export type CreateSettingMutation = {
     red: number,
     green: number,
     blue: number,
+    owner: string | null,
     createdAt: string,
     updatedAt: string,
-    owner: string | null,
   } | null,
 };
 
@@ -889,9 +898,9 @@ export type UpdateSettingMutation = {
     red: number,
     green: number,
     blue: number,
+    owner: string | null,
     createdAt: string,
     updatedAt: string,
-    owner: string | null,
   } | null,
 };
 
@@ -913,9 +922,9 @@ export type DeleteSettingMutation = {
     red: number,
     green: number,
     blue: number,
+    owner: string | null,
     createdAt: string,
     updatedAt: string,
-    owner: string | null,
   } | null,
 };
 
@@ -930,6 +939,9 @@ export type CreateHistoryMutation = {
     id: string,
     deviceID: string,
     datetime: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
     data:  {
       __typename: "Data",
       id: string,
@@ -939,9 +951,9 @@ export type CreateHistoryMutation = {
       hum: number,
       pumpOn: boolean,
       valveClosed: boolean,
+      owner: string | null,
       createdAt: string,
       updatedAt: string,
-      owner: string | null,
     } | null,
     setting:  {
       __typename: "Setting",
@@ -955,13 +967,10 @@ export type CreateHistoryMutation = {
       red: number,
       green: number,
       blue: number,
+      owner: string | null,
       createdAt: string,
       updatedAt: string,
-      owner: string | null,
     } | null,
-    createdAt: string,
-    updatedAt: string,
-    owner: string | null,
   } | null,
 };
 
@@ -976,6 +985,9 @@ export type UpdateHistoryMutation = {
     id: string,
     deviceID: string,
     datetime: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
     data:  {
       __typename: "Data",
       id: string,
@@ -985,9 +997,9 @@ export type UpdateHistoryMutation = {
       hum: number,
       pumpOn: boolean,
       valveClosed: boolean,
+      owner: string | null,
       createdAt: string,
       updatedAt: string,
-      owner: string | null,
     } | null,
     setting:  {
       __typename: "Setting",
@@ -1001,13 +1013,10 @@ export type UpdateHistoryMutation = {
       red: number,
       green: number,
       blue: number,
+      owner: string | null,
       createdAt: string,
       updatedAt: string,
-      owner: string | null,
     } | null,
-    createdAt: string,
-    updatedAt: string,
-    owner: string | null,
   } | null,
 };
 
@@ -1022,6 +1031,9 @@ export type DeleteHistoryMutation = {
     id: string,
     deviceID: string,
     datetime: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
     data:  {
       __typename: "Data",
       id: string,
@@ -1031,9 +1043,9 @@ export type DeleteHistoryMutation = {
       hum: number,
       pumpOn: boolean,
       valveClosed: boolean,
+      owner: string | null,
       createdAt: string,
       updatedAt: string,
-      owner: string | null,
     } | null,
     setting:  {
       __typename: "Setting",
@@ -1047,13 +1059,10 @@ export type DeleteHistoryMutation = {
       red: number,
       green: number,
       blue: number,
+      owner: string | null,
       createdAt: string,
       updatedAt: string,
-      owner: string | null,
     } | null,
-    createdAt: string,
-    updatedAt: string,
-    owner: string | null,
   } | null,
 };
 
@@ -1067,6 +1076,9 @@ export type GetDeviceQuery = {
     id: string,
     name: string,
     description: string | null,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
     currentData:  {
       __typename: "Data",
       id: string,
@@ -1076,9 +1088,9 @@ export type GetDeviceQuery = {
       hum: number,
       pumpOn: boolean,
       valveClosed: boolean,
+      owner: string | null,
       createdAt: string,
       updatedAt: string,
-      owner: string | null,
     } | null,
     currentSetting:  {
       __typename: "Setting",
@@ -1092,11 +1104,10 @@ export type GetDeviceQuery = {
       red: number,
       green: number,
       blue: number,
+      owner: string | null,
       createdAt: string,
       updatedAt: string,
-      owner: string | null,
     } | null,
-    owner: string | null,
     histories:  {
       __typename: "ModelHistoryConnection",
       items:  Array< {
@@ -1104,6 +1115,9 @@ export type GetDeviceQuery = {
         id: string,
         deviceID: string,
         datetime: string,
+        owner: string | null,
+        createdAt: string,
+        updatedAt: string,
         data:  {
           __typename: "Data",
           id: string,
@@ -1113,9 +1127,9 @@ export type GetDeviceQuery = {
           hum: number,
           pumpOn: boolean,
           valveClosed: boolean,
+          owner: string | null,
           createdAt: string,
           updatedAt: string,
-          owner: string | null,
         } | null,
         setting:  {
           __typename: "Setting",
@@ -1129,18 +1143,13 @@ export type GetDeviceQuery = {
           red: number,
           green: number,
           blue: number,
+          owner: string | null,
           createdAt: string,
           updatedAt: string,
-          owner: string | null,
         } | null,
-        createdAt: string,
-        updatedAt: string,
-        owner: string | null,
       } | null > | null,
       nextToken: string | null,
     } | null,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -1158,6 +1167,9 @@ export type ListDevicesQuery = {
       id: string,
       name: string,
       description: string | null,
+      owner: string | null,
+      createdAt: string,
+      updatedAt: string,
       currentData:  {
         __typename: "Data",
         id: string,
@@ -1167,9 +1179,9 @@ export type ListDevicesQuery = {
         hum: number,
         pumpOn: boolean,
         valveClosed: boolean,
+        owner: string | null,
         createdAt: string,
         updatedAt: string,
-        owner: string | null,
       } | null,
       currentSetting:  {
         __typename: "Setting",
@@ -1183,11 +1195,10 @@ export type ListDevicesQuery = {
         red: number,
         green: number,
         blue: number,
+        owner: string | null,
         createdAt: string,
         updatedAt: string,
-        owner: string | null,
       } | null,
-      owner: string | null,
       histories:  {
         __typename: "ModelHistoryConnection",
         items:  Array< {
@@ -1195,6 +1206,9 @@ export type ListDevicesQuery = {
           id: string,
           deviceID: string,
           datetime: string,
+          owner: string | null,
+          createdAt: string,
+          updatedAt: string,
           data:  {
             __typename: "Data",
             id: string,
@@ -1204,9 +1218,9 @@ export type ListDevicesQuery = {
             hum: number,
             pumpOn: boolean,
             valveClosed: boolean,
+            owner: string | null,
             createdAt: string,
             updatedAt: string,
-            owner: string | null,
           } | null,
           setting:  {
             __typename: "Setting",
@@ -1220,18 +1234,13 @@ export type ListDevicesQuery = {
             red: number,
             green: number,
             blue: number,
+            owner: string | null,
             createdAt: string,
             updatedAt: string,
-            owner: string | null,
           } | null,
-          createdAt: string,
-          updatedAt: string,
-          owner: string | null,
         } | null > | null,
         nextToken: string | null,
       } | null,
-      createdAt: string,
-      updatedAt: string,
     } | null > | null,
     nextToken: string | null,
   } | null,
@@ -1245,6 +1254,9 @@ export type GetUserQuery = {
   getUser:  {
     __typename: "User",
     owner: string,
+    id: string,
+    createdAt: string,
+    updatedAt: string,
     devices:  {
       __typename: "ModelDeviceConnection",
       items:  Array< {
@@ -1252,6 +1264,9 @@ export type GetUserQuery = {
         id: string,
         name: string,
         description: string | null,
+        owner: string | null,
+        createdAt: string,
+        updatedAt: string,
         currentData:  {
           __typename: "Data",
           id: string,
@@ -1261,9 +1276,9 @@ export type GetUserQuery = {
           hum: number,
           pumpOn: boolean,
           valveClosed: boolean,
+          owner: string | null,
           createdAt: string,
           updatedAt: string,
-          owner: string | null,
         } | null,
         currentSetting:  {
           __typename: "Setting",
@@ -1277,11 +1292,10 @@ export type GetUserQuery = {
           red: number,
           green: number,
           blue: number,
+          owner: string | null,
           createdAt: string,
           updatedAt: string,
-          owner: string | null,
         } | null,
-        owner: string | null,
         histories:  {
           __typename: "ModelHistoryConnection",
           items:  Array< {
@@ -1289,20 +1303,15 @@ export type GetUserQuery = {
             id: string,
             deviceID: string,
             datetime: string,
+            owner: string | null,
             createdAt: string,
             updatedAt: string,
-            owner: string | null,
           } | null > | null,
           nextToken: string | null,
         } | null,
-        createdAt: string,
-        updatedAt: string,
       } | null > | null,
       nextToken: string | null,
     } | null,
-    id: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
@@ -1318,6 +1327,9 @@ export type ListUsersQuery = {
     items:  Array< {
       __typename: "User",
       owner: string,
+      id: string,
+      createdAt: string,
+      updatedAt: string,
       devices:  {
         __typename: "ModelDeviceConnection",
         items:  Array< {
@@ -1325,6 +1337,9 @@ export type ListUsersQuery = {
           id: string,
           name: string,
           description: string | null,
+          owner: string | null,
+          createdAt: string,
+          updatedAt: string,
           currentData:  {
             __typename: "Data",
             id: string,
@@ -1334,9 +1349,9 @@ export type ListUsersQuery = {
             hum: number,
             pumpOn: boolean,
             valveClosed: boolean,
+            owner: string | null,
             createdAt: string,
             updatedAt: string,
-            owner: string | null,
           } | null,
           currentSetting:  {
             __typename: "Setting",
@@ -1350,45 +1365,87 @@ export type ListUsersQuery = {
             red: number,
             green: number,
             blue: number,
+            owner: string | null,
             createdAt: string,
             updatedAt: string,
-            owner: string | null,
           } | null,
-          owner: string | null,
           histories:  {
             __typename: "ModelHistoryConnection",
             nextToken: string | null,
           } | null,
-          createdAt: string,
-          updatedAt: string,
         } | null > | null,
         nextToken: string | null,
       } | null,
-      id: string,
-      createdAt: string,
-      updatedAt: string,
     } | null > | null,
     nextToken: string | null,
   } | null,
 };
 
-export type GetDataQueryVariables = {
-  id: string,
+export type UserByCognitoIdQueryVariables = {
+  owner?: string | null,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelUserFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
 };
 
-export type GetDataQuery = {
-  getData:  {
-    __typename: "Data",
-    id: string,
-    fanOn: boolean,
-    ledOn: boolean,
-    temp: number,
-    hum: number,
-    pumpOn: boolean,
-    valveClosed: boolean,
-    createdAt: string,
-    updatedAt: string,
-    owner: string | null,
+export type UserByCognitoIdQuery = {
+  userByCognitoID:  {
+    __typename: "ModelUserConnection",
+    items:  Array< {
+      __typename: "User",
+      owner: string,
+      id: string,
+      createdAt: string,
+      updatedAt: string,
+      devices:  {
+        __typename: "ModelDeviceConnection",
+        items:  Array< {
+          __typename: "Device",
+          id: string,
+          name: string,
+          description: string | null,
+          owner: string | null,
+          createdAt: string,
+          updatedAt: string,
+          currentData:  {
+            __typename: "Data",
+            id: string,
+            fanOn: boolean,
+            ledOn: boolean,
+            temp: number,
+            hum: number,
+            pumpOn: boolean,
+            valveClosed: boolean,
+            owner: string | null,
+            createdAt: string,
+            updatedAt: string,
+          } | null,
+          currentSetting:  {
+            __typename: "Setting",
+            id: string,
+            floodFreq: number,
+            floodDuration: number,
+            ledOnTime: number,
+            ledOffTime: number,
+            fanDuration: number,
+            fanInterval: number,
+            red: number,
+            green: number,
+            blue: number,
+            owner: string | null,
+            createdAt: string,
+            updatedAt: string,
+          } | null,
+          histories:  {
+            __typename: "ModelHistoryConnection",
+            nextToken: string | null,
+          } | null,
+        } | null > | null,
+        nextToken: string | null,
+      } | null,
+    } | null > | null,
+    nextToken: string | null,
   } | null,
 };
 
@@ -1410,34 +1467,31 @@ export type ListDatasQuery = {
       hum: number,
       pumpOn: boolean,
       valveClosed: boolean,
+      owner: string | null,
       createdAt: string,
       updatedAt: string,
-      owner: string | null,
     } | null > | null,
     nextToken: string | null,
   } | null,
 };
 
-export type GetSettingQueryVariables = {
+export type GetDataQueryVariables = {
   id: string,
 };
 
-export type GetSettingQuery = {
-  getSetting:  {
-    __typename: "Setting",
+export type GetDataQuery = {
+  getData:  {
+    __typename: "Data",
     id: string,
-    floodFreq: number,
-    floodDuration: number,
-    ledOnTime: number,
-    ledOffTime: number,
-    fanDuration: number,
-    fanInterval: number,
-    red: number,
-    green: number,
-    blue: number,
+    fanOn: boolean,
+    ledOn: boolean,
+    temp: number,
+    hum: number,
+    pumpOn: boolean,
+    valveClosed: boolean,
+    owner: string | null,
     createdAt: string,
     updatedAt: string,
-    owner: string | null,
   } | null,
 };
 
@@ -1462,11 +1516,34 @@ export type ListSettingsQuery = {
       red: number,
       green: number,
       blue: number,
+      owner: string | null,
       createdAt: string,
       updatedAt: string,
-      owner: string | null,
     } | null > | null,
     nextToken: string | null,
+  } | null,
+};
+
+export type GetSettingQueryVariables = {
+  id: string,
+};
+
+export type GetSettingQuery = {
+  getSetting:  {
+    __typename: "Setting",
+    id: string,
+    floodFreq: number,
+    floodDuration: number,
+    ledOnTime: number,
+    ledOffTime: number,
+    fanDuration: number,
+    fanInterval: number,
+    red: number,
+    green: number,
+    blue: number,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
   } | null,
 };
 
@@ -1480,6 +1557,9 @@ export type GetHistoryQuery = {
     id: string,
     deviceID: string,
     datetime: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
     data:  {
       __typename: "Data",
       id: string,
@@ -1489,9 +1569,9 @@ export type GetHistoryQuery = {
       hum: number,
       pumpOn: boolean,
       valveClosed: boolean,
+      owner: string | null,
       createdAt: string,
       updatedAt: string,
-      owner: string | null,
     } | null,
     setting:  {
       __typename: "Setting",
@@ -1505,13 +1585,10 @@ export type GetHistoryQuery = {
       red: number,
       green: number,
       blue: number,
+      owner: string | null,
       createdAt: string,
       updatedAt: string,
-      owner: string | null,
     } | null,
-    createdAt: string,
-    updatedAt: string,
-    owner: string | null,
   } | null,
 };
 
@@ -1529,6 +1606,9 @@ export type ListHistorysQuery = {
       id: string,
       deviceID: string,
       datetime: string,
+      owner: string | null,
+      createdAt: string,
+      updatedAt: string,
       data:  {
         __typename: "Data",
         id: string,
@@ -1538,9 +1618,9 @@ export type ListHistorysQuery = {
         hum: number,
         pumpOn: boolean,
         valveClosed: boolean,
+        owner: string | null,
         createdAt: string,
         updatedAt: string,
-        owner: string | null,
       } | null,
       setting:  {
         __typename: "Setting",
@@ -1554,88 +1634,17 @@ export type ListHistorysQuery = {
         red: number,
         green: number,
         blue: number,
+        owner: string | null,
         createdAt: string,
         updatedAt: string,
-        owner: string | null,
       } | null,
-      createdAt: string,
-      updatedAt: string,
-      owner: string | null,
-    } | null > | null,
-    nextToken: string | null,
-  } | null,
-};
-
-export type UserByCognitoIdQueryVariables = {
-  owner?: string | null,
-  sortDirection?: ModelSortDirection | null,
-  filter?: ModelUserFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type UserByCognitoIdQuery = {
-  userByCognitoID:  {
-    __typename: "ModelUserConnection",
-    items:  Array< {
-      __typename: "User",
-      owner: string,
-      devices:  {
-        __typename: "ModelDeviceConnection",
-        items:  Array< {
-          __typename: "Device",
-          id: string,
-          name: string,
-          description: string | null,
-          currentData:  {
-            __typename: "Data",
-            id: string,
-            fanOn: boolean,
-            ledOn: boolean,
-            temp: number,
-            hum: number,
-            pumpOn: boolean,
-            valveClosed: boolean,
-            createdAt: string,
-            updatedAt: string,
-            owner: string | null,
-          } | null,
-          currentSetting:  {
-            __typename: "Setting",
-            id: string,
-            floodFreq: number,
-            floodDuration: number,
-            ledOnTime: number,
-            ledOffTime: number,
-            fanDuration: number,
-            fanInterval: number,
-            red: number,
-            green: number,
-            blue: number,
-            createdAt: string,
-            updatedAt: string,
-            owner: string | null,
-          } | null,
-          owner: string | null,
-          histories:  {
-            __typename: "ModelHistoryConnection",
-            nextToken: string | null,
-          } | null,
-          createdAt: string,
-          updatedAt: string,
-        } | null > | null,
-        nextToken: string | null,
-      } | null,
-      id: string,
-      createdAt: string,
-      updatedAt: string,
     } | null > | null,
     nextToken: string | null,
   } | null,
 };
 
 export type OnCreateDeviceSubscriptionVariables = {
-  owner: string,
+  owner?: string | null,
 };
 
 export type OnCreateDeviceSubscription = {
@@ -1644,6 +1653,9 @@ export type OnCreateDeviceSubscription = {
     id: string,
     name: string,
     description: string | null,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
     currentData:  {
       __typename: "Data",
       id: string,
@@ -1653,9 +1665,9 @@ export type OnCreateDeviceSubscription = {
       hum: number,
       pumpOn: boolean,
       valveClosed: boolean,
+      owner: string | null,
       createdAt: string,
       updatedAt: string,
-      owner: string | null,
     } | null,
     currentSetting:  {
       __typename: "Setting",
@@ -1669,11 +1681,10 @@ export type OnCreateDeviceSubscription = {
       red: number,
       green: number,
       blue: number,
+      owner: string | null,
       createdAt: string,
       updatedAt: string,
-      owner: string | null,
     } | null,
-    owner: string | null,
     histories:  {
       __typename: "ModelHistoryConnection",
       items:  Array< {
@@ -1681,6 +1692,9 @@ export type OnCreateDeviceSubscription = {
         id: string,
         deviceID: string,
         datetime: string,
+        owner: string | null,
+        createdAt: string,
+        updatedAt: string,
         data:  {
           __typename: "Data",
           id: string,
@@ -1690,9 +1704,9 @@ export type OnCreateDeviceSubscription = {
           hum: number,
           pumpOn: boolean,
           valveClosed: boolean,
+          owner: string | null,
           createdAt: string,
           updatedAt: string,
-          owner: string | null,
         } | null,
         setting:  {
           __typename: "Setting",
@@ -1706,23 +1720,18 @@ export type OnCreateDeviceSubscription = {
           red: number,
           green: number,
           blue: number,
+          owner: string | null,
           createdAt: string,
           updatedAt: string,
-          owner: string | null,
         } | null,
-        createdAt: string,
-        updatedAt: string,
-        owner: string | null,
       } | null > | null,
       nextToken: string | null,
     } | null,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
 export type OnUpdateDeviceSubscriptionVariables = {
-  owner: string,
+  owner?: string | null,
 };
 
 export type OnUpdateDeviceSubscription = {
@@ -1731,6 +1740,9 @@ export type OnUpdateDeviceSubscription = {
     id: string,
     name: string,
     description: string | null,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
     currentData:  {
       __typename: "Data",
       id: string,
@@ -1740,9 +1752,9 @@ export type OnUpdateDeviceSubscription = {
       hum: number,
       pumpOn: boolean,
       valveClosed: boolean,
+      owner: string | null,
       createdAt: string,
       updatedAt: string,
-      owner: string | null,
     } | null,
     currentSetting:  {
       __typename: "Setting",
@@ -1756,11 +1768,10 @@ export type OnUpdateDeviceSubscription = {
       red: number,
       green: number,
       blue: number,
+      owner: string | null,
       createdAt: string,
       updatedAt: string,
-      owner: string | null,
     } | null,
-    owner: string | null,
     histories:  {
       __typename: "ModelHistoryConnection",
       items:  Array< {
@@ -1768,6 +1779,9 @@ export type OnUpdateDeviceSubscription = {
         id: string,
         deviceID: string,
         datetime: string,
+        owner: string | null,
+        createdAt: string,
+        updatedAt: string,
         data:  {
           __typename: "Data",
           id: string,
@@ -1777,9 +1791,9 @@ export type OnUpdateDeviceSubscription = {
           hum: number,
           pumpOn: boolean,
           valveClosed: boolean,
+          owner: string | null,
           createdAt: string,
           updatedAt: string,
-          owner: string | null,
         } | null,
         setting:  {
           __typename: "Setting",
@@ -1793,23 +1807,18 @@ export type OnUpdateDeviceSubscription = {
           red: number,
           green: number,
           blue: number,
+          owner: string | null,
           createdAt: string,
           updatedAt: string,
-          owner: string | null,
         } | null,
-        createdAt: string,
-        updatedAt: string,
-        owner: string | null,
       } | null > | null,
       nextToken: string | null,
     } | null,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
 export type OnDeleteDeviceSubscriptionVariables = {
-  owner: string,
+  owner?: string | null,
 };
 
 export type OnDeleteDeviceSubscription = {
@@ -1818,6 +1827,9 @@ export type OnDeleteDeviceSubscription = {
     id: string,
     name: string,
     description: string | null,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
     currentData:  {
       __typename: "Data",
       id: string,
@@ -1827,9 +1839,9 @@ export type OnDeleteDeviceSubscription = {
       hum: number,
       pumpOn: boolean,
       valveClosed: boolean,
+      owner: string | null,
       createdAt: string,
       updatedAt: string,
-      owner: string | null,
     } | null,
     currentSetting:  {
       __typename: "Setting",
@@ -1843,11 +1855,10 @@ export type OnDeleteDeviceSubscription = {
       red: number,
       green: number,
       blue: number,
+      owner: string | null,
       createdAt: string,
       updatedAt: string,
-      owner: string | null,
     } | null,
-    owner: string | null,
     histories:  {
       __typename: "ModelHistoryConnection",
       items:  Array< {
@@ -1855,6 +1866,9 @@ export type OnDeleteDeviceSubscription = {
         id: string,
         deviceID: string,
         datetime: string,
+        owner: string | null,
+        createdAt: string,
+        updatedAt: string,
         data:  {
           __typename: "Data",
           id: string,
@@ -1864,9 +1878,9 @@ export type OnDeleteDeviceSubscription = {
           hum: number,
           pumpOn: boolean,
           valveClosed: boolean,
+          owner: string | null,
           createdAt: string,
           updatedAt: string,
-          owner: string | null,
         } | null,
         setting:  {
           __typename: "Setting",
@@ -1880,29 +1894,27 @@ export type OnDeleteDeviceSubscription = {
           red: number,
           green: number,
           blue: number,
+          owner: string | null,
           createdAt: string,
           updatedAt: string,
-          owner: string | null,
         } | null,
-        createdAt: string,
-        updatedAt: string,
-        owner: string | null,
       } | null > | null,
       nextToken: string | null,
     } | null,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
 export type OnCreateUserSubscriptionVariables = {
-  owner: string,
+  owner?: string | null,
 };
 
 export type OnCreateUserSubscription = {
   onCreateUser:  {
     __typename: "User",
     owner: string,
+    id: string,
+    createdAt: string,
+    updatedAt: string,
     devices:  {
       __typename: "ModelDeviceConnection",
       items:  Array< {
@@ -1910,6 +1922,9 @@ export type OnCreateUserSubscription = {
         id: string,
         name: string,
         description: string | null,
+        owner: string | null,
+        createdAt: string,
+        updatedAt: string,
         currentData:  {
           __typename: "Data",
           id: string,
@@ -1919,9 +1934,9 @@ export type OnCreateUserSubscription = {
           hum: number,
           pumpOn: boolean,
           valveClosed: boolean,
+          owner: string | null,
           createdAt: string,
           updatedAt: string,
-          owner: string | null,
         } | null,
         currentSetting:  {
           __typename: "Setting",
@@ -1935,11 +1950,10 @@ export type OnCreateUserSubscription = {
           red: number,
           green: number,
           blue: number,
+          owner: string | null,
           createdAt: string,
           updatedAt: string,
-          owner: string | null,
         } | null,
-        owner: string | null,
         histories:  {
           __typename: "ModelHistoryConnection",
           items:  Array< {
@@ -1947,31 +1961,29 @@ export type OnCreateUserSubscription = {
             id: string,
             deviceID: string,
             datetime: string,
+            owner: string | null,
             createdAt: string,
             updatedAt: string,
-            owner: string | null,
           } | null > | null,
           nextToken: string | null,
         } | null,
-        createdAt: string,
-        updatedAt: string,
       } | null > | null,
       nextToken: string | null,
     } | null,
-    id: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
 export type OnUpdateUserSubscriptionVariables = {
-  owner: string,
+  owner?: string | null,
 };
 
 export type OnUpdateUserSubscription = {
   onUpdateUser:  {
     __typename: "User",
     owner: string,
+    id: string,
+    createdAt: string,
+    updatedAt: string,
     devices:  {
       __typename: "ModelDeviceConnection",
       items:  Array< {
@@ -1979,6 +1991,9 @@ export type OnUpdateUserSubscription = {
         id: string,
         name: string,
         description: string | null,
+        owner: string | null,
+        createdAt: string,
+        updatedAt: string,
         currentData:  {
           __typename: "Data",
           id: string,
@@ -1988,9 +2003,9 @@ export type OnUpdateUserSubscription = {
           hum: number,
           pumpOn: boolean,
           valveClosed: boolean,
+          owner: string | null,
           createdAt: string,
           updatedAt: string,
-          owner: string | null,
         } | null,
         currentSetting:  {
           __typename: "Setting",
@@ -2004,11 +2019,10 @@ export type OnUpdateUserSubscription = {
           red: number,
           green: number,
           blue: number,
+          owner: string | null,
           createdAt: string,
           updatedAt: string,
-          owner: string | null,
         } | null,
-        owner: string | null,
         histories:  {
           __typename: "ModelHistoryConnection",
           items:  Array< {
@@ -2016,31 +2030,29 @@ export type OnUpdateUserSubscription = {
             id: string,
             deviceID: string,
             datetime: string,
+            owner: string | null,
             createdAt: string,
             updatedAt: string,
-            owner: string | null,
           } | null > | null,
           nextToken: string | null,
         } | null,
-        createdAt: string,
-        updatedAt: string,
       } | null > | null,
       nextToken: string | null,
     } | null,
-    id: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
 export type OnDeleteUserSubscriptionVariables = {
-  owner: string,
+  owner?: string | null,
 };
 
 export type OnDeleteUserSubscription = {
   onDeleteUser:  {
     __typename: "User",
     owner: string,
+    id: string,
+    createdAt: string,
+    updatedAt: string,
     devices:  {
       __typename: "ModelDeviceConnection",
       items:  Array< {
@@ -2048,6 +2060,9 @@ export type OnDeleteUserSubscription = {
         id: string,
         name: string,
         description: string | null,
+        owner: string | null,
+        createdAt: string,
+        updatedAt: string,
         currentData:  {
           __typename: "Data",
           id: string,
@@ -2057,9 +2072,9 @@ export type OnDeleteUserSubscription = {
           hum: number,
           pumpOn: boolean,
           valveClosed: boolean,
+          owner: string | null,
           createdAt: string,
           updatedAt: string,
-          owner: string | null,
         } | null,
         currentSetting:  {
           __typename: "Setting",
@@ -2073,11 +2088,10 @@ export type OnDeleteUserSubscription = {
           red: number,
           green: number,
           blue: number,
+          owner: string | null,
           createdAt: string,
           updatedAt: string,
-          owner: string | null,
         } | null,
-        owner: string | null,
         histories:  {
           __typename: "ModelHistoryConnection",
           items:  Array< {
@@ -2085,25 +2099,20 @@ export type OnDeleteUserSubscription = {
             id: string,
             deviceID: string,
             datetime: string,
+            owner: string | null,
             createdAt: string,
             updatedAt: string,
-            owner: string | null,
           } | null > | null,
           nextToken: string | null,
         } | null,
-        createdAt: string,
-        updatedAt: string,
       } | null > | null,
       nextToken: string | null,
     } | null,
-    id: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
 export type OnCreateDataSubscriptionVariables = {
-  owner: string,
+  owner?: string | null,
 };
 
 export type OnCreateDataSubscription = {
@@ -2116,14 +2125,14 @@ export type OnCreateDataSubscription = {
     hum: number,
     pumpOn: boolean,
     valveClosed: boolean,
+    owner: string | null,
     createdAt: string,
     updatedAt: string,
-    owner: string | null,
   } | null,
 };
 
 export type OnUpdateDataSubscriptionVariables = {
-  owner: string,
+  owner?: string | null,
 };
 
 export type OnUpdateDataSubscription = {
@@ -2136,14 +2145,14 @@ export type OnUpdateDataSubscription = {
     hum: number,
     pumpOn: boolean,
     valveClosed: boolean,
+    owner: string | null,
     createdAt: string,
     updatedAt: string,
-    owner: string | null,
   } | null,
 };
 
 export type OnDeleteDataSubscriptionVariables = {
-  owner: string,
+  owner?: string | null,
 };
 
 export type OnDeleteDataSubscription = {
@@ -2156,14 +2165,14 @@ export type OnDeleteDataSubscription = {
     hum: number,
     pumpOn: boolean,
     valveClosed: boolean,
+    owner: string | null,
     createdAt: string,
     updatedAt: string,
-    owner: string | null,
   } | null,
 };
 
 export type OnCreateSettingSubscriptionVariables = {
-  owner: string,
+  owner?: string | null,
 };
 
 export type OnCreateSettingSubscription = {
@@ -2179,14 +2188,14 @@ export type OnCreateSettingSubscription = {
     red: number,
     green: number,
     blue: number,
+    owner: string | null,
     createdAt: string,
     updatedAt: string,
-    owner: string | null,
   } | null,
 };
 
 export type OnUpdateSettingSubscriptionVariables = {
-  owner: string,
+  owner?: string | null,
 };
 
 export type OnUpdateSettingSubscription = {
@@ -2202,14 +2211,14 @@ export type OnUpdateSettingSubscription = {
     red: number,
     green: number,
     blue: number,
+    owner: string | null,
     createdAt: string,
     updatedAt: string,
-    owner: string | null,
   } | null,
 };
 
 export type OnDeleteSettingSubscriptionVariables = {
-  owner: string,
+  owner?: string | null,
 };
 
 export type OnDeleteSettingSubscription = {
@@ -2225,14 +2234,14 @@ export type OnDeleteSettingSubscription = {
     red: number,
     green: number,
     blue: number,
+    owner: string | null,
     createdAt: string,
     updatedAt: string,
-    owner: string | null,
   } | null,
 };
 
 export type OnCreateHistorySubscriptionVariables = {
-  owner: string,
+  owner?: string | null,
 };
 
 export type OnCreateHistorySubscription = {
@@ -2241,6 +2250,9 @@ export type OnCreateHistorySubscription = {
     id: string,
     deviceID: string,
     datetime: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
     data:  {
       __typename: "Data",
       id: string,
@@ -2250,9 +2262,9 @@ export type OnCreateHistorySubscription = {
       hum: number,
       pumpOn: boolean,
       valveClosed: boolean,
+      owner: string | null,
       createdAt: string,
       updatedAt: string,
-      owner: string | null,
     } | null,
     setting:  {
       __typename: "Setting",
@@ -2266,18 +2278,15 @@ export type OnCreateHistorySubscription = {
       red: number,
       green: number,
       blue: number,
+      owner: string | null,
       createdAt: string,
       updatedAt: string,
-      owner: string | null,
     } | null,
-    createdAt: string,
-    updatedAt: string,
-    owner: string | null,
   } | null,
 };
 
 export type OnUpdateHistorySubscriptionVariables = {
-  owner: string,
+  owner?: string | null,
 };
 
 export type OnUpdateHistorySubscription = {
@@ -2286,6 +2295,9 @@ export type OnUpdateHistorySubscription = {
     id: string,
     deviceID: string,
     datetime: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
     data:  {
       __typename: "Data",
       id: string,
@@ -2295,9 +2307,9 @@ export type OnUpdateHistorySubscription = {
       hum: number,
       pumpOn: boolean,
       valveClosed: boolean,
+      owner: string | null,
       createdAt: string,
       updatedAt: string,
-      owner: string | null,
     } | null,
     setting:  {
       __typename: "Setting",
@@ -2311,18 +2323,15 @@ export type OnUpdateHistorySubscription = {
       red: number,
       green: number,
       blue: number,
+      owner: string | null,
       createdAt: string,
       updatedAt: string,
-      owner: string | null,
     } | null,
-    createdAt: string,
-    updatedAt: string,
-    owner: string | null,
   } | null,
 };
 
 export type OnDeleteHistorySubscriptionVariables = {
-  owner: string,
+  owner?: string | null,
 };
 
 export type OnDeleteHistorySubscription = {
@@ -2331,6 +2340,9 @@ export type OnDeleteHistorySubscription = {
     id: string,
     deviceID: string,
     datetime: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
     data:  {
       __typename: "Data",
       id: string,
@@ -2340,9 +2352,9 @@ export type OnDeleteHistorySubscription = {
       hum: number,
       pumpOn: boolean,
       valveClosed: boolean,
+      owner: string | null,
       createdAt: string,
       updatedAt: string,
-      owner: string | null,
     } | null,
     setting:  {
       __typename: "Setting",
@@ -2356,12 +2368,9 @@ export type OnDeleteHistorySubscription = {
       red: number,
       green: number,
       blue: number,
+      owner: string | null,
       createdAt: string,
       updatedAt: string,
-      owner: string | null,
     } | null,
-    createdAt: string,
-    updatedAt: string,
-    owner: string | null,
   } | null,
 };

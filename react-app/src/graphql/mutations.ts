@@ -11,6 +11,9 @@ export const createDevice = /* GraphQL */ `
       id
       name
       description
+      owner
+      createdAt
+      updatedAt
       currentData {
         id
         fanOn
@@ -19,9 +22,9 @@ export const createDevice = /* GraphQL */ `
         hum
         pumpOn
         valveClosed
+        owner
         createdAt
         updatedAt
-        owner
       }
       currentSetting {
         id
@@ -34,16 +37,18 @@ export const createDevice = /* GraphQL */ `
         red
         green
         blue
+        owner
         createdAt
         updatedAt
-        owner
       }
-      owner
       histories {
         items {
           id
           deviceID
           datetime
+          owner
+          createdAt
+          updatedAt
           data {
             id
             fanOn
@@ -52,9 +57,9 @@ export const createDevice = /* GraphQL */ `
             hum
             pumpOn
             valveClosed
+            owner
             createdAt
             updatedAt
-            owner
           }
           setting {
             id
@@ -67,18 +72,13 @@ export const createDevice = /* GraphQL */ `
             red
             green
             blue
+            owner
             createdAt
             updatedAt
-            owner
           }
-          createdAt
-          updatedAt
-          owner
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -91,6 +91,9 @@ export const updateDevice = /* GraphQL */ `
       id
       name
       description
+      owner
+      createdAt
+      updatedAt
       currentData {
         id
         fanOn
@@ -99,9 +102,9 @@ export const updateDevice = /* GraphQL */ `
         hum
         pumpOn
         valveClosed
+        owner
         createdAt
         updatedAt
-        owner
       }
       currentSetting {
         id
@@ -114,16 +117,18 @@ export const updateDevice = /* GraphQL */ `
         red
         green
         blue
+        owner
         createdAt
         updatedAt
-        owner
       }
-      owner
       histories {
         items {
           id
           deviceID
           datetime
+          owner
+          createdAt
+          updatedAt
           data {
             id
             fanOn
@@ -132,9 +137,9 @@ export const updateDevice = /* GraphQL */ `
             hum
             pumpOn
             valveClosed
+            owner
             createdAt
             updatedAt
-            owner
           }
           setting {
             id
@@ -147,18 +152,13 @@ export const updateDevice = /* GraphQL */ `
             red
             green
             blue
+            owner
             createdAt
             updatedAt
-            owner
           }
-          createdAt
-          updatedAt
-          owner
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -171,6 +171,9 @@ export const deleteDevice = /* GraphQL */ `
       id
       name
       description
+      owner
+      createdAt
+      updatedAt
       currentData {
         id
         fanOn
@@ -179,9 +182,9 @@ export const deleteDevice = /* GraphQL */ `
         hum
         pumpOn
         valveClosed
+        owner
         createdAt
         updatedAt
-        owner
       }
       currentSetting {
         id
@@ -194,16 +197,18 @@ export const deleteDevice = /* GraphQL */ `
         red
         green
         blue
+        owner
         createdAt
         updatedAt
-        owner
       }
-      owner
       histories {
         items {
           id
           deviceID
           datetime
+          owner
+          createdAt
+          updatedAt
           data {
             id
             fanOn
@@ -212,9 +217,9 @@ export const deleteDevice = /* GraphQL */ `
             hum
             pumpOn
             valveClosed
+            owner
             createdAt
             updatedAt
-            owner
           }
           setting {
             id
@@ -227,18 +232,13 @@ export const deleteDevice = /* GraphQL */ `
             red
             green
             blue
+            owner
             createdAt
             updatedAt
-            owner
           }
-          createdAt
-          updatedAt
-          owner
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -249,11 +249,17 @@ export const createUser = /* GraphQL */ `
   ) {
     createUser(input: $input, condition: $condition) {
       owner
+      id
+      createdAt
+      updatedAt
       devices {
         items {
           id
           name
           description
+          owner
+          createdAt
+          updatedAt
           currentData {
             id
             fanOn
@@ -262,9 +268,9 @@ export const createUser = /* GraphQL */ `
             hum
             pumpOn
             valveClosed
+            owner
             createdAt
             updatedAt
-            owner
           }
           currentSetting {
             id
@@ -277,30 +283,24 @@ export const createUser = /* GraphQL */ `
             red
             green
             blue
+            owner
             createdAt
             updatedAt
-            owner
           }
-          owner
           histories {
             items {
               id
               deviceID
               datetime
+              owner
               createdAt
               updatedAt
-              owner
             }
             nextToken
           }
-          createdAt
-          updatedAt
         }
         nextToken
       }
-      id
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -311,11 +311,17 @@ export const updateUser = /* GraphQL */ `
   ) {
     updateUser(input: $input, condition: $condition) {
       owner
+      id
+      createdAt
+      updatedAt
       devices {
         items {
           id
           name
           description
+          owner
+          createdAt
+          updatedAt
           currentData {
             id
             fanOn
@@ -324,9 +330,9 @@ export const updateUser = /* GraphQL */ `
             hum
             pumpOn
             valveClosed
+            owner
             createdAt
             updatedAt
-            owner
           }
           currentSetting {
             id
@@ -339,30 +345,24 @@ export const updateUser = /* GraphQL */ `
             red
             green
             blue
+            owner
             createdAt
             updatedAt
-            owner
           }
-          owner
           histories {
             items {
               id
               deviceID
               datetime
+              owner
               createdAt
               updatedAt
-              owner
             }
             nextToken
           }
-          createdAt
-          updatedAt
         }
         nextToken
       }
-      id
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -373,11 +373,17 @@ export const deleteUser = /* GraphQL */ `
   ) {
     deleteUser(input: $input, condition: $condition) {
       owner
+      id
+      createdAt
+      updatedAt
       devices {
         items {
           id
           name
           description
+          owner
+          createdAt
+          updatedAt
           currentData {
             id
             fanOn
@@ -386,9 +392,9 @@ export const deleteUser = /* GraphQL */ `
             hum
             pumpOn
             valveClosed
+            owner
             createdAt
             updatedAt
-            owner
           }
           currentSetting {
             id
@@ -401,30 +407,24 @@ export const deleteUser = /* GraphQL */ `
             red
             green
             blue
+            owner
             createdAt
             updatedAt
-            owner
           }
-          owner
           histories {
             items {
               id
               deviceID
               datetime
+              owner
               createdAt
               updatedAt
-              owner
             }
             nextToken
           }
-          createdAt
-          updatedAt
         }
         nextToken
       }
-      id
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -441,9 +441,9 @@ export const createData = /* GraphQL */ `
       hum
       pumpOn
       valveClosed
+      owner
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -460,9 +460,9 @@ export const updateData = /* GraphQL */ `
       hum
       pumpOn
       valveClosed
+      owner
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -479,9 +479,9 @@ export const deleteData = /* GraphQL */ `
       hum
       pumpOn
       valveClosed
+      owner
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -501,9 +501,9 @@ export const createSetting = /* GraphQL */ `
       red
       green
       blue
+      owner
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -523,9 +523,9 @@ export const updateSetting = /* GraphQL */ `
       red
       green
       blue
+      owner
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -545,9 +545,9 @@ export const deleteSetting = /* GraphQL */ `
       red
       green
       blue
+      owner
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -560,6 +560,9 @@ export const createHistory = /* GraphQL */ `
       id
       deviceID
       datetime
+      owner
+      createdAt
+      updatedAt
       data {
         id
         fanOn
@@ -568,9 +571,9 @@ export const createHistory = /* GraphQL */ `
         hum
         pumpOn
         valveClosed
+        owner
         createdAt
         updatedAt
-        owner
       }
       setting {
         id
@@ -583,13 +586,10 @@ export const createHistory = /* GraphQL */ `
         red
         green
         blue
+        owner
         createdAt
         updatedAt
-        owner
       }
-      createdAt
-      updatedAt
-      owner
     }
   }
 `;
@@ -602,6 +602,9 @@ export const updateHistory = /* GraphQL */ `
       id
       deviceID
       datetime
+      owner
+      createdAt
+      updatedAt
       data {
         id
         fanOn
@@ -610,9 +613,9 @@ export const updateHistory = /* GraphQL */ `
         hum
         pumpOn
         valveClosed
+        owner
         createdAt
         updatedAt
-        owner
       }
       setting {
         id
@@ -625,13 +628,10 @@ export const updateHistory = /* GraphQL */ `
         red
         green
         blue
+        owner
         createdAt
         updatedAt
-        owner
       }
-      createdAt
-      updatedAt
-      owner
     }
   }
 `;
@@ -644,6 +644,9 @@ export const deleteHistory = /* GraphQL */ `
       id
       deviceID
       datetime
+      owner
+      createdAt
+      updatedAt
       data {
         id
         fanOn
@@ -652,9 +655,9 @@ export const deleteHistory = /* GraphQL */ `
         hum
         pumpOn
         valveClosed
+        owner
         createdAt
         updatedAt
-        owner
       }
       setting {
         id
@@ -667,13 +670,10 @@ export const deleteHistory = /* GraphQL */ `
         red
         green
         blue
+        owner
         createdAt
         updatedAt
-        owner
       }
-      createdAt
-      updatedAt
-      owner
     }
   }
 `;
