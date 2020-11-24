@@ -32,7 +32,7 @@
     }
   },
   "function": {
-    "iothydroponicsreact6f392e0c": {
+    "handleIoTData": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda",

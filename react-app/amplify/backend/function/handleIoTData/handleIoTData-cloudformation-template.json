@@ -49,12 +49,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "iothydroponicsreact6f392e0c",
+            "handleIoTData",
             {
               "Fn::Join": [
                 "",
                 [
-                  "iothydroponicsreact6f392e0c",
+                  "handleIoTData",
                   "-",
                   {
                     "Ref": "env"
@@ -96,8 +96,8 @@
         "Layers": [],
         "Timeout": "25",
         "Code": {
-          "S3Bucket": "amplify-iothydroponicsreact-dev-122225-deployment",
-          "S3Key": "amplify-builds/iothydroponicsreact6f392e0c-5a2b436559746375474f-build.zip"
+          "S3Bucket": "amplify-iothydroponicsreact-dev-190957-deployment",
+          "S3Key": "amplify-builds/handleIoTData-4c38526d7139564c6d66-build.zip"
         }
       }
     },
@@ -107,12 +107,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "iothydroponicsreactLambdaRoleafe7eecd",
+            "iothydroponicsreactLambdaRole449781c0",
             {
               "Fn::Join": [
                 "",
                 [
-                  "iothydroponicsreactLambdaRoleafe7eecd",
+                  "iothydroponicsreactLambdaRole449781c0",
                   "-",
                   {
                     "Ref": "env"
