@@ -96,8 +96,8 @@
         "Layers": [],
         "Timeout": "25",
         "Code": {
-          "S3Bucket": "amplify-iothydroponicsreact-dev-190957-deployment",
-          "S3Key": "amplify-builds/iothydroponicsreact6f392e0c-6f7254746e59636d4361-build.zip"
+          "S3Bucket": "amplify-iothydroponicsreact-dev-122225-deployment",
+          "S3Key": "amplify-builds/iothydroponicsreact6f392e0c-5a2b436559746375474f-build.zip"
         }
       }
     },

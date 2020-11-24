@@ -7,15 +7,19 @@
 Amplify Params - DO NOT EDIT */
 
 const { createData } = require('./createData')
+const { createSetting } = require('./createSetting')
 const { getOwner } = require('./getOwner')
 const { updateDevice } = require('./updateDevice')
 
 exports.handler = async (event) => {
   const deviceId = event.topic.split('/')[2]
   const owner = await getOwner(deviceId)
-  event.owner = owner
-  const newDataId = await createData(event)
-  await updateDevice(deviceId, newDataId)
+  event.data.owner = owner
+  event.settings.owner = owner
+  const newDataId = await createData(event.data)
+  const newSettingId = await createSetting(event.settings)
+  await updateDevice(deviceId, newDataId, newSettingId)
   console.log(newDataId)
+  console.log(newSettingId)
   // await createData(event)
 }

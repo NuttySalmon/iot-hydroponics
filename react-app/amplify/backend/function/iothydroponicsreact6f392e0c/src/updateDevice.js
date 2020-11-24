@@ -43,7 +43,7 @@ const updateDeviceGql = gql `
   }
 `
 
-exports.updateDevice = async(deviceId, deviceCurrentDataId ) => {
+exports.updateDevice = async(deviceId, deviceCurrentDataId, deviceCurrentSettingId ) => {
   // console.log(process.env.API_IOTHYDROPONICSREACT_GRAPHQLAPIKEYOUTPUT)
   console.log("device id check", deviceId)
   try {
@@ -51,14 +51,15 @@ exports.updateDevice = async(deviceId, deviceCurrentDataId ) => {
       url: process.env.API_IOTHYDROPONICSREACT_GRAPHQLAPIENDPOINTOUTPUT,
       method: 'post',
       headers: {
-        'x-api-key': "da2-xdheoapoqjb4rngmd5hwhmuzda",
+        'x-api-key': "da2-syamaqysa5auvditnzp5ojlphm",
       },
       data: {
         query: print(updateDeviceGql),
         variables: {
           input: {
             id: deviceId,
-            deviceCurrentDataId
+            deviceCurrentDataId ,
+            deviceCurrentSettingId
           },
         },
       },

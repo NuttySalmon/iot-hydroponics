@@ -3,15 +3,27 @@ const gql = require('graphql-tag')
 const graphql = require('graphql')
 const { print } = graphql
 
-const createDataGql = gql `
-  mutation createData($input: CreateDataInput!) {
-    createData(input: $input) {
+/*
+  floodFreq: Int!
+  floodDuration: Int!
+  ledOnTime: Int!
+  ledOffTime: Int!
+  fanDuration: Int!
+  fanInterval: Int!
+  red: Int!
+  green: Int!
+  blue: Int!
+*/
+
+const createSettingsGql = gql `
+  mutation createSetting($input: CreateSettingInput!) {
+    createSetting(input: $input) {
       id
     }
   }
 `
 
-exports.createData = async({ fanOn, hum, ledOn, pumpOn, temp, valveClosed, owner }) => {
+exports.createSetting = async({ floodFreq, floodDuration, ledOnTime, ledOffTime, fanDuration, fanInterval, red, green, blue, owner }) => {
   // console.log(process.env.API_IOTHYDROPONICSREACT_GRAPHQLAPIKEYOUTPUT)
   try {
     const graphqlData = await axios({
@@ -21,15 +33,18 @@ exports.createData = async({ fanOn, hum, ledOn, pumpOn, temp, valveClosed, owner
         'x-api-key': "da2-syamaqysa5auvditnzp5ojlphm",
       },
       data: {
-        query: print(createDataGql),
+        query: print(createSettingsGql),
         variables: {
           input: {
-            fanOn,
-            hum,
-            ledOn,
-            pumpOn,
-            temp,
-            valveClosed,
+            floodFreq,
+            floodDuration,
+            ledOnTime,
+            ledOffTime,
+            fanDuration,
+            fanInterval,
+            red,
+            green,
+            blue,
             owner
           },
         },
@@ -39,7 +54,7 @@ exports.createData = async({ fanOn, hum, ledOn, pumpOn, temp, valveClosed, owner
       myError: graphqlData.error,
       message: 'successfully created todo!',
     }
-    return graphqlData.data.data.createData.id
+    return graphqlData.data.data.createSetting.id
   }
   catch (err) {
     console.log('error creating todo: ', err)

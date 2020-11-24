@@ -17,7 +17,7 @@ exports.getOwner = async (deviceId) => {
       url: process.env.API_IOTHYDROPONICSREACT_GRAPHQLAPIENDPOINTOUTPUT,
       method: 'post',
       headers: {
-        'x-api-key': "da2-xdheoapoqjb4rngmd5hwhmuzda"
+        'x-api-key': "da2-syamaqysa5auvditnzp5ojlphm"
       },
       data: {
         query: print(getOwnerGql),
