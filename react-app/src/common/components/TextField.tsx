@@ -74,6 +74,7 @@ const TextField = (props: TextFieldProp) => {
         onChange={handleChange}
         onFocus={(): void => handleFocusChange(true)}
         onBlur={(): void => handleFocusChange(false)}
+        role={`${label.toLowerCase()}-input`}
         {...{ type, value }}
       />
       <Form.Text className={`${hintStyle} ${errorStyle}`}>
@@ -81,7 +82,12 @@ const TextField = (props: TextFieldProp) => {
           <span className={iconStyle}>
             <ExclamationIcon />
           </span>
-          <span className="hint-text"> {hint}</span>
+          <span
+            data-testid={`${label.toLowerCase()}-hint`}
+            className="hint-text"
+          >
+            {hint}
+          </span>
         </div>
       </Form.Text>
     </Form.Group>
