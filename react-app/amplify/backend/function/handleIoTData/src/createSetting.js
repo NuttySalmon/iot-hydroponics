@@ -12,30 +12,33 @@ const createSettingsGql = gql`
 `
 /**
  * Function to create new entry to setting table
- * @param {number} floodFreq - flood frequency in minutes
- * @param {number} floodDuration  - flood duration in minutes
- * @param {number} ledOnTime  - hour of day to turn on LED
- * @param {number} ledOffTime  - hour of day to turn off LED
- * @param {number} fanDuration - duration in minutes for turning on fan each time
- * @param {number} fannumbererval - delay in minutes between each time of turning on fan
- * @param {number} red - red LED level in percentage
- * @param {number} green- green LED level in percentage
- * @param {number} blue - blue LED level in percentage
+ * @param {object} settings - device settings
+ * @param {number} settings.floodFreq - flood frequency in minutes
+ * @param {number} settings.floodDuration  - flood duration in minutes
+ * @param {number} settings.ledOnTime  - hour of day to turn on LED
+ * @param {number} settings.ledOffTime  - hour of day to turn off LED
+ * @param {number} settings.fanDuration - duration in minutes for turning on fan each time
+ * @param {number} settings.fanintererval - delay in minutes between each time of turning on fan
+ * @param {number} settings.red - red LED level in percentage
+ * @param {number} settings.green- green LED level in percentage
+ * @param {number} settings.blue - blue LED level in percentage
  * @param {string} owner - cognito username of owner
  * @returns {number} ID of newly created entry to setting table
  */
-exports.createSetting = async ({
-  floodFreq,
-  floodDuration,
-  ledOnTime,
-  ledOffTime,
-  fanDuration,
-  fanInterval,
-  red,
-  green,
-  blue,
-  owner,
-}) => {
+exports.createSetting = async (
+  {
+    floodFreq,
+    floodDuration,
+    ledOnTime,
+    ledOffTime,
+    fanDuration,
+    fanInterval,
+    red,
+    green,
+    blue,
+  },
+  owner
+) => {
   try {
     const graphqlData = await axios({
       url: process.env.API_IOTHYDROPONICSREACT_GRAPHQLAPIENDPOINTOUTPUT,

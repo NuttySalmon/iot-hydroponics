@@ -40,9 +40,7 @@
         {
           "category": "auth",
           "resourceName": "iothydroponicsreact212321dc",
-          "attributes": [
-            "UserPoolId"
-          ]
+          "attributes": ["UserPoolId"]
         },
         {
           "category": "api",
@@ -52,6 +50,18 @@
             "GraphQLAPIEndpointOutput",
             "GraphQLAPIKeyOutput"
           ]
+        }
+      ]
+    }
+  },
+  "iotrule": {
+    "iotdeviceupdate": {
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "handleIoTData",
+          "attributes": ["Arn"]
         }
       ]
     }

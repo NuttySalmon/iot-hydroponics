@@ -1,0 +1,21 @@
+{
+  "settings": {
+    "floodFreq": 500,
+    "floodDuration": 20,
+    "ledOnTime": 6,
+    "ledOffTime": 17,
+    "fanDuration": 20,
+    "fanInterval": 60,
+    "red": 95,
+    "green": 70,
+    "blue": 90
+  },
+  "data": {
+    "fanOn": true,
+    "ledOn": true,
+    "temp": 12.5,
+    "hum": 50.2,
+    "pumpOn": true,
+    "valveClosed": false
+  }
+}

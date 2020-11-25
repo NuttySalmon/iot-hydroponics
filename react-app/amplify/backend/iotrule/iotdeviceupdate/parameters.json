@@ -1,0 +1,4 @@
+{
+  "IoTRuleName": "iot_device_update_rule",
+  "IoTRuleSQL": "select * as iotData, topic(3) as deviceId from 'iothydroponics/device/+/update'"
+}

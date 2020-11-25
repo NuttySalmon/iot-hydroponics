@@ -11,24 +11,26 @@ const { createSetting } = require('./createSetting')
 const { getOwner } = require('./getOwner')
 const { updateDevice } = require('./updateDevice')
 
-/**
+/** Update device with settings and data.
  * @param {object} event
- * @param {object} event.data - current iot data
- * @param {object} event.settings -  current iot settings
- * @param {object} event.topic - topic that triggered this function
+ * @param {object} event.iotData - iot data
+ * @param {object} event.deviceId - device id
  */
 
 exports.handler = async (event) => {
-  const deviceId = event.topic.split('/')[2] // get device id by topic last section
+  // console.log('incoming:', event)
+  const { iotData, deviceId } = event
+  const { data, settings } = iotData
+  // console.log('Device ID:', deviceId)
+
   const owner = await getOwner(deviceId) // get device owner by id
 
-  event.data.owner = owner
-  event.settings.owner = owner
-  const newDataId = await createData(event.data)
-  const newSettingId = await createSetting(event.settings)
+  const newDataId = await createData(data, owner)
+  const newSettingId = await createSetting(settings, owner)
 
   // update device with new data and settings and trigger GraphQL subscription
   await updateDevice(deviceId, newDataId, newSettingId)
+
   // console.log(newDataId)
   // console.log(newSettingId)
 }

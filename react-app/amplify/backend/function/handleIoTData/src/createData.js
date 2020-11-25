@@ -22,15 +22,10 @@ const createDataGql = gql`
  * @param {string} owner - cognito username of owner
  * @returns {number} ID of newly created entry to data table
  */
-exports.createData = async ({
-  fanOn,
-  hum,
-  ledOn,
-  pumpOn,
-  temp,
-  valveClosed,
-  owner,
-}) => {
+exports.createData = async (
+  { fanOn, hum, ledOn, pumpOn, temp, valveClosed },
+  owner
+) => {
   try {
     const graphqlData = await axios({
       url: process.env.API_IOTHYDROPONICSREACT_GRAPHQLAPIENDPOINTOUTPUT,
