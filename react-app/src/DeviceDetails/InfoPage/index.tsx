@@ -3,6 +3,7 @@ import { DeviceData, DeviceSettings } from '../../Dashboard/DeviceInfo'
 import DataDisplay from './DataDisplay'
 import style from './scss/infoPage.module.scss'
 import SettingsDisplay from './SettingsDisplay'
+
 type InfoPageProps = {
   data: DeviceData | null
   settings: DeviceSettings | null

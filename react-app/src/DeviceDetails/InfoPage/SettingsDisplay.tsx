@@ -4,6 +4,7 @@ import { DeviceSettings } from '../../Dashboard/DeviceInfo'
 import { convertToTimeStr, getHourMinFromDuration } from '../../common/util'
 import DataBlock from './DataBlock'
 import style from './scss/infoPage.module.scss'
+
 const defaultSettingsDisplay = {
   red: null,
   green: null,

@@ -9,7 +9,7 @@ import DetailsHeader from './DetailsHeader'
 import SettingsPage from './SettingsPage'
 
 const DeviceDetails = ({ deviceInfos }: { deviceInfos: Array<DeviceInfo> }) => {
-  const { deviceId } = useParams()
+  const { deviceId } = useParams() as any
   // for toggling between settings and data page
   const [displaySettings, setDisplaySettings] = useState(false)
   // init values with null
