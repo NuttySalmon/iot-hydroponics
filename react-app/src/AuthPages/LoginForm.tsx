@@ -42,6 +42,7 @@ const LoginForm = ({
         break
       default:
         changeErr('An error occured. Please try again.')
+        console.warn(error)
     }
   }
 
@@ -59,10 +60,8 @@ const LoginForm = ({
     // An if statement that either authenticates the user or displays error messages.
     if (emailValidTemp && passwordValidTemp) {
       try {
-        const user = await Auth.signIn(email, password) // Use amplify to authenticate the user.
-        console.log(user)
+        await Auth.signIn(email, password) // Use amplify to authenticate the user.
       } catch (error) {
-        console.log(error)
         handleError(error) //  Display messages according to the error caught
       }
     }
@@ -90,7 +89,9 @@ const LoginForm = ({
       </div>
       <Row>
         <Col>
-          <div className={style.warning}>{err}</div>
+          <div data-testid="general-error" className={style.warning}>
+            {err}
+          </div>
         </Col>
       </Row>
       <Row>
