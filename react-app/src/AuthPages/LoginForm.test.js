@@ -61,6 +61,7 @@ const passwordEmptyError = /Password field cannot be empty./i
 const emailEmptyError = /Email field cannot be empty./i
 
 jest.mock('aws-amplify')
+
 test('Show error messages only when email field is empty', () => {
   const form = renderForm()
   submit()
@@ -90,7 +91,7 @@ test('Show error messages only when password field is empty', () => {
   expect(passwordError).not.toBeVisible()
 })
 
-test('Show no error when log in successful', () => {
+test('Successful login no error', () => {
   Auth.signIn.mockResolvedValue({})
   const {
     passwordError,
@@ -139,6 +140,7 @@ test('Show wrong credentials error', async () => {
   expect(generalError).toBeEmptyDOMElement()
   expect(mockChangeAccVerify.mock.calls.pop()[0]).toBeFalsy()
 })
+
 test('Show unknown error', async () => {
   Auth.signIn.mockImplementation(async () => {
     throw new MockSignInError('Blablabla')
