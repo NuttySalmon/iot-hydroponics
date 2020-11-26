@@ -58,7 +58,7 @@ const TextField = (props: TextFieldProp) => {
     onChange(e.target.value)
   }
 
-  const hintStyle = showHint ? '' : 'd-none'
+  // const hintStyle = showHint ? '' : 'd-none'
   const errorShowing = error && showHint
   const errorStyle = errorShowing ? 'warning' : ''
   const labelStyle =
@@ -77,7 +77,10 @@ const TextField = (props: TextFieldProp) => {
         role={`${label.toLowerCase()}-input`}
         {...{ type, value }}
       />
-      <Form.Text className={`${hintStyle} ${errorStyle}`}>
+      <Form.Text
+        className={errorStyle}
+        style={{ display: showHint ? '' : 'none' }}
+      >
         <div>
           <span className={iconStyle}>
             <ExclamationIcon />
