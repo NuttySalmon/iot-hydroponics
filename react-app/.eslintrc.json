@@ -39,6 +39,8 @@
       "error",
       { "js": "never", "jsx": "never", "ts": "never", "tsx": "never" }
     ],
-    "@typescript-eslint/explicit-function-return-type": ["off"]
+    "@typescript-eslint/explicit-function-return-type": ["off"],
+    "react/jsx-props-no-spreading": ["off"],
+    "import/no-extraneous-dependencies": ["off"]
   }
 }

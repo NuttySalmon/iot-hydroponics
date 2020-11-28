@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Auth, PubSub } from 'aws-amplify'
 import { Button, Container, Row } from 'react-bootstrap'
 import { DeviceSettings } from '../../Dashboard/DeviceInfo'
 import style from './scss/settingsPage.module.scss'
@@ -19,6 +20,17 @@ const defaultSettings = {
   floodFreq: 0,
   floodDuration: 0,
 }
+
+// this is from AWS tutorial
+Auth.currentCredentials().then((info: any) => {
+  const cognitoIdentityId = info.identityId
+  console.log(cognitoIdentityId)
+})
+
+/**
+ * Handle Setting with Submit and Reset Buttons
+ * @param {React.SyntheticEvent} event - onSubmit form event
+ */
 
 function formatMinuteDisplay(value: number) {
   return value ? `${value} min` : 'Off'
@@ -57,6 +69,32 @@ const SettingsPage = ({ settings }: SettingsPageProps) => {
   const getFloodTimes = () => {
     if (floodValid) return Math.floor(1440 / (floodFreq! + floodDuration!))
     return '-'
+  }
+  // publish to settings topic
+  const pub = async () => {
+    try {
+      // All of these were initialized in the settings function as 0, called by button
+      await PubSub.publish('iothydroponics/device/abc/settings', {
+        floodFreq: newSettings.floodFreq,
+        floodDuration: newSettings.floodDuration,
+        ledOffTime: newSettings.ledOffTime,
+        fanDuration: newSettings.fanDuration,
+        fanInterval: newSettings.fanDuration,
+        red: newSettings.red,
+        green: newSettings.green,
+        blue: newSettings.blue,
+      })
+    } catch (error) {
+      console.warn(error)
+    }
+  }
+
+  const handleSubmit = async (event: React.SyntheticEvent) => {
+    try {
+      pub()
+    } catch (error) {
+      console.log(error)
+    }
   }
   return (
     <Container className="pb-5">
@@ -179,7 +217,9 @@ const SettingsPage = ({ settings }: SettingsPageProps) => {
         </Row>
       </Container>
       <Container className="text-center">
-        <Button variant="long">Send to device </Button>
+        <Button variant="long" onClick={handleSubmit}>
+          Send to device
+        </Button>
       </Container>
     </Container>
   )

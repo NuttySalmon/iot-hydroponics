@@ -43,3 +43,4 @@ amplifytools.xcconfig
 
 #log
 *.log
+.eslintcache
