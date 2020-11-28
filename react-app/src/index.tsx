@@ -1,11 +1,20 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Amplify from 'aws-amplify'
+import Amplify, { PubSub } from 'aws-amplify'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 import awsExports from './aws-exports'
+import { AWSIoTProvider } from '@aws-amplify/pubsub/lib/Providers'
 
+Amplify.addPluggable(
+  new AWSIoTProvider({
+    aws_pubsub_region: 'us-west-2',
+    aws_pubsub_endpoint:
+      'wss://a1778zndtxlcj-ats.iot.us-west-2.amazonaws.com/mqtt',
+  })
+)
 Amplify.configure(awsExports)
+
 
 ReactDOM.render(
   <React.StrictMode>
