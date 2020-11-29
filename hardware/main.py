@@ -1,3 +1,4 @@
+from behaviour import Behaviour
 import json
 from config import IOT_CONFIG
 from aws_iot_client import IoTClient
@@ -24,12 +25,10 @@ def run_task_interval(interval=1):
 
 class Hydroponics:
     def __init__(self, iot_config):
-
-        self.current_settings = Settings()
-        self.current_data = Data()
+        self.behaviour = Behaviour()
         topic_prefix = "iothydroponics/device/{}".format(IOT_CONFIG.client_id)
         settings_topic = "{}/settings".format(topic_prefix)
-        device_update_topic = "{}/data".format(topic_prefix)
+        device_update_topic = "{}/update".format(topic_prefix)
         self.iot_config = iot_config
         self.client = IoTClient(
             settings_topic=settings_topic,
@@ -38,16 +37,28 @@ class Hydroponics:
         )
         self.publish_thread = Thread(target=self.publish_at_interval)
 
-    @run_task_interval(60)
+    @property
+    def current_settings(self):
+        return self.behaviour.settings
+    
+    @property
+    def current_data(self):
+        return self.behaviour.data
+
+    @run_task_interval(0.5)
     def publish_at_interval(self):
         self.publish()
 
+    @run_task_interval(0.5)
+    def timed_events(self):
+        self.behaviour.update_all()
+        
     def publish(self):
-        print(
-            "Publish: \n data:{}\n settings:{}\n".format(
-                self.current_data, self.current_settings
-            )
-        )
+        # print(
+        #     "Publish: \n data:{}\n settings:{}\n".format(
+        #         self.current_data.__dict__, self.current_settings.__dict__
+        #     )
+        # )
         self.client.publish_update(self.current_data, self.current_settings)
 
     # Callback when the subscribed topic receives a message
@@ -55,14 +66,16 @@ class Hydroponics:
     def on_message_received(self, topic, payload, **kwargs):
         new_settings = json.loads(payload)
         print("New settings: {}\n".format(new_settings))
-        self.current_settings.set_with_dict(new_settings)
+        self.behaviour.update_settings(new_settings)
         self.publish()  # republish immediately
 
     def start(self):
         self.client.subscribe_topic(self.on_message_received)
         self.iot_client_run_thread = Thread(target=self.client.run)
+        self.edge_behaviour = Thread(target=self.timed_events)
         self.iot_client_run_thread.start()
         self.publish_thread.start()
+        self.edge_behaviour.start()
 
 
 if __name__ == "__main__":

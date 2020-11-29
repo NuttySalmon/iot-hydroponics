@@ -1,17 +1,22 @@
-from dataclasses import dataclass
 
-
-@dataclass
 class Settings:
-    floodFreq: int = 0
-    floodDuration: int = 0
-    ledOnTime: int = 12
-    ledOffTime: int = 12
-    fanDuration: int = 0
-    fanInterval: int = 0
-    red: int = 0
-    green: int = 0
-    blue: int = 0
+    def __init__(self, settings_dict = None):
+        """constructor
+
+        :type settings_dict: dict(str, int)
+        """
+        if settings_dict is None:
+            self.floodFreq = 0
+            self.floodDuration = 0
+            self.ledOnTime = 12
+            self.ledOffTime = 12
+            self.fanDuration = 0
+            self.fanInterval = 0
+            self.red = 0
+            self.gree = 0
+            self.blue = 0
+        else:
+            self.set_with_dict(settings_dict)
 
     def set_with_dict(self, input):
         """Set attributes with dictionary
