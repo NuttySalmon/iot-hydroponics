@@ -1,3 +1,4 @@
 certificates/
 config.*
 *.pyc
+venv/
