@@ -43,8 +43,13 @@ function formatMinuteEveryDisplay(value: number) {
 type SettingsPageProps = {
   settings: DeviceSettings | null
   setDisplaySettings: (value: boolean) => void
+  deviceId: string
 }
-const SettingsPage = ({ settings, setDisplaySettings }: SettingsPageProps) => {
+const SettingsPage = ({
+  settings,
+  setDisplaySettings,
+  deviceId,
+}: SettingsPageProps) => {
   const [newSettings, setNewSettings] = useState<DeviceSettings>(
     settings || defaultSettings
   )
@@ -75,9 +80,10 @@ const SettingsPage = ({ settings, setDisplaySettings }: SettingsPageProps) => {
   const pub = async () => {
     try {
       // All of these were initialized in the settings function as 0, called by button
-      await PubSub.publish('iothydroponics/device/abc/settings', {
+      await PubSub.publish(`iothydroponics/device/${deviceId}/settings`, {
         floodFreq: newSettings.floodFreq,
         floodDuration: newSettings.floodDuration,
+        ledOnTime: newSettings.ledOnTime,
         ledOffTime: newSettings.ledOffTime,
         fanDuration: newSettings.fanDuration,
         fanInterval: newSettings.fanDuration,
