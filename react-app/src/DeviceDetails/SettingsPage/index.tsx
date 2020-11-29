@@ -42,8 +42,9 @@ function formatMinuteEveryDisplay(value: number) {
 
 type SettingsPageProps = {
   settings: DeviceSettings | null
+  setDisplaySettings: (value: boolean) => void
 }
-const SettingsPage = ({ settings }: SettingsPageProps) => {
+const SettingsPage = ({ settings, setDisplaySettings }: SettingsPageProps) => {
   const [newSettings, setNewSettings] = useState<DeviceSettings>(
     settings || defaultSettings
   )
@@ -92,6 +93,7 @@ const SettingsPage = ({ settings }: SettingsPageProps) => {
   const handleSubmit = async (event: React.SyntheticEvent) => {
     try {
       pub()
+      setDisplaySettings(false)
     } catch (error) {
       console.log(error)
     }
