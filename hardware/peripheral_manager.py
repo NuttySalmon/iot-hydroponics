@@ -6,7 +6,11 @@ class PeripheralManager:
     def __init__(self):
         self.data = Data()
         self.led = LED()
+        self.led_color = (0, 0, 0)
     
+    def update_LED_color(self, red, green, blue):
+        self.led_color = (red, green, blue)
+
     def fan_toggle(self):
         self.data.fanOn = not self.data.fanOn
         print('Fan: {}'.format(self.data.fanOn))
@@ -22,14 +26,22 @@ class PeripheralManager:
 
     def led_toggle(self):
         self.data.ledOn = not self.data.ledOn
+
+        if self.data.ledOn:
+            self.led.colorWipe(self.led_color)
+        else:
+            self.led.colorWipe((0, 0, 0))
+
         print('LED: {}'.format(self.data.ledOn))
     
     def led_on(self):
         self.data.ledOn = True
+        self.led.colorWipe(self.led_color)
         print('LED on')
     
     def led_off(self):
-        self.data.ledOff = False
+        self.data.ledOn = False
+        self.led.colorWipe((0, 0, 0))
         print('LED off')
 
     def grab_temp_hum(self):

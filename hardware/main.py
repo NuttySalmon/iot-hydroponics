@@ -83,5 +83,5 @@ if __name__ == "__main__":
      
     
     instance = Hydroponics(IOT_CONFIG)
-    instance.behaviour._peri.led.colorWipe(255, 0, 255)
+    # instance.behaviour._peri.led.colorWipe((255, 0, 255))
     instance.start()

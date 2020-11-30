@@ -38,11 +38,14 @@ class Behaviour:
         self._fan_next_cal()
         self._flood_next_cal()
         print(self.settings.ledOnTime, self.settings.ledOffTime)
-        if led_on_now(self.settings.ledOnTime, self.settings.ledOffTime):
+        self._peri.update_LED_color(self.settings.red, self.settings.green, self.settings.blue)
+        ledOn = led_on_now(self.settings.ledOnTime, self.settings.ledOffTime)
+        if ledOn:
             self._peri.led_on()
         else:
             self._peri.led_off()
 
+        print('LED on now? ', ledOn)
         print(self._led_next, self._fan_next, self._flood_next)
 
     def _led_next_cal(self):
@@ -73,8 +76,8 @@ class Behaviour:
 
     def update_all(self):
         now = strip_time(datetime.now())
-        print(now)
-        print("fan", self._fan_next)
+        # print(now)
+        # print("fan", self._fan_next)
         if now == self._led_next:
             self._peri.led_toggle()
             self._led_next_cal()

@@ -13,7 +13,7 @@ class Settings:
             self.fanDuration = 0
             self.fanInterval = 0
             self.red = 0
-            self.gree = 0
+            self.green = 0
             self.blue = 0
         else:
             self.set_with_dict(settings_dict)

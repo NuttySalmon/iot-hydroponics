@@ -17,14 +17,13 @@ class LED():
         # Intialize the library (must be called once before other functions).
         self.strip.begin()
     
-    def colorWipe(self, red, green, blue, wait_ms=50):
-        # Process arguments
-        # parser = argparse.ArgumentParser()
-        # parser.add_argument('-c', '--clear', action='store_true', help='clear the display on exit')
-        # args = parser.parse_args()     
-        color = Color(red, green, blue)
-        """Wipe color across display a pixel at a time."""
+    def colorWipe(self, rgb, wait_ms=50):
+        """Wipe color across display a pixel at a time.
+        :param rgb: color
+        :type rgb: tuple(int, int, int) 
+        """
+        color = Color(*rgb)
         for i in range(self.strip.numPixels()):
             self.strip.setPixelColor(i, color)
             self.strip.show()
-            time.sleep(wait_ms/100000.0)
+            time.sleep(wait_ms/10000.0)

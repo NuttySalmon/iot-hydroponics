@@ -4,7 +4,7 @@ from dataclasses import dataclass
 class Data:
   fanOn: bool = False
   ledOn: bool = False
-  temp: float = 0 
-  hum: float = 0
+  temp: float = 23.5 
+  hum: float = 83
   pumpOn: bool = False
   valveClosed: bool = False
