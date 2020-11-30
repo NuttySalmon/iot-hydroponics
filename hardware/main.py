@@ -7,6 +7,7 @@ from data import Data
 from settings import Settings
 from time import sleep
 
+
 PUBLISH_INTERVAL = 60
 
 
@@ -79,5 +80,8 @@ class Hydroponics:
 
 
 if __name__ == "__main__":
+     
+    
     instance = Hydroponics(IOT_CONFIG)
+    instance.behaviour._peri.led.colorWipe(255, 0, 255)
     instance.start()

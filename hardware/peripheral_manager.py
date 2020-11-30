@@ -1,16 +1,19 @@
+from led import LED
 from data import Data
+
 
 class PeripheralManager:
     def __init__(self):
         self.data = Data()
+        self.led = LED()
     
     def fan_toggle(self):
         self.data.fanOn = not self.data.fanOn
         print('Fan: {}'.format(self.data.fanOn))
     
     def flood_start(self):
-        self.data.pumpOn = True 
-        self.data.valveClosed = True 
+        self.data.pumpOn = True
+        self.data.valveClosed = True
         print('Pump: {}'.format(self.data.pumpOn))
     
     def pump_off(self):
