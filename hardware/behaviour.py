@@ -28,7 +28,9 @@ class Behaviour:
     @property
     def data(self):
         return self._peri.data
-
+    def update_temp_hum(self):
+        self._peri.grab_temp_hum()
+        
     def update_settings(self, new_settings):
         """
         :type new_settings: dict(str, int)

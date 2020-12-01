@@ -1,11 +1,13 @@
 from led import LED
 from data import Data
+from temp_hum import Temp_Hum
 
 
 class PeripheralManager:
     def __init__(self):
         self.data = Data()
         self.led = LED()
+        self.temp_hum = Temp_Hum()
         self.led_color = (0, 0, 0)
     
     def update_LED_color(self, red, green, blue):
@@ -45,7 +47,5 @@ class PeripheralManager:
         print('LED off')
 
     def grab_temp_hum(self):
-        #TODO: change to real data
-        self.data.temp = 10
-        self.data.hum = 10
-        print('Grabbed temp hum')
+        self.data.temp = self.temp_hum.get_temp()
+        self.data.hum = self.temp_hum.get_hum()

@@ -39,6 +39,7 @@ class Hydroponics:
     
     @property
     def current_data(self):
+        self.behaviour.update_temp_hum()
         return self.behaviour.data
 
     @run_task_interval(0.5)
