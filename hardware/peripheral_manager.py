@@ -65,5 +65,4 @@ class PeripheralManager:
         return self.water_level.get()
 
     def grab_temp_hum(self):
-        self.data.temp = self.temp_hum.get_temp()
-        self.data.hum = self.temp_hum.get_hum()
+        self.data.hum = self.temp_hum.get_value()

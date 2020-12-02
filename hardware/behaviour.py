@@ -138,9 +138,11 @@ class Behaviour:
             
 
     def water_level_flood_control(self):
-        if self.peri.grab_water_level():
+        water_level = self.peri.grab_water_level()
+        print(water_level)
+        if water_level:
             print("Water level reached")
             if self.is_flood:
                 self.peri.valve_open()
             else:
-                self.peri.flood_stop()
+                self.peri.pump_off()

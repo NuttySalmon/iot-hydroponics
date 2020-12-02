@@ -6,9 +6,9 @@ class Settings:
         :type settings_dict: dict(str, int)
         """
         if settings_dict is None:
-            self.floodFreq = 20
-            self.floodDuration = 5
-            self.ledOnTime = 18 
+            self.floodFreq = 5 
+            self.floodDuration = 30
+            self.ledOnTime = 8 
             self.ledOffTime = 12
             self.fanDuration = 5
             self.fanInterval = 20

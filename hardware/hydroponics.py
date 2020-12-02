@@ -21,18 +21,20 @@ def run_task_interval(interval=1):
     return decorator
 
 class Hydroponics:
-    def __init__(self, iot_config, peri_config):
+    def __init__(self, iot_config, peri_config, iot_disabled=False):
         self.behaviour = Behaviour(peri_config)
-        topic_prefix = "iothydroponics/device/{}".format(iot_config.client_id)
-        settings_topic = "{}/settings".format(topic_prefix)
-        device_update_topic = "{}/update".format(topic_prefix)
-        self.iot_config = iot_config
-        self.client = IoTClient(
-            settings_topic=settings_topic,
-            device_update_topic=device_update_topic,
-            **self.iot_config.__dict__
-        )
-        self.publish_thread = Thread(target=self.publish_at_interval)
+        self.iot_disabled = iot_disabled
+        if not iot_disabled:
+            topic_prefix = "iothydroponics/device/{}".format(iot_config.client_id)
+            settings_topic = "{}/settings".format(topic_prefix)
+            device_update_topic = "{}/update".format(topic_prefix)
+            self.iot_config = iot_config
+            self.client = IoTClient(
+                settings_topic=settings_topic,
+                device_update_topic=device_update_topic,
+                **self.iot_config.__dict__
+            )
+            self.publish_thread = Thread(target=self.publish_at_interval)
 
     @property
     def current_settings(self):
@@ -53,6 +55,7 @@ class Hydroponics:
         
     @run_task_interval(0.4)
     def overflow_prevention(self):
+        print('test')
         self.behaviour.water_level_flood_control()
 
     def publish(self):
@@ -67,10 +70,15 @@ class Hydroponics:
         self.publish()  # republish immediately
 
     def start(self):
-        self.client.subscribe_topic(self.on_message_received)
         self.overflow_monitor_thread = Thread(target=self.overflow_prevention)
-        self.iot_client_run_thread = Thread(target=self.client.run)
+        if not self.iot_disabled:
+            self.client.subscribe_topic(self.on_message_received)
+            self.iot_client_run_thread = Thread(target=self.client.run)
         self.edge_behaviour = Thread(target=self.timed_events)
-        self.iot_client_run_thread.start()
-        self.publish_thread.start()
+        
+        if not self.iot_disabled:
+            self.iot_client_run_thread.start()
+            self.publish_thread.start()
+
         self.edge_behaviour.start()
+        self.overflow_monitor_thread.start()
