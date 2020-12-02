@@ -1,4 +1,5 @@
 
+from config import PERI_CONFIG
 from datetime import datetime
 
 def strip_time(dt):
@@ -9,7 +10,10 @@ def strip_time(dt):
     :return: stripped datetime
     :rtype: datetime.datetime
     """
-    return dt.replace(microsecond=0)
+    if PERI_CONFIG.in_seconds:
+        return dt.replace(microsecond=0)
+    
+    return dt.replace(seconds=0, microsecond=0)
 
 def led_on_now(on_hr, off_hr):
     now = datetime.now().hour

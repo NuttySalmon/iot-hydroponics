@@ -10,6 +10,7 @@ import json
 def run_task_interval(interval=1):
     def decorator(function):
         def wrapper(*args, **kwargs):
+            result = None
             while 1:
                 result = function(*args, **kwargs)
                 sleep(interval)
@@ -20,8 +21,8 @@ def run_task_interval(interval=1):
     return decorator
 
 class Hydroponics:
-    def __init__(self, iot_config):
-        self.behaviour = Behaviour()
+    def __init__(self, iot_config, peri_config):
+        self.behaviour = Behaviour(peri_config)
         topic_prefix = "iothydroponics/device/{}".format(iot_config.client_id)
         settings_topic = "{}/settings".format(topic_prefix)
         device_update_topic = "{}/update".format(topic_prefix)
@@ -50,6 +51,10 @@ class Hydroponics:
     def timed_events(self):
         self.behaviour.update_all()
         
+    @run_task_interval(0.4)
+    def overflow_prevention(self):
+        self.behaviour.water_level_flood_control()
+
     def publish(self):
         self.client.publish_update(self.current_data, self.current_settings)
 
@@ -63,6 +68,7 @@ class Hydroponics:
 
     def start(self):
         self.client.subscribe_topic(self.on_message_received)
+        self.overflow_monitor_thread = Thread(target=self.overflow_prevention)
         self.iot_client_run_thread = Thread(target=self.client.run)
         self.edge_behaviour = Thread(target=self.timed_events)
         self.iot_client_run_thread.start()
