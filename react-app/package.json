@@ -1,9 +1,6 @@
 {
   "name": "iot-hydroponics-react",
   "version": "0.3.0",
-  "engines": {
-    "node": ">=15.0.0"
-  },
   "private": true,
   "dependencies": {
     "@types/jest": "^26.0.15",
