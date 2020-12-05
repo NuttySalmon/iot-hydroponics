@@ -16,7 +16,7 @@ class PeripheralManager:
         self.fan = GPIOOut(pin_config.fan_pin)
             
     def update_LED_color(self, red, green, blue):
-        self.led_color = (red, green, blue)
+        self.led_color = (red, green, blue) 
 
     def fan_toggle(self):
         self.data.fanOn = not self.data.fanOn
@@ -24,10 +24,12 @@ class PeripheralManager:
         print("Fan: {}".format(self.data.fanOn))
 
     def pump_on(self):
+        self.data.pumpOn = True
         self.pump.set(1)
         print("Pump On")
 
     def pump_off(self):
+        self.data.pumpOn = False
         self.pump.set(0)
         print("Pump off.")
 
@@ -65,4 +67,4 @@ class PeripheralManager:
         return self.water_level.get()
 
     def grab_temp_hum(self):
-        self.data.hum = self.temp_hum.get_value()
+        self.data.hum, self.data.temp = self.temp_hum.get()

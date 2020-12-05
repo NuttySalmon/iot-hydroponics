@@ -1,3 +1,4 @@
+
 from time import sleep
 from aws_iot_client import IoTClient
 from threading import Event, Thread
@@ -6,6 +7,7 @@ from settings import Settings
 from time import sleep
 from behaviour import Behaviour
 import json
+
 
 def run_task_interval(interval=1):
     def decorator(function):
@@ -36,6 +38,9 @@ class Hydroponics:
             )
             self.publish_thread = Thread(target=self.publish_at_interval)
 
+    def turn_off_all(self):
+        self.behaviour.turn_off_all()
+
     @property
     def current_settings(self):
         return self.behaviour.settings
@@ -43,19 +48,19 @@ class Hydroponics:
     @property
     def current_data(self):
         self.behaviour.update_temp_hum()
+        print(self.behaviour.data)
         return self.behaviour.data
 
-    @run_task_interval(0.5)
+    @run_task_interval(1)
     def publish_at_interval(self):
         self.publish()
 
-    @run_task_interval(0.5)
+    @run_task_interval(1)
     def timed_events(self):
         self.behaviour.update_all()
         
     @run_task_interval(0.4)
     def overflow_prevention(self):
-        print('test')
         self.behaviour.water_level_flood_control()
 
     def publish(self):

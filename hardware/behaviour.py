@@ -21,12 +21,20 @@ class Behaviour:
         self._flood_next = None
         self._drain_next = None
         self.is_flood = False
+        self.valve_open_time = peri_config.valve_open_time
+        self.turn_off_all()
         if peri_config.flood_immediately:
             print("Flood immediately: {}".format(peri_config.flood_immediately))
-            self.peri.is_flood = True
+            self.is_flood = True
             self.peri.pump_on()
+            self.peri.valve_close()
+        else:
+            self.is_flood = False
         self.update_settings(None)
-        self.valve_open_time = peri_config.valve_open_time
+    def turn_off_all(self):
+        self.peri.pump_off()
+        self.peri.led_off()
+        self.peri.valve_close()
 
     @property
     def data(self):
@@ -42,7 +50,7 @@ class Behaviour:
         self.settings = Settings(new_settings)
         self._led_next_cal()
         self._fan_next_cal()
-        self._flood_next_cal(False)
+        self._flood_next_cal(self.is_flood)
         print(self.settings.ledOnTime, self.settings.ledOffTime)
         self.peri.update_LED_color(
             self.settings.red, self.settings.green, self.settings.blue
@@ -83,7 +91,7 @@ class Behaviour:
 
     def _flood_next_cal(self, is_flood):
         self._flood_next = self.interval_next(
-            self.settings.floodDuration, self.settings.floodFreq, is_flood
+            self.settings.floodDuration, self.settings.floodFreq + self.valve_open_time, is_flood
         )
 
     def _drain_next_cal(self):
@@ -142,7 +150,4 @@ class Behaviour:
         print(water_level)
         if water_level:
             print("Water level reached")
-            if self.is_flood:
-                self.peri.valve_open()
-            else:
-                self.peri.pump_off()
+            self.peri.pump_off()

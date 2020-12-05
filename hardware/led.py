@@ -1,7 +1,7 @@
 from rpi_ws281x import Adafruit_NeoPixel, Color
 import time
 # LED strip configuration:
-LED_COUNT      = 20      # Number of LED pixels.
+LED_COUNT      = 60      # Number of LED pixels.
 LED_PIN        = 18      # GPIO pin connected to the pixels (18 uses PWM!).
 #LED_PIN        = 10      # GPIO pin connected to the pixels (10 uses SPI /dev/spidev0.0).
 LED_FREQ_HZ    = 800000  # LED signal frequency in hertz (usually 800khz)
@@ -22,8 +22,15 @@ class LED():
         :param rgb: color
         :type rgb: tuple(int, int, int) 
         """
-        color = Color(*rgb)
+        print(len(rgb))
+        red_p = rgb[0]
+        green_p = rgb[1]
+        blue_p = rgb[2]
+        red = int(255*red_p/100)
+        green = int(255*green_p/100)
+        blue = int(255*blue_p/100)
+        color = Color(red, green, blue)
         for i in range(self.strip.numPixels()):
             self.strip.setPixelColor(i, color)
             self.strip.show()
-            time.sleep(wait_ms/10000.0)
+            time.sleep(wait_ms/8000.0)

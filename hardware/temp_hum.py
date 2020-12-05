@@ -11,7 +11,7 @@ sensor = Adafruit_DHT.DHT11
 
 class Temp_Hum:
     def __init__(self):
-        self.pin = 17 
+        self.pin = 5
     def get(self):
         counter = 0
         while True:
